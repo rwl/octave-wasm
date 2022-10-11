@@ -1,0 +1,125 @@
+libf2c2 (20130926-3) unstable; urgency=medium
+
+  * Team upload.
+  * Move packaging to salsa.debian.org
+  * cme fix dpkg-control
+  * debhelper 11
+
+ -- Andreas Tille <tille@debian.org>  Thu, 22 Feb 2018 13:36:24 +0100
+
+libf2c2 (20130926-2) unstable; urgency=medium
+
+  * Team upload
+  * Make suitable for creating libraries to be used in non-Fortran programs
+    (thanks for the patch to Christian Seiler <christian@iwakd.de>)
+    Closes: #826253
+
+ -- Andreas Tille <tille@debian.org>  Fri, 03 Jun 2016 22:11:58 +0200
+
+libf2c2 (20130926-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Barak A. Pearlmutter ]
+  * New upstream version
+
+  [ Andreas Tille ]
+  * Add two files that are included in the clapack source but missing here
+  * Propagate CFLAGS to make sure clapack tests will succeed
+  * cme fix dpkg-control
+  * lintian-override for hardening-no-bindnow since this should not be set
+  * Conflicts with lower version should be Breaks
+
+ -- Andreas Tille <tille@debian.org>  Thu, 26 May 2016 08:38:04 +0200
+
+libf2c2 (20090411-3) unstable; urgency=medium
+
+  * Adopt package (closes: #810238)
+  * dh9
+  * bump policy version
+  * debian/control homepage, packaging repo
+  * multiarch
+  * reproducible build, smash gzip timestamp (closes: #788001)
+  * source format 3.0 (quilt)
+  * modernize debian/copyright
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 11 Jan 2016 08:42:44 +0000
+
+libf2c2 (20090411-2) unstable; urgency=low
+  
+  * Small code changes to uninit.c to fix compilation problems
+    on armel architecture
+
+ -- Alan Bain <afrb2@debian.org>  Thu, 6 Aug 2009 20:25:32 +0100 
+
+
+libf2c2 (20090411-1) unstable; urgency=low
+  
+  * New upstream source including C++ const correctness changes
+    and avoid use of default return type of int
+  * Incorporate changes from NMU and remove f2c_master.h
+  * Remove .comment section from the shared libraries
+
+ -- Alan Bain <afrb2@debian.org>  Wed, 5 Aug 2009 21:45:54 +0100 
+
+libf2c2 (20061008-4.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Don't sed away long on alpha and ia64, that was an ugly hack.
+  * Instead add some ifdefs to f2c.h so we catch all archs where
+    a long is 8 bytes and use only int there (make sure not to break
+    other architectures by keeping long int there).
+    Update README.debian accordingly.
+    Also update f2c.h0 and f2c_master.h, so the files match, even if
+    they are unused.
+    Closes: #442018, #508565.
+  * Clean debian/*.debhelper.log.
+
+ -- Evgeni Golov <sargentd@die-welt.net>  Sat, 03 Jan 2009 03:41:30 +0100
+
+libf2c2 (20061008-4) unstable; urgency=low
+  * Remove CVS directory left in source package
+ -- Alan Bain <afrb2@debian.org>  Mon, 19 May 2008 22:50:54 +0100 
+
+libf2c2 (20061008-3) unstable; urgency=low
+  * fix broken symlinks in -dev package
+ -- Alan Bain <afrb2@debian.org>  Sat, 17 May 2008 00:40:40 +0100 
+
+libf2c2 (20061008-2) unstable; urgency=low
+  * fixes to shared library integer size in IO calls; normal
+    version was being overwritten by version for -I2 option,
+    causing segmentation faults with certain IO operations.
+ -- Alan Bain <afrb2@debian.org>  Fri, 16 May 2008 23:00:40 +0100 
+
+libf2c2 (20061008-1) unstable; urgency=low
+  * new upstream source fixes various problems on 64 bit platforms
+  * fixes for the _i2 library in build (file IO with short int params)
+  * fixes for int size for IA64
+  * don't set DH_COMPAT but use debian/compat
+  * include notes on integer size in debian README
+  * avoid use of ${Source-Version}
+
+ -- Alan Bain <afrb2@debian.org>  Sat, 10 May 2008 14:40:40 +0100 
+
+
+
+libf2c2 (20050501-3) unstable; urgency=low
+  * Remove bashishm from debian/rules (closes: bug#477611)
+  * Generate md5sums
+  * Use the nostrip option (closes: bug#437370)
+  * This package is not orphaned (closes: bug#465911)
+ -- Alan Bain <afrb2@debian.org>  Sun, 27 Apr 2008 16:40:40 +0100 
+
+libf2c2 (20050501-2) unstable; urgency=low
+  * Previous version erroneously assumed f2c.h was on include
+    path, now fixed (closes: bug#328938)
+
+ -- Alan Bain <afrb2@debian.org>  Sun, 18 Sep 2005 20:27:40 +0100 
+ 
+libf2c2 (20050501-1) unstable; urgency=low
+  * Initial Release after separating from f2c
+  * As per debian policy the shared libraries to support programs
+    build using f2c should not be part of the f2c package.
+
+ -- Alan Bain <afrb2@debian.org>  Mon, 22 Aug 2005 20:23:49 +0100
+ 

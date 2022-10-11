@@ -1,0 +1,2 @@
+# If hardening=+bindnow is set the testsuite of clapack breaks
+libf2c2: hardening-no-bindnow usr/lib/*/libf2c*

@@ -1,0 +1,74 @@
+From: "Barak A. Pearlmutter" <barak+git@cs.nuim.ie>
+Date: Wed, 18 Jul 2012 11:14:35 +0200
+Subject: make tweaks
+
+Tweak src/makefile.u: use default rules for .o object files and for
+f2c executable.
+Create stub f2c.c to allow f2c executable to depend on f2c.o which
+allows a default rule for f2c executable.
+Supply stub top-level Makefile.
+Set all target to not include xsum.out
+Make target distclean be very clean.
+---
+ Makefile       |    4 ++++
+ src/f2c.c      |    1 +
+ src/makefile.u |   11 +++++++----
+ 3 files changed, 12 insertions(+), 4 deletions(-)
+ create mode 100644 Makefile
+ create mode 100644 src/f2c.c
+
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 0000000..dd4f903
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,4 @@
++all:
++
++%:
++	$(MAKE) -C src -f makefile.u $@
+diff --git a/src/f2c.c b/src/f2c.c
+new file mode 100644
+index 0000000..17ca069
+--- /dev/null
++++ b/src/f2c.c
+@@ -0,0 +1 @@
++/* stub to make default make rule for f2c happy */
+diff --git a/src/makefile.u b/src/makefile.u
+index e9f9c5e..575ebc7 100644
+--- a/src/makefile.u
++++ b/src/makefile.u
+@@ -7,8 +7,8 @@ SHELL = /bin/sh
+ YACC = yacc
+ YFLAGS =
+ 
+-.c.o:
+-	$(CC) -c $(CFLAGS) $*.c
++#.c.o:
++#	$(CC) -c $(CFLAGS) $*.c
+ 
+ OBJECTSd = main.o init.o gram.o lex.o proc.o equiv.o data.o format.o \
+ 	  expr.o exec.o intr.o io.o misc.o error.o mem.o names.o \
+@@ -24,10 +24,11 @@ MALLOC =
+ 
+ OBJECTS = $(OBJECTSd) $(MALLOC)
+ 
+-all: xsum.out f2c
++all: f2c
+ 
++f2c: f2c.o
+ f2c: $(OBJECTS)
+-	$(CC) $(LDFLAGS) $(OBJECTS) -o f2c
++#	$(CC) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) -o $@
+ 
+ # The following used to be a rule for gram.c rather than gram1.c, but
+ # there are too many broken variants of yacc around, so now we
+@@ -91,6 +92,8 @@ clean:
+ veryclean: clean
+ 	rm -f xsum
+ 
++distclean: veryclean
++
+ b = Notice README cds.c data.c defines.h defs.h equiv.c error.c \
+ 	exec.c expr.c f2c.1 f2c.1t f2c.h format.c format.h formatdata.c \
+ 	ftypes.h gram.c gram.dcl gram.exec gram.expr gram.head gram.io \

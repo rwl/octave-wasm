@@ -1,0 +1,291 @@
+f2c (20160102-1) unstable; urgency=medium
+
+  * New upstream version (closes: #891112)
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Thu, 22 Feb 2018 13:31:26 +0000
+
+f2c (20100827-4) unstable; urgency=medium
+
+  * Team upload.
+  * Moved to salsa.debian.org
+  * cme fix dpkg-control
+  * debhelper 11
+
+ -- Andreas Tille <tille@debian.org>  Thu, 22 Feb 2018 13:09:24 +0100
+
+f2c (20100827-3) unstable; urgency=medium
+
+  * dh_installchangelogs, missing final s (closes: #834371)
+  * bump standards version (no changes required)
+  * fix upstream typo in string
+  * harden
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Mon, 15 Aug 2016 15:14:17 +0200
+
+f2c (20100827-2) unstable; urgency=medium
+
+  * take over maintenance (closes: #810233)
+  * modernize debian/copyright format
+  * bump policy version
+  * canonicalize packaging repo url
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Sun, 10 Jan 2016 16:35:37 +0000
+
+f2c (20100827-1) unstable; urgency=low
+
+  * new upstream version
+  * update packaging
+    - dh9
+    - bump policy version
+    - snag hardening flags etc in debian/rules
+    - dpkg source format 3.0 (quilt)
+    - move upstream mods into big quilt patch for later dissection
+  * remove debian-specific fc; upstream caught up
+  * quilt patch for C warnings
+  * quilt patch for man page hyphens
+  * quilt patches for build system to simplify debian/rules
+
+ -- Barak A. Pearlmutter <bap@debian.org>  Tue, 10 Apr 2012 18:08:28 +0100
+
+f2c (20090411-1) unstable; urgency=low
+  * new upstream source
+  * remove .CT macro from manpage as not supported by groff
+  * remove .comment section from f2c binary
+  * update the f2c manpage to reference correct libraries
+
+ -- Alan Bain <afrb2@debian.org>  Wed, 5 Aug 2009 21:00:07 +0100
+
+f2c (20061008-3) unstable; urgency=low
+  * remove use of DH_COMPAT from debian/rules
+ -- Alan Bain <afrb2@debian.org>  Mon, 12 May 2008 22:15:24 +0100
+
+f2c (20061008-2) unstable; urgency=low
+  * fixes for IA64 architecture, segmentation violation on invocation
+
+ -- Alan Bain <afrb2@debian.org>  Sat, 10 May 2008 10:55:03 +0100
+
+f2c (20061008-1) unstable; urgency=low
+  * new upstream source (closes: bug#401094)
+  * correction to handling of integer*8 subscripts
+
+ -- Alan Bain <afrb2@debian.org>  Sun, 27 Apr 2008 19:40:03 +0100
+
+f2c (20050501-3) unstable; urgency=low
+  * Correct date error in previous changelog.
+ -- Alan Bain <afrb2@debian.org>  Sun, 27 Apr 2008 16:45:03 +0100
+
+f2c (20050501-2) unstable; urgency=low
+  * removed empty /usr/include dir
+  * remove bashism from debian rules (closes: bug#477579)
+  * handle nostrip option (closes: bug#436825)
+  * package is not orphaned (closes: bug#465909)
+  * generate md5sums
+
+ -- Alan Bain <afrb2@debian.org>  Sun, 27 Apr 2008 16:15:03 +0100
+
+f2c (20050501-1) unstable; urgency=low
+  * Separated libf2c2 into a separate package to be more
+    standards compilant.
+  * New upstream release of f2c. This addresses
+    * Bug fix for f2c -s processing of real part of complex array reference.
+    * Warnings issued about inappropriate use of arrays.
+    * Upstream author fix for [CAN-2005-0017] so when -T not specified
+      the temporary files are created in a private directory created by
+      mkdtemp() and removed after execution.
+
+ -- Alan Bain <afrb2@debian.org>  Sun, 18 Sep 2005 21:19:48 +0100
+
+f2c (20020621-4) unstable; urgency=low
+  * Removed /usr/doc symlink (closes: bug#322830)
+  * NMU fixed bugs (closes: bug#292792, bug# 305971)
+
+ -- Alan Bain <afrb2@debian.org>  Thu, 18 Aug 2005 19:27:10 +0100
+
+f2c (20020621-3.4) unstable; urgency=high
+
+  * Re-NMU for same issue, yay
+  * Fix a remaining extern char * that needs to be extern char[]; build
+    tested to actually work this time. ;)  Really-closes: #305971.
+
+ -- Steve Langasek <vorlon@debian.org>  Sat, 30 Apr 2005 20:03:18 -0700
+
+f2c (20020621-3.3) unstable; urgency=medium
+
+  * Re-NMU for same issue.
+  * Use preallocated buffers for our tmpfile names, instead of using
+    randomly-sized strings and scribbling on memory.  Closes: #305971.
+    (Patch by Steve Langasek.)
+  * Lowered upload urgency to get a little more testing this time.
+
+ -- Joey Hess <joeyh@debian.org>  Mon, 25 Apr 2005 14:32:09 -0400
+
+f2c (20020621-3.2) unstable; urgency=HIGH
+
+  * NMU again for same security issues.
+  * Corrected the patch to create proper temporary files by not shadowing
+    global scope variables with local scope ones.  Thanks to Dan McMahill
+    from NetBSD [src/sysdep.c, patches/patch.CAN-2005-0017.f2c,
+    CAN-2005-0017]
+
+ -- Joey Hess <joeyh@debian.org>  Thu, 21 Apr 2005 12:32:07 -0400
+
+f2c (20020621-3.1) unstable; urgency=HIGH
+
+  * NMU for security issues. Closes: #292792
+  * Corrected creating of temporary files f2c [CAN-2005-0017]
+  * Added patch by Javier Fernandez-Sanguino Peña to fix temporary file
+    problem in fc [CAN-2005-0018]
+  * Removed xsum comparison since it prevents security updates
+    from being applied [src/makefile]
+
+ -- Joey Hess <joeyh@debian.org>  Fri,  4 Feb 2005 13:28:26 -0500
+
+f2c (20020621-2) unstable; urgency=low
+  * fixed longstanding errors in manpage with reference to the f2c
+    libraries, closing bug #167660
+ -- Alan Bain <afrb2@debian.org>  Tue, 5 November 2002 21:30:00 +0000
+f2c (20020621-1) unstable; urgency=low
+  * new upstream release fixes a few minor bugs
+ -- Alan Bain <afrb2@debian.org>  Sun, 22 September 2002 16:15:36 +0100
+f2c (20010821-3) unstable; urgency=low
+  * Fixed the uninit.c file to take advantage of new GLIBC 2.2 and later
+    features for setting FPU exception mask
+  * Incorporated suggestions of Peter Maydell closing #120902 & #121812
+ -- Alan Bain <afrb2@debian.org>  Tue, 19 February 2002 16:00:00 +0000
+f2c (20010821-2) unstable; urgency=low
+  * Corrected capitalization of fortran to FORTRAN closing #124608
+ -- Alan Bain <afrb2@debian.org>  Thur, 24 January 2001 11:00:00 +0000
+f2c (20010821-1) unstable; urgency=low
+  * new upstream relase incorporates patch made in (20010618-3)
+  * -trapuv works correctly on PPC closing bug #117789
+  * -trapuv code generates suitable error on IA64 closing ##110494
+    and #104613
+ -- Alan Bain <afrb2@debian.org>  Fri, 9 November 2001 17:00:00 -0800
+f2c (20010618-3) unstable; urgency=low
+  * corrected libF77/uninit.c to correctly set up the FPU registers on
+    M68K machines, closing bug #103287
+ -- Alan Bain <afrb2@debian.org>  Wed, 4 July 2001 10:00:00 +0100
+f2c (20010618-2) unstable; urgency=low
+  * corrected upload to fix problem with original
+ -- Alan Bain <afrb2@debian.org>  Tue, 3 July 2001 15:00:00 +0100
+f2c (20010618-1) unstable; urgency=low
+  * New upstream release from netlib (www.netlib.org)
+  * min,max of three or more arguments now work in parameter statements
+  * Accept write , format (as per Fortran IV)
+  * more accurate algorithm used for double precision complex log function
+  * error "impossible conversion" now generated by attempts to assign
+    character expressions to integer values rather than an implicit
+    conversion being performed.
+  * new option -trapuv (trap uninitialized values) which dynamically
+    initializes uninitiliazed variables.
+ -- Alan Bain <afrb2@debian.org>  Mon, 2 July 2001 17:00:00 +0100
+f2c (19991025-1) unstable; urgency=low
+  * New upstream release from netlib included better support for
+    64 bit machines in the fortran libraries.
+  * FHS file locations now used
+ -- Alan Bain <afrb2@debian.org>  Mon, 8 Nov 1999 15:30:00 +0000
+f2c (19990503-4) unstable; urgency=low
+  * Fixed fc script to remove an unsafe method of creating a
+    temporary file, and replaced by a call to tempfile.
+ -- Alan Bain <afrb2@debian.org>  Fri, 28 May 1999 10:00:00 +0100
+f2c (19990503-3) unstable; urgency=low
+  * for alpha now converts header file correctly not to use long ints
+    which is more compatible with g77.
+ -- Alan Bain <afrb2@debian.org>  Mon, 24 May 1999 19:35:00 +0100
+f2c (19990503-2) unstable; urgency=low
+  * Fixed libc6 problem
+ -- Alan Bain <afrb2@cam.ac.uk>  Sat, 22 May 1999 22:00:00 +0100
+f2c (19990503-1) unstable; urgency=low
+  * New upstream release from netlib includes some improved error
+    messages when translating (in particular it correctly attempts
+    to locate the line on which an error occured).
+  * manpage for fc is now compressed
+  * upstream changelog installed as changelog rather than changes
+  * postinst now calls ldconfig
+ -- Alan Bain <afrb2@cam.ac.uk>  Sat, 15 May 1999 10:00:00 +0100
+f2c (19990210-1) unstable; urgency=low
+  * Updated to new netlib source
+  * previous fixes to gram.c generation from yacc grammar
+    have now been incorporated in upstream source
+  * missing TAB in debian/rules added
+ -- Alan Bain <afrb2@cam.ac.uk>  Tue, 24 Feb 1999 23:30:00 +0000
+f2c (19971204-5) frozen; urgency=low
+  * Removed unwanted file debian/files which got left in
+    by mistake in the previous build.
+  * ammended clean target to remove these unwanted files.
+ -- Alan Bain <afrb2@cam.ac.uk>  Sat, 16 May 1998 23:30:00 +0100
+f2c (19971204-4) frozen; urgency=low
+
+  * Check error code from tempfile in fc script now
+    (really closing bug #19790)
+ -- Alan Bain <afrb2@cam.ac.uk>  Mon, 11 May 1998 21:30:00 +0100
+f2c (19971204-3) unstable; urgency=low
+
+  * Fixed fc script so as not to use /tmp in insecure fashion
+    closing bug #19790 -- use of /tmp/*$$
+  * Added man page for fc (thanks to Peter Maydell)
+    closing bug reported by lintian
+  * Changed debian/rules order for gencontrol and shlibdeps
+    closing bug #17429
+  * Made -mieee-fp an ix86 architecture only option
+    closing bugs #17430, #21247
+ -- Alan Bain <afrb2@cam.ac.uk>  Thu, 7 May 1998 22:00:00 +0100
+f2c (19971204-2) unstable; urgency=low
+
+  * Fixed shlibs problems by adding shlibs file and removing
+    references to ldconfig in scripts.
+  * Updated to latest standards
+
+ -- Alan Bain <afrb2@cam.ac.uk>  Sat, 14 Mar 1998 21:00:00 +0000
+f2c (19971204-1) unstable; urgency=low
+
+  * Latest netlib sources
+
+ -- Alan Bain <afrb2@cam.ac.uk>  Fri, 16 Jan 1998 18:00:00 +0000
+
+f2c (970219) unstable; urgency=low
+
+  * Release based on netlib sources containing f2c as of 19/02/97.
+  * Extensive tests for a large f77 project.
+
+ -- Alan Bain <alanb@chiark.greenend.org.uk>  Sun, 16 Nov 1997 21:20:00 +0000
+
+f2c (961209) unstable; urgency=low
+
+  * Release based on netlib sources on 26/1/97, containing
+    f2c from 09/12/97.
+  * Fix bugs
+  * Change to new source packaging format
+  * Libraries are now stripped
+
+ -- Alan Bain <alanb@chiark.greenend.org.uk>  Fri, 28 Feb 1997 19:30:00 +0100
+Thu Jul 25 10:43:03 1996  Dirk Eddelbuettel  <edd@miles.econ.queensu.ca>
+
+	* interim release coordinated with the new maintainer, Alan Bain,
+	  based on the netlib sources as of July 25, 1996 which contain
+	  the f2c release of July 17, 1996
+
+	* debian.rules: added arch=$(shell dpkg --print-architecture)
+
+	* debian.rules: removed -m486 from GCCOPTS, changed to -O2
+
+	* debian.rules: now builts the libI77 and libF77 directories
+ 	  in build target out of libi77 and libf77 source files; libI77
+	  and libF77 are removed by clean target
+
+	* debian.rules: install debian.README as /usr/doc/copyright/$(package)
+
+	* debian.rules: install documentation: f2c.ps, changes, readme
+
+	* debian.rules: install fc script as /usr/bin/fc
+
+	* debian.rules, debian.control: changed to new coding standard
+
+	* source package contains exacr copy of ftp://netlib.att.com/f2c/
+	  (but the msdos and .cap directories)
+
+f2c 16 Oct 95 - adf
+Changed package description to make it more concise.
+
+f2c 951007 Debian 1 - adf
+Initial release.

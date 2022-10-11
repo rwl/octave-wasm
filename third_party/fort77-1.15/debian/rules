@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+# Made with the aid of debmake, by Christoph Lameter,
+# based on the sample debian/rules file for GNU hello by Ian Jackson.
+
+package=fort77
+
+build-arch:
+build-indep: build
+build:
+	$(checkdir)
+	./configure --prefix=/usr
+	make CFLAGS="-O2 -g -Wall"
+
+	touch build
+
+clean:
+	$(checkdir)
+	-rm -f build
+	make distclean
+	-rm -f `find . -name "*~"`
+	-rm -rf debian/files* core debian/substvars
+	dh_clean
+
+binary-arch:	build
+
+binary-indep:	build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
+	make install DESTDIR=`pwd`/debian/fort77
+	dh_installdocs -i
+	dh_installchangelogs -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_shlibdeps -i
+	dh_perl -i
+	dh_gencontrol -i
+	dh_installdeb -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+
+# Below here is fairly generic really
+
+binary:		binary-indep binary-arch
+
+.PHONY: binary binary-arch binary-indep clean checkroot

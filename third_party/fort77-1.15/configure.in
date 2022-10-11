@@ -1,0 +1,8 @@
+
+AC_INIT(fort77.in)
+AC_PROG_CC
+AC_PROG_CPP
+AC_PATH_PROG(PERL, perl)
+AC_PATH_PROG(F2C, f2c)
+AC_OUTPUT(fort77)
+chmod u+x fort77

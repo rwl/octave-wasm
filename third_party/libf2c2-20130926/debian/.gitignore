@@ -1,0 +1,6 @@
+/*.debhelper
+/*.debhelper.log
+/*.substvars
+/files
+/libf2c2-dev/
+/libf2c2/

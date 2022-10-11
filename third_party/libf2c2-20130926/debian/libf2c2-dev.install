@@ -1,0 +1,6 @@
+#! /usr/bin/dh-exec
+libf2c.a	/usr/lib/${DEB_HOST_MULTIARCH}/
+libf2c.so	/usr/lib/${DEB_HOST_MULTIARCH}/
+libf2c_i2.a	/usr/lib/${DEB_HOST_MULTIARCH}/
+libf2c_i2.so	/usr/lib/${DEB_HOST_MULTIARCH}/
+f2c.h		/usr/include/

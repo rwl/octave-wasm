@@ -1,0 +1,4 @@
+#!/bin/sh -e
+update-alternatives --remove f77 /usr/bin/fort77
+
+#DEBHELPER#

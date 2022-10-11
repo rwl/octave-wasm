@@ -1,0 +1,15 @@
+Source: fort77
+Section: devel
+Priority: optional
+Maintainer: Mark Brown <broonie@debian.org>
+Standards-Version: 3.9.5
+Build-Depends: f2c, debhelper (>= 9)
+
+Package: fort77
+Architecture: all
+Depends: perl|perl5, f2c, cpp, ${misc:Depends}
+Provides: fortran77-compiler
+Description: Invoke f2c like a real compiler
+ The  fort77  script invokes the f2c command transparently, so it can be
+ used like a real Fortran compiler.  It can be used to compile Fortran,
+ C and assembler code, and to link it with the f2c libraries.

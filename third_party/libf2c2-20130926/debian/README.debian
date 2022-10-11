@@ -1,0 +1,19 @@
+libf2c for debian
+-----------------
+
+Original source downloaded from:
+ftp://netlib.bell-labs.com/netlib/f2c/libf2c.zip
+
+As sugested by upstream in their README, f2c.h was extended to use only
+'int' instead of 'long int' on architectures where the size of the latter
+is 8 bytes (alpha, ia64, amd64 and sparc64) and makes libf2c not
+compatible with g77. All other architectures still use "long int".
+
+The libF77 has been MODIFIED to work on MC68k machines.  Thus the 
+libf77 file now differs from that in the original version.  I hope
+this will be temporary until the M68K is fully supported by f2c.  This
+only affects the new -trapuv (trap unitialised values) flag which 
+requires the co-processor exception control mask to be set up.
+
+  Alan Bain <afrb2@debian.org>  Sat, 10 May 2008
+  Evgeni Golov (32/64-bit update) <sargentd@die-welt.net>  Sat, 03 Jan 2009

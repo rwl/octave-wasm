@@ -1,0 +1,17 @@
+# -*- makefile -*-
+
+all:
+	$(MAKE) -f makefile.u CFLAGS="$(CFLAGS) $(GCCOPT) -fPIC \
+        -I ../ -DNON_UNIX_STDIO -D$(INTSIZE)" 
+
+	gcc -shared -Wl,-soname,lib$(INTSIZE).so.2 $(LDFLAGS) \
+	                 -o lib$(INTSIZE).so.2.1 *.o -lc -lm
+
+	ar r lib$(INTSIZE).a *.o
+	ranlib lib$(INTSIZE).a
+	touch build_$(INTSIZE)
+
+clean: 
+	$(MAKE) -f makefile.u  clean
+
+

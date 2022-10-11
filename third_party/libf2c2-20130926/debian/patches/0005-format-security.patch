@@ -1,0 +1,30 @@
+From: Andreas Tille <tille@debian.org>
+Date: Sat, 21 May 2016 09:41:25 +0200
+Subject: format security
+
+Test breaks format security and should be fulfilled on Linux anyway.
+(See discussion on debian-mentors list in May 2016)
+---
+ arithchk.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arithchk.c b/arithchk.c
+index 6a3c2a5..c228d05 100644
+--- a/arithchk.c
++++ b/arithchk.c
+@@ -124,6 +124,7 @@ ccheck(void)
+ 	long Cray1;
+ 
+ 	/* Cray1 = 4617762693716115456 -- without overflow on non-Crays */
++/* Skip useless test
+ 	Cray1 = printf(emptyfmt) < 0 ? 0 : 4617762;
+ 	if (printf(emptyfmt, Cray1) >= 0)
+ 		Cray1 = 1000000*Cray1 + 693716;
+@@ -132,6 +133,7 @@ ccheck(void)
+ 	u.d = 1e13;
+ 	if (u.L == Cray1)
+ 		return &CRAY;
++*/
+ 	return 0;
+ 	}
+ 

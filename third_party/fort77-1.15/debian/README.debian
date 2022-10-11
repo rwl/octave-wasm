@@ -1,0 +1,11 @@
+fort77 for DEBIAN
+-----------------
+
+The Debian package of fort77 is the last upstream release (version 1.15)
+with a few bugfixes applied:  
+
+  * If f2c fails an error code is returned.
+  * Some harmless perl warnings are turned off.
+  * Use /lib/cpp instead of 
+
+ -- Mark Brown <broonie@debian.org>

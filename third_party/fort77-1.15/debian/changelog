@@ -1,0 +1,110 @@
+fort77 (1.15-11) unstable; urgency=low
+
+  * Disable mainmiss test to work around an apparent f2c/gcc issue
+    (closes: #616191).
+
+ -- Mark Brown <broonie@debian.org>  Sun, 03 Jul 2016 14:43:06 +0200
+
+fort77 (1.15-10) unstable; urgency=low
+
+  * Use sh -e for error handling in maintainer scripts.
+  * No need to ignore distclean errors, we don't delete Makefile.
+  * Policy 3.9.5 (no changes).
+
+ -- Mark Brown <broonie@debian.org>  Tue, 04 Feb 2014 13:16:00 +0000
+
+fort77 (1.15-9) unstable; urgency=low
+
+  * Policy 3.9.4.
+  * Use debhelper 9.
+
+ -- Mark Brown <broonie@debian.org>  Fri, 03 May 2013 14:21:32 +0100
+
+fort77 (1.15-8) unstable; urgency=low
+
+  * Accept source files outside the current directory when generating
+    debug symbols (closes: #507397).
+
+ -- Mark Brown <broonie@debian.org>  Sun, 07 Dec 2008 11:38:37 +0000
+
+fort77 (1.15-7) unstable; urgency=low
+
+  * Policy 3.6.2 (no changes).
+  * Update to debhelper 4.
+
+ -- Mark Brown <broonie@debian.org>  Mon,  2 Jan 2006 12:27:02 +0000
+
+fort77 (1.15-6) unstable; urgency=low
+
+  * Support .for extension for source files (closes: #248298).
+  * Policy 3.6.1.
+
+ -- Mark Brown <broonie@debian.org>  Mon, 10 May 2004 21:01:30 +0100
+
+fort77 (1.15-5) unstable; urgency=low
+
+  * Make build deps architecture independant.
+  * Policy 3.5.8.
+
+ -- Mark Brown <broonie@debian.org>  Sat, 18 Jan 2003 09:30:22 +0000
+
+fort77 (1.15-4) unstable; urgency=low
+
+  * Add support for the f2c option -trapuv as a first class option 
+    (closes: #103510).
+  * Update manual page.
+  * Add build depends.
+  * Updated to policy 3.5.6.
+
+ -- Mark Brown <broonie@debian.org>  Wed,  4 Jul 2001 20:56:26 +0100
+
+fort77 (1.15-3) unstable; urgency=low
+
+  * New maintainer.
+  * Convert to debhelper.
+  * Point alternative for f77.1 into /usr/share/man (closes: #46172).
+  * Apply patch from Michael Fulbright <msf@redhat.com> to "fix slightly
+    so as not to split (harmless) Perl warning messages", taken from
+    RedHat's 1.14a-3 RPM.
+  * Depend on perl|perl5 to ease backwards compatibility.
+  * Use patches from NMUs (closes: #15254, #24423, #29818, #31092, #32399)
+  * Standards version 3.0.1 (no changes).
+
+ -- Mark Brown <broonie@debian.org>  Wed, 20 Oct 1999 16:04:20 +0100
+
+fort77 (1.15-2.2) unstable; urgency=low
+
+  * NMU for the perl upgrade. Closes: #41482
+  * Corrected the perl dependeny.
+  * Upgraded standards-version to 3.0.0. Uses debstd.
+  * Bug 32399 is not a bug. Set the severity to fixed. Closes: #32399
+
+ -- Raphael Hertzog <rhertzog@hrnet.fr>  Thu, 22 Jul 1999 20:24:45 +0200
+
+fort77 (1.15-2.1) unstable; urgency=low
+
+  * Non-maintainer update.
+  * Use /lib/cpp instead of gcc as a preprocessor, and added
+    dependancy on it (fixes #24423 using method in supplied
+    patch).
+  * Return an error code when f2c fails (fixes #31092).
+  * Provide fortran77-compiler (fixes #15254).
+  * Use /etc/alternatives to provide f77 (fixes wishlist #29818).
+
+ -- Mark Brown <broonie@debian.org>  Mon, 25 Jan 1999 00:40:35 +0000
+
+fort77 (1.15-2) unstable; urgency=high
+
+  * fixed bug in debian/rules which resulted in fort77 not being
+    included in the binary archive
+
+ -- Thomas Koenig <ig25@rz.uni-karlsruhe.de>  Tue, 15 Jul 1997 13:13:32 +0200
+
+fort77 (1.15-1) unstable; urgency=low
+
+  * 
+  * New maintainer release.
+  * New source code format.
+  * New "upstream" release
+
+ -- Thomas Koenig <ig25@rz.uni-karlsruhe.de>  Sun, 13 Jul 1997 18:33:49 +0200

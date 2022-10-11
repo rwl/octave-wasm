@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Octave</title>
+  <pre id="output"></pre>
+</head>
+<body>
+<script type="text/javascript">
+  var Module = {
+    postRun() {
+      // Module.FS.mkdir("/working");
+      // Module.FS.mount(Module.FS.filesystems["IDBFS"], {}, "/working");
+
+      function chk(rv) {
+        if (rv.err) console.error(rv.err);
+        if (rv.out) console.log(rv.out);
+      }
+      function callModule(method, req) {
+        let s = Module[method](JSON.stringify(req));
+        return JSON.parse(s)
+      }
+      function disp(resp) {
+        document.getElementById("output").innerText = JSON.stringify(resp, null, "  ");
+      }
+
+      let resp = callModule("feval", "2 + 2");
+
+      disp(resp);
+    }
+  }
+</script>
+<script type="text/javascript" src="octave.js"></script>
+<script type="text/javascript">
+  OCTAVE(Module);
+</script>
+</body>

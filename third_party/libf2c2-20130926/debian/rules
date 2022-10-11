@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+
+# When this is set clapack tests are broken
+# export DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow
+
+%:
+	dh $@
+
+# package=libf2c2
+# package-dev=libf2c2-dev
+# prefix-dev=debian/libf2c2-dev
+# prefix=debian/libf2c2
+
+DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+dir=$(package)-$(version)
+file=$(package)_$(version)-$(debian)
+flibmajorver=2
+flibver=2.1
+
+# Optimization options.
+GCCOP2=-ansi $(CDEBUGFLAGS) -fomit-frame-pointer -mieee-fp -D_GNU_SOURCE -DDEBIAN
+GCCOP1=-ansi $(CDEBUGFLAGS) -fomit-frame-pointer -D_GNU_SOURCE -DDDEBIAN
+
+## Avoid using -mieee-fp on anything other than the i386 platform
+## as it is a gcc i386 specific option
+ifeq ($(DEB_HOST_ARCH),i386) 
+   GCCOPT=$(GCCOP2)
+else 
+   GCCOPT=$(GCCOP1)
+endif
+
+override_dh_auto_build:
+	if [ $(DEB_HOST_ARCH) = "i386" ] ;\
+           then echo "Building for i386" ;\
+        fi
+
+## These take gcc options from GCCOPT 
+	$(MAKE) -f ./debian/make_lib INTSIZE=f2c GCCOPT="$(GCCOPT)"
+## Make sure everything rebuilt for -I2 lib
+	$(MAKE) -f ./debian/make_lib clean
+	$(MAKE) -f ./debian/make_lib INTSIZE=f2c_i2 GCCOPT="$(GCCOPT)"
+
+	ln -s libf2c.so.$(flibver) libf2c.so.$(flibmajorver)
+	ln -s libf2c_i2.so.$(flibver) libf2c_i2.so.$(flibmajorver)
+
+	ln -sf libf2c.so.$(flibver) libf2c.so
+	ln -s libf2c_i2.so.$(flibver) libf2c_i2.so
