@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Octave</title>
+  <title>Octave Web</title>
   <pre id="output"></pre>
 </head>
 <body>
@@ -25,9 +25,10 @@
         document.getElementById("output").innerText = JSON.stringify(resp, null, "  ");
       }
 
-      let resp = callModule("feval", "2 + 2");
-
-      disp(resp);
+      disp(Module["feval"]("strcat", ["foo", "bar"], 1));
+      // let resp = callModule("feval", "2 + 2");
+      // disp(resp);
+      console.log(Module["last_error_message"]());
     }
   }
 </script>

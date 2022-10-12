@@ -64,7 +64,9 @@ RUN make $LIBDIR/octave/4.4.1/liboctave.so
 
 COPY src $PROJECTDIR/src
 WORKDIR $PROJECTDIR/src
-RUN make all
+#RUN make all
+RUN make web/octave.js
+#RUN make worker/octave.js
 
 
 ARG USER_ID=1000
@@ -74,9 +76,9 @@ RUN addgroup --gid $GROUP_ID dev
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID dev
 
 
-COPY test/index.html $PROJECTDIR/src/worker
-COPY test/server.py $PROJECTDIR/src/worker
-WORKDIR $PROJECTDIR/src/worker
+COPY test/web/index.html $PROJECTDIR/src/web
+COPY test/server.py $PROJECTDIR/src/web
+WORKDIR $PROJECTDIR/src/web
 
 EXPOSE 8080
-CMD ["python", "/usr/src/octave-wasm/src/worker/server.py"]
+CMD ["python", "/usr/src/octave-wasm/src/web/server.py"]
