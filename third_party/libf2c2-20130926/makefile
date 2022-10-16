@@ -15,7 +15,7 @@
 .SUFFIXES: .c .o
 CC = emcc
 SHELL = /bin/sh
-CFLAGS = -s LINKABLE=1 -s EXPORT_ALL=1 -O -I. -DNON_UNIX_STDIO -fPIC
+CFLAGS = -O -I. -DNON_UNIX_STDIO -fPIC
 LD = emcc
 AR = emar
 AR_FLAGS = cr
