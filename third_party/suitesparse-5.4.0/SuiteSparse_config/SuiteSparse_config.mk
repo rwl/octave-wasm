@@ -473,7 +473,7 @@ else
         SO_PLAIN  = $(LIBRARY).so
         SO_MAIN   = $(LIBRARY).so.$(SO_VERSION)
         SO_TARGET = $(LIBRARY).so.$(VERSION)
-        SO_OPTS  += -shared -Wl,-soname -Wl,$(SO_MAIN) -Wl,--no-undefined
+        SO_OPTS  += -shared -Wl,-soname -Wl,$(SO_MAIN)
         # Linux/Unix *.so files can be moved without modification:
         SO_INSTALL_NAME = echo
     endif
