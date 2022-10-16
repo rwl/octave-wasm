@@ -70,17 +70,24 @@ $(LIBDIR)/libclapack.so: $(LAPACKDIR)/libclapack.so $(LIBDIR)
 # PCRE
 
 $(PCREDIR)/.libs/libpcre.so: $(PCREDIR)/*.c
-	cd $(PCREDIR); emconfigure ./configure CFLAGS="-s LINKABLE=1 -s EXPORT_ALL=1 -O0" --prefix=$(INSTALLDIR) --disable-static
+	cd $(PCREDIR); autoreconf -f -i; emconfigure ./configure CFLAGS="-s LINKABLE=1 -s EXPORT_ALL=1 -O0" --prefix=$(INSTALLDIR) --disable-static
 
 $(LIBDIR)/libpcre.so: $(PCREDIR)/.libs/libpcre.so
-	emmake make -C $(PCREDIR) -j$(JOBS) install
+	CC=emcc make -C $(PCREDIR) install
+
+#$(LIBDIR)/libpcre.so:
+#	mkdir -p $(PCREDIR)/build; cd $(PCREDIR)/build; \
+#	CC=emcc CXX=em++ AR=emar RANLIB=emranlib cmake .. \
+#		-DCMAKE_INSTALL_PREFIX=$(INSTALLDIR) \
+#		-DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF; \
+#	make -j$(JOBS) install
 
 
 # SUITESPARSE
 
 $(LIBDIR)/libumfpack.so: $(BINDIR)/fort77 $(LIBDIR)/librefblas.so $(LIBDIR)/libclapack.so
 	emmake make -C $(SUITESPARSEDIR) INSTALL=$(INSTALLDIR) JOBS=$(JOBS) OPTIMIZATION=-O0 AUTOCC=no \
-	F77=$(BINDIR)/fort77 CFLAGS="-s LINKABLE=1 -s EXPORT_ALL=1" BLAS=-lrefblas LAPACK=-lclapack RANLIB=emranlib install
+	F77=$(BINDIR)/fort77 BLAS=-lrefblas LAPACK=-lclapack RANLIB=emranlib config install
 
 
 # OCTAVE
@@ -101,11 +108,11 @@ CC=emcc \
 CXX=em++ \
 AR=emar \
 RANLIB=emranlib \
-CFLAGS="-s LINKABLE=1 -s EXPORT_ALL=1 -s ERROR_ON_UNDEFINED_SYMBOLS=$(ERROR_ON_UNDEFINED_SYMBOLS) -I$(INCDIR) -O0" \
-CPPFLAGS="-s LINKABLE=1 -s EXPORT_ALL=1 -s ERROR_ON_UNDEFINED_SYMBOLS=$(ERROR_ON_UNDEFINED_SYMBOLS) -I$(INCDIR) -O0" \
+CFLAGS="-I$(INCDIR) -O0" \
+CXXFLAGS="-std=c++11 -I$(INCDIR) -O0" \
 FFLAGS="-I$(INCDIR) -O0" \
 FLIBS="" \
-LDFLAGS="-L$(LIBDIR) -O0" \
+LDFLAGS="-s ERROR_ON_UNDEFINED_SYMBOLS=$(ERROR_ON_UNDEFINED_SYMBOLS) -L$(LIBDIR) -O0" \
 EMCC_FORCE_STDLIBS=1 \
 EMCONFIGURE_JS=1 \
 BUILD_EXEEXT=.js \
@@ -116,9 +123,11 @@ BUILD_EXEEXT=.js \
 --disable-readline --disable-64 --disable-docs --without-curl --without-fftw3 \
 --without-fftw3f --without-hdf5 --without-opengl --without-qrupdate --without-framework-carbon --without-framework-opengl --without-x \
 --without-arpack --with-blas=-lrefblas --with-lapack=-lclapack \
---with-pcre-includedir=$(INCDIR) --with-pcre-libdir=$(LIBDIR) --without-cholmod
+--with-pcre-includedir=$(INCDIR) --with-pcre-libdir=$(LIBDIR) --without-cholmod --without-cxsparse
 
-	emmake make -C $(OCTAVEDIR) -j$(JOBS) install
+	#emmake make -C $(OCTAVEDIR) -j$(JOBS)
+	emmake make -C $(OCTAVEDIR)
+	emmake make -C $(OCTAVEDIR) install
 
 
 # Main

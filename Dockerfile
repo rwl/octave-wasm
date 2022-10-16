@@ -2,7 +2,8 @@ FROM ubuntu:focal as builder
 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-	build-essential autoconf automake libtool cmake file texinfo flex librsvg2-bin icoutils \
+	build-essential autoconf automake libtool cmake file \
+	texinfo flex librsvg2-bin icoutils gperf bison ghostscript gnuplot \
 	python ca-certificates git openjdk-11-jre curl nano unzip \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -15,40 +16,45 @@ WORKDIR /usr/src/emsdk
 #RUN sh ./emsdk_env.sh
 
 RUN git fetch
-#RUN git checkout 3.1.24
-#RUN git checkout 1.40.1
+#RUN git tag -l
+#ENV EMSDK_VER 2.0.34
+ENV EMSDK_VER 1.38.30
+#RUN git checkout $EMSDK_VER
 RUN git checkout c10e3e86e8ead9243473c7148beaa9261956123b
-RUN ./emsdk install sdk-1.38.30-64bit
-RUN ./emsdk activate sdk-1.38.30-64bit
+#RUN ./emsdk list
 
-#ENV EMSDK_VER 3.1.24
-#ENV NODE_VER 14.18.2
-#ENV EMSDK_VER 1.40.1
+
+#RUN ./emsdk install ${EMSDK_VER}-upstream
+#RUN ./emsdk activate ${EMSDK_VER}-upstream
+RUN ./emsdk install sdk-${EMSDK_VER}-64bit
+RUN ./emsdk activate sdk-${EMSDK_VER}-64bit
+
+#RUN sh ./emsdk_env.sh
+
+#ENV NODE_VER 14.15.5
 #ENV NODE_VER 12.18.1
-
-#RUN ./emsdk install $EMSDK_VER
-#RUN ./emsdk activate $EMSDK_VER
-#
+#ENV NODE_VER 12.9.1
+ENV NODE_VER 8.9.1
 #ENV PATH="/usr/src/emsdk:/usr/src/emsdk/upstream/emscripten:/usr/src/emsdk/node/${NODE_VER}_64bit/bin:${PATH}"
 #ENV EMSDK /usr/src/emsdk
-#ENV EM_CONFIG /usr/src/emsdk/.emscripten
+##ENV EM_CONFIG /usr/src/emsdk/.emscripten
+#ENV EM_CONFIG /root/.emscripten
 #ENV EM_CACHE /usr/src/emsdk/upstream/emscripten/cache
 #ENV EMSDK_NODE /usr/src/emsdk/node/${NODE_VER}_64bit/bin/node
 
-
 #RUN bash -c "source ./emsdk_env.sh"
 
-ENV PATH="/usr/src/emsdk:/usr/src/emsdk/clang/e1.38.30_64bit:/usr/src/emsdk/node/8.9.1_64bit/bin:/usr/src/emsdk/emscripten/1.38.30:${PATH}"
+ENV PATH="/usr/src/emsdk:/usr/src/emsdk/clang/e${EMSDK_VER}_64bit:/usr/src/emsdk/node/${NODE_VER}_64bit/bin:/usr/src/emsdk/emscripten/${EMSDK_VER}:${PATH}"
 ENV EMSDK /usr/src/emsdk
 ENV EM_CONFIG /root/.emscripten
-ENV LLVM_ROOT /usr/src/emsdk/clang/e1.38.30_64bit
-ENV EMSCRIPTEN_NATIVE_OPTIMIZER /usr/src/emsdk/clang/e1.38.30_64bit/optimizer
-ENV BINARYEN_ROOT /usr/src/emsdk/clang/e1.38.30_64bit/binaryen
-ENV EMSDK_NODE /usr/src/emsdk/node/8.9.1_64bit/bin/node
-ENV EMSCRIPTEN /usr/src/emsdk/emscripten/1.38.30
+ENV LLVM_ROOT /usr/src/emsdk/clang/e${EMSDK_VER}_64bit
+ENV EMSCRIPTEN_NATIVE_OPTIMIZER /usr/src/emsdk/clang/e${EMSDK_VER}_64bit/optimizer
+ENV BINARYEN_ROOT /usr/src/emsdk/clang/e${EMSDK_VER}_64bit/binaryen
+ENV EMSDK_NODE /usr/src/emsdk/node/${NODE_VER}_64bit/bin/node
+ENV EMSCRIPTEN /usr/src/emsdk/emscripten/${EMSDK_VER}
 
 RUN emcc -v
-
+RUN node -v
 
 ENV PROJECTDIR /usr/src/octave-wasm
 ENV THIRDPARTYDIR $PROJECTDIR/third_party
@@ -102,6 +108,13 @@ RUN cd $THIRDPARTYDIR/pcre-8.43 && \
     autoreconf -f -i && \
     emconfigure ./configure CFLAGS="-O0" --prefix=$INSTALLDIR --disable-static && \
     emmake make install
+#RUN mkdir -p $THIRDPARTYDIR/pcre-8.43/build && \
+#    cd $THIRDPARTYDIR/pcre-8.43/build && \
+#    CC=emcc CXX=em++ AR=emar RANLIB=emranlib cmake .. \
+#    -DCMAKE_INSTALL_PREFIX=$INSTALLDIR \
+#    -DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF && \
+#    make -j${JOBS:-4} && \
+#    make install
 
 
 COPY third_party/suitesparse-5.4.0 $THIRDPARTYDIR/suitesparse-5.4.0
@@ -143,7 +156,7 @@ RUN emconfigure ./configure \
     --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cholmod --without-cxsparse
 
 #FROM scratch as server
-RUN emmake make -j${OCTJOBS:-4}
+RUN emmake make -j${OCTJOBS:-1}
 RUN emmake make install
 
 #FROM scratch as server
