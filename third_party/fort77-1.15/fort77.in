@@ -144,7 +144,7 @@ while ($_ = $ARGV[0]) {
 
 # Linker only options
 
-    elsif (/^-[lL]$/) {
+    elsif (/^-[lLs]$/) {
 	push(@lopts, $_);
 	(@ARGV > 0) || die "$0: Missing argument to \"$_\"\n";
 	$_ = shift;
@@ -173,7 +173,8 @@ while ($_ = $ARGV[0]) {
     }
 
     else {
-	die "$0: Illegal option: $_\n";
+#	die "$0: Illegal option: $_\n";
+	warn "$0: Illegal option: $_\n";
     }
 
 }
