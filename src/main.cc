@@ -1,6 +1,7 @@
 // Copyright 2022 Richard Lincoln. All rights reserved.
 
 #include <string>
+#include <iostream>
 
 #include <oct.h>
 #include <octave.h>
@@ -10,6 +11,8 @@
 
 #include <emscripten.h>
 #include <emscripten/bind.h>
+
+std::unique_ptr<octave::interpreter> interpreter;
 
 int em_val_to_value_list(emscripten::val em_val, octave_value_list &val_list) {
   if (!em_val.isArray()) {
@@ -61,12 +64,15 @@ int value_list_to_em_val(octave_value_list val_list, emscripten::val &em_val) {
   return 0;
 }
 
+std::string EMSCRIPTEN_KEEPALIVE last_err_msg() {
+    return interpreter->get_error_system().last_error_message();
+}
+
 emscripten::val EMSCRIPTEN_KEEPALIVE fn_eval(std::string fn_name, emscripten::val args_val, int nargout) {
   octave_value_list in;
   if (em_val_to_value_list(args_val, in)) {
     return emscripten::val::undefined();
   }
-
 
 //  std::cout << "feval: " << fn_name << " " << in.length() << " " << nargout << std::endl;
 
@@ -74,7 +80,8 @@ emscripten::val EMSCRIPTEN_KEEPALIVE fn_eval(std::string fn_name, emscripten::va
   try {
     out = octave::feval(fn_name, in, nargout);
   } catch (const octave::execution_exception& ex) {
-    std::cerr << "error: " << last_error_message() << std::endl;
+    interpreter->handle_exception(ex);
+    std::cerr << "execution exception: " << interpreter->get_error_system().last_error_message() << std::endl;
     return emscripten::val::undefined();
   }
 
@@ -91,11 +98,11 @@ emscripten::val EMSCRIPTEN_KEEPALIVE fn_eval(std::string fn_name, emscripten::va
 int main(int argc, char **argv) {
   std::cout << "Starting GNU Octave interpreter..." << std::endl;
 
-  static octave::interpreter interpreter;
+  interpreter.reset(new octave::interpreter());
 
-  interpreter.initialize_load_path(true);
-  interpreter.read_init_files(true);
-  int status = interpreter.execute();
+  interpreter->initialize_load_path(true);
+  interpreter->read_init_files(true);
+  int status = interpreter->execute();
   if (status != 0) {
       std::cerr << "creating interpreter failed: " << status << std::endl;
       return status;
@@ -114,11 +121,12 @@ int main(int argc, char **argv) {
         "/usr/src/octave/m/polynomial:"
         "/usr/src/octave/m/pkg:"
         "/usr/src/octave/m/time", '\'');
-    Faddpath(interpreter, octave_paths);
+    Faddpath(*interpreter, octave_paths);
   } catch (const octave::exit_exception& ex) {
     return ex.exit_status();
   } catch (const octave::execution_exception& ex) {
-    std::cerr << "error adding paths: " << last_error_message() << std::endl;
+    interpreter->handle_exception(ex);
+    std::cerr << "error adding paths: " << interpreter->get_error_system().last_error_message() << std::endl;
     return 1;
   }
 
@@ -131,6 +139,6 @@ int main(int argc, char **argv) {
 }
 
 EMSCRIPTEN_BINDINGS(my_module) {
-  emscripten::function("last_error_message", &last_error_message);
+  emscripten::function("last_error_message", &last_err_msg);
   emscripten::function("feval", &fn_eval);
 }

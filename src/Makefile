@@ -1,6 +1,8 @@
 # Copyright 2018-2022 Richard Lincoln. All rights reserved.
 
 #MKOCTFILE = mkoctfile
+#OCTAVE_VER = 4.4.1
+OCTAVE_VER = 7.2.0
 
 CXX = em++
 #CPPFLAGS += `$(MKOCTFILE) -p ALL_CXXFLAGS` `$(MKOCTFILE) -p XTRA_CXXFLAGS`
@@ -14,13 +16,13 @@ CXX = em++
 
 PREFIX = ../target
 
-MFILE_PATH ?= $(PREFIX)/share/octave/4.4.1/m
+MFILE_PATH ?= $(PREFIX)/share/octave/$(OCTAVE_VER)/m
 
 #EM_CFLAGS = -O0 -g -Wall -std=c++11
 EM_CFLAGS = -O0 -Wall -std=c++11
 #EM_CFLAGS = -O3 --closure 1 -Wall -std=c++11
-EM_CXXFLAGS = -I. -I$(PREFIX)/include -I$(PREFIX)/include/octave-4.4.1/octave/.. -I$(PREFIX)/include/octave-4.4.1/octave
-EM_LDFLAGS = -L$(PREFIX)/lib -L$(PREFIX)/lib/octave/4.4.1 -lf2c -lrefblas -lclapack -lpcre \
+EM_CXXFLAGS = -I. -I$(PREFIX)/include -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave/.. -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave
+EM_LDFLAGS = -L$(PREFIX)/lib -L$(PREFIX)/lib/octave/$(OCTAVE_VER) -lf2c -lrefblas -lclapack -lpcre \
 -lsuitesparseconfig -lcxsparse -lamd -lcamd -lcolamd -lcholmod -lumfpack -loctave -loctinterp
 EM_SFLAGS = -s WASM=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s TOTAL_MEMORY=128MB
 
@@ -28,7 +30,7 @@ CPPFLAGS = $(EM_CFLAGS) $(EM_CXXFLAGS) $(EM_SFLAGS)
 LDFLAGS = $(EM_LDFLAGS)
 
 
-EXCEPTION_CATCHING_WHITELIST = '["_main"]'
+EXCEPTION_CATCHING_WHITELIST = '["__Z7fn_evalNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN10emscripten3valEi", "_main"]'
 
 all: web/octave.js worker/octave.js node/octave.js
 
@@ -42,7 +44,7 @@ octave.o:
 web/octave.js: octave.o
 	mkdir -p web
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
-	-s DEMANGLE_SUPPORT=0 -s DISABLE_EXCEPTION_CATCHING=2 \
+	-s DEMANGLE_SUPPORT=1 -s DISABLE_EXCEPTION_CATCHING=0 \
 	-s EXCEPTION_CATCHING_WHITELIST=$EXCEPTION_CATCHING_WHITELIST \
 	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \

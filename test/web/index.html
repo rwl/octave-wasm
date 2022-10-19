@@ -26,6 +26,7 @@
       }
 
       disp(Module["feval"]("strcat", ["foo", "bar"], 1));
+      Module["feval"]("error", ["foo"], 0);
       // let resp = callModule("feval", "2 + 2");
       // disp(resp);
       console.log(Module["last_error_message"]());
