@@ -51,10 +51,6 @@
 void
 octave_set_default_fpucw (void)
 {
-  fpucw_t cw = GET_FPUCW ();
-
-  if (cw != _FPU_DEFAULT)
-    SET_FPUCW (_FPU_DEFAULT);
 }
 
 // OLDCW is the name used by the fpucw.h macros and gnulib doesn't give

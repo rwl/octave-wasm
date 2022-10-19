@@ -167,9 +167,6 @@ rpl_dup2 (int fd, int desired_fd)
      On Cygwin 1.7.17, dup2 (1, -1) dumps core.
      On Cygwin 1.7.25, dup2 (1, 256) can dump core.
      On Haiku, dup2 (fd, fd) mistakenly clears FD_CLOEXEC.  */
-# if HAVE_SETDTABLESIZE
-  setdtablesize (desired_fd + 1);
-# endif
   if (desired_fd < 0)
     fd = desired_fd;
   if (fd == desired_fd)

@@ -22,7 +22,6 @@
 
 /* Get declarations of the native Windows API functions.  */
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
 
 #if HAVE_MSVC_INVALID_PARAMETER_HANDLER
 # include "msvc-inval.h"
@@ -38,11 +37,9 @@ _gl_nothrow_get_osfhandle (int fd)
 
   TRY_MSVC_INVAL
     {
-      result = _get_osfhandle (fd);
     }
   CATCH_MSVC_INVAL
     {
-      result = (intptr_t) INVALID_HANDLE_VALUE;
     }
   DONE_MSVC_INVAL;
 

@@ -877,24 +877,24 @@ DL_API_MSG=""
 dlopen_api=no
 loadlibrary_api=no
 
-case $lt_cv_dlopen in
-  dlopen)
+#case $lt_cv_dlopen in
+#  dlopen)
     dlopen_api=yes
     DL_API_MSG="dlopen"
     AC_DEFINE(HAVE_DLOPEN_API, 1,
       [Define to 1 if system has dlopen, dlsym, dlerror, and dlclose for dynamic linking.])
-    OCTAVE_CXX_FLAG([-rdynamic], [RDYNAMIC_FLAG=-rdynamic])
-  ;;
-  LoadLibrary)
-    loadlibrary_api=yes
-    DL_API_MSG="LoadLibrary"
-    AC_DEFINE(HAVE_LOADLIBRARY_API, 1,
-      [Define to 1 if system has LoadLibrary for dynamic linking.])
-  ;;
-  *)
-    AC_MSG_ERROR([Octave requires some way to perform dynamic linking.])
-  ;;
-esac
+#    OCTAVE_CXX_FLAG([-rdynamic], [RDYNAMIC_FLAG=-rdynamic])
+#  ;;
+#  LoadLibrary)
+#    loadlibrary_api=yes
+#    DL_API_MSG="LoadLibrary"
+#    AC_DEFINE(HAVE_LOADLIBRARY_API, 1,
+#      [Define to 1 if system has LoadLibrary for dynamic linking.])
+#  ;;
+#  *)
+#    AC_MSG_ERROR([Octave requires some way to perform dynamic linking.])
+#  ;;
+#esac
 
 DL_LIBS="$lt_cv_dlopen_libs"
 

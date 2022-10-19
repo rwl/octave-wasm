@@ -43,87 +43,10 @@ AC_DEFUN([gl_FUNC_NANOSLEEP],
      # mode but 'yes' in 32-bit mode. But we need a configuration result that
      # is valid in both modes.
      gl_cv_func_nanosleep='no (mishandles large arguments)'
+   else
+     gl_cv_func_nanosleep='yes'
    fi
 
-   AC_CACHE_CHECK([for working nanosleep],
-    [gl_cv_func_nanosleep],
-    [
-     AC_RUN_IFELSE(
-       [AC_LANG_SOURCE([[
-          #include <errno.h>
-          #include <limits.h>
-          #include <signal.h>
-          #if HAVE_SYS_TIME_H
-           #include <sys/time.h>
-          #endif
-          #include <time.h>
-          #include <unistd.h>
-          #define TYPE_SIGNED(t) (! ((t) 0 < (t) -1))
-          #define TYPE_MAXIMUM(t) \
-            ((t) (! TYPE_SIGNED (t) \
-                  ? (t) -1 \
-                  : ((((t) 1 << (sizeof (t) * CHAR_BIT - 2)) - 1) * 2 + 1)))
-
-          #if HAVE_DECL_ALARM
-          static void
-          check_for_SIGALRM (int sig)
-          {
-            if (sig != SIGALRM)
-              _exit (1);
-          }
-          #endif
-
-          int
-          main ()
-          {
-            static struct timespec ts_sleep;
-            static struct timespec ts_remaining;
-            /* Test for major problems first.  */
-            if (! nanosleep)
-              return 2;
-            ts_sleep.tv_sec = 0;
-            ts_sleep.tv_nsec = 1;
-            #if HAVE_DECL_ALARM
-            {
-              static struct sigaction act;
-              act.sa_handler = check_for_SIGALRM;
-              sigemptyset (&act.sa_mask);
-              sigaction (SIGALRM, &act, NULL);
-              alarm (1);
-              if (nanosleep (&ts_sleep, NULL) != 0)
-                return 3;
-              /* Test for a minor problem: the handling of large arguments.  */
-              ts_sleep.tv_sec = TYPE_MAXIMUM (time_t);
-              ts_sleep.tv_nsec = 999999999;
-              alarm (1);
-              if (nanosleep (&ts_sleep, &ts_remaining) != -1)
-                return 4;
-              if (errno != EINTR)
-                return 5;
-              if (ts_remaining.tv_sec <= TYPE_MAXIMUM (time_t) - 10)
-                return 6;
-            }
-            #else /* A simpler test for native Windows.  */
-            if (nanosleep (&ts_sleep, &ts_remaining) < 0)
-              return 3;
-            #endif
-            return 0;
-          }]])],
-       [gl_cv_func_nanosleep=yes],
-       [case $? in dnl (
-        4|5|6) gl_cv_func_nanosleep='no (mishandles large arguments)';; dnl (
-        *)   gl_cv_func_nanosleep=no;;
-        esac],
-       [case "$host_os" in dnl ((
-          linux*) # Guess it halfway works when the kernel is Linux.
-            gl_cv_func_nanosleep='guessing no (mishandles large arguments)' ;;
-          mingw*) # Guess no on native Windows.
-            gl_cv_func_nanosleep='guessing no' ;;
-          *)      # If we don't know, obey --enable-cross-guesses.
-            gl_cv_func_nanosleep="$gl_cross_guess_normal" ;;
-        esac
-       ])
-    ])
    case "$gl_cv_func_nanosleep" in
      *yes)
        REPLACE_NANOSLEEP=0

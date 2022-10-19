@@ -228,28 +228,10 @@ namespace octave
         m_search_all_loaded = true;
         return;
       }
-
-    m_library = dlopen (m_file.c_str (), flags);
-
-    if (! m_library)
-      {
-        const char *msg = dlerror ();
-
-        if (msg)
-          (*current_liboctave_error_handler)
-            ("%s: failed to load\nIncompatible version or missing dependency?"
-             "\n%s", m_file.c_str (), msg);
-        else
-          (*current_liboctave_error_handler)
-            ("%s: failed to load\nIncompatible version or missing dependency?",
-             m_file.c_str ());
-      }
   }
 
   octave_dlopen_shlib::~octave_dlopen_shlib (void)
   {
-    if (m_library)
-      dlclose (m_library);
   }
 
   void *
@@ -257,20 +239,6 @@ namespace octave
                                const dynamic_library::name_mangler& mangler)
   {
     void *function = nullptr;
-
-    if (! is_open ())
-      (*current_liboctave_error_handler)
-        ("shared library %s is not open", m_file.c_str ());
-
-    std::string sym_name = name;
-
-    if (mangler)
-      sym_name = mangler (name);
-
-    if (m_search_all_loaded)
-      function = dlsym (RTLD_DEFAULT, sym_name.c_str ());
-    else
-      function = dlsym (m_library, sym_name.c_str ());
 
     return function;
   }

@@ -31,21 +31,8 @@
 function [out1, out2] = installed_packages (local_list, global_list, pkgname = {})
 
   ## Get the list of installed packages.
-  try
-    local_packages = load (local_list).local_packages;
-  catch
-    local_packages = {};
-  end_try_catch
-  try
-    global_packages = load (global_list).global_packages;
-    global_packages = expand_rel_paths (global_packages);
-    if (ispc)
-      ## On Windows ensure 8.3 style paths are turned into LFN paths
-      global_packages = standardize_paths (global_packages);
-    endif
-  catch
-    global_packages = {};
-  end_try_catch
+  local_packages = {};
+  global_packages = {};
   installed_pkgs_lst = {local_packages{:}, global_packages{:}};
 
   ## Eliminate duplicates in the installed package list.

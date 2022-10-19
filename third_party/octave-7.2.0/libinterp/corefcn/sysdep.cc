@@ -721,20 +721,6 @@ On non-Windows platforms, this function fails with an error.
 
   int kbhit (bool wait)
   {
-#if defined (HAVE__KBHIT) && defined (HAVE__GETCH)
-    // This essentially means we are on a Windows system.
-
-    // The value to return when wait is false and no input is ready.
-    static constexpr int eof = std::istream::traits_type::eof ();
-
-    int c;
-
-    if (wait)
-      c = _getch ();
-    else
-      c = (! _kbhit ()) ? eof : _getch ();
-
-#else
     raw_mode (true, wait);
 
     // Get current handler.
@@ -758,7 +744,6 @@ On non-Windows platforms, this function fails with an error.
     set_interrupt_handler (saved_interrupt_handler, true);
 
     raw_mode (false, true);
-#endif
 
     return c;
   }

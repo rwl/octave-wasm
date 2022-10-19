@@ -163,15 +163,10 @@ namespace octave
     password
     password::getpwnam (const std::string& nm, std::string& msg)
     {
-#if defined (HAVE_GETPWNAM)
-      msg = "";
-      return password (::getpwnam (nm.c_str ()), msg);
-#else
       octave_unused_parameter (nm);
 
       msg = NOT_SUPPORTED ("getpwnam");
       return password ();
-#endif
     }
 
     int

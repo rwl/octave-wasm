@@ -653,16 +653,9 @@ __glob (const char *pattern, int flags, int (*errfunc) (const char *, int),
                   err = __getlogin_r (s.data, s.length);
                   if (err == 0)
                     {
-# if defined HAVE_GETPWNAM_R || defined _LIBC
-                      size_t ssize = strlen (s.data) + 1;
-                      char *sdata = s.data;
-                      err = getpwnam_r (sdata, &pwbuf, sdata + ssize,
-                                        s.length - ssize, &p);
-# else
                       p = getpwnam (s.data);
                       if (p == NULL)
                         err = errno;
-# endif
                     }
                   if (err != ERANGE)
                     break;
@@ -818,22 +811,7 @@ __glob (const char *pattern, int flags, int (*errfunc) (const char *, int),
             struct scratch_buffer pwtmpbuf;
             scratch_buffer_init (&pwtmpbuf);
 
-#  if defined HAVE_GETPWNAM_R || defined _LIBC
-            struct passwd pwbuf;
-
-            while (getpwnam_r (user_name, &pwbuf,
-                               pwtmpbuf.data, pwtmpbuf.length, &p)
-                   == ERANGE)
-              {
-                if (!scratch_buffer_grow (&pwtmpbuf))
-                  {
-                    retval = GLOB_NOSPACE;
-                    goto out;
-                  }
-              }
-#  else
             p = getpwnam (user_name);
-#  endif
 
             if (__glibc_unlikely (malloc_user_name))
               free (user_name);

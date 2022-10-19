@@ -505,8 +505,8 @@ Undocumented internal function.
     // Matlab uses "C" locale for LC_NUMERIC class regardless of local setting
     std::setlocale (LC_NUMERIC, "C");
     std::setlocale (LC_TIME, "C");
-    sys::env::putenv ("LC_NUMERIC", "C");
-    sys::env::putenv ("LC_TIME", "C");
+//    sys::env::putenv ("LC_NUMERIC", "C");
+//    sys::env::putenv ("LC_TIME", "C");
 
     // Initialize the default floating point unit control state.
     octave_set_default_fpucw ();

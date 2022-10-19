@@ -162,8 +162,6 @@ getrandom (void *buffer, size_t length, unsigned int flags)
 # endif
   errno = ENOSYS;
   return -1;
-#elif HAVE_GETRANDOM
-  return getrandom (buffer, length, flags);
 #else
   static int randfd[2] = { -1, -1 };
   bool devrandom = (flags & GRND_RANDOM) != 0;

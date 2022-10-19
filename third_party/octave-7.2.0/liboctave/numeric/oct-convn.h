@@ -48,12 +48,12 @@
 // tag the global one as deprecated when it is used as a parameter in
 // public functions that also need to be tagged as deprecated?
 
-enum convn_type
-{
-  convn_full,
-  convn_same,
-  convn_valid
-};
+//enum convn_type
+//{
+//  convn_full,
+//  convn_same,
+//  convn_valid
+//};
 
 namespace octave
 {
@@ -137,24 +137,6 @@ namespace octave
   extern OCTAVE_API FloatComplexMatrix
   convn (const FloatComplexMatrix& a, const FloatComplexColumnVector& c,
          const FloatComplexRowVector& r, convn_type ct);
-
-  convn_type convert_enum (::convn_type ct)
-  {
-    switch (ct)
-      {
-      case ::convn_full:
-        return convn_full;
-
-      case ::convn_same:
-        return convn_same;
-
-      case ::convn_valid:
-        return convn_valid;
-
-      default:
-        abort ();
-      }
-  }
 }
 
 #if defined (OCTAVE_PROVIDE_DEPRECATED_SYMBOLS)
