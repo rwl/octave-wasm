@@ -2,7 +2,7 @@ FROM ubuntu:focal as builder
 
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-	build-essential autoconf automake libtool cmake file \
+	build-essential autoconf automake libtool cmake file less \
 	texinfo flex librsvg2-bin icoutils gperf bison ghostscript gnuplot \
 	python ca-certificates git openjdk-11-jre curl nano unzip \
 	&& rm -rf /var/lib/apt/lists/*
@@ -106,13 +106,13 @@ COPY third_party/pcre-8.43 $THIRDPARTYDIR/pcre-8.43
 #RUN make $LIBDIR/libpcre.so
 RUN cd $THIRDPARTYDIR/pcre-8.43 && \
     autoreconf -f -i && \
-    emconfigure ./configure CFLAGS="-O0" --prefix=$INSTALLDIR --disable-static && \
+    emconfigure ./configure CFLAGS="-O0" --prefix=$INSTALLDIR --disable-static --enable-utf && \
     emmake make install
 #RUN mkdir -p $THIRDPARTYDIR/pcre-8.43/build && \
 #    cd $THIRDPARTYDIR/pcre-8.43/build && \
 #    CC=emcc CXX=em++ AR=emar RANLIB=emranlib cmake .. \
 #    -DCMAKE_INSTALL_PREFIX=$INSTALLDIR \
-#    -DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF && \
+#    -DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF -DPCRE_SUPPORT_UTF=ON && \
 #    make -j${JOBS:-4} && \
 #    make install
 
@@ -124,13 +124,13 @@ RUN cd $THIRDPARTYDIR/suitesparse-5.4.0 && \
     F77=$BINDIR/fort77 BLAS=-lrefblas LAPACK=-lclapack RANLIB=emranlib config install
 
 
-RUN ls -alh /usr/src/octave-wasm/target/lib
-
-COPY third_party/octave-4.4.1 $THIRDPARTYDIR/octave-4.4.1
-#RUN make $LIBDIR/octave/4.4.1/liboctave.so
-WORKDIR $THIRDPARTYDIR/octave-4.4.1
+ENV OCTAVE_VER 7.2.0
+COPY third_party/octave-${OCTAVE_VER} $THIRDPARTYDIR/octave-${OCTAVE_VER}
+#RUN make $LIBDIR/octave/${OCTAVE_VER}/liboctave.so
+WORKDIR $THIRDPARTYDIR/octave-${OCTAVE_VER}
 #RUN autoreconf -fi
 RUN rm -f configure && autoreconf
+# Manually set FORTRAN name-mangling to use lower-case and single underscore.
 RUN sed -i -e 's/(name,NAME) name"/(name,NAME) name ## _"/g' configure
 RUN emconfigure ./configure \
     F77=$BINDIR/fort77 \
@@ -156,7 +156,7 @@ RUN emconfigure ./configure \
     --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cholmod --without-cxsparse
 
 #FROM scratch as server
-RUN emmake make -j${OCTJOBS:-1}
+RUN emmake make -j${OCTJOBS:-4}
 RUN emmake make install
 
 #FROM scratch as server
