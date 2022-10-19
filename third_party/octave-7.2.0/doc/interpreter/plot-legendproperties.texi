@@ -1,0 +1,164 @@
+@c DO NOT EDIT!  Generated automatically by genpropdoc.m.
+
+@c Copyright (C) 2014-2022 The Octave Project Developers
+@c
+@c This file is part of Octave.
+@c
+@c Octave is free software: you can redistribute it and/or modify it
+@c under the terms of the GNU General Public License as published by
+@c the Free Software Foundation, either version 3 of the License, or
+@c (at your option) any later version.
+@c
+@c Octave is distributed in the hope that it will be useful, but
+@c WITHOUT ANY WARRANTY; without even the implied warranty of
+@c MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+@c GNU General Public License for more details.
+@c
+@c You should have received a copy of the GNU General Public License
+@c along with Octave; see the file COPYING.  If not, see
+@c <https://www.gnu.org/licenses/>.
+
+Properties of @code{legend} objects (@pxref{XREFlegend,,legend}):
+
+@table @asis
+
+@anchor{XREFlegendautoupdate}
+@prindex legend autoupdate
+@item @code{autoupdate}: @qcode{"off"} | @{@qcode{"on"}@}
+Control whether the number of legend items is updated automatically when objects are added to (or deleted from) the peer axes.
+For example:
+@example
+@group
+## Create a single plot with its legend.
+figure ();
+plot (1:10);
+legend ("Slope 1");
+## Add another plot and specify its displayname so that
+## the legend is correctly updated.
+hold on;
+plot ((1:10) * 2, "displayname", "Slope 2");
+## Stop automatic updates for further plots.
+legend ("autoupdate", "off");
+plot ((1:10) * 3);
+@end group
+@end example
+
+
+@anchor{XREFlegendbox}
+@prindex legend box
+@item @code{box}: @qcode{"off"} | @{@qcode{"on"}@}
+Control whether the legend has a surrounding box.
+
+
+@anchor{XREFlegendcolor}
+@prindex legend color
+@item @code{color}: colorspec, def. @code{[1   1   1]}
+Color of the legend background.  @xref{Colors, , colorspec}.
+
+
+@anchor{XREFlegendedgecolor}
+@prindex legend edgecolor
+@item @code{edgecolor}: colorspec, def. @code{[0.1500   0.1500   0.1500]}
+Control the color of the legend outline.
+
+
+@anchor{XREFlegendfontangle}
+@prindex legend fontangle
+@item @code{fontangle}: @qcode{"italic"} | @{@qcode{"normal"}@}
+Control whether the font is italic or normal.
+
+
+@anchor{XREFlegendfontname}
+@prindex legend fontname
+@item @code{fontname}: string, def. @qcode{"*"}
+Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default @qcode{"*"} value).
+
+Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run @code{system ("fc-cache -fv")} manually after installing new fonts.
+
+
+@anchor{XREFlegendfontsize}
+@prindex legend fontsize
+@item @code{fontsize}: scalar, def. @code{9}
+Size of the font used for text rendering.  @xref{XREFlegendfontunits, , fontunits property}.
+
+
+@anchor{XREFlegendfontunits}
+@prindex legend fontunits
+@item @code{fontunits}: @qcode{"centimeters"} | @qcode{"inches"} | @qcode{"normalized"} | @qcode{"pixels"} | @{@qcode{"points"}@}
+Units used to interpret the @qcode{"fontsize"} property.
+
+
+@anchor{XREFlegendfontweight}
+@prindex legend fontweight
+@item @code{fontweight}: @qcode{"bold"} | @{@qcode{"normal"}@}
+Control the variant of the base font used for text rendering.
+
+
+@anchor{XREFlegendlocation}
+@prindex legend location
+@item @code{location}: @qcode{"best"} | @qcode{"bestoutside"} | @qcode{"east"} | @qcode{"eastoutside"} | @qcode{"none"} | @qcode{"north"} | @{@qcode{"northeast"}@} | @qcode{"northeastoutside"} | @qcode{"northoutside"} | @qcode{"northwest"} | @qcode{"northwestoutside"} | @qcode{"south"} | @qcode{"southeast"} | @qcode{"southeastoutside"} | @qcode{"southoutside"} | @qcode{"southwest"} | @qcode{"southwestoutside"} | @qcode{"west"} | @qcode{"westoutside"}
+Control the location of the legend.
+
+
+@anchor{XREFlegendnumcolumns}
+@prindex legend numcolumns
+@item @code{numcolumns}: scalar interger, def. @code{1}
+Control the number of columns used in the layout of the legend items.  For example:
+@example
+@group
+figure ();
+plot (rand (30));
+legend ("numcolumns", 3);
+@end group
+@end example
+Setting @code{numcolumns} also forces the @code{numcolumnsmode} property to be set to @qcode{"manual"}.
+
+
+@anchor{XREFlegendorientation}
+@prindex legend orientation
+@item @code{orientation}: @qcode{"horizontal"} | @{@qcode{"vertical"}@}
+Control whether the legend items are arranged vertically (column-wise) or horizontally (row-wise).
+
+
+@anchor{XREFlegendposition}
+@prindex legend position
+@item @code{position}: four-element vector
+Specify the position of the legend excluding its title. The four elements of the vector are the coordinates of the lower left corner and width and height of the legend.  Changing this property also switches the @qcode{"location"} to @qcode{"none"}.
+
+
+@anchor{XREFlegendstring}
+@prindex legend string
+@item @code{string}: string | cell array of strings
+List of labels for the legend items.  For example:
+@example
+@group
+figure ();
+plot (rand (20));
+## Let legend choose names automatically
+hl = legend ();
+## Selectively change some names
+str = get (hl, "string");
+str(1:5:end) = "Garbage";
+set (hl, "string", str);
+@end group
+@end example
+
+
+@anchor{XREFlegendtextcolor}
+@prindex legend textcolor
+@item @code{textcolor}: colorspec, def. @code{[0   0   0]}
+Control the color of the text strings for legend items.
+
+
+@anchor{XREFlegendtitle}
+@prindex legend title
+@item @code{title}: graphics handle
+Graphics handle of the title text object.
+
+
+@anchor{XREFlegendunits}
+@prindex legend units
+@item @code{units}: @qcode{"centimeters"} | @qcode{"characters"} | @qcode{"inches"} | @{@qcode{"normalized"}@} | @qcode{"pixels"} | @qcode{"points"}
+Units used to interpret the @qcode{"position"},  property.
+
+@end table

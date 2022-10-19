@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bounds (Octave C++ Classes)</title>
+
+<meta name="description" content="Bounds (Octave C++ Classes)">
+<meta name="keywords" content="Bounds (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Linear-Constraints.html" rel="next" title="Linear Constraints">
+<link href="Objective-Functions.html" rel="prev" title="Objective Functions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Bounds">
+<div class="header">
+<p>
+Next: <a href="Linear-Constraints.html" accesskey="n" rel="next">Linear Constraints</a>, Previous: <a href="Objective-Functions.html" accesskey="p" rel="prev">Objective Functions</a>, Up: <a href="Optimization.html" accesskey="u" rel="up">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Bounds-1"></span><h3 class="section">9.2 Bounds</h3>
+<span id="index-bounds"></span>
+
+<dl class="def">
+<dt id="index-Bounds"><span class="category">: </span><span><em></em> <strong>Bounds</strong> <em>(void)</em><a href='#index-Bounds' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Bounds-1"><span class="category">: </span><span><em></em> <strong>Bounds</strong> <em>(int <var>n</var>)</em><a href='#index-Bounds-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Bounds-2"><span class="category">: </span><span><em></em> <strong>Bounds</strong> <em>(const ColumnVector <var>lb</var>, const ColumnVector <var>ub</var>)</em><a href='#index-Bounds-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Bounds-3"><span class="category">: </span><span><em></em> <strong>Bounds</strong> <em>(const Bounds &amp;<var>a</var>)</em><a href='#index-Bounds-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-30"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>operator =</strong> <em>(const Bounds &amp;<var>a</var>)</em><a href='#index-operator-_003d-30' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-resize-1"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>resize</strong> <em>(int <var>n</var>)</em><a href='#index-resize-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-lower_005fbound"><span class="category">: </span><span><em>double</em> <strong>lower_bound</strong> <em>(int <var>index</var>) const;</em><a href='#index-lower_005fbound' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-upper_005fbound"><span class="category">: </span><span><em>double</em> <strong>upper_bound</strong> <em>(int <var>index</var>) const;</em><a href='#index-upper_005fbound' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-lower_005fbounds"><span class="category">: </span><span><em>ColumnVector</em> <strong>lower_bounds</strong> <em>(void) const;</em><a href='#index-lower_005fbounds' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-upper_005fbounds"><span class="category">: </span><span><em>ColumnVector</em> <strong>upper_bounds</strong> <em>(void) const;</em><a href='#index-upper_005fbounds' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-size-1"><span class="category">: </span><span><em>int</em> <strong>size</strong> <em>(void) const;</em><a href='#index-size-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fbound"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_bound</strong> <em>(int <var>index</var>, double <var>low</var>, double <var>high</var>)</em><a href='#index-set_005fbound' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fbounds"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_bounds</strong> <em>(double <var>low</var>, double <var>high</var>)</em><a href='#index-set_005fbounds' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fbounds-1"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_bounds</strong> <em>(const ColumnVector <var>lb</var>, const ColumnVector <var>ub</var>)</em><a href='#index-set_005fbounds-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005flower_005fbound"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_lower_bound</strong> <em>(int <var>index</var>, double <var>low</var>)</em><a href='#index-set_005flower_005fbound' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fupper_005fbound"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_upper_bound</strong> <em>(int <var>index</var>, double <var>high</var>)</em><a href='#index-set_005fupper_005fbound' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005flower_005fbounds"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_lower_bounds</strong> <em>(double <var>low</var>)</em><a href='#index-set_005flower_005fbounds' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fupper_005fbounds"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_upper_bounds</strong> <em>(double <var>high</var>)</em><a href='#index-set_005fupper_005fbounds' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005flower_005fbounds-1"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_lower_bounds</strong> <em>(const ColumnVector <var>lb</var>)</em><a href='#index-set_005flower_005fbounds-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fupper_005fbounds-1"><span class="category">: </span><span><em>Bounds&amp;</em> <strong>set_upper_bounds</strong> <em>(const ColumnVector <var>ub</var>)</em><a href='#index-set_005fupper_005fbounds-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-27"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const Bounds &amp;<var>b</var>)</em><a href='#index-operator-_003c_003c-27' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Linear-Constraints.html">Linear Constraints</a>, Previous: <a href="Objective-Functions.html">Objective Functions</a>, Up: <a href="Optimization.html">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

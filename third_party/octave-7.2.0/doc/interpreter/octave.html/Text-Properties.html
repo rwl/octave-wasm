@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Text Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Text Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Text Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Image-Properties.html" rel="next" title="Image Properties">
+<link href="Line-Properties.html" rel="prev" title="Line Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Text-Properties">
+<div class="header">
+<p>
+Next: <a href="Image-Properties.html" accesskey="n" rel="next">Image Properties</a>, Previous: <a href="Line-Properties.html" accesskey="p" rel="prev">Line Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Text-Properties-1"></span><h4 class="subsubsection">15.3.3.6 Text Properties</h4>
+<span id="index--Text-PropertiesText-Properties"></span>
+
+
+
+<p>Properties of <code>text</code> objects (see <a href="Plot-Annotations.html#XREFtext">text</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFtextbackgroundcolor"></span><span id="index-text-backgroundcolor"></span>
+</dd>
+<dt><span><code>backgroundcolor</code>: colorspec, def. <code>&quot;none&quot;</code></span></dt>
+<dd><p>Color of the background area.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFtextbeingdeleted"></span><span id="index-text-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFtextbusyaction"></span><span id="index-text-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextbuttondownfcn"></span><span id="index-text-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextchildren"></span><span id="index-text-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p><code>children</code> is unused.
+</p>
+
+<span id="XREFtextclipping"></span><span id="index-text-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>clipping</code> is <code>&quot;on&quot;</code>, the text is clipped in its parent axes limits.
+</p>
+
+<span id="XREFtextcolor"></span><span id="index-text-color"></span>
+</dd>
+<dt><span><code>color</code>: colorspec, def. <code>[0   0   0]</code></span></dt>
+<dd><p>Color of the text.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFtextcontextmenu"></span><span id="index-text-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this text object.
+</p>
+
+<span id="XREFtextcreatefcn"></span><span id="index-text-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after text has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaulttextcreatefcn&quot;, 'disp (&quot;text created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextdeletefcn"></span><span id="index-text-deletefcn"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before text is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextedgecolor"></span><span id="index-text-edgecolor"></span>
+</dd>
+<dt><span><code>edgecolor</code>: colorspec, def. <code>&quot;none&quot;</code></span></dt>
+<dd><p>Color of the outline of the background area.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFtextediting"></span><span id="index-text-editing"></span>
+</dd>
+<dt><span><code>editing</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd><p><code>editing</code> is unused.
+</p>
+
+<span id="XREFtextextent"></span><span id="index-text-extent"></span>
+</dd>
+<dt><span><code>extent</code> (read-only): four-element vector</span></dt>
+<dd><p>Vector <code>[x0 y0 width height]</code> indicating the size and location of the text string.
+</p>
+
+<span id="XREFtextfontangle"></span><span id="index-text-fontangle"></span>
+</dd>
+<dt><span><code>fontangle</code>: <code>&quot;italic&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<span id="XREFtextfontname"></span><span id="index-text-fontname"></span>
+</dd>
+<dt><span><code>fontname</code>: string, def. <code>&quot;*&quot;</code></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code>&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code>system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<span id="XREFtextfontsize"></span><span id="index-text-fontsize"></span>
+</dd>
+<dt><span><code>fontsize</code>: scalar, def. <code>10</code></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a href="#XREFtextfontunits">fontunits property</a>.
+</p>
+
+<span id="XREFtextfontsmoothing"></span><span id="index-text-fontsmoothing"></span>
+</dd>
+<dt><span><code>fontsmoothing</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Control whether anti-aliasing is used when rendering text.
+</p>
+
+<span id="XREFtextfontunits"></span><span id="index-text-fontunits"></span>
+</dd>
+<dt><span><code>fontunits</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;inches&quot;</code> | <code>&quot;normalized&quot;</code> | <code>&quot;pixels&quot;</code> | {<code>&quot;points&quot;</code>}</span></dt>
+<dd><p>Units used to interpret the <code>&quot;fontsize&quot;</code> property.
+</p>
+
+<span id="XREFtextfontweight"></span><span id="index-text-fontweight"></span>
+</dd>
+<dt><span><code>fontweight</code>: <code>&quot;bold&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<span id="XREFtexthandlevisibility"></span><span id="index-text-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the text&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFtexthittest"></span><span id="index-text-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether text processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFtextpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFtexthorizontalalignment"></span><span id="index-text-horizontalalignment"></span>
+</dd>
+<dt><span><code>horizontalalignment</code>: <code>&quot;center&quot;</code> | {<code>&quot;left&quot;</code>} | <code>&quot;right&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFtextinterpreter"></span><span id="index-text-interpreter"></span>
+</dd>
+<dt><span><code>interpreter</code>: <code>&quot;latex&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;tex&quot;</code>}</span></dt>
+<dd><p>Control the way the <code>&quot;string&quot;</code> property is interpreted.
+See <a href="Use-of-the-interpreter-Property.html#XREFinterpreterusage">Use&nbsp;of&nbsp;the&nbsp;interpreter&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextinterruptible"></span><span id="index-text-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextlinestyle"></span><span id="index-text-linestyle"></span>
+</dd>
+<dt><span><code>linestyle</code>: {<code>&quot;-&quot;</code>} | <code>&quot;--&quot;</code> | <code>&quot;-.&quot;</code> | <code>&quot;:&quot;</code> | <code>&quot;none&quot;</code></span></dt>
+<dd><p>Style of the outline.  See <a href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<span id="XREFtextlinewidth"></span><span id="index-text-linewidth"></span>
+</dd>
+<dt><span><code>linewidth</code>: scalar, def. <code>0.5000</code></span></dt>
+<dd><p>Width of the outline.
+</p>
+
+<span id="XREFtextmargin"></span><span id="index-text-margin"></span>
+</dd>
+<dt><span><code>margin</code>: scalar, def. <code>3</code></span></dt>
+<dd><p>Margins between the borders of the background area and the texts.  The value is currently interpreted as pixels, regardless of the <code>&quot;fontunits&quot;</code> property.
+</p>
+
+<span id="XREFtextparent"></span><span id="index-text-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle</span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFtextpickableparts"></span><span id="index-text-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code>: <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p>Specify whether text will accept mouse clicks.  By default, <code>pickableparts</code> is <code>&quot;visible&quot;</code> and only visible parts of the text or its children may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code>&quot;hittest&quot;</code> property will determine how they are processed.  See <a href="#XREFtexthittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFtextposition"></span><span id="index-text-position"></span>
+</dd>
+<dt><span><code>position</code>: three-element vector, def. <code>[0   0   0]</code></span></dt>
+<dd><p>Vector <code>[X0 Y0 Z0]</code> where X0, Y0, and Z0 indicate the position of the text anchor as defined by <code>verticalalignment</code> and <code>horizontalalignment</code>.
+</p>
+
+<span id="XREFtextrotation"></span><span id="index-text-rotation"></span>
+</dd>
+<dt><span><code>rotation</code>: scalar, def. <code>0</code></span></dt>
+<dd><p>The angle of rotation for the displayed text, measured in degrees.
+</p>
+
+<span id="XREFtextselected"></span><span id="index-text-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFtextselectionhighlight"></span><span id="index-text-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFtextstring"></span><span id="index-text-string"></span>
+</dd>
+<dt><span><code>string</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>The text object string content.
+</p>
+
+<span id="XREFtexttag"></span><span id="index-text-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFtexttype"></span><span id="index-text-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;text&quot;</code>
+</p>
+
+<span id="XREFtextunits"></span><span id="index-text-units"></span>
+</dd>
+<dt><span><code>units</code>: <code>&quot;centimeters&quot;</code> | {<code>&quot;data&quot;</code>} | <code>&quot;inches&quot;</code> | <code>&quot;normalized&quot;</code> | <code>&quot;pixels&quot;</code> | <code>&quot;points&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFtextuserdata"></span><span id="index-text-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFtextverticalalignment"></span><span id="index-text-verticalalignment"></span>
+</dd>
+<dt><span><code>verticalalignment</code>: <code>&quot;baseline&quot;</code> | <code>&quot;bottom&quot;</code> | <code>&quot;cap&quot;</code> | {<code>&quot;middle&quot;</code>} | <code>&quot;top&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFtextvisible"></span><span id="index-text-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the text is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Image-Properties.html">Image Properties</a>, Previous: <a href="Line-Properties.html">Line Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

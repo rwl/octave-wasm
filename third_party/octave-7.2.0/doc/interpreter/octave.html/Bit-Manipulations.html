@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bit Manipulations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Bit Manipulations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Bit Manipulations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Logical-Values.html" rel="next" title="Logical Values">
+<link href="Integer-Data-Types.html" rel="prev" title="Integer Data Types">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Bit-Manipulations">
+<div class="header">
+<p>
+Next: <a href="Logical-Values.html" accesskey="n" rel="next">Logical Values</a>, Previous: <a href="Integer-Data-Types.html" accesskey="p" rel="prev">Integer Data Types</a>, Up: <a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Bit-Manipulations-1"></span><h3 class="section">4.5 Bit Manipulations</h3>
+
+<p>Octave provides a number of functions for the manipulation of numeric
+values on a bit by bit basis.  The basic functions to set and obtain the
+values of individual bits are <code>bitset</code> and <code>bitget</code>.
+</p>
+<span id="XREFbitset"></span><dl class="def">
+<dt id="index-bitset"><span class="category">: </span><span><em><var>C</var> =</em> <strong>bitset</strong> <em>(<var>A</var>, <var>n</var>)</em><a href='#index-bitset' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bitset-1"><span class="category">: </span><span><em><var>C</var> =</em> <strong>bitset</strong> <em>(<var>A</var>, <var>n</var>, <var>val</var>)</em><a href='#index-bitset-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set or reset bit(s) <var>n</var> of the unsigned integers in <var>A</var>.
+</p>
+<p>The least significant bit is <var>n</var> = 1.  <var>val</var>&nbsp;=&nbsp;0<!-- /@w --> resets bits and
+<var>val</var>&nbsp;=&nbsp;1<!-- /@w --> sets bits.  If no <var>val</var> is specified it defaults to
+1 (set bit).  All inputs must be the same size or scalars.
+</p>
+<p>Example 1: Set multiple bits
+</p>
+<div class="example">
+<pre class="example">x = bitset (1, 3:5)
+  &rArr; x =
+
+   5    9   17
+
+dec2bin (x)
+  &rArr;
+     00101
+     01001
+     10001
+</pre></div>
+
+<p>Example 2: Reset and set bits
+</p>
+<div class="example">
+<pre class="example">x = bitset ([15 14], 1, [0 1])
+  &rArr; x =
+
+   14    15
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFbitand">bitand</a>, <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<span id="XREFbitget"></span><dl class="def">
+<dt id="index-bitget"><span class="category">: </span><span><em><var>c</var> =</em> <strong>bitget</strong> <em>(<var>A</var>, <var>n</var>)</em><a href='#index-bitget' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the status of bit(s) <var>n</var> of the unsigned integers in <var>A</var>.
+</p>
+<p>The least significant bit is <var>n</var> = 1.
+</p>
+<div class="example">
+<pre class="example">bitget (100, 8:-1:1)
+&rArr; 0  1  1  0  0  1  0  0
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFbitand">bitand</a>, <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<p>The arguments to all of Octave&rsquo;s bitwise operations can be scalar or
+arrays, except for <code>bitcmp</code>, whose <var>k</var> argument must a
+scalar.  In the case where more than one argument is an array, then all
+arguments must have the same shape, and the bitwise operator is applied
+to each of the elements of the argument individually.  If at least one
+argument is a scalar and one an array, then the scalar argument is
+duplicated.  Therefore
+</p>
+<div class="example">
+<pre class="example">bitget (100, 8:-1:1)
+</pre></div>
+
+<p>is the same as
+</p>
+<div class="example">
+<pre class="example">bitget (100 * ones (1, 8), 8:-1:1)
+</pre></div>
+
+<p>It should be noted that all values passed to the bit manipulation
+functions of Octave are treated as integers.  Therefore, even though the
+example for <code>bitset</code> above passes the floating point value
+<code>10</code>, it is treated as the bits <code>[1, 0, 1, 0]</code> rather than the
+bits of the native floating point format representation of <code>10</code>.
+</p>
+<p>As the maximum value that can be represented by a number is important
+for bit manipulation, particularly when forming masks, Octave supplies
+two utility functions: <code>flintmax</code> for floating point integers, and
+<code>intmax</code> for integer objects (<code>uint8</code>, <code>int64</code>, etc.).
+</p>
+<p>Octave also includes the basic bitwise &rsquo;and&rsquo;, &rsquo;or&rsquo;, and &rsquo;exclusive or&rsquo;
+operators.
+</p>
+<span id="XREFbitand"></span><dl class="def">
+<dt id="index-bitand"><span class="category">: </span><span><em></em> <strong>bitand</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-bitand' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the bitwise AND of non-negative integers.
+</p>
+<p><var>x</var>, <var>y</var> must be in the range [0,intmax]
+</p>
+<p><strong>See also:</strong> <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<span id="XREFbitor"></span><dl class="def">
+<dt id="index-bitor"><span class="category">: </span><span><em></em> <strong>bitor</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-bitor' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the bitwise OR of non-negative integers <var>x</var> and <var>y</var>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<span id="XREFbitxor"></span><dl class="def">
+<dt id="index-bitxor"><span class="category">: </span><span><em></em> <strong>bitxor</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-bitxor' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the bitwise XOR of non-negative integers <var>x</var> and <var>y</var>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFbitand">bitand</a>, <a href="#XREFbitor">bitor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<p>The bitwise &rsquo;not&rsquo; operator is a unary operator that performs a logical
+negation of each of the bits of the value.  For this to make sense, the
+mask against which the value is negated must be defined.  Octave&rsquo;s
+bitwise &rsquo;not&rsquo; operator is <code>bitcmp</code>.
+</p>
+<span id="XREFbitcmp"></span><dl class="def">
+<dt id="index-bitcmp"><span class="category">: </span><span><em></em> <strong>bitcmp</strong> <em>(<var>A</var>, <var>k</var>)</em><a href='#index-bitcmp' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the <var>k</var>-bit complement of integers in <var>A</var>.
+</p>
+<p>If <var>k</var> is omitted <code>k = log2 (flintmax) + 1</code> is assumed.
+</p>
+<div class="example">
+<pre class="example">bitcmp (7,4)
+  &rArr; 8
+dec2bin (11)
+  &rArr; 1011
+dec2bin (bitcmp (11, 6))
+  &rArr; 110100
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFbitand">bitand</a>, <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="#XREFbitshift">bitshift</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<p>Octave also includes the ability to left-shift and right-shift values bitwise.
+</p>
+<span id="XREFbitshift"></span><dl class="def">
+<dt id="index-bitshift"><span class="category">: </span><span><em></em> <strong>bitshift</strong> <em>(<var>a</var>, <var>k</var>)</em><a href='#index-bitshift' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bitshift-1"><span class="category">: </span><span><em></em> <strong>bitshift</strong> <em>(<var>a</var>, <var>k</var>, <var>n</var>)</em><a href='#index-bitshift-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a <var>k</var> bit shift of <var>n</var>-digit unsigned integers in <var>a</var>.
+</p>
+<p>A positive <var>k</var> leads to a left shift; A negative value to a right shift.
+</p>
+<p>If <var>n</var> is omitted it defaults to 64.
+<var>n</var> must be in the range [1,64].
+</p>
+<div class="example">
+<pre class="example">bitshift (eye (3), 1)
+&rArr;
+</pre><pre class="example">2 0 0
+0 2 0
+0 0 2
+</pre><pre class="example">
+
+bitshift (10, [-2, -1, 0, 1, 2])
+&rArr; 2   5  10  20  40
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFbitand">bitand</a>, <a href="#XREFbitor">bitor</a>, <a href="#XREFbitxor">bitxor</a>, <a href="#XREFbitset">bitset</a>, <a href="#XREFbitget">bitget</a>, <a href="#XREFbitcmp">bitcmp</a>, <a href="Integer-Data-Types.html#XREFintmax">intmax</a>, <a href="Integer-Data-Types.html#XREFflintmax">flintmax</a>.
+</p></dd></dl>
+
+
+<p>Bits that are shifted out of either end of the value are lost.  Octave
+also uses arithmetic shifts, where the sign bit of the value is kept
+during a right shift.  For example:
+</p>
+<div class="example">
+<pre class="example">bitshift (-10, -1)
+&rArr; -5
+bitshift (int8 (-1), -1)
+&rArr; -1
+</pre></div>
+
+<p>Note that <code>bitshift (int8 (-1), -1)</code> is <code>-1</code> since the bit
+representation of <code>-1</code> in the <code>int8</code> data type is <code>[1, 1,
+1, 1, 1, 1, 1, 1]</code>.
+</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Logical-Values.html">Logical Values</a>, Previous: <a href="Integer-Data-Types.html">Integer Data Types</a>, Up: <a href="Numeric-Data-Types.html">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

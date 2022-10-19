@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Precision issues (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Precision issues (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Precision issues (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Toolkits.html" rel="up" title="Graphics Toolkits">
+<link href="Hardware-vs_002e-Software-Rendering.html" rel="prev" title="Hardware vs. Software Rendering">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Precision-issues">
+<div class="header">
+<p>
+Previous: <a href="Hardware-vs_002e-Software-Rendering.html" accesskey="p" rel="prev">Hardware vs. Software Rendering</a>, Up: <a href="Graphics-Toolkits.html" accesskey="u" rel="up">Graphics Toolkits</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Precision-issues-1"></span><h4 class="subsubsection">15.4.8.3 Precision issues</h4>
+<span id="index-opengl-single-precision-date-time"></span>
+
+<p>The OpenGL graphics toolkits (<code>&quot;qt&quot;</code> and <code>&quot;fltk&quot;</code>) use single
+precision for rendering.  This limitation in particular applies to plots of
+time series against serial dates as used by the <code>datenum</code>, <code>datestr</code>,
+<code>datestruct</code>, and <code>datetick</code> functions.
+</p>
+<p>Serial dates encode timestamps as days elapsed since the year zero with hours,
+minutes, seconds as the fractional part.  On December 31st 1999, the serial
+date representation was 730485.  A double precision variable with this integer
+part allows for a resolution in its fractional part of 1.2e-10, representing
+about 5 microseconds.  But with single precision, the resolution is reduced to
+about 0.06, representing 45 minutes.  Any attempt to plot timestamped data
+with finer granularity will result in a distorted graph.
+</p>
+<p>As a workaround, it is possible to use the <code>&quot;gnuplot&quot;</code> graphics toolkit
+or subtract 2000 years&mdash;i.e., <code>datenum (2000, 0, 0)</code> or 730485&mdash;from the
+time values.  Due to the fact that the calendar structure repeats every 2000
+years, the relation between year, month, day of month and day of week will stay
+unchanged and the ticks and ticklabels produced by the <code>datetick</code> function
+will still be correct.  Only years will lack the millennium digit.  Thus,
+&quot;2020&quot; will be printed as &quot;20&quot;.  For example:
+</p>
+<div class="example">
+<pre class="example"># timestamps of 24 hours in one minute steps
+t = datenum (2020, 1, 1):(1/1440):datenum (2020, 1, 2);
+
+# some example time series data
+x = -cos (2*pi*t) + rand (size (t)) / 10;
+
+subplot (1, 2, 1);
+plot (t, x);
+datetick (&quot;x&quot;);
+xlabel (&quot;serial date&quot;);
+title (&quot;problem&quot;);
+
+subplot (1, 2, 2);
+plot (t - 730485, x);
+datetick (&quot;x&quot;);
+xlabel (&quot;2000 years off&quot;);
+title (&quot;workaround&quot;);
+</pre></div>
+
+<p>The result of which can be seen in <a href="#fig_003aprecisiondate">Figure 15.8</a>.
+</p>
+<div class="float"><span id="fig_003aprecisiondate"></span>
+<div align="center"><img src="precisiondate.png" alt="precisiondate">
+</div>
+<div class="float-caption"><p><strong>Figure 15.8: </strong>Single precision issues with OpenGL graphics toolkits</p></div></div>
+<p>Similarly, other data can be translated or re-scaled to work around this issue.
+</p>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Hardware-vs_002e-Software-Rendering.html">Hardware vs. Software Rendering</a>, Up: <a href="Graphics-Toolkits.html">Graphics Toolkits</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

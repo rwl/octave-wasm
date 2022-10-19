@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ranges (Octave C++ Classes)</title>
+
+<meta name="description" content="Ranges (Octave C++ Classes)">
+<meta name="keywords" content="Ranges (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Nonlinear-Functions.html" rel="next" title="Nonlinear Functions">
+<link href="Matrix-Factorizations.html" rel="prev" title="Matrix Factorizations">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Ranges">
+<div class="header">
+<p>
+Next: <a href="Nonlinear-Functions.html" accesskey="n" rel="next">Nonlinear Functions</a>, Previous: <a href="Matrix-Factorizations.html" accesskey="p" rel="prev">Matrix Factorizations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Ranges-1"></span><h2 class="chapter">6 Ranges</h2>
+<span id="index-ranges"></span>
+
+<dl class="def">
+<dt id="index-Range"><span class="category">: </span><span><em></em> <strong>Range</strong> <em>(void)</em><a href='#index-Range' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Range-1"><span class="category">: </span><span><em></em> <strong>Range</strong> <em>(const Range &amp;<var>r</var>)</em><a href='#index-Range-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Range-2"><span class="category">: </span><span><em></em> <strong>Range</strong> <em>(double <var>b</var>, double <var>l</var>)</em><a href='#index-Range-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Range-3"><span class="category">: </span><span><em></em> <strong>Range</strong> <em>(double <var>b</var>, double <var>l</var>, double <var>i</var>)</em><a href='#index-Range-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-base"><span class="category">: </span><span><em>double</em> <strong>base</strong> <em>(void) const</em><a href='#index-base' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-limit"><span class="category">: </span><span><em>double</em> <strong>limit</strong> <em>(void) const</em><a href='#index-limit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-inc"><span class="category">: </span><span><em>double</em> <strong>inc</strong> <em>(void) const</em><a href='#index-inc' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fbase"><span class="category">: </span><span><em>void</em> <strong>set_base</strong> <em>(double <var>b</var>)</em><a href='#index-set_005fbase' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005flimit"><span class="category">: </span><span><em>void</em> <strong>set_limit</strong> <em>(double <var>l</var>)</em><a href='#index-set_005flimit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005finc"><span class="category">: </span><span><em>void</em> <strong>set_inc</strong> <em>(double <var>i</var>)</em><a href='#index-set_005finc' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-nelem"><span class="category">: </span><span><em>int</em> <strong>nelem</strong> <em>(void) const</em><a href='#index-nelem' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-min-4"><span class="category">: </span><span><em>double</em> <strong>min</strong> <em>(void) const</em><a href='#index-min-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-max-4"><span class="category">: </span><span><em>double</em> <strong>max</strong> <em>(void) const</em><a href='#index-max-4' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-sort"><span class="category">: </span><span><em>void</em> <strong>sort</strong> <em>(void)</em><a href='#index-sort' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-26"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const Range &amp;<var>r</var>)</em><a href='#index-operator-_003c_003c-26' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-operator-_003e_003e-2"><span class="category">: </span><span><em>istream&amp;</em> <strong>operator &gt;&gt;</strong> <em>(istream &amp;<var>is</var>, Range &amp;<var>r</var>)</em><a href='#index-operator-_003e_003e-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-print_005frange"><span class="category">: </span><span><em>void</em> <strong>print_range</strong> <em>(void)</em><a href='#index-print_005frange' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+</div>
+
+
+
+</body>
+</html>

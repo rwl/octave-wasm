@@ -1,0 +1,383 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Commands for History (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Commands for History (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Commands for History (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Customizing-readline.html" rel="next" title="Customizing readline">
+<link href="Commands-for-Completion.html" rel="prev" title="Commands for Completion">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Commands-for-History">
+<div class="header">
+<p>
+Next: <a href="Customizing-readline.html" accesskey="n" rel="next">Customizing <code>readline</code></a>, Previous: <a href="Commands-for-Completion.html" accesskey="p" rel="prev">Letting Readline Type for You</a>, Up: <a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Commands-for-Manipulating-the-History"></span><h4 class="subsection">2.4.5 Commands for Manipulating the History</h4>
+<span id="index-command-history"></span>
+<span id="index-input-history"></span>
+<span id="index-history-of-commands"></span>
+
+<p>Octave normally keeps track of the commands you type so that you can
+recall previous commands to edit or execute them again.  When you exit
+Octave, the most recent commands you have typed, up to the number
+specified by the variable <code>history_size</code>, are saved in a file.
+When Octave starts, it loads an initial list of commands from the file
+named by the variable <code>history_file</code>.
+</p>
+<p>Here are the commands for simple browsing and searching the history
+list.
+</p>
+<dl compact="compact">
+<dt><span><kbd><span class="key">LFD</span></kbd></span></dt>
+<dt><span><kbd><span class="key">RET</span></kbd></span></dt>
+<dd><p>Accept the current line regardless of where the cursor is.  If the line is
+non-empty, add it to the history list.  If the line was a history
+line, then restore the history line to its original state.
+</p>
+</dd>
+<dt><span><kbd>C-p</kbd></span></dt>
+<dd><p>Move &lsquo;up&rsquo; through the history list.
+</p>
+</dd>
+<dt><span><kbd>C-n</kbd></span></dt>
+<dd><p>Move &lsquo;down&rsquo; through the history list.
+</p>
+</dd>
+<dt><span><kbd>M-&lt;</kbd></span></dt>
+<dd><p>Move to the first line in the history.
+</p>
+</dd>
+<dt><span><kbd>M-&gt;</kbd></span></dt>
+<dd><p>Move to the end of the input history, i.e., the line you are entering!
+</p>
+</dd>
+<dt><span><kbd>C-r</kbd></span></dt>
+<dd><p>Search backward starting at the current line and moving &lsquo;up&rsquo; through
+the history as necessary.  This is an incremental search.
+</p>
+</dd>
+<dt><span><kbd>C-s</kbd></span></dt>
+<dd><p>Search forward starting at the current line and moving &lsquo;down&rsquo; through
+the history as necessary.
+</p></dd>
+</dl>
+
+<p>On most terminals, you can also use the up and down arrow keys in place
+of <kbd>C-p</kbd> and <kbd>C-n</kbd> to move through the history list.
+</p>
+<p>In addition to the keyboard commands for moving through the history
+list, Octave provides three functions for viewing, editing, and
+re-running chunks of commands from the history list.
+</p>
+<span id="XREFhistory"></span><dl class="def">
+<dt id="index-history-1"><span class="category">: </span><span><em></em> <strong>history</strong><a href='#index-history-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history-2"><span class="category">: </span><span><em></em> <strong>history</strong> <em><var>opt1</var> &hellip;</em><a href='#index-history-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history-3"><span class="category">: </span><span><em><var>h</var> =</em> <strong>history</strong> <em>()</em><a href='#index-history-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>history</strong> <em>(<var>opt1</var>, &hellip;)</em><a href='#index-history-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>If invoked with no arguments, <code>history</code> displays a list of commands
+that you have executed.
+</p>
+<p>Valid options are:
+</p>
+<dl compact="compact">
+<dt><span><code><var>n</var></code></span></dt>
+<dt><span><code>-<var>n</var></code></span></dt>
+<dd><p>Display only the most recent <var>n</var> lines of history.
+</p>
+</dd>
+<dt><span><code>-c</code></span></dt>
+<dd><p>Clear the history list.
+</p>
+</dd>
+<dt><span><code>-q</code></span></dt>
+<dd><p>Don&rsquo;t number the displayed lines of history.  This is useful for cutting
+and pasting commands using the X Window System.
+</p>
+</dd>
+<dt><span><code>-r <var>file</var></code></span></dt>
+<dd><p>Read the file <var>file</var>, appending its contents to the current
+history list.  If the name is omitted, use the default history file
+(normally <samp>~/.octave_hist</samp>).
+</p>
+</dd>
+<dt><span><code>-w <var>file</var></code></span></dt>
+<dd><p>Write the current history to the file <var>file</var>.  If the name is
+omitted, use the default history file (normally <samp>~/.octave_hist</samp>).
+</p></dd>
+</dl>
+
+<p>For example, to display the five most recent commands that you have
+typed without displaying line numbers, use the command
+<kbd>history -q 5</kbd>.
+</p>
+<p>If invoked with a single output argument, the history will be saved to that
+argument as a cell string and will not be output to screen.
+</p>
+<p><strong>See also:</strong> <a href="#XREFedit_005fhistory">edit_history</a>, <a href="#XREFrun_005fhistory">run_history</a>.
+</p></dd></dl>
+
+
+<span id="XREFedit_005fhistory"></span><dl class="def">
+<dt id="index-edit_005fhistory"><span class="category">: </span><span><em></em> <strong>edit_history</strong><a href='#index-edit_005fhistory' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-edit_005fhistory-1"><span class="category">: </span><span><em></em> <strong>edit_history</strong> <em><var>cmd_number</var></em><a href='#index-edit_005fhistory-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-edit_005fhistory-2"><span class="category">: </span><span><em></em> <strong>edit_history</strong> <em><var>first</var> <var>last</var></em><a href='#index-edit_005fhistory-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Edit the history list using the editor named by the variable <code>EDITOR</code>.
+</p>
+<p>The commands to be edited are first copied to a temporary file.  When you
+exit the editor, Octave executes the commands that remain in the file.  It
+is often more convenient to use <code>edit_history</code> to define functions
+rather than attempting to enter them directly on the command line.
+The block of commands is executed as soon as you exit the editor.
+To avoid executing any commands, simply delete all the lines from the buffer
+before leaving the editor.
+</p>
+<p>When invoked with no arguments, edit the previously executed command;
+With one argument, edit the specified command <var>cmd_number</var>;
+With two arguments, edit the list of commands between <var>first</var> and
+<var>last</var>.  Command number specifiers may also be negative where -1
+refers to the most recently executed command.
+The following are equivalent and edit the most recently executed command.
+</p>
+<div class="example">
+<pre class="example">edit_history
+edit_history -1
+</pre></div>
+
+<p>When using ranges, specifying a larger number for the first command than the
+last command reverses the list of commands before they are placed in the
+buffer to be edited.
+</p>
+<p><strong>See also:</strong> <a href="#XREFrun_005fhistory">run_history</a>, <a href="#XREFhistory">history</a>.
+</p></dd></dl>
+
+
+<span id="XREFrun_005fhistory"></span><dl class="def">
+<dt id="index-run_005fhistory"><span class="category">: </span><span><em></em> <strong>run_history</strong><a href='#index-run_005fhistory' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-run_005fhistory-1"><span class="category">: </span><span><em></em> <strong>run_history</strong> <em><var>cmd_number</var></em><a href='#index-run_005fhistory-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-run_005fhistory-2"><span class="category">: </span><span><em></em> <strong>run_history</strong> <em><var>first</var> <var>last</var></em><a href='#index-run_005fhistory-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Run commands from the history list.
+</p>
+<p>When invoked with no arguments, run the previously executed command;
+</p>
+<p>With one argument, run the specified command <var>cmd_number</var>;
+</p>
+<p>With two arguments, run the list of commands between <var>first</var> and
+<var>last</var>.  Command number specifiers may also be negative where -1
+refers to the most recently executed command.  For example, the command
+</p>
+<div class="example">
+<pre class="example">run_history
+     OR
+run_history -1
+</pre></div>
+
+<p>executes the most recent command again.
+The command
+</p>
+<div class="example">
+<pre class="example">run_history 13 169
+</pre></div>
+
+<p>executes commands 13 through 169.
+</p>
+<p>Specifying a larger number for the first command than the last command
+reverses the list of commands before executing them.
+For example:
+</p>
+<div class="example">
+<pre class="example">disp (1)
+disp (2)
+run_history -1 -2
+&rArr;
+ 2
+ 1
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFedit_005fhistory">edit_history</a>, <a href="#XREFhistory">history</a>.
+</p></dd></dl>
+
+
+<p>Octave also allows you customize the details of when, where, and how history
+is saved.
+</p>
+<span id="XREFhistory_005fsave"></span><dl class="def">
+<dt id="index-history_005fsave"><span class="category">: </span><span><em><var>val</var> =</em> <strong>history_save</strong> <em>()</em><a href='#index-history_005fsave' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005fsave-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>history_save</strong> <em>(<var>new_val</var>)</em><a href='#index-history_005fsave-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005fsave-2"><span class="category">: </span><span><em></em> <strong>history_save</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-history_005fsave-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether commands entered
+on the command line are saved in the history file.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhistory_005fcontrol">history_control</a>, <a href="#XREFhistory_005ffile">history_file</a>, <a href="#XREFhistory_005fsize">history_size</a>, <a href="#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>.
+</p></dd></dl>
+
+
+<span id="XREFhistory_005fcontrol"></span><dl class="def">
+<dt id="index-history_005fcontrol"><span class="category">: </span><span><em><var>val</var> =</em> <strong>history_control</strong> <em>()</em><a href='#index-history_005fcontrol' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005fcontrol-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>history_control</strong> <em>(<var>new_val</var>)</em><a href='#index-history_005fcontrol-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies how commands are saved
+to the history list.
+</p>
+<p>The default value is an empty character string, but may be overridden by the
+environment variable <code><span class="nolinebreak">OCTAVE_HISTCONTROL</span></code><!-- /@w -->.
+</p>
+<p>The value of <code>history_control</code> is a colon-separated list of values
+controlling how commands are saved on the history list.  If the list
+of values includes <code>ignorespace</code>, lines which begin with a space
+character are not saved in the history list.  A value of <code>ignoredups</code>
+causes lines matching the previous history entry to not be saved.
+A value of <code>ignoreboth</code> is shorthand for <code>ignorespace</code> and
+<code>ignoredups</code>.  A value of <code>erasedups</code> causes all previous lines
+matching the current line to be removed from the history list before that
+line is saved.  Any value not in the above list is ignored.  If
+<code>history_control</code> is the empty string, all commands are saved on
+the history list, subject to the value of <code>history_save</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhistory_005ffile">history_file</a>, <a href="#XREFhistory_005fsize">history_size</a>, <a href="#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="#XREFhistory_005fsave">history_save</a>.
+</p></dd></dl>
+
+
+<span id="XREFhistory_005ffile"></span><dl class="def">
+<dt id="index-history_005ffile"><span class="category">: </span><span><em><var>val</var> =</em> <strong>history_file</strong> <em>()</em><a href='#index-history_005ffile' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005ffile-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>history_file</strong> <em>(<var>new_val</var>)</em><a href='#index-history_005ffile-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the name of the file used to
+store command history.
+</p>
+<p>All future commands issued during the current Octave session will be written to
+this new file (if the current setting of <code>history_save</code> allows for this).
+</p>
+<p>The default value is <samp><code>$DATA</code><!-- /@w -->/octave/history</samp>, where
+<code>$DATA</code><!-- /@w --> is the platform-specific location for (roaming) user data files
+(e.g., <code><span class="nolinebreak">$XDG_DATA_HOME</span></code><!-- /@w --> or, if that is not set, <samp>~/.local/share</samp> on
+Unix-like operating systems or <code>%APPDATA%</code><!-- /@w --> on Windows).  The default
+value may be overridden by the environment variable <code><span class="nolinebreak">OCTAVE_HISTFILE</span></code><!-- /@w -->.
+</p>
+<p>Programming Notes:
+</p>
+<p>If you want to permanently change the location of Octave&rsquo;s history file you
+need to issue the <code>history_file</code> command in every new Octave session.
+This can be achieved by using Octave&rsquo;s <samp>.octaverc</samp> startup file.
+</p>
+<p>If you also want to read the saved history commands of past Octave sessions
+from this different history file, then you need to use the additional command
+<code>history -r</code> after setting the new value of the history file.  Example
+code in Octave&rsquo;s startup file to do this might look like this:
+</p>
+<div class="example">
+<pre class="example">history_file (&quot;~/new/.octave_hist&quot;);
+if (exist (history_file ()))
+  history (&quot;-r&quot;, history_file());
+endif
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFhistory">history</a>, <a href="#XREFhistory_005fcontrol">history_control</a>, <a href="#XREFhistory_005fsave">history_save</a>, <a href="#XREFhistory_005fsize">history_size</a>, <a href="#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>.
+</p></dd></dl>
+
+
+<span id="XREFhistory_005fsize"></span><dl class="def">
+<dt id="index-history_005fsize"><span class="category">: </span><span><em><var>val</var> =</em> <strong>history_size</strong> <em>()</em><a href='#index-history_005fsize' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005fsize-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>history_size</strong> <em>(<var>new_val</var>)</em><a href='#index-history_005fsize-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies how many entries
+to store in the history file.
+</p>
+<p>The default value is <code>1000</code>, but may be overridden by the environment
+variable <code><span class="nolinebreak">OCTAVE_HISTSIZE</span></code><!-- /@w -->.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhistory_005ffile">history_file</a>, <a href="#XREFhistory_005ftimestamp_005fformat_005fstring">history_timestamp_format_string</a>, <a href="#XREFhistory_005fsave">history_save</a>.
+</p></dd></dl>
+
+
+<span id="XREFhistory_005ftimestamp_005fformat_005fstring"></span><dl class="def">
+<dt id="index-history_005ftimestamp_005fformat_005fstring"><span class="category">: </span><span><em><var>val</var> =</em> <strong>history_timestamp_format_string</strong> <em>()</em><a href='#index-history_005ftimestamp_005fformat_005fstring' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005ftimestamp_005fformat_005fstring-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>history_timestamp_format_string</strong> <em>(<var>new_val</var>)</em><a href='#index-history_005ftimestamp_005fformat_005fstring-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-history_005ftimestamp_005fformat_005fstring-2"><span class="category">: </span><span><em></em> <strong>history_timestamp_format_string</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-history_005ftimestamp_005fformat_005fstring-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the format string
+for the comment line that is written to the history file when Octave
+exits.
+</p>
+<p>The format string is passed to <code>strftime</code>.  The default value is
+</p>
+<div class="example">
+<pre class="example">&quot;# Octave VERSION, %a %b %d %H:%M:%S %Y %Z &lt;USER@HOST&gt;&quot;
+</pre></div>
+
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="Timing-Utilities.html#XREFstrftime">strftime</a>, <a href="#XREFhistory_005ffile">history_file</a>, <a href="#XREFhistory_005fsize">history_size</a>, <a href="#XREFhistory_005fsave">history_save</a>.
+</p></dd></dl>
+
+
+<span id="XREFEDITOR"></span><dl class="def">
+<dt id="index-EDITOR"><span class="category">: </span><span><em><var>val</var> =</em> <strong>EDITOR</strong> <em>()</em><a href='#index-EDITOR' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EDITOR-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>EDITOR</strong> <em>(<var>new_val</var>)</em><a href='#index-EDITOR-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EDITOR-2"><span class="category">: </span><span><em></em> <strong>EDITOR</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-EDITOR-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the default text editor.
+</p>
+<p>The default value is taken from the environment variable <code>EDITOR</code><!-- /@w -->
+when Octave starts.  If the environment variable is not initialized,
+<code>EDITOR</code><!-- /@w --> will be set to <code>&quot;emacs&quot;</code>.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+
+<p><strong>See also:</strong> <a href="Function-Files.html#XREFedit">edit</a>, <a href="#XREFedit_005fhistory">edit_history</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Customizing-readline.html">Customizing <code>readline</code></a>, Previous: <a href="Commands-for-Completion.html">Letting Readline Type for You</a>, Up: <a href="Command-Line-Editing.html">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

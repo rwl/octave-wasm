@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Set up the JVM (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Set up the JVM (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Set up the JVM (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Java-Interface.html" rel="up" title="Java Interface">
+<link href="Java-Interface-Functions.html" rel="next" title="Java Interface Functions">
+<link href="How-to-use-Java-from-within-Octave.html" rel="prev" title="How to use Java from within Octave">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Set-up-the-JVM">
+<div class="header">
+<p>
+Next: <a href="Java-Interface-Functions.html" accesskey="n" rel="next">Java Interface Functions</a>, Previous: <a href="How-to-use-Java-from-within-Octave.html" accesskey="p" rel="prev">How to use Java from within Octave</a>, Up: <a href="Java-Interface.html" accesskey="u" rel="up">Java Interface</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Set-up-the-JVM-1"></span><h4 class="subsection">A.4.3 Set up the JVM</h4>
+<span id="index-memory_002c-limitations-on-JVM"></span>
+<span id="index-select-JVM-version"></span>
+
+<p>In order to execute Java code Octave creates a Java Virtual Machine (JVM).  By
+default the version of the JVM is used that was detected during configuration
+on Unix-like systems or that is pointed to from the registry keys at
+<samp>HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\JRE</samp> or
+<samp>HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\Java Runtime Environment</samp> on
+Windows.  The default path to the JVM can be overridden by setting the
+environment variable <code><span class="nolinebreak">JAVA_HOME</span></code><!-- /@w --> to the path where the JVM is
+installed.  On Windows that might be, for example,
+<samp>C:\Program Files\Java\jre-10.0.2</samp>.  Make sure that you select a directory
+that contains the JVM with a bit-ness that matches Octave&rsquo;s.
+</p>
+<p>The JVM is only loaded once per Octave session.  Thus, to change the used
+version of the JVM, you might have to re-start Octave.  To check which version
+of the JVM is currently being used, run <code>version -java</code>.
+</p>
+<p>The JVM allocates a fixed amount of initial memory and may expand this pool up
+to a fixed maximum memory limit.  The default values depend on the Java version
+(see <a href="Java-Interface-Functions.html#XREFjavamem">javamem</a>).  The memory pool is shared by all Java objects
+running in the JVM.  This strict memory limit is intended mainly to avoid
+runaway applications inside web browsers or in enterprise servers which can
+consume all memory and crash the system.  When the maximum memory limit is hit,
+Java code will throw exceptions so that applications will fail or behave
+unexpectedly.
+</p>
+<p>You can specify options for the creation of the JVM inside a file named
+<samp>java.opts</samp>.  This is a text file where enter you enter lines containing
+<samp>-X</samp> and <samp>-D</samp> options that are then passed to the JVM during
+initialization.
+</p>
+<p>The directory where the Java options file is located is specified by the
+environment variable <code><span class="nolinebreak">OCTAVE_JAVA_DIR</span></code><!-- /@w -->.  If unset the directory where
+<samp>javaclasspath.m</samp> resides is used instead (typically
+<samp><code><span class="nolinebreak">OCTAVE_HOME</span></code><!-- /@w -->/share/octave/<code><span class="nolinebreak">OCTAVE_VERSION</span></code><!-- /@w -->/m/java/</samp>).
+You can find this directory by executing
+</p>
+<div class="example">
+<pre class="example">which javaclasspath
+</pre></div>
+
+<p>The <samp>-X</samp> options allow you to increase the maximum amount of memory
+available to the JVM.  The following example allows up to 256 Megabytes to be
+used by adding the following line to the <samp>java.opts</samp> file:
+</p>
+<div class="example">
+<pre class="example">-Xmx256m
+</pre></div>
+
+<p>The maximum possible amount of memory depends on your system.  On a Windows
+system with 2 Gigabytes main memory you should be able to set this maximum to
+about 1 Gigabyte.
+</p>
+<p>If your application requires a large amount of memory from the beginning, you
+can also specify the initial amount of memory allocated to the JVM.  Adding
+the following line to the <samp>java.opts</samp> file starts the JVM with 64
+Megabytes of initial memory:
+</p>
+<div class="example">
+<pre class="example">-Xms64m
+</pre></div>
+
+<p>For more details on the available <samp>-X</samp> options of your Java Virtual
+Machine issue the command &lsquo;<samp>java -X</samp>&rsquo; at the operating system command prompt
+and consult the Java documentation.
+</p>
+<p>The <samp>-D</samp> options can be used to define system properties which can then
+be used by Java classes inside Octave.  System properties can be retrieved by
+using the <code>getProperty()</code> methods of the <code>java.lang.System</code> class.
+The following example line defines the property <var>MyProperty</var> and assigns it
+the string <code>12.34</code>.
+</p>
+<div class="example">
+<pre class="example">-DMyProperty=12.34
+</pre></div>
+
+<p>The value of this property can then be retrieved as a string by a Java object
+or in Octave:
+</p>
+<div class="example">
+<pre class="example">octave&gt; javaMethod (&quot;getProperty&quot;, &quot;java.lang.System&quot;, &quot;MyProperty&quot;);
+ans = 12.34
+</pre></div>
+
+
+<p><strong>See also:</strong> javamem.
+</p>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Java-Interface-Functions.html">Java Interface Functions</a>, Previous: <a href="How-to-use-Java-from-within-Octave.html">How to use Java from within Octave</a>, Up: <a href="Java-Interface.html">Java Interface</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

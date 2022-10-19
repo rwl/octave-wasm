@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bar Series (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Bar Series (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Bar Series (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Object-Groups.html" rel="up" title="Object Groups">
+<link href="Contour-Groups.html" rel="next" title="Contour Groups">
+<link href="Area-Series.html" rel="prev" title="Area Series">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Bar-Series">
+<div class="header">
+<p>
+Next: <a href="Contour-Groups.html" accesskey="n" rel="next">Contour Groups</a>, Previous: <a href="Area-Series.html" accesskey="p" rel="prev">Area Series</a>, Up: <a href="Object-Groups.html" accesskey="u" rel="up">Object Groups</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Bar-Series-1"></span><h4 class="subsubsection">15.4.6.3 Bar Series</h4>
+<span id="index-series-objects-1"></span>
+<span id="index-bar-series"></span>
+
+<p>Bar series objects are created by the <code>bar</code> or <code>barh</code>
+functions.  Each <code>hggroup</code> element contains a single patch object.
+The properties of the bar series are
+</p>
+<dl compact="compact">
+<dt><span><code>showbaseline</code></span></dt>
+<dt><span><code>baseline</code></span></dt>
+<dt><span><code>basevalue</code></span></dt>
+<dd><p>The property <code>showbaseline</code> flags whether the baseline of the bar
+series is displayed (default is <code>&quot;on&quot;</code>).  The handle of the graphics
+object representing the baseline is given by the <code>baseline</code> property and
+the y-value of the baseline by the <code>basevalue</code> property.
+</p>
+<p>Changes to any of these properties are propagated to the other members of
+the bar series and to the baseline itself.  Equally, changes in the
+properties of the base line itself are propagated to the members of the
+corresponding bar series.
+</p>
+</dd>
+<dt><span><code>barwidth</code></span></dt>
+<dt><span><code>barlayout</code></span></dt>
+<dt><span><code>horizontal</code></span></dt>
+<dd><p>The property <code>barwidth</code> is the width of the bar corresponding to
+the <var>width</var> variable passed to <code>bar</code> or <var>barh</var>.  Whether the
+bar series is <code>&quot;grouped&quot;</code> or <code>&quot;stacked&quot;</code> is determined by the
+<code>barlayout</code> property and whether the bars are horizontal or
+vertical by the <code>horizontal</code> property.
+</p>
+<p>Changes to any of these property are propagated to the other members of
+the bar series.
+</p>
+</dd>
+<dt><span><code>linewidth</code></span></dt>
+<dt><span><code>linestyle</code></span></dt>
+<dd><p>The line width and style of the edge of the patch objects making up the
+bars.  See <a href="Line-Styles.html">Line Styles</a>.
+</p>
+</dd>
+<dt><span><code>edgecolor</code></span></dt>
+<dt><span><code>facecolor</code></span></dt>
+<dd><p>The line and fill color of the patch objects making up the bars.
+See <a href="Colors.html">Colors</a>.
+</p>
+</dd>
+<dt><span><code>xdata</code></span></dt>
+<dd><p>The nominal x positions of the bars.  Changes in this property and
+propagated to the other members of the bar series.
+</p>
+</dd>
+<dt><span><code>ydata</code></span></dt>
+<dd><p>The y value of the bars in the <code>hggroup</code>.
+</p>
+</dd>
+<dt><span><code>xdatasource</code></span></dt>
+<dt><span><code>ydatasource</code></span></dt>
+<dd><p>Data source variables.
+</p></dd>
+</dl>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Contour-Groups.html">Contour Groups</a>, Previous: <a href="Area-Series.html">Area Series</a>, Up: <a href="Object-Groups.html">Object Groups</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

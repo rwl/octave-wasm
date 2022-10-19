@@ -1,0 +1,1325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Statistics on Sliding Windows of Data (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Statistics on Sliding Windows of Data (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Statistics on Sliding Windows of Data (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statistics.html" rel="up" title="Statistics">
+<link href="Basic-Statistical-Functions.html" rel="next" title="Basic Statistical Functions">
+<link href="Descriptive-Statistics.html" rel="prev" title="Descriptive Statistics">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Statistics-on-Sliding-Windows-of-Data">
+<div class="header">
+<p>
+Next: <a href="Basic-Statistical-Functions.html" accesskey="n" rel="next">Basic Statistical Functions</a>, Previous: <a href="Descriptive-Statistics.html" accesskey="p" rel="prev">Descriptive Statistics</a>, Up: <a href="Statistics.html" accesskey="u" rel="up">Statistics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Statistics-on-Sliding-Windows-of-Data-1"></span><h3 class="section">26.2 Statistics on Sliding Windows of Data</h3>
+
+<p>It is often useful to calculate descriptive statistics over a subsection
+(i.e., window) of a full dataset.  Octave provides the function <code>movfun</code>
+which will call an arbitrary function handle with windows of data and
+accumulate the results.  Many of the most commonly desired functions, such as
+the moving average over a window of data (<code>movmean</code>), are already
+provided.
+</p>
+<span id="XREFmovfun"></span><dl class="def">
+<dt id="index-movfun"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movfun</strong> <em>(<var>fcn</var>, <var>x</var>, <var>wlen</var>)</em><a href='#index-movfun' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movfun-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movfun</strong> <em>(<var>fcn</var>, <var>x</var>, <var>[<var>nb</var>, <var>na</var></var>])</em><a href='#index-movfun-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movfun-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movfun</strong> <em>(&hellip;, &quot;<var>property</var>&quot;, <var>value</var>)</em><a href='#index-movfun-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Apply function <var>fcn</var> to a moving window of length <var>wlen</var> on data
+<var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <var>fcn</var> is applied to a moving
+window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the window is
+symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on either
+side of the central element.  For example, when calculating the output at
+index 5 with a window length of 3, <code>movfun</code> uses data elements
+<code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window is
+asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movfun</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>During calculations the data input <var>x</var> is reshaped into a 2-dimensional
+<var>wlen</var>-by-<var>N</var> matrix and <var>fcn</var> is called on this new matrix.
+Therefore, <var>fcn</var> must accept an array input argument and apply the
+computation along dimension 1, i.e., down the columns of the array.
+</p>
+<p>When applied to an array (possibly multi-dimensional) with <var>n</var> columns,
+<var>fcn</var> may return a result in either of two formats: Format&nbsp;1)<!-- /@w -->
+an array of size 1-by-<var>n</var>-by-<var>dim3</var>-by-&hellip;-by-<var>dimN</var>.  This
+is the typical output format from Octave core functions.  Type
+<code>demo (&quot;movfun&quot;, 5)</code> for an example of this use case.
+Format&nbsp;2)<!-- /@w --> a row vector of length
+<code><var>n</var> * <var>numel_higher_dims</var></code> where <var>numel_higher_dims</var> is
+<code>prod&nbsp;(size&nbsp;(<var>x</var>)(3:end))</code><!-- /@w -->.  The output of <var>fcn</var> for the
+i-th input column must be found in the output at indices
+<code>i:<var>n</var>:(<var>n</var>*<var><span class="nolinebreak">numel_higher_dims</span></var>)</code><!-- /@w -->.
+This format is useful when concatenating functions into arrays, or when
+using <code>nthargout</code>.  Type <code>demo (&quot;movfun&quot;, 6)</code> for an example of
+this case.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;dim&quot;</code></span></dt>
+<dd><p>Operate along the dimension specified, rather than the default of the first
+non-singleton dimension.
+</p>
+</dd>
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = <var>fcn</var> (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = <var>fcn</var> (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = <var>fcn</var> ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = <var>fcn</var> ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <var>fcn</var> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = <var>fcn</var> ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = <var>fcn</var> ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = <var>fcn</var> ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = <var>fcn</var> ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = <var>fcn</var> ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = <var>fcn</var> ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+<p>Note that for some of these choices, the window size at the boundaries is
+not the same as for the central part, and <var>fcn</var> must work in these
+cases.
+</p>
+</dd>
+<dt><span><code>&quot;nancond&quot;</code></span></dt>
+<dd><p>Controls whether <code>NaN</code> and <code>NA</code> values should be included (value:
+<code>&quot;includenan&quot;</code>), or excluded (value: <code>&quot;omitnan&quot;</code>), from the data
+passed to <var>fcn</var>.  The default is <code>&quot;includenan&quot;</code>.  Caution:
+The <code>&quot;omitnan&quot;</code> option is not yet implemented.
+</p>
+</dd>
+<dt><span><code>&quot;outdim&quot;</code></span></dt>
+<dd><p>A row vector that selects which dimensions of the calculation will appear
+in the output <var>y</var>.  This is only useful when <var>fcn</var> returns an
+N-dimensional array in Format&nbsp;1<!-- /@w -->.  The default is to return all output
+dimensions.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: The property <code>&quot;outdim&quot;</code> can be used to save memory
+when the output of <var>fcn</var> has many dimensions, or when a wrapper to the
+base function that selects the desired outputs is too costly.  When memory
+is not an issue, the easiest way to select output dimensions is to first
+calculate the complete result with <code>movfun</code> and then filter that result
+with indexing.  If code complexity is not an issue then a wrapper can be
+created using anonymous functions.  For example, if <code>basefcn</code>
+is a function returning a <var>K</var>-dimensional row output, and only
+dimension <var>D</var> is desired, then the following wrapper could be used.
+</p>
+<div class="example">
+<pre class="example"><var>fcn</var> = @(x) basefcn (x)(:,columns(x) * (<var>D</var>-1) + (1:columns(x)));
+<var>y</var> = movfun (@fcn, &hellip;);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFmovslice">movslice</a>, <a href="Rearranging-Matrices.html#XREFprepad">prepad</a>, <a href="Rearranging-Matrices.html#XREFpostpad">postpad</a>, <a href="Rearranging-Matrices.html#XREFpermute">permute</a>, <a href="Rearranging-Matrices.html#XREFreshape">reshape</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovslice"></span><dl class="def">
+<dt id="index-movslice"><span class="category">: </span><span><em><var>slcidx</var> =</em> <strong>movslice</strong> <em>(<var>N</var>, <var>wlen</var>)</em><a href='#index-movslice' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movslice-1"><span class="category">: </span><span><em>[<var>slcidx</var>, <var>C</var>, <var>Cpre</var>, <var>Cpost</var>, <var>win</var>] =</em> <strong>movslice</strong> <em>(&hellip;)</em><a href='#index-movslice-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Generate indices to slice a vector of length <var>N</var> into windows
+of length <var>wlen</var>.
+</p>
+<p>The input <var>N</var> must be a positive integer.
+</p>
+<p>The moving window length input <var>wlen</var> can either be a scalar not equal
+to 1 or a 2-element array of integers.  For scalar values, if odd the window
+is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on either
+side of the central element.  If <var>wlen</var> is even the window is asymmetric
+and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the central element
+and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the central element.
+When <var>wlen</var>is a 2-element array , <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->, the
+window includes <var>nb</var> elements to the left of the current element and
+<var>na</var> elements to the right of the current element.
+</p>
+<p>The output <var>slcidx</var> is an array of indices of the slices that fit fully
+within the vector, where each column is an individual slice as the window
+moves from left to right. The slices have <var>wlen</var> elements for scalar
+<var>wlen</var>, or <code><var>nb</var>&nbsp;+&nbsp;<var>na</var>&nbsp;+&nbsp;1</code><!-- /@w --> elements for array valued
+<var>wlen</var>.
+</p>
+<p>Optional output <var>C</var> is an row vector of window center positions where
+the window stays fully within the vector.
+</p>
+<p>Optional outputs <var>Cpre</var> and <var>Cpost</var> contain the vector elements at
+the start and end of the vector, respectively, that result in the window
+extending beyond the ends of the vector.
+</p>
+<p>Optional output <var>win</var> is a column vector with the same number of rows
+as <var>slcidx</var> that contains the moving window defined as a center
+relative position stencil.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovmad"></span><dl class="def">
+<dt id="index-movmad"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmad</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movmad' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmad-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmad</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movmad-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmad-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmad</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movmad-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmad-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmad</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movmad-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmad-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmad</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movmad-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving mean absolute deviation over a sliding window of length
+<var>wlen</var> on data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>mad</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movmad</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movmad</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>mad</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = mad (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = mad (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = mad ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mad ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>mad</code> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = mad ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mad ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = mad ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mad ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = mad ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mad ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovmax"></span><dl class="def">
+<dt id="index-movmax"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmax</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movmax' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmax-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmax</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movmax-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmax-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmax</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movmax-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmax-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmax</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movmax-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmax-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmax</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movmax-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving maximum over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>max</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movmax</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movmax</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>max</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = max (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = max (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = max ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = max ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>max</code> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = max ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = max ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = max ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = max ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = max ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = max ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovmean"></span><dl class="def">
+<dt id="index-movmean"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmean</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movmean' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmean-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmean</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movmean-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmean-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmean</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movmean-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmean-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmean</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movmean-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmean-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmean</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movmean-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving average over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>mean</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movmean</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movmean</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>mean</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = mean (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = mean (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = mean ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mean ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>mean</code> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = mean ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mean ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = mean ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mean ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = mean ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = mean ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovmedian"></span><dl class="def">
+<dt id="index-movmedian"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmedian</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movmedian' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmedian-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmedian</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movmedian-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmedian-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmedian</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movmedian-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmedian-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmedian</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movmedian-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmedian-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmedian</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movmedian-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving median over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>movmedian</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movmedian</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movmedian</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to
+<code>movmedian</code>.  The default is <code>&quot;includenan&quot;</code>.  Caution: the
+<code>&quot;omitnan&quot;</code> option is not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = movmedian (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = movmedian (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = movmedian ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movmedian ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>movmedian</code> handles
+<code>NaN</code>, and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = movmedian ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movmedian ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = movmedian ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movmedian ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = movmedian ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movmedian ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovmin"></span><dl class="def">
+<dt id="index-movmin"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmin</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movmin' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmin-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmin</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movmin-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmin-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmin</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movmin-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmin-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmin</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movmin-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movmin-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movmin</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movmin-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving minimum over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>min</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movmin</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movmin</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>min</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = min (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = min (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = min ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = min ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>min</code> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = min ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = min ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = min ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = min ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = min ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = min ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovprod"></span><dl class="def">
+<dt id="index-movprod"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movprod</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movprod' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movprod-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movprod</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movprod-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movprod-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movprod</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movprod-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movprod-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movprod</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movprod-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movprod-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movprod</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movprod-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving product over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>movprod</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movprod</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movprod</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>movprod</code>.
+The default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code>
+option is not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = movprod (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = movprod (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = movprod ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movprod ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>movprod</code> handles
+<code>NaN</code>, and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = movprod ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movprod ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = movprod ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movprod ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = movprod ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movprod ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovstd"></span><dl class="def">
+<dt id="index-movstd"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movstd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movstd-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movstd-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movstd-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(&hellip;, <var>opt</var>)</em><a href='#index-movstd-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movstd-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(&hellip;, <var>opt</var>, <var>dim</var>)</em><a href='#index-movstd-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movstd-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movstd-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movstd-5"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movstd</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movstd-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving standard deviation over a sliding window of length
+<var>wlen</var> on data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>movstd</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movstd</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movstd</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>The optional argument <var>opt</var> determines the type of normalization to use.
+Valid values are
+</p>
+<dl compact="compact">
+<dt><span>0:</span></dt>
+<dd><p>normalize with <em class='math'>N-1</em>, provides the square root of the best unbiased
+estimator of the variance [default]
+</p>
+</dd>
+<dt><span>1:</span></dt>
+<dd><p>normalize with <em class='math'>N</em>, this provides the square root of the second
+moment around the mean
+</p></dd>
+</dl>
+
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+The normalization argument <var>opt</var> must be given before the dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>movstd</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = movstd (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = movstd (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = movstd ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movstd ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>movstd</code> handles
+<code>NaN</code>, and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = movstd ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movstd ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = movstd ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movstd ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = movstd ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movstd ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovsum">movsum</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovsum"></span><dl class="def">
+<dt id="index-movsum"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movsum</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movsum' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movsum-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movsum</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movsum-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movsum-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movsum</strong> <em>(&hellip;, <var>dim</var>)</em><a href='#index-movsum-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movsum-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movsum</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movsum-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movsum-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movsum</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movsum-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving sum over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>movsum</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movsum</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movsum</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>movsum</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = movsum (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = movsum (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = movsum ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movsum ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>movsum</code> handles
+<code>NaN</code>, and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = movsum ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movsum ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = movsum ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movsum ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = movsum ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = movsum ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovvar">movvar</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovvar"></span><dl class="def">
+<dt id="index-movvar"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(<var>x</var>, <var>wlen</var>)</em><a href='#index-movvar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movvar-1"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(<var>x</var>, [<var>nb</var>, <var>na</var>])</em><a href='#index-movvar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movvar-2"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(&hellip;, <var>opt</var>)</em><a href='#index-movvar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movvar-3"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(&hellip;, <var>opt</var>, <var>dim</var>)</em><a href='#index-movvar-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movvar-4"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(&hellip;, &quot;<var>nancond</var>&quot;)</em><a href='#index-movvar-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movvar-5"><span class="category">: </span><span><em><var>y</var> =</em> <strong>movvar</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-movvar-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate the moving variance over a sliding window of length <var>wlen</var> on
+data <var>x</var>.
+</p>
+<p>If <var>wlen</var> is a scalar, the function <code>var</code> is applied to a
+moving window of length <var>wlen</var>.  When <var>wlen</var> is an odd number the
+window is symmetric and includes <code>(<var>wlen</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;1)&nbsp;/&nbsp;2</code><!-- /@w --> elements on
+either side of the central element.  For example, when calculating the
+output at index 5 with a window length of 3, <code>movvar</code> uses data
+elements <code>[4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.  If <var>wlen</var> is an even number, the window
+is asymmetric and has <code><var>wlen</var>/2</code><!-- /@w --> elements to the left of the
+central element and <code><var>wlen</var>/2&nbsp;<span class="nolinebreak">-</span>&nbsp;1</code><!-- /@w --> elements to the right of the
+central element.  For example, when calculating the output at index 5 with a
+window length of 4, <code>movvar</code> uses data elements
+<code>[3,&nbsp;4,&nbsp;5,&nbsp;6]</code><!-- /@w -->.
+</p>
+<p>If <var>wlen</var> is an array with two elements <code>[<var>nb</var>,&nbsp;<var>na</var>]</code><!-- /@w -->,
+the function is applied to a moving window <code>-<var>nb</var>:<var>na</var></code>.  This
+window includes <var>nb</var> number of elements <em>before</em> the current
+element and <var>na</var> number of elements <em>after</em> the current element.
+The current element is always included.  For example, given
+<code><var>wlen</var>&nbsp;=&nbsp;[3,&nbsp;0]</code><!-- /@w -->, the data used to calculate index 5 is
+<code>[2,&nbsp;3,&nbsp;4,&nbsp;5]</code><!-- /@w -->.
+</p>
+<p>The optional argument <var>opt</var> determines the type of normalization to use.
+Valid values are
+</p>
+<dl compact="compact">
+<dt><span>0:</span></dt>
+<dd><p>normalize with <em class='math'>N-1</em>, provides the best unbiased estimator of the
+variance [default]
+</p>
+</dd>
+<dt><span>1:</span></dt>
+<dd><p>normalizes with <em class='math'>N</em>, this provides the second moment around the mean
+</p></dd>
+</dl>
+
+<p>If the optional argument <var>dim</var> is given, operate along this dimension.
+The normalization argument <var>opt</var> must be given before the dimension.
+</p>
+<p>The optional string argument <code>&quot;<var>nancond</var>&quot;</code> controls whether
+<code>NaN</code> and <code>NA</code> values should be included (<code>&quot;includenan&quot;</code>),
+or excluded (<code>&quot;omitnan&quot;</code>), from the data passed to <code>var</code>.  The
+default is <code>&quot;includenan&quot;</code>.  Caution: the <code>&quot;omitnan&quot;</code> option is
+not yet implemented.
+</p>
+<p>The calculation can be controlled by specifying <var>property</var>/<var>value</var>
+pairs.  Valid properties are
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;Endpoints&quot;</code></span></dt>
+<dd>
+<p>This property controls how results are calculated at the boundaries
+(endpoints<!-- /@w -->) of the window.  Possible values are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;shrink&quot;</code>  (default)</span></dt>
+<dd><p>The window is truncated at the beginning and end of the array to exclude
+elements for which there is no source data.  For example, with a window of
+length 3, <code><var>y</var>(1) = var (<var>x</var>(1:2))</code>, and
+<code><var>y</var>(end) = var (<var>x</var>(end-1:end))</code>.
+</p>
+</dd>
+<dt><span><code>&quot;discard&quot;</code></span></dt>
+<dd><p>Any <var>y</var> values that use a window extending beyond the original
+data array are deleted.  For example, with a 10-element data vector and a
+window of length 3, the output will contain only 8 elements.  The first
+element would require calculating the function over indices
+<code>[0,&nbsp;1,&nbsp;2]</code><!-- /@w --> and is therefore discarded.  The last element would
+require calculating the function over indices <code>[9,&nbsp;10,&nbsp;11]</code><!-- /@w --> and is
+therefore discarded.
+</p>
+</dd>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by <code>NaN</code>.  For
+example, with a window of length 3,
+<code><var>y</var>(1) = var ([NaN, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = var ([<var>x</var>(end-1:end), NaN])</code>.
+This option usually results in <var>y</var> having <code>NaN</code> values at the
+boundaries, although it is influenced by how <code>var</code> handles <code>NaN</code>,
+and also by the property <code>&quot;nancond&quot;</code>.
+</p>
+</dd>
+<dt><span><var>user_value</var></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the specified
+value <var>user_value</var> which must be a numeric scalar.  For example, with a
+window of length 3,
+<code><var>y</var>(1) = var ([<var>user_value</var>, <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = var ([<var>x</var>(end-1:end), <var>user_value</var>])</code>.
+A common choice for <var>user_value</var> is 0.
+</p>
+</dd>
+<dt><span><code>&quot;same&quot;</code></span></dt>
+<dd><p>Any window elements outside the data array are replaced by the value of
+<var>x</var> at the boundary.  For example, with a window of length 3,
+<code><var>y</var>(1) = var ([<var>x</var>(1), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = var ([<var>x</var>(end-1:end), <var>x</var>(end)])</code>.
+</p>
+</dd>
+<dt><span><code>&quot;periodic&quot;</code></span></dt>
+<dd><p>The window is wrapped so that any missing data elements are taken from
+the other side of the data.  For example, with a window of length 3,
+<code><var>y</var>(1) = var ([<var>x</var>(end), <var>x</var>(1:2)])</code>, and
+<code><var>y</var>(end) = var ([<var>x</var>(end-1:end), <var>x</var>(1)])</code>.
+</p>
+</dd>
+</dl>
+
+</dd>
+<dt><span><code>&quot;SamplePoints&quot;</code></span></dt>
+<dd><p>Caution: This option is not yet implemented.
+</p>
+</dd>
+</dl>
+
+<p>Programming Note: This function is a wrapper which calls <code>movfun</code>.
+For additional options and documentation, see <a href="#XREFmovfun"><code>movfun</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmovfun">movfun</a>, <a href="#XREFmovslice">movslice</a>, <a href="#XREFmovmad">movmad</a>, <a href="#XREFmovmax">movmax</a>, <a href="#XREFmovmean">movmean</a>, <a href="#XREFmovmedian">movmedian</a>, <a href="#XREFmovmin">movmin</a>, <a href="#XREFmovprod">movprod</a>, <a href="#XREFmovstd">movstd</a>, <a href="#XREFmovsum">movsum</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Basic-Statistical-Functions.html">Basic Statistical Functions</a>, Previous: <a href="Descriptive-Statistics.html">Descriptive Statistics</a>, Up: <a href="Statistics.html">Statistics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

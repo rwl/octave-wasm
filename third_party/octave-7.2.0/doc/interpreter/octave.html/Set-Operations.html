@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Set Operations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Set Operations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Set Operations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Sets.html" rel="up" title="Sets">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Set-Operations">
+<div class="header">
+<p>
+Up: <a href="Sets.html" accesskey="u" rel="up">Sets</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Set-Operations-1"></span><h3 class="section">27.1 Set Operations</h3>
+
+<p>Octave supports several basic set operations.  Octave can compute the union,
+intersection, and difference of two sets.  Octave also supports the
+<em>Exclusive Or</em> set operation.
+</p>
+<p>The functions for set operations all work in the same way by accepting two
+input sets and returning a third set.  As an example, assume that <code>a</code> and
+<code>b</code> contains two sets, then
+</p>
+<div class="example">
+<pre class="example">union (a, b)
+</pre></div>
+
+<p>computes the union of the two sets.
+</p>
+<p>Finally, determining whether elements belong to a set can be done with the
+<code>ismember</code> function.  Because sets are ordered this operation is very
+efficient and is of order O(log2(n)) which is preferable to the <code>find</code>
+function which is of order O(n).
+</p>
+<span id="XREFintersect"></span><dl class="def">
+<dt id="index-intersect"><span class="category">: </span><span><em><var>c</var> =</em> <strong>intersect</strong> <em>(<var>a</var>, <var>b</var>)</em><a href='#index-intersect' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-intersect-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>intersect</strong> <em>(<var>a</var>, <var>b</var>, &quot;rows&quot;)</em><a href='#index-intersect-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-intersect-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>intersect</strong> <em>(&hellip;, &quot;sorted&quot;)</em><a href='#index-intersect-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-intersect-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>intersect</strong> <em>(&hellip;, &quot;stable&quot;)</em><a href='#index-intersect-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-intersect-4"><span class="category">: </span><span><em><var>c</var> =</em> <strong>intersect</strong> <em>(&hellip;, &quot;legacy&quot;)</em><a href='#index-intersect-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-intersect-5"><span class="category">: </span><span><em>[<var>c</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>intersect</strong> <em>(&hellip;)</em><a href='#index-intersect-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements common to both <var>a</var> and <var>b</var>.
+</p>
+<p>If <var>a</var> and <var>b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code>&quot;rows&quot;</code> is given then return the common rows of
+<var>a</var> and <var>b</var>.  The inputs must be 2-D numeric matrices to use this
+option.
+</p>
+<p>The optional argument <code>&quot;sorted&quot;</code>/<code>&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code>&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code>&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>If requested, return column index vectors <var>ia</var> and <var>ib</var> such that
+<code><var>c</var> = <var>a</var>(<var>ia</var>)</code> and <code><var>c</var> = <var>b</var>(<var>ib</var>)</code>.
+</p>
+<p>Programming Note: The input flag <code>&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small>MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong>See also:</strong> <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFunion">union</a>, <a href="#XREFsetdiff">setdiff</a>, <a href="#XREFsetxor">setxor</a>, <a href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<span id="XREFunion"></span><dl class="def">
+<dt id="index-union"><span class="category">: </span><span><em><var>c</var> =</em> <strong>union</strong> <em>(<var>a</var>, <var>b</var>)</em><a href='#index-union' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-union-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>union</strong> <em>(<var>a</var>, <var>b</var>, &quot;rows&quot;)</em><a href='#index-union-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-union-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>union</strong> <em>(&hellip;, &quot;sorted&quot;)</em><a href='#index-union-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-union-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>union</strong> <em>(&hellip;, &quot;stable&quot;)</em><a href='#index-union-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-union-4"><span class="category">: </span><span><em><var>c</var> =</em> <strong>union</strong> <em>(&hellip;, &quot;legacy&quot;)</em><a href='#index-union-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-union-5"><span class="category">: </span><span><em>[<var>c</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>union</strong> <em>(&hellip;)</em><a href='#index-union-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements that are in either <var>a</var> or <var>b</var>.
+</p>
+<p>If <var>a</var> and <var>b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code>&quot;rows&quot;</code> is given then return rows that are in
+either <var>a</var> or <var>b</var>.  The inputs must be 2-D numeric matrices to use
+this option.
+</p>
+<p>The optional argument <code>&quot;sorted&quot;</code>/<code>&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code>&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code>&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>The optional outputs <var>ia</var> and <var>ib</var> are column index vectors such
+that <code><var>a</var>(<var>ia</var>)</code> and <code><var>b</var>(<var>ib</var>)</code> are disjoint sets
+whose union is <var>c</var>.
+</p>
+<p>Programming Note: The input flag <code>&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small>MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong>See also:</strong> <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFintersect">intersect</a>, <a href="#XREFsetdiff">setdiff</a>, <a href="#XREFsetxor">setxor</a>, <a href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<span id="XREFsetdiff"></span><dl class="def">
+<dt id="index-setdiff"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setdiff</strong> <em>(<var>a</var>, <var>b</var>)</em><a href='#index-setdiff' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setdiff-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setdiff</strong> <em>(<var>a</var>, <var>b</var>, &quot;rows&quot;)</em><a href='#index-setdiff-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setdiff-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setdiff</strong> <em>(&hellip;, &quot;sorted&quot;)</em><a href='#index-setdiff-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setdiff-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setdiff</strong> <em>(&hellip;, &quot;stable&quot;)</em><a href='#index-setdiff-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setdiff-4"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setdiff</strong> <em>(&hellip;, &quot;legacy&quot;)</em><a href='#index-setdiff-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setdiff-5"><span class="category">: </span><span><em>[<var>c</var>, <var>ia</var>] =</em> <strong>setdiff</strong> <em>(&hellip;)</em><a href='#index-setdiff-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the unique elements in <var>a</var> that are not in <var>b</var>.
+</p>
+<p>If <var>a</var> is a row vector return a row vector; Otherwise, return a
+column vector.  The inputs may also be cell arrays of strings.
+</p>
+<p>If the optional input <code>&quot;rows&quot;</code> is given then return the rows in
+<var>a</var> that are not in <var>b</var>.  The inputs must be 2-D numeric matrices to
+use this option.
+</p>
+<p>The optional argument <code>&quot;sorted&quot;</code>/<code>&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code>&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code>&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>If requested, return the index vector <var>ia</var> such that
+<code><var>c</var> = <var>a</var>(<var>ia</var>)</code>.
+</p>
+<p>Programming Note: The input flag <code>&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small>MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong>See also:</strong> <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFunion">union</a>, <a href="#XREFintersect">intersect</a>, <a href="#XREFsetxor">setxor</a>, <a href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<span id="XREFsetxor"></span><dl class="def">
+<dt id="index-setxor"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setxor</strong> <em>(<var>a</var>, <var>b</var>)</em><a href='#index-setxor' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setxor-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setxor</strong> <em>(<var>a</var>, <var>b</var>, &quot;rows&quot;)</em><a href='#index-setxor-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setxor-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setxor</strong> <em>(&hellip;, &quot;sorted&quot;)</em><a href='#index-setxor-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setxor-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setxor</strong> <em>(&hellip;, &quot;stable&quot;)</em><a href='#index-setxor-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setxor-4"><span class="category">: </span><span><em><var>c</var> =</em> <strong>setxor</strong> <em>(&hellip;, &quot;legacy&quot;)</em><a href='#index-setxor-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setxor-5"><span class="category">: </span><span><em>[<var>c</var>, <var>ia</var>, <var>ib</var>] =</em> <strong>setxor</strong> <em>(&hellip;)</em><a href='#index-setxor-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Return the unique elements exclusive to sets <var>a</var> or <var>b</var>.
+</p>
+<p>If <var>a</var> and <var>b</var> are both row vectors then return a row vector;
+Otherwise, return a column vector.  The inputs may also be cell arrays of
+strings.
+</p>
+<p>If the optional input <code>&quot;rows&quot;</code> is given then return the rows exclusive
+to sets <var>a</var> and <var>b</var>.  The inputs must be 2-D numeric matrices to use
+this option.
+</p>
+<p>The optional argument <code>&quot;sorted&quot;</code>/<code>&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code>&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code>&quot;stable&quot;</code> preserves the order found in the input.
+</p>
+<p>The optional outputs <var>ia</var> and <var>ib</var> are column index vectors such
+that <code><var>a</var>(<var>ia</var>)</code> and <code><var>b</var>(<var>ib</var>)</code> are disjoint sets
+whose union is <var>c</var>.
+</p>
+<p>Programming Note: The input flag <code>&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small>MATLAB</small> releases prior to R2012b.
+</p>
+
+<p><strong>See also:</strong> <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFunion">union</a>, <a href="#XREFintersect">intersect</a>, <a href="#XREFsetdiff">setdiff</a>, <a href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<span id="XREFismember"></span><dl class="def">
+<dt id="index-ismember"><span class="category">: </span><span><em><var>tf</var> =</em> <strong>ismember</strong> <em>(<var>a</var>, <var>s</var>)</em><a href='#index-ismember' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ismember-1"><span class="category">: </span><span><em><var>tf</var> =</em> <strong>ismember</strong> <em>(<var>a</var>, <var>s</var>, &quot;rows&quot;)</em><a href='#index-ismember-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ismember-2"><span class="category">: </span><span><em>[<var>tf</var>, <var>s_idx</var>] =</em> <strong>ismember</strong> <em>(&hellip;)</em><a href='#index-ismember-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Return a logical matrix <var>tf</var> with the same shape as <var>a</var> which is
+true (1) if the element in <var>a</var> is found in <var>s</var> and false (0) if it
+is not.
+</p>
+<p>If a second output argument is requested then the index into <var>s</var> of each
+matching element is also returned.
+</p>
+<div class="example">
+<pre class="example">a = [3, 10, 1];
+s = [0:9];
+[tf, s_idx] = ismember (a, s)
+     &rArr; tf = [1, 0, 1]
+     &rArr; s_idx = [4, 0, 2]
+</pre></div>
+
+<p>The inputs <var>a</var> and <var>s</var> may also be cell arrays.
+</p>
+<div class="example">
+<pre class="example">a = {&quot;abc&quot;};
+s = {&quot;abc&quot;, &quot;def&quot;};
+[tf, s_idx] = ismember (a, s)
+     &rArr; tf = 1
+     &rArr; s_idx = 1
+</pre></div>
+
+<p>If the optional third argument <code>&quot;rows&quot;</code> is given then compare rows
+in <var>a</var> with rows in <var>s</var>.  The inputs must be 2-D matrices with the
+same number of columns to use this option.
+</p>
+<div class="example">
+<pre class="example">a = [1:3; 5:7; 4:6];
+s = [0:2; 1:3; 2:4; 3:5; 4:6];
+[tf, s_idx] = ismember (a, s, &quot;rows&quot;)
+     &rArr; tf = logical ([1; 0; 1])
+     &rArr; s_idx = [2; 0; 5];
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Finding-Elements-and-Checking-Conditions.html#XREFlookup">lookup</a>, <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFunion">union</a>, <a href="#XREFintersect">intersect</a>, <a href="#XREFsetdiff">setdiff</a>, <a href="#XREFsetxor">setxor</a>.
+</p></dd></dl>
+
+
+<span id="XREFpowerset"></span><dl class="def">
+<dt id="index-powerset"><span class="category">: </span><span><em></em> <strong>powerset</strong> <em>(<var>a</var>)</em><a href='#index-powerset' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-powerset-1"><span class="category">: </span><span><em></em> <strong>powerset</strong> <em>(<var>a</var>, &quot;rows&quot;)</em><a href='#index-powerset-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the powerset (all subsets) of the set <var>a</var>.
+</p>
+<p>The set <var>a</var> must be a numerical matrix or a cell array of strings.  The
+output will always be a cell array of either vectors or strings.
+</p>
+<p>With the optional argument <code>&quot;rows&quot;</code>, each row of the set <var>a</var> is
+considered one element of the set.  The input must be a 2-D numeric matrix
+to use this argument.
+</p>
+
+<p><strong>See also:</strong> <a href="Sets.html#XREFunique">unique</a>, <a href="#XREFunion">union</a>, <a href="#XREFintersect">intersect</a>, <a href="#XREFsetdiff">setdiff</a>, <a href="#XREFsetxor">setxor</a>, <a href="#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Up: <a href="Sets.html">Sets</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

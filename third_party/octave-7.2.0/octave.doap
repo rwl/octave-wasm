@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name>GNU Octave</name>
+  <shortname>octave</shortname>
+
+  <shortdesc>Interactive programming environment for numerical computations</shortdesc>
+  <shortdesc xml:lang="ca">Entorn de programació interactiva per a càlculs numèrics</shortdesc>
+  <shortdesc xml:lang="de">Interaktive Programmierumgebung für numerische Berechnungen</shortdesc>
+  <shortdesc xml:lang="es">Entorno de programación interactiva para cálculos numéricos</shortdesc>
+  <shortdesc xml:lang="fr">Environnement de programmation interactif pour le calcul numérique</shortdesc>
+  <shortdesc xml:lang="hu">Interaktív programozási környezet számszerű számításokhoz</shortdesc>
+  <shortdesc xml:lang="it">Ambiente di programmazione interattivo per il calcolo numerico</shortdesc>
+  <shortdesc xml:lang="ja">数値計算のための対話的なプログラミング環境</shortdesc>
+  <shortdesc xml:lang="nl">Interactieve programmeeromgeving voor numerieke berekeningen</shortdesc>
+  <shortdesc xml:lang="pt">Ambiente de programação interativo para computação numérica</shortdesc>
+  <shortdesc xml:lang="zh">数值计算交互式编程环境</shortdesc>
+
+  <description>
+    GNU Octave is a high-level interpreted language, primarily intended for
+    numerical computations. It provides capabilities for the numerical
+    solution of linear and nonlinear problems, and for performing other
+    numerical experiments. It also provides extensive graphics capabilities
+    for data visualization and manipulation. Octave is normally used through
+    its interactive command line interface, but it can also be used to write
+    non-interactive programs. The Octave language is quite similar to
+    Matlab so that most programs are easily portable.
+  </description>
+  <description xml:lang="de">
+    GNU Octave ist eine höhere, interpretierte Programmiersprache, die
+    hauptsächlich für numerische Berechnungen gedacht ist. Sie bietet
+    Funktionen für die numerische Lösung linearer und nichtlinearer Probleme
+    und für die Durchführung anderer numerischer Experimente. Darüber hinaus
+    bietet es umfangreiche Grafikfunktionen zur Datenvisualisierung und
+    -manipulation. Octave wird normalerweise mittels einer interaktiven
+    Befehlszeile verwendet, kann aber auch zum Schreiben nicht interaktiver
+    Programme verwendet werden. Die Octave-Programmiersprache ist sehr
+    ähnlich zu Matlab, so dass die meisten Programme leicht übertragbar sind.
+  </description>
+  <description xml:lang="es">
+    GNU Octave es un lenguaje interpretado de alto nivel, destinado
+    principalmente a cálculos numéricos. Dispone capacidades para
+    la solución numérica de problemas lineales y no lineales, y para
+    realizar otros experimentos numéricos. También proporciona amplias
+    funcionalidades gráficas para la visualización y manipulación de datos.
+    Octave se usa normalmente a través de su interfaz de línea de comandos
+    interactiva, pero también se puede usar para escribir programas no
+    interactivos. El lenguaje Octave es muy similar a Matlab,
+    por lo que la mayoría de los programas son fáciles de portar.
+  </description>
+  <description xml:lang="fr">
+    GNU Octave est un langage de programmation interprété, destiné
+    principalement au calcul numérique. Il fournit des fonctionnalités
+    pour la résolution de problèmes linéaires et non-linéaires, et pour toutes
+    sortes d'expériences numériques.  Il s'accompagne d'un système complet
+    de visualisation et de manipulation des données. Octave s’utilise
+    généralement via son environnement en lignes de commandes interactif,
+    mais il peut aussi être utilisé pour écrire des programmes non
+    interactifs. Le langage Octave est très similaire à Matlab de telle sorte
+    que les programmes Matlab sont très faciles à porter sous Octave.
+  </description>
+  <description xml:lang="hu">
+    A GNU Octave egy magas szintű értelmezett nyelv, elsősorban numerikus
+    számításokhoz. Képességeket biztosít a lineáris és nemlineáris problémák
+    numerikus megoldására, valamint egyéb numerikus kísérletek elvégzésére.
+    Ezenkívül kiterjedt grafikus képességeket biztosít az adatok
+    megjelenítéséhez és manipulálásához. Az Octave-t általában az interaktív
+    parancssori felületen keresztül használják, de nem interaktív programok
+    írására is használható. Az Octave nyelv nagyon hasonló a Matlabhoz, így
+    a legtöbb program könnyen hordozható.
+  </description>
+  <description xml:lang="nl">
+    GNU Octave is een geínterpreteerde programmeertaal bedoeld voor numerieke
+    berekeningen. Het biedt mogelijkheden voor het numeriek oplossen van
+    lineaire en niet-lineaire problemen en andere numerieke experimenten. Ook
+    biedt het uitgebreide mogelijkheden for grafische visualisatie en
+    -manipulatie van data. Octave wordt meestal gebruikt door middel van zijn
+    interactieve opdrachtregelinterface (terminal) maar kan ook gebruikt
+    worden voor het schrijven van niet-interactieve programma's. Octave's taal
+    lijkt zeer veel op die van Matlab zodat de meeste Matlabcode simpel te
+    draaien is in Octave.
+  </description>
+
+  <homepage rdf:resource="https://www.octave.org" />
+  <license rdf:resource="https://www.gnu.org/licenses/gpl-3.0.txt" />
+  <bug-database rdf:resource="https://savannah.gnu.org/bugs/?group=octave" />
+  <download-page rdf:resource="https://ftp.gnu.org/gnu/octave/" />
+  <mailing-list rdf:resource="https://lists.gnu.org/mailman/listinfo/help-octave" />
+  <wiki rdf:resource="https://wiki.octave.org" />
+
+  <programming-language>C++</programming-language>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>John W. Eaton</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jwe@octave.org" />
+    </foaf:Person>
+  </maintainer>
+
+  <repository>
+    <HgRepository>
+      <browse rdf:resource="https://hg.savannah.gnu.org/hgweb/octave"/>
+      <location rdf:resource="https://hg.savannah.gnu.org/hgweb/octave"/>
+    </HgRepository>
+  </repository>
+
+</Project>

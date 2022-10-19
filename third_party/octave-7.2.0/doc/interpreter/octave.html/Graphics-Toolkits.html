@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Graphics Toolkits (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Graphics Toolkits (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Graphics Toolkits (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Plotting.html" rel="up" title="Advanced Plotting">
+<link href="Transform-Groups.html" rel="prev" title="Transform Groups">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Graphics-Toolkits">
+<div class="header">
+<p>
+Previous: <a href="Transform-Groups.html" accesskey="p" rel="prev">Transform Groups</a>, Up: <a href="Advanced-Plotting.html" accesskey="u" rel="up">Advanced Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Graphics-Toolkits-1"></span><h4 class="subsection">15.4.8 Graphics Toolkits</h4>
+<span id="index-graphics-toolkits"></span>
+<span id="index-toolkits_002c-graphics"></span>
+
+<span id="XREFgraphics_005ftoolkit"></span><dl class="def">
+<dt id="index-graphics_005ftoolkit"><span class="category">: </span><span><em><var>name</var> =</em> <strong>graphics_toolkit</strong> <em>()</em><a href='#index-graphics_005ftoolkit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-graphics_005ftoolkit-1"><span class="category">: </span><span><em><var>name</var> =</em> <strong>graphics_toolkit</strong> <em>(<var>hlist</var>)</em><a href='#index-graphics_005ftoolkit-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-graphics_005ftoolkit-2"><span class="category">: </span><span><em></em> <strong>graphics_toolkit</strong> <em>(<var>name</var>)</em><a href='#index-graphics_005ftoolkit-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-graphics_005ftoolkit-3"><span class="category">: </span><span><em></em> <strong>graphics_toolkit</strong> <em>(<var>hlist</var>, <var>name</var>)</em><a href='#index-graphics_005ftoolkit-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the default graphics toolkit which is assigned to new figures.
+</p>
+<p>With no inputs, return the current default graphics toolkit.  If the input
+is a list of figure graphic handles, <var>hlist</var>, then return the name
+of the graphics toolkit in use for each figure.
+</p>
+<p>When called with a single input <var>name</var> set the default graphics toolkit
+to <var>name</var>.  If the toolkit is not already loaded, it is initialized by
+calling the function <code>__init_<var>name</var>__</code>.  If the first input
+is a list of figure handles, <var>hlist</var>, then the graphics toolkit is set
+to <var>name</var> for these figures only.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+<span id="XREFavailable_005fgraphics_005ftoolkits"></span><dl class="def">
+<dt id="index-available_005fgraphics_005ftoolkits"><span class="category">: </span><span><em></em> <strong>available_graphics_toolkits</strong> <em>()</em><a href='#index-available_005fgraphics_005ftoolkits' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a cell array of registered graphics toolkits.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgraphics_005ftoolkit">graphics_toolkit</a>, <a href="#XREFregister_005fgraphics_005ftoolkit">register_graphics_toolkit</a>.
+</p></dd></dl>
+
+
+<span id="XREFloaded_005fgraphics_005ftoolkits"></span><dl class="def">
+<dt id="index-loaded_005fgraphics_005ftoolkits"><span class="category">: </span><span><em></em> <strong>loaded_graphics_toolkits</strong> <em>()</em><a href='#index-loaded_005fgraphics_005ftoolkits' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a cell array of the currently loaded graphics toolkits.
+</p>
+<p><strong>See also:</strong> <a href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+<span id="XREFregister_005fgraphics_005ftoolkit"></span><dl class="def">
+<dt id="index-register_005fgraphics_005ftoolkit"><span class="category">: </span><span><em></em> <strong>register_graphics_toolkit</strong> <em>(<var>toolkit</var>)</em><a href='#index-register_005fgraphics_005ftoolkit' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>List <var>toolkit</var> as an available graphics toolkit.
+</p>
+<p><strong>See also:</strong> <a href="#XREFavailable_005fgraphics_005ftoolkits">available_graphics_toolkits</a>.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Customizing-Toolkit-Behavior.html" accesskey="1">Customizing Toolkit Behavior</a></li>
+<li><a href="Hardware-vs_002e-Software-Rendering.html" accesskey="2">Hardware vs. Software Rendering</a></li>
+<li><a href="Precision-issues.html" accesskey="3">Precision issues</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

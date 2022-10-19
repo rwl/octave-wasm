@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Figure Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Figure Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Figure Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Axes-Properties.html" rel="next" title="Axes Properties">
+<link href="Root-Properties.html" rel="prev" title="Root Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Figure-Properties">
+<div class="header">
+<p>
+Next: <a href="Axes-Properties.html" accesskey="n" rel="next">Axes Properties</a>, Previous: <a href="Root-Properties.html" accesskey="p" rel="prev">Root Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Figure-Properties-1"></span><h4 class="subsubsection">15.3.3.2 Figure Properties</h4>
+<span id="index--Figure-PropertiesFigure-Properties"></span>
+
+
+
+<p>Properties of <code>figure</code> objects (see <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFfigurealphamap"></span><span id="index-figure-alphamap"></span>
+</dd>
+<dt><span><code>alphamap</code>: def. 64-by-1 double</span></dt>
+<dd><p>Transparency is not yet implemented for figure objects.  <code>alphamap</code> is unused.
+</p>
+
+<span id="XREFfigurebeingdeleted"></span><span id="index-figure-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFfigurebusyaction"></span><span id="index-figure-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurebuttondownfcn"></span><span id="index-figure-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurechildren"></span><span id="index-figure-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p>Graphics handles of the figure&rsquo;s children.
+</p>
+
+<span id="XREFfigureclipping"></span><span id="index-figure-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p><code>clipping</code> is unused.
+</p>
+
+<span id="XREFfigurecloserequestfcn"></span><span id="index-figure-closerequestfcn"></span>
+</dd>
+<dt><span><code>closerequestfcn</code>: string | function handle, def. <code>&quot;closereq&quot;</code></span></dt>
+<dd><p>Function that is executed when a figure is deleted.  See <a href="Manipulation-of-Plot-Windows.html#XREFclosereq">closereq function</a>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurecolor"></span><span id="index-figure-color"></span>
+</dd>
+<dt><span><code>color</code>: colorspec, def. <code>[1   1   1]</code></span></dt>
+<dd><p>Color of the figure background.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFfigurecolormap"></span><span id="index-figure-colormap"></span>
+</dd>
+<dt><span><code>colormap</code>: N-by-3 matrix, def. 64-by-3 double</span></dt>
+<dd><p>A matrix containing the RGB color map for the current axes.
+</p>
+
+<span id="XREFfigurecontextmenu"></span><span id="index-figure-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this figure object.
+</p>
+
+<span id="XREFfigurecreatefcn"></span><span id="index-figure-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after figure has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaultfigurecreatefcn&quot;, 'disp (&quot;figure created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurecurrentaxes"></span><span id="index-figure-currentaxes"></span>
+</dd>
+<dt><span><code>currentaxes</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Handle to the graphics object of the current axes.
+</p>
+
+<span id="XREFfigurecurrentcharacter"></span><span id="index-figure-currentcharacter"></span>
+</dd>
+<dt><span><code>currentcharacter</code> (read-only): def. <code>&quot;&quot;</code></span></dt>
+<dd><p><code>currentcharacter</code> is unused.
+</p>
+
+<span id="XREFfigurecurrentobject"></span><span id="index-figure-currentobject"></span>
+</dd>
+<dt><span><code>currentobject</code> (read-only): graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFfigurecurrentpoint"></span><span id="index-figure-currentpoint"></span>
+</dd>
+<dt><span><code>currentpoint</code> (read-only): two-element vector, def. <code>[0;    0]</code></span></dt>
+<dd><p>A 1-by-2 matrix which holds the coordinates of the point over which the mouse pointer was when a mouse event occurred.  The X and Y coordinates are in units defined by the figure&rsquo;s <code>units</code> property and their origin is the lower left corner of the plotting area.
+</p>
+<p>Events which set <code>currentpoint</code> are
+</p><dl compact="compact">
+<dt><span>A mouse button was pressed</span></dt>
+<dd><p>always
+</p></dd>
+<dt><span>A mouse button was released</span></dt>
+<dd><p>only if the figure&rsquo;s callback <code>windowbuttonupfcn</code> is defined
+</p></dd>
+<dt><span>The pointer was moved while pressing the mouse button (drag)</span></dt>
+<dd><p>only if the figure&rsquo;s callback <code>windowbuttonmotionfcn</code> is defined
+</p></dd>
+</dl>
+
+
+<span id="XREFfiguredeletefcn"></span><span id="index-figure-deletefcn-1"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before figure is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfiguredockcontrols"></span><span id="index-figure-dockcontrols"></span>
+</dd>
+<dt><span><code>dockcontrols</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd><p><code>dockcontrols</code> is unused.
+</p>
+
+<span id="XREFfigurefilename"></span><span id="index-figure-filename"></span>
+</dd>
+<dt><span><code>filename</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>The filename used when saving the plot figure.
+</p>
+
+<span id="XREFfiguregraphicssmoothing"></span><span id="index-figure-graphicssmoothing"></span>
+</dd>
+<dt><span><code>graphicssmoothing</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Use smoothing techniques to reduce the appearance of jagged lines.
+</p>
+
+<span id="XREFfigurehandlevisibility"></span><span id="index-figure-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the figure&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFfigurehittest"></span><span id="index-figure-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether figure processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFfigurepickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigureintegerhandle"></span><span id="index-figure-integerhandle"></span>
+</dd>
+<dt><span><code>integerhandle</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Assign the next lowest unused integer as the Figure number.
+</p>
+
+<span id="XREFfigureinterruptible"></span><span id="index-figure-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigureinverthardcopy"></span><span id="index-figure-inverthardcopy"></span>
+</dd>
+<dt><span><code>inverthardcopy</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Replace the figure and axes background color with white when printing.
+</p>
+
+<span id="XREFfigurekeypressfcn"></span><span id="index-figure-keypressfcn"></span>
+</dd>
+<dt><span><code>keypressfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed when a keystroke event happens while the figure has focus. The actual key that was pressed can be retrieved using the second argument &rsquo;evt&rsquo; of the function.  For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurekeyreleasefcn"></span><span id="index-figure-keyreleasefcn"></span>
+</dd>
+<dt><span><code>keyreleasefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>With <code>keypressfcn</code>, the keyboard callback functions.  These callback functions are called when a key is pressed/released respectively.  The functions are called with two input arguments.  The first argument holds the handle of the calling figure.  The second argument holds an event structure which has the following members:
+</p><dl compact="compact">
+<dt><span><code>Character:</code></span></dt>
+<dd><p>The ASCII value of the key
+</p></dd>
+<dt><span><code>Key:</code></span></dt>
+<dd><p>Lowercase value of the key
+</p></dd>
+<dt><span><code>Modifier:</code></span></dt>
+<dd><p>A cell array containing strings representing the modifiers pressed with the key.
+</p></dd>
+</dl>
+
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfiguremenubar"></span><span id="index-figure-menubar"></span>
+</dd>
+<dt><span><code>menubar</code>: {<code>&quot;figure&quot;</code>} | <code>&quot;none&quot;</code></span></dt>
+<dd><p>Control the display of the figure menu bar at the top of the figure.
+</p>
+
+<span id="XREFfigurename"></span><span id="index-figure-name"></span>
+</dd>
+<dt><span><code>name</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Name to be displayed in the figure title bar.  The name is displayed to the right of any title determined by the <code>numbertitle</code> property.
+</p>
+
+<span id="XREFfigurenextplot"></span><span id="index-figure-nextplot"></span>
+</dd>
+<dt><span><code>nextplot</code>: {<code>&quot;add&quot;</code>} | <code>&quot;new&quot;</code> | <code>&quot;replace&quot;</code> | <code>&quot;replacechildren&quot;</code></span></dt>
+<dd><p><code>nextplot</code> is used by high level plotting functions to decide what to do with axes already present in the figure.  See <a href="Manipulation-of-Plot-Windows.html#XREFnewplot">newplot&nbsp;function<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurenumber"></span><span id="index-figure-number"></span>
+</dd>
+<dt><span><code>number</code> (read-only):</span></dt>
+<dd>
+
+
+<span id="XREFfigurenumbertitle"></span><span id="index-figure-numbertitle"></span>
+</dd>
+<dt><span><code>numbertitle</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Display &quot;Figure&quot; followed by the numerical figure handle value in the figure title bar.
+</p>
+
+<span id="XREFfigureouterposition"></span><span id="index-figure-outerposition"></span>
+</dd>
+<dt><span><code>outerposition</code>: four-element vector, def. <code>[-1  -1  -1  -1]</code></span></dt>
+<dd><p>Specify the position and size of the figure including the top menubar and the bottom status bar.  The four elements of the vector are the coordinates of the lower left corner and width and height of the figure.  See <a href="#XREFfigureunits">units&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurepaperorientation"></span><span id="index-figure-paperorientation"></span>
+</dd>
+<dt><span><code>paperorientation</code>: <code>&quot;landscape&quot;</code> | {<code>&quot;portrait&quot;</code>}</span></dt>
+<dd><p>The value for the <code>papersize</code>, and <code>paperposition</code> properties depends upon <code>paperorientation</code>.  The horizontal and vertical values for <code>papersize</code> and <code>paperposition</code> reverse order when <code>paperorientation</code> is switched between <code>&quot;portrait&quot;</code> and <code>&quot;landscape&quot;</code>.
+</p>
+
+<span id="XREFfigurepaperposition"></span><span id="index-figure-paperposition"></span>
+</dd>
+<dt><span><code>paperposition</code>: four-element vector, def. <code>[1.3422   3.3191   5.8156   4.3617]</code></span></dt>
+<dd><p>Vector <code>[left bottom width height]</code> defining the position and size of the figure (in <code>paperunits</code> units) on the printed page.  The position <code>[left bottom]</code> defines the lower left corner of the figure on the page, and the size is defined by <code>[width height]</code>.  For output formats not implicitly rendered on paper, <code>width</code> and <code>height</code> define the size of the image and the position information is ignored.  Setting <code>paperposition</code> also forces the <code>paperpositionmode</code> property to be set to <code>&quot;manual&quot;</code>.
+</p>
+
+<span id="XREFfigurepaperpositionmode"></span><span id="index-figure-paperpositionmode"></span>
+</dd>
+<dt><span><code>paperpositionmode</code>: {<code>&quot;auto&quot;</code>} | <code>&quot;manual&quot;</code></span></dt>
+<dd><p>If <code>paperpositionmode</code> is set to <code>&quot;auto&quot;</code>, the <code>paperposition</code> property is automatically computed: the printed figure will have the same size as the on-screen figure and will be centered on the output page.  Setting the <code>paperpositionmode</code> to <code>&quot;auto&quot;</code> does not modify the value of the <code>paperposition</code> property.
+</p>
+
+<span id="XREFfigurepapersize"></span><span id="index-figure-papersize"></span>
+</dd>
+<dt><span><code>papersize</code>: two-element vector, def. <code>[8.5000   11.0000]</code></span></dt>
+<dd><p>Vector <code>[width height]</code> defining the size of the paper for printing.  Setting the <code>papersize</code> property to a value, not associated with one of the defined <code>papertypes</code> and consistent with the setting for <code>paperorientation</code>, forces the <code>papertype</code> property to the value <code>&quot;&lt;custom&gt;&quot;</code>.  If <code>papersize</code> is set to a value associated with a supported <code>papertype</code> and consistent with the <code>paperorientation</code>, the <code>papertype</code> value is modified to the associated value.
+</p>
+
+<span id="XREFfigurepapertype"></span><span id="index-figure-papertype"></span>
+</dd>
+<dt><span><code>papertype</code>: <code>&quot;&lt;custom&gt;&quot;</code> | <code>&quot;a&quot;</code> | <code>&quot;a0&quot;</code> | <code>&quot;a1&quot;</code> | <code>&quot;a2&quot;</code> | <code>&quot;a3&quot;</code> | <code>&quot;a4&quot;</code> | <code>&quot;a5&quot;</code> | <code>&quot;arch-a&quot;</code> | <code>&quot;arch-b&quot;</code> | <code>&quot;arch-c&quot;</code> | <code>&quot;arch-d&quot;</code> | <code>&quot;arch-e&quot;</code> | <code>&quot;b&quot;</code> | <code>&quot;b0&quot;</code> | <code>&quot;b1&quot;</code> | <code>&quot;b2&quot;</code> | <code>&quot;b3&quot;</code> | <code>&quot;b4&quot;</code> | <code>&quot;b5&quot;</code> | <code>&quot;c&quot;</code> | <code>&quot;d&quot;</code> | <code>&quot;e&quot;</code> | <code>&quot;tabloid&quot;</code> | <code>&quot;uslegal&quot;</code> | {<code>&quot;usletter&quot;</code>}</span></dt>
+<dd><p>Name of the paper used for printed output.  Setting <code>papertype</code> also changes <code>papersize</code>, while maintaining consistency with the <code>paperorientation</code> property.
+</p>
+
+<span id="XREFfigurepaperunits"></span><span id="index-figure-paperunits"></span>
+</dd>
+<dt><span><code>paperunits</code>: <code>&quot;centimeters&quot;</code> | {<code>&quot;inches&quot;</code>} | <code>&quot;normalized&quot;</code> | <code>&quot;points&quot;</code></span></dt>
+<dd><p>The unit used to compute the <code>paperposition</code> property.  The conversion from physical units (e.g., <code>&quot;inches&quot;</code>) is dependent on the <code>screenpixelsperinch</code> property of the root object.
+</p>
+
+<span id="XREFfigureparent"></span><span id="index-figure-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle, def. <code>0</code></span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFfigurepickableparts"></span><span id="index-figure-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code> (read-only): <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p><code>pickableparts</code> is unused.
+</p>
+
+<span id="XREFfigurepointer"></span><span id="index-figure-pointer"></span>
+</dd>
+<dt><span><code>pointer</code>: {<code>&quot;arrow&quot;</code>} | <code>&quot;botl&quot;</code> | <code>&quot;botr&quot;</code> | <code>&quot;bottom&quot;</code> | <code>&quot;circle&quot;</code> | <code>&quot;cross&quot;</code> | <code>&quot;crosshair&quot;</code> | <code>&quot;custom&quot;</code> | <code>&quot;fleur&quot;</code> | <code>&quot;hand&quot;</code> | <code>&quot;ibeam&quot;</code> | <code>&quot;left&quot;</code> | <code>&quot;right&quot;</code> | <code>&quot;top&quot;</code> | <code>&quot;topl&quot;</code> | <code>&quot;topr&quot;</code> | <code>&quot;watch&quot;</code></span></dt>
+<dd><p>Name of the mouse pointer shape associated with the canvas of the figure.  When <code>pointer</code> is &quot;custom&quot;, the shape is determined by the <code>pointershapecdata</code> property.
+</p>
+<p><code>pointer</code> has no effect when the figure is in zoom, pan, or rotate mode. In this case, Octave automatically uses a pointer shape appropriate to the mode.
+</p>
+
+<span id="XREFfigurepointershapecdata"></span><span id="index-figure-pointershapecdata"></span>
+</dd>
+<dt><span><code>pointershapecdata</code>: 16-by-16 or 32-by-32 Matrix, def. 16-by-16 double</span></dt>
+<dd><p>m-by-m matrix defining a custom pointer.  Each element defines a pixel with the element (1,1) representing the top-left pixel.  A value of 1 is colored black, a value of 2 is colored white, and all other values are rendered as transparent.
+</p>
+
+<span id="XREFfigurepointershapehotspot"></span><span id="index-figure-pointershapehotspot"></span>
+</dd>
+<dt><span><code>pointershapehotspot</code>: two-element vector, def. <code>[1   1]</code></span></dt>
+<dd><p>For custom pointers only <code>pointershapehotspot</code> defines the row and column of the pixel in <code>pointershapecdata</code> that is used as the pointer location.
+</p>
+
+<span id="XREFfigureposition"></span><span id="index-figure-position"></span>
+</dd>
+<dt><span><code>position</code>: four-element vector, def. <code>[300   200   560   420]</code></span></dt>
+<dd><p>Specify the position and size of the figure canvas.  The four elements of the vector are the coordinates of the lower left corner and width and height of the figure.  See <a href="#XREFfigureunits">units&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurerenderer"></span><span id="index-figure-renderer"></span>
+</dd>
+<dt><span><code>renderer</code>: {<code>&quot;opengl&quot;</code>} | <code>&quot;painters&quot;</code></span></dt>
+<dd><p>Rendering engine used for printing when <code>renderermode</code> is &quot;manual&quot;.  Setting <code>renderer</code> also forces the <code>renderermode</code> property to be set to <code>&quot;manual&quot;</code>.
+</p>
+
+<span id="XREFfigurerenderermode"></span><span id="index-figure-renderermode"></span>
+</dd>
+<dt><span><code>renderermode</code>: {<code>&quot;auto&quot;</code>} | <code>&quot;manual&quot;</code></span></dt>
+<dd><p>Control whether the rendering engine used for printing is chosen automatically or specified by the <code>renderer</code> property.  See <a href="Printing-and-Saving-Plots.html#XREFprint">print&nbsp;function<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigureresize"></span><span id="index-figure-resize"></span>
+</dd>
+<dt><span><code>resize</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Control whether the figure can be resized by dragging the window borders and corners using a mouse.  When <code>resize</code> is <code>&quot;off&quot;</code> mouse interactions are disabled but the figure can still be resized by changing its <code>&quot;position&quot;</code> property.
+</p>
+
+<span id="XREFfigureresizefcn"></span><span id="index-figure-resizefcn"></span>
+</dd>
+<dt><span><code>resizefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p><code>resizefcn</code> is deprecated.  Use <code>sizechangedfcn</code> instead.
+</p>
+
+<span id="XREFfigureselected"></span><span id="index-figure-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFfigureselectionhighlight"></span><span id="index-figure-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFfigureselectiontype"></span><span id="index-figure-selectiontype"></span>
+</dd>
+<dt><span><code>selectiontype</code>: <code>&quot;alt&quot;</code> | <code>&quot;extend&quot;</code> | {<code>&quot;normal&quot;</code>} | <code>&quot;open&quot;</code></span></dt>
+<dd><p>Selection type of the latest mouse click.
+</p>
+<p><code>selectiontype</code> may take different values depending on the combination of mouse button and keyboard modifier that were used:
+</p><dl compact="compact">
+<dt><span><code>normal:</code></span></dt>
+<dd><p>Left-click.
+</p></dd>
+<dt><span><code>alt:</code></span></dt>
+<dd><p>Right-click or Ctrl+Left-click.
+</p></dd>
+<dt><span><code>extend:</code></span></dt>
+<dd><p>Shitf+Left-click, Middle click, or combined Left-click and Right-click.
+</p></dd>
+<dt><span><code>open:</code></span></dt>
+<dd><p>Double Left-click.
+</p></dd>
+</dl>
+
+
+<span id="XREFfiguresizechangedfcn"></span><span id="index-figure-sizechangedfcn"></span>
+</dd>
+<dt><span><code>sizechangedfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback triggered when the figure window size is changed.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfiguretag"></span><span id="index-figure-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFfiguretoolbar"></span><span id="index-figure-toolbar"></span>
+</dd>
+<dt><span><code>toolbar</code>: {<code>&quot;auto&quot;</code>} | <code>&quot;figure&quot;</code> | <code>&quot;none&quot;</code></span></dt>
+<dd><p>Control the display of the toolbar (along the bottom of the menubar) and the status bar.  When set to <code>&quot;auto&quot;</code>, the display is based on the value of the <code>menubar</code> property.
+</p>
+
+<span id="XREFfiguretype"></span><span id="index-figure-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;figure&quot;</code>
+</p>
+
+<span id="XREFfigureunits"></span><span id="index-figure-units"></span>
+</dd>
+<dt><span><code>units</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;characters&quot;</code> | <code>&quot;inches&quot;</code> | <code>&quot;normalized&quot;</code> | {<code>&quot;pixels&quot;</code>} | <code>&quot;points&quot;</code></span></dt>
+<dd><p>The unit used to compute the <code>position</code> and <code>outerposition</code> properties.
+</p>
+
+<span id="XREFfigureuserdata"></span><span id="index-figure-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFfigurevisible"></span><span id="index-figure-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the figure is not rendered on screen.
+</p>
+
+<span id="XREFfigurewindowbuttondownfcn"></span><span id="index-figure-windowbuttondownfcn"></span>
+</dd>
+<dt><span><code>windowbuttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>See <a href="#XREFfigurewindowbuttonupfcn">windowbuttonupfcn&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowbuttonmotionfcn"></span><span id="index-figure-windowbuttonmotionfcn"></span>
+</dd>
+<dt><span><code>windowbuttonmotionfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>See <a href="#XREFfigurewindowbuttonupfcn">windowbuttonupfcn&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowbuttonupfcn"></span><span id="index-figure-windowbuttonupfcn"></span>
+</dd>
+<dt><span><code>windowbuttonupfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>With <code>windowbuttondownfcn</code> and <code>windowbuttonmotionfcn</code>, the mouse callback functions.  These callback functions are called when a mouse button is pressed, dragged, or released respectively.  When these callback functions are executed, the <code>currentpoint</code> property holds the current coordinates of the cursor.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowkeypressfcn"></span><span id="index-figure-windowkeypressfcn"></span>
+</dd>
+<dt><span><code>windowkeypressfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Function that is executed when a key is pressed and the figure has focus.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowkeyreleasefcn"></span><span id="index-figure-windowkeyreleasefcn"></span>
+</dd>
+<dt><span><code>windowkeyreleasefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Function that is executed when a key is released and the figure has focus.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowscrollwheelfcn"></span><span id="index-figure-windowscrollwheelfcn"></span>
+</dd>
+<dt><span><code>windowscrollwheelfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Function that is executed when a user manipulates the mouse wheel over this figure.  The function is called with two input arguments.  The first argument holds the handle of the calling figure.  The second argument holds an event structure which has the following members:
+</p><dl compact="compact">
+<dt><span><code>VerticalScrollCount:</code></span></dt>
+<dd><p>The number of wheel steps, typically 1 when scrolling down and -1 when scrolling up.
+</p></dd>
+<dt><span><code>VerticalScrollAmount:</code></span></dt>
+<dd><p>The number of lines a wheel step should scroll.  This value is always 3.
+</p></dd>
+<dt><span><code>EventName:</code></span></dt>
+<dd><p>The event name which is &quot;WindowScrollWheel&quot;.
+</p></dd>
+</dl>
+
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFfigurewindowstyle"></span><span id="index-figure-windowstyle"></span>
+</dd>
+<dt><span><code>windowstyle</code>: <code>&quot;docked&quot;</code> | <code>&quot;modal&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>The window style of a figure.  One of the following values:
+</p><dl compact="compact">
+<dt><span><code>normal</code></span></dt>
+<dd><p>Set the window style as non modal.
+</p></dd>
+<dt><span><code>modal</code></span></dt>
+<dd><p>Set the window as modal so that it will stay on top of all normal figures.
+</p></dd>
+<dt><span><code>docked</code></span></dt>
+<dd><p>Setting the window style as docked currently does not dock the window.
+</p></dd>
+</dl>
+
+<p>Changing modes of a visible figure may cause the figure to close and reopen.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Axes-Properties.html">Axes Properties</a>, Previous: <a href="Root-Properties.html">Root Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

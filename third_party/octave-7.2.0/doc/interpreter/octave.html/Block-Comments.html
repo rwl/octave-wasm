@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Block Comments (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Block Comments (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Block Comments (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Comments.html" rel="up" title="Comments">
+<link href="Comments-and-the-Help-System.html" rel="next" title="Comments and the Help System">
+<link href="Single-Line-Comments.html" rel="prev" title="Single Line Comments">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Block-Comments">
+<div class="header">
+<p>
+Next: <a href="Comments-and-the-Help-System.html" accesskey="n" rel="next">Comments and the Help System</a>, Previous: <a href="Single-Line-Comments.html" accesskey="p" rel="prev">Single Line Comments</a>, Up: <a href="Comments.html" accesskey="u" rel="up">Comments in Octave Programs</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Block-Comments-1"></span><h4 class="subsection">2.7.2 Block Comments</h4>
+<span id="index-block-comments"></span>
+<span id="index-multi_002dline-comments"></span>
+
+<span id="index-_0023_007b-block-comment-marker"></span>
+<span id="index-_0025_007b-block-comment-marker"></span>
+<p>Entire blocks of code can be commented by enclosing the code between
+matching &lsquo;<samp>#{</samp>&rsquo; and &lsquo;<samp>#}</samp>&rsquo; or &lsquo;<samp>%{</samp>&rsquo; and &lsquo;<samp>%}</samp>&rsquo; markers.
+For example,
+</p>
+<div class="example">
+<pre class="example">function quick_countdown
+  # Count down for main rocket engines
+  disp (3);
+ #{
+  disp (2);
+  disp (1);
+ #}
+  disp (&quot;Blast Off!&quot;);  # Rocket leaves pad
+endfunction
+</pre></div>
+
+<p>will produce a very quick countdown from <code>'3'</code> to <code>&quot;Blast Off&quot;</code> as
+the lines &quot;<code>disp (2);</code>&quot; and &quot;<code>disp (1);</code>&quot; won&rsquo;t be executed.
+</p>
+<p>The block comment markers must appear alone as the only characters on a line
+(excepting whitespace) in order to be parsed correctly.
+</p>
+</div>
+
+
+
+</body>
+</html>

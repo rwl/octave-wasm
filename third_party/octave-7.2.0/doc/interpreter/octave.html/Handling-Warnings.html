@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Handling Warnings (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Handling Warnings (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Handling Warnings (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Errors-and-Warnings.html" rel="up" title="Errors and Warnings">
+<link href="Handling-Errors.html" rel="prev" title="Handling Errors">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Handling-Warnings">
+<div class="header">
+<p>
+Previous: <a href="Handling-Errors.html" accesskey="p" rel="prev">Handling Errors</a>, Up: <a href="Errors-and-Warnings.html" accesskey="u" rel="up">Errors and Warnings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Handling-Warnings-1"></span><h3 class="section">12.2 Handling Warnings</h3>
+
+<p>Like an error, a warning is issued when something unexpected happens.
+Unlike an error, a warning doesn&rsquo;t abort the currently running program.
+A simple example of a warning is when a number is divided by zero.  In
+this case Octave will issue a warning and assign the value <code>Inf</code>
+to the result.
+</p>
+<div class="example">
+<pre class="example">a = 1/0
+     -| warning: division by zero
+     &rArr; a = Inf
+</pre></div>
+
+
+<ul class="section-toc">
+<li><a href="Issuing-Warnings.html" accesskey="1">Issuing Warnings</a></li>
+<li><a href="Enabling-and-Disabling-Warnings.html" accesskey="2">Enabling and Disabling Warnings</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

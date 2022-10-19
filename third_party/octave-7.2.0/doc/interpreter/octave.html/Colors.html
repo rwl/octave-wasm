@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Colors (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Colors (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Colors (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Advanced-Plotting.html" rel="up" title="Advanced Plotting">
+<link href="Line-Styles.html" rel="next" title="Line Styles">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Colors">
+<div class="header">
+<p>
+Next: <a href="Line-Styles.html" accesskey="n" rel="next">Line Styles</a>, Up: <a href="Advanced-Plotting.html" accesskey="u" rel="up">Advanced Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Colors-1"></span><h4 class="subsection">15.4.1 Colors</h4>
+<span id="index-graphics-colors"></span>
+<span id="index-colors_002c-graphics"></span>
+
+<p>Colors may be specified in three ways: 1) RGB triplets, 2) by name, or 3) by
+HTML notation.
+</p>
+<dl compact="compact">
+<dt><span>RGB triplet</span></dt>
+<dd>
+<p>An RGB triplet is a 1x3 vector where each value is between 0 and 1 inclusive.
+The first value represents the percentage of Red, the second value the
+percentage of Green, and the third value the percentage of Blue.  For example,
+<code>[1, 0, 1]</code> represents full Red and Blue channels resulting in the color
+magenta.
+</p>
+</dd>
+<dt><span>short or long name</span></dt>
+<dd>
+<p>Eight colors can be specified directly by name or by a single character short
+name.
+</p>
+<table>
+<thead><tr><th width="21%">Name</th><th width="79%">Color</th></tr></thead>
+<tr><td width="21%">&lsquo;<samp>k</samp>&rsquo;, <code>&quot;black&quot;</code></td><td width="79%">blacK</td></tr>
+<tr><td width="21%">&lsquo;<samp>r</samp>&rsquo;, <code>&quot;red&quot;</code></td><td width="79%">Red</td></tr>
+<tr><td width="21%">&lsquo;<samp>g</samp>&rsquo;, <code>&quot;green&quot;</code></td><td width="79%">Green</td></tr>
+<tr><td width="21%">&lsquo;<samp>b</samp>&rsquo;, <code>&quot;blue&quot;</code></td><td width="79%">Blue</td></tr>
+<tr><td width="21%">&lsquo;<samp>y</samp>&rsquo;, <code>&quot;yellow&quot;</code></td><td width="79%">Yellow</td></tr>
+<tr><td width="21%">&lsquo;<samp>m</samp>&rsquo;, <code>&quot;magenta&quot;</code></td><td width="79%">Magenta</td></tr>
+<tr><td width="21%">&lsquo;<samp>c</samp>&rsquo;, <code>&quot;cyan&quot;</code></td><td width="79%">Cyan</td></tr>
+<tr><td width="21%">&lsquo;<samp>w</samp>&rsquo;, <code>&quot;white&quot;</code></td><td width="79%">White</td></tr>
+</table>
+
+</dd>
+<dt><span>HTML notation</span></dt>
+<dd>
+<p>HTML notation is a string that begins with the character &lsquo;<samp>#</samp>&rsquo; and is
+followed by either 3 or 6 hexadecimal digits.  As with RGB triplets, each
+hexadecimal number represents the fraction of the Red, Green, and Blue channels
+present in the specified color.  For example, <code>&quot;#FF00FF&quot;</code> represents
+the color magenta.
+</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Jupyter Notebooks (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Jupyter Notebooks (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Jupyter Notebooks (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Script-Files.html" rel="up" title="Script Files">
+<link href="Publishing-Markup.html" rel="prev" title="Publishing Markup">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Jupyter-Notebooks">
+<div class="header">
+<p>
+Previous: <a href="Publishing-Markup.html" accesskey="p" rel="prev">Publishing Markup</a>, Up: <a href="Script-Files.html" accesskey="u" rel="up">Script Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Jupyter-Notebooks-1"></span><h4 class="subsection">11.11.3 Jupyter Notebooks</h4>
+<span id="index-Jupyter-Notebooks"></span>
+
+<p>Jupyter notebooks are one popular technique for displaying code, text, and
+graphical output together in a comprehensive manner.  Octave can publish
+results to a Jupyter notebook with the function <code>jupyter_notebook</code>.
+</p>
+<span id="XREFjupyter_005fnotebook"></span><dl class="def">
+<dt id="index-jupyter_005fnotebook"><span class="category">: </span><span><em><var>notebook</var> =</em> <strong>jupyter_notebook</strong> <em>(<var>notebook_filename</var>)</em><a href='#index-jupyter_005fnotebook' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-jupyter_005fnotebook-1"><span class="category">: </span><span><em><var>notebook</var> =</em> <strong>jupyter_notebook</strong> <em>(<var>notebook_filename</var>, <var>options</var>)</em><a href='#index-jupyter_005fnotebook-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Run and fill the Jupyter Notebook in file <var>notebook_filename</var> from
+within GNU Octave.
+</p>
+<p>Both text and graphical Octave outputs are supported.
+</p>
+<p>This class has a public property <code>notebook</code> which is a structure
+representing the JSON-decoded Jupyter Notebook.  This property is
+intentionally public to enable advanced notebook manipulations.
+</p>
+<p>Note: Jupyter Notebook versions (<code>nbformat</code>) lower than 4.0 are not
+supported.
+</p>
+<p>The optional second argument <var>options</var> is a struct with fields:
+</p>
+<ul>
+<li> <code>tmpdir</code> to set the temporary working directory.
+</li></ul>
+
+<p><code>%plot</code> magic is supported with the following settings:
+</p>
+<ul>
+<li> &quot;%plot -f &lt;format&gt;&quot; or &quot;%plot &ndash;format &lt;format&gt;&quot;: specifies the
+image storage format.  Supported formats are:
+
+<ul class="no-bullet">
+<li>- PNG (default)
+
+</li><li>- SVG
+(Note: If SVG images do not appear in the notebook, it is most likely
+related to Jupyter Notebook security mechanisms and explicitly &quot;trusting&quot;
+them will be necessary).
+
+</li><li>- JPG
+</li></ul>
+
+</li><li> &quot;%plot -r &lt;number&gt;&quot; or &quot;%plot &ndash;resolution &lt;number&gt;&quot;: specifies the
+image resolution.
+
+</li><li> &quot;%plot -w &lt;number&gt;&quot; or &quot;%plot &ndash;width &lt;number&gt;&quot;: specifies the
+image width.
+
+</li><li> &quot;%plot -h &lt;number&gt;&quot; or &quot;%plot &ndash;height &lt;number&gt;&quot;: specifies the
+image height.
+</li></ul>
+
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## Run all cells and generate the filled notebook
+
+## Instantiate an object from a notebook file
+notebook = jupyter_notebook (&quot;myNotebook.ipynb&quot;);
+## Run the code and embed the results in the <code>notebook</code> property
+notebook.run_all ();
+## Generate a new notebook by overwriting the original notebook
+notebook.generate_notebook (&quot;myNotebook.ipynb&quot;);
+</pre><pre class="example">
+
+</pre><pre class="example">## Run just the second cell and generate the filled notebook
+
+## Instantiate an object from a notebook file
+notebook = jupyter_notebook (&quot;myNotebook.ipynb&quot;);
+## Run the code and embed the results in the <code>notebook</code> property
+notebook.run (2)
+## Generate a new notebook in a new file
+notebook.generate_notebook (&quot;myNewNotebook.ipynb&quot;);
+</pre><pre class="example">
+
+</pre><pre class="example">## Generate an Octave script from a notebook
+
+## Instantiate an object from a notebook file
+notebook = jupyter_notebook (&quot;myNotebook.ipynb&quot;);
+## Generate the Octave script
+notebook.generate_octave_script (&quot;jup_script.m&quot;);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="JSON-data-encoding_002fdecoding.html#XREFjsondecode">jsondecode</a>, <a href="JSON-data-encoding_002fdecoding.html#XREFjsonencode">jsonencode</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Publishing-Markup.html">Publishing Markup</a>, Up: <a href="Script-Files.html">Script Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

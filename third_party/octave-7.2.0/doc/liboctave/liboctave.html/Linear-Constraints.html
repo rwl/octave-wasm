@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Linear Constraints (Octave C++ Classes)</title>
+
+<meta name="description" content="Linear Constraints (Octave C++ Classes)">
+<meta name="keywords" content="Linear Constraints (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Nonlinear-Constraints.html" rel="next" title="Nonlinear Constraints">
+<link href="Bounds.html" rel="prev" title="Bounds">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Linear-Constraints">
+<div class="header">
+<p>
+Next: <a href="Nonlinear-Constraints.html" accesskey="n" rel="next">Nonlinear Constraints</a>, Previous: <a href="Bounds.html" accesskey="p" rel="prev">Bounds</a>, Up: <a href="Optimization.html" accesskey="u" rel="up">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Linear-Constraints-1"></span><h3 class="section">9.3 Linear Constraints</h3>
+<span id="index-linear-Constraints"></span>
+
+<dl class="def">
+<dt id="index-LinConst"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(void)</em><a href='#index-LinConst' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LinConst-1"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(int <var>nclin</var>, int <var>nx</var>)</em><a href='#index-LinConst-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LinConst-2"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(int <var>nclin_eq</var>, int <var>nclin_ineq</var>, int <var>nx</var>)</em><a href='#index-LinConst-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LinConst-3"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(const ColumnVector &amp;<var>lb</var>, const Matrix &amp;<var>A</var>, const ColumnVector &amp;<var>ub</var>)</em><a href='#index-LinConst-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LinConst-4"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(const Matrix &amp;<var>A_eq</var>, const ColumnVector &amp;<var>b_eq</var>, const Matrix &amp;<var>A_ineq</var>, const ColumnVector &amp;<var>b_ineq</var>)</em><a href='#index-LinConst-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LinConst-5"><span class="category">: </span><span><em></em> <strong>LinConst</strong> <em>(const LinConst &amp;<var>a</var>)</em><a href='#index-LinConst-5' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-31"><span class="category">: </span><span><em>LinConst&amp;</em> <strong>operator =</strong> <em>(const LinConst &amp;<var>a</var>)</em><a href='#index-operator-_003d-31' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-resize-2"><span class="category">: </span><span><em>LinConst&amp;</em> <strong>resize</strong> <em>(int <var>nclin</var>, int <var>n</var>)</em><a href='#index-resize-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-constraint_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>constraint_matrix</strong> <em>(void) const;</em><a href='#index-constraint_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fconstraint_005fmatrix"><span class="category">: </span><span><em>LinConst&amp;</em> <strong>set_constraint_matrix</strong> <em>(const Matrix &amp;<var>A</var>)</em><a href='#index-set_005fconstraint_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-eq_005fconstraint_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>eq_constraint_matrix</strong> <em>(void) const;</em><a href='#index-eq_005fconstraint_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ineq_005fconstraint_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>ineq_constraint_matrix</strong> <em>(void) const;</em><a href='#index-ineq_005fconstraint_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-eq_005fconstraint_005fvector"><span class="category">: </span><span><em>ColumnVector</em> <strong>eq_constraint_vector</strong> <em>(void) const;</em><a href='#index-eq_005fconstraint_005fvector' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ineq_005fconstraint_005fvector"><span class="category">: </span><span><em>ColumnVector</em> <strong>ineq_constraint_vector</strong> <em>(void) const;</em><a href='#index-ineq_005fconstraint_005fvector' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-28"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const LinConst &amp;<var>b</var>)</em><a href='#index-operator-_003c_003c-28' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+
+</div>
+
+
+
+</body>
+</html>

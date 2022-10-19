@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Manipulating the Load Path (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Manipulating the Load Path (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Manipulating the Load Path (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Files.html" rel="up" title="Function Files">
+<link href="Subfunctions.html" rel="next" title="Subfunctions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Manipulating-the-Load-Path">
+<div class="header">
+<p>
+Next: <a href="Subfunctions.html" accesskey="n" rel="next">Subfunctions</a>, Up: <a href="Function-Files.html" accesskey="u" rel="up">Function Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Manipulating-the-Load-Path-1"></span><h4 class="subsection">11.10.1 Manipulating the Load Path</h4>
+
+<p>When a function is called, Octave searches a list of directories for
+a file that contains the function declaration.  This list of directories
+is known as the load path.  By default the load path contains
+a list of directories distributed with Octave plus the current
+working directory.  To see your current load path call the <code>path</code>
+function without any input or output arguments.
+</p>
+<p>It is possible to add or remove directories to or from the load path
+using <code>addpath</code> and <code>rmpath</code>.  As an example, the following
+code adds &lsquo;<samp>~/Octave</samp>&rsquo; to the load path.
+</p>
+<div class="example">
+<pre class="example">addpath (&quot;~/Octave&quot;)
+</pre></div>
+
+<p>After this the directory &lsquo;<samp>~/Octave</samp>&rsquo; will be searched for functions.
+</p>
+<span id="XREFaddpath"></span><dl class="def">
+<dt id="index-addpath"><span class="category">: </span><span><em></em> <strong>addpath</strong> <em>(<var>dir1</var>, &hellip;)</em><a href='#index-addpath' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-addpath-1"><span class="category">: </span><span><em></em> <strong>addpath</strong> <em>(<var>dir1</var>, &hellip;, <var>option</var>)</em><a href='#index-addpath-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Add named directories to the function search path.
+</p>
+<p>If <var>option</var> is <code>&quot;-begin&quot;</code> or 0 (the default), prepend the directory
+name(s) to the current path.  If <var>option</var> is <code>&quot;-end&quot;</code> or 1, append
+the directory name(s) to the current path.  Directories added to the path must
+exist.
+</p>
+<p>In addition to accepting individual directory arguments, lists of
+directory names separated by <code>pathsep</code> are also accepted.  For example:
+</p>
+<div class="example">
+<pre class="example">addpath (&quot;dir1:/dir2:~/dir3&quot;)
+</pre></div>
+
+<p>The newly added paths appear in the load path in the same order that they
+appear in the arguments of <code>addpath</code>.  When extending the load path to
+the front, the last path in the list of arguments is added first.  When
+extending the load path to the end, the first path in the list of arguments
+is added first.
+</p>
+<p>For each directory that is added, and that was not already in the path,
+<code>addpath</code> checks for the existence of a file named <samp>PKG_ADD</samp>
+(note lack of .m extension) and runs it if it exists.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>, <a href="#XREFsavepath">savepath</a>, <a href="#XREFpathsep">pathsep</a>.
+</p></dd></dl>
+
+
+<span id="XREFgenpath"></span><dl class="def">
+<dt id="index-genpath"><span class="category">: </span><span><em></em> <strong>genpath</strong> <em>(<var>dir</var>)</em><a href='#index-genpath' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-genpath-1"><span class="category">: </span><span><em></em> <strong>genpath</strong> <em>(<var>dir</var>, <var>skip</var>, &hellip;)</em><a href='#index-genpath-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a path constructed from <var>dir</var> and all its subdirectories.
+</p>
+<p>The path does not include package directories (beginning with &lsquo;<samp>+</samp>&rsquo;),
+old-style class directories (beginning with &lsquo;<samp>@</samp>&rsquo;), <samp>private</samp>
+directories, or any subdirectories of these types.
+</p>
+<p>If additional string parameters are given, the resulting path will exclude
+directories with those names.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>.
+</p></dd></dl>
+
+
+<span id="XREFrmpath"></span><dl class="def">
+<dt id="index-rmpath"><span class="category">: </span><span><em></em> <strong>rmpath</strong> <em>(<var>dir1</var>, &hellip;)</em><a href='#index-rmpath' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Remove <var>dir1</var>, &hellip; from the current function search path.
+</p>
+<p>In addition to accepting individual directory arguments, lists of
+directory names separated by <code>pathsep</code> are also accepted.  For example:
+</p>
+<div class="example">
+<pre class="example">rmpath (&quot;dir1:/dir2:~/dir3&quot;)
+</pre></div>
+
+<p>For each directory that is removed, <code>rmpath</code> checks for the
+existence of a file named <samp>PKG_DEL</samp> (note lack of .m extension)
+and runs it if it exists.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>, <a href="#XREFsavepath">savepath</a>, <a href="#XREFpathsep">pathsep</a>.
+</p></dd></dl>
+
+
+<span id="XREFsavepath"></span><dl class="def">
+<dt id="index-savepath"><span class="category">: </span><span><em></em> <strong>savepath</strong> <em>()</em><a href='#index-savepath' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-savepath-1"><span class="category">: </span><span><em></em> <strong>savepath</strong> <em>(<var>file</var>)</em><a href='#index-savepath-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-savepath-2"><span class="category">: </span><span><em><var>status</var> =</em> <strong>savepath</strong> <em>(&hellip;)</em><a href='#index-savepath-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Save the unique portion of the current function search path that is
+not set during Octave&rsquo;s initialization process to <var>file</var>.
+</p>
+<p>If <var>file</var> is omitted, Octave looks in the current directory for a
+project-specific <samp>.octaverc</samp> file in which to save the path
+information.  If no such file is present then the user&rsquo;s configuration file
+<samp>~/.octaverc</samp> is used.
+</p>
+<p>If successful, <code>savepath</code> returns 0.
+</p>
+<p>The <code>savepath</code> function makes it simple to customize a user&rsquo;s
+configuration file to restore the working paths necessary for a particular
+instance of Octave.  Assuming no filename is specified, Octave will
+automatically restore the saved directory paths from the appropriate
+<samp>.octaverc</samp> file when starting up.  If a filename has been specified
+then the paths may be restored manually by calling <code>source <var>file</var></code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>.
+</p></dd></dl>
+
+
+<span id="XREFpath"></span><dl class="def">
+<dt id="index-path"><span class="category">: </span><span><em></em> <strong>path</strong> <em>()</em><a href='#index-path' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-path-1"><span class="category">: </span><span><em><var>str</var> =</em> <strong>path</strong> <em>()</em><a href='#index-path-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-path-2"><span class="category">: </span><span><em><var>str</var> =</em> <strong>path</strong> <em>(<var>path1</var>, &hellip;)</em><a href='#index-path-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Modify or display Octave&rsquo;s load path.
+</p>
+<p>If <var>nargin</var> and <var>nargout</var> are zero, display the elements of
+Octave&rsquo;s load path in an easy to read format.
+</p>
+<p>If <var>nargin</var> is zero and nargout is greater than zero, return the
+current load path.
+</p>
+<p>If <var>nargin</var> is greater than zero, concatenate the arguments,
+separating them with <code>pathsep</code>.  Set the internal search path
+to the result and return it.
+</p>
+<p>No checks are made for duplicate elements.
+</p>
+<p><strong>See also:</strong> <a href="#XREFaddpath">addpath</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>, <a href="#XREFsavepath">savepath</a>, <a href="#XREFpathsep">pathsep</a>.
+</p></dd></dl>
+
+
+<span id="XREFpathdef"></span><dl class="def">
+<dt id="index-pathdef"><span class="category">: </span><span><em><var>val</var> =</em> <strong>pathdef</strong> <em>()</em><a href='#index-pathdef' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the default path for Octave.
+</p>
+<p>The path information is extracted from one of four sources.
+The possible sources, in order of preference, are:
+</p>
+<ol>
+<li> <samp>.octaverc</samp>
+
+</li><li> <samp>~/.octaverc</samp>
+
+</li><li> <samp>&lt;OCTAVE_HOME&gt;/&hellip;/&lt;version&gt;/m/startup/octaverc</samp>
+
+</li><li> Octave&rsquo;s path prior to changes by any octaverc file.
+</li></ol>
+
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFsavepath">savepath</a>.
+</p></dd></dl>
+
+
+<span id="XREFpathsep"></span><dl class="def">
+<dt id="index-pathsep"><span class="category">: </span><span><em><var>val</var> =</em> <strong>pathsep</strong> <em>()</em><a href='#index-pathsep' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query the character used to separate directories in a path.
+</p>
+<p><strong>See also:</strong> <a href="Filesystem-Utilities.html#XREFfilesep">filesep</a>.
+</p></dd></dl>
+
+
+<span id="XREFrehash"></span><dl class="def">
+<dt id="index-rehash"><span class="category">: </span><span><em></em> <strong>rehash</strong> <em>()</em><a href='#index-rehash' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Reinitialize Octave&rsquo;s load path directory cache.
+</p></dd></dl>
+
+
+<span id="XREFfile_005fin_005floadpath"></span><dl class="def">
+<dt id="index-file_005fin_005floadpath"><span class="category">: </span><span><em><var>fname</var> =</em> <strong>file_in_loadpath</strong> <em>(<var>file</var>)</em><a href='#index-file_005fin_005floadpath' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-file_005fin_005floadpath-1"><span class="category">: </span><span><em><var>fname</var> =</em> <strong>file_in_loadpath</strong> <em>(<var>file</var>, &quot;all&quot;)</em><a href='#index-file_005fin_005floadpath-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the absolute name of <var>file</var> if it can be found in the list of
+directories specified by <code>path</code>.
+</p>
+<p>If no file is found, return an empty character string.
+</p>
+<p>When <var>file</var> is already an absolute name, the name is checked against the
+file system instead of Octave&rsquo;s loadpath.  In this case, if <var>file</var> exists
+it will be returned in <var>fname</var>, otherwise an empty string is returned.
+</p>
+<p>If the first argument is a cell array of strings, search each directory of
+the loadpath for element of the cell array and return the first that
+matches.
+</p>
+<p>If the second optional argument <code>&quot;all&quot;</code> is supplied, return a cell
+array containing the list of all files that have the same name in the path.
+If no files are found, return an empty cell array.
+</p>
+<p><strong>See also:</strong> <a href="Filesystem-Utilities.html#XREFfile_005fin_005fpath">file_in_path</a>, <a href="#XREFdir_005fin_005floadpath">dir_in_loadpath</a>, <a href="#XREFpath">path</a>.
+</p></dd></dl>
+
+
+<span id="XREFrestoredefaultpath"></span><dl class="def">
+<dt id="index-restoredefaultpath"><span class="category">: </span><span><em></em> <strong>restoredefaultpath</strong> <em>()</em><a href='#index-restoredefaultpath' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Restore Octave&rsquo;s path to its initial state at startup.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>, <a href="#XREFsavepath">savepath</a>, <a href="#XREFpathsep">pathsep</a>.
+</p></dd></dl>
+
+
+<span id="XREFcommand_005fline_005fpath"></span><dl class="def">
+<dt id="index-command_005fline_005fpath"><span class="category">: </span><span><em></em> <strong>command_line_path</strong> <em>()</em><a href='#index-command_005fline_005fpath' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the command line path variable.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpath">path</a>, <a href="#XREFaddpath">addpath</a>, <a href="#XREFrmpath">rmpath</a>, <a href="#XREFgenpath">genpath</a>, <a href="#XREFpathdef">pathdef</a>, <a href="#XREFsavepath">savepath</a>, <a href="#XREFpathsep">pathsep</a>.
+</p></dd></dl>
+
+
+<span id="XREFdir_005fin_005floadpath"></span><dl class="def">
+<dt id="index-dir_005fin_005floadpath"><span class="category">: </span><span><em><var>dirname</var> =</em> <strong>dir_in_loadpath</strong> <em>(<var>dir</var>)</em><a href='#index-dir_005fin_005floadpath' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dir_005fin_005floadpath-1"><span class="category">: </span><span><em><var>dirname</var> =</em> <strong>dir_in_loadpath</strong> <em>(<var>dir</var>, &quot;all&quot;)</em><a href='#index-dir_005fin_005floadpath-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the absolute name of the loadpath element matching <var>dir</var> if it can
+be found in the list of directories specified by <code>path</code>.
+</p>
+<p>If no match is found, return an empty character string.
+</p>
+<p>The match is performed at the end of each path element.  For example, if
+<var>dir</var> is <code>&quot;foo/bar&quot;</code>, it matches the path element
+<code>&quot;/some/dir/foo/bar&quot;</code>, but not
+<code>&quot;/some/dir/foo/bar/baz&quot;</code>
+<code>&quot;/some/dir/allfoo/bar&quot;</code>.  When <var>dir</var> is an absolute name,
+rather than just a path fragment, it is matched against the file system
+instead of Octave&rsquo;s loadpath.  In this case, if <var>dir</var> exists it will be
+returned in <var>dirname</var>, otherwise an empty string is returned.
+</p>
+<p>If the optional second argument is supplied, return a cell array containing
+all name matches rather than just the first.
+</p>
+<p><strong>See also:</strong> <a href="Filesystem-Utilities.html#XREFfile_005fin_005fpath">file_in_path</a>, <a href="#XREFfile_005fin_005floadpath">file_in_loadpath</a>, <a href="#XREFpath">path</a>.
+</p></dd></dl>
+
+
+<span id="XREFdir_005fencoding"></span><dl class="def">
+<dt id="index-dir_005fencoding"><span class="category">: </span><span><em><var>current_encoding</var> =</em> <strong>dir_encoding</strong> <em>(<var>dir</var>)</em><a href='#index-dir_005fencoding' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dir_005fencoding-1"><span class="category">: </span><span><em><var>prev_encoding</var> =</em> <strong>dir_encoding</strong> <em>(<var>dir</var>, <var>encoding</var>)</em><a href='#index-dir_005fencoding-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dir_005fencoding-2"><span class="category">: </span><span><em></em> <strong>dir_encoding</strong> <em>(&hellip;)</em><a href='#index-dir_005fencoding-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set and query the <var>encoding</var> that is used for reading m-files in <var>dir</var>.
+</p>
+<p>That encoding overrides the (globally set) m-file encoding.
+</p>
+<p>The string <var>DIR</var> must match the form how the directory would appear in the
+load path.
+</p>
+<p>The <var>encoding</var> must be a valid encoding identifier or <code>&quot;delete&quot;</code>.  In
+the latter case, the (globally set) m-file encoding will be used for the given
+<var>dir</var>.
+</p>
+<p>The currently or previously used encoding is returned in <var>current_encoding</var>
+or <var>prev_encoding</var>, respectively.  The output argument must be explicitly
+requested.
+</p>
+<p>The directory encoding is automatically read from the file <samp>.oct-config</samp>
+when a new path is added to the load path (for example with <code>addpath</code>).
+To set the encoding for all files in the same folder, that file must contain
+a line starting with <code>&quot;encoding=&quot;</code> followed by the encoding identifier.
+</p>
+<p>For example to set the file encoding for all files in the same folder to
+ISO 8859-1 (Latin-1), create a file <samp>.oct-config</samp> with the following
+content:
+</p>
+<div class="example">
+<pre class="example">encoding=iso8859-1
+</pre></div>
+
+<p>If the file encoding is changed after the files have already been parsed, the
+files have to be parsed again for that change to take effect.  That can be done
+with the command <code>clear all</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFaddpath">addpath</a>, <a href="#XREFpath">path</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Subfunctions.html">Subfunctions</a>, Up: <a href="Function-Files.html">Function Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Matrix Factorizations (Octave C++ Classes)</title>
+
+<meta name="description" content="Matrix Factorizations (Octave C++ Classes)">
+<meta name="keywords" content="Matrix Factorizations (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Ranges.html" rel="next" title="Ranges">
+<link href="Matrix-and-Vector-Operations.html" rel="prev" title="Matrix and Vector Operations">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Matrix-Factorizations">
+<div class="header">
+<p>
+Next: <a href="Ranges.html" accesskey="n" rel="next">Ranges</a>, Previous: <a href="Matrix-and-Vector-Operations.html" accesskey="p" rel="prev">Matrix and Vector Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Matrix-Factorizations-1"></span><h2 class="chapter">5 Matrix Factorizations</h2>
+<span id="index-matrix-factorizations"></span>
+<span id="index-factorizations"></span>
+
+<dl class="def">
+<dt id="index-AEPBALANCE"><span class="category">: </span><span><em></em> <strong>AEPBALANCE</strong> <em>(void)</em><a href='#index-AEPBALANCE' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-AEPBALANCE-1"><span class="category">: </span><span><em></em> <strong>AEPBALANCE</strong> <em>(const Matrix &amp;<var>a</var>, const char *<var>balance_job</var>)</em><a href='#index-AEPBALANCE-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-AEPBALANCE-2"><span class="category">: </span><span><em></em> <strong>AEPBALANCE</strong> <em>(const AEPBALANCE &amp;<var>a</var>)</em><a href='#index-AEPBALANCE-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-8"><span class="category">: </span><span><em>AEPBALANCE&amp;</em> <strong>operator =</strong> <em>(const AEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003d-8' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-balanced_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>balanced_matrix</strong> <em>(void) const</em><a href='#index-balanced_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-balancing_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>balancing_matrix</strong> <em>(void) const</em><a href='#index-balancing_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-8"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const AEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-8' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexAEPBALANCE"><span class="category">: </span><span><em></em> <strong>ComplexAEPBALANCE</strong> <em>(void)</em><a href='#index-ComplexAEPBALANCE' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexAEPBALANCE-1"><span class="category">: </span><span><em></em> <strong>ComplexAEPBALANCE</strong> <em>(const ComplexMatrix &amp;<var>a</var>, const char *<var>balance_job</var>)</em><a href='#index-ComplexAEPBALANCE-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexAEPBALANCE-2"><span class="category">: </span><span><em></em> <strong>ComplexAEPBALANCE</strong> <em>(const ComplexAEPBALANCE &amp;<var>a</var>)</em><a href='#index-ComplexAEPBALANCE-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-9"><span class="category">: </span><span><em>ComplexAEPBALANCE&amp;</em> <strong>operator =</strong> <em>(const ComplexAEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003d-9' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-balanced_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>balanced_matrix</strong> <em>(void) const</em><a href='#index-balanced_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-balancing_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>balancing_matrix</strong> <em>(void) const</em><a href='#index-balancing_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-9"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexAEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-9' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-DET"><span class="category">: </span><span><em></em> <strong>DET</strong> <em>(void)</em><a href='#index-DET' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DET-1"><span class="category">: </span><span><em></em> <strong>DET</strong> <em>(const DET &amp;<var>a</var>)</em><a href='#index-DET-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-10"><span class="category">: </span><span><em>DET&amp;</em> <strong>operator =</strong> <em>(const DET &amp;<var>a</var>)</em><a href='#index-operator-_003d-10' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-value_005fwill_005foverflow"><span class="category">: </span><span><em>int</em> <strong>value_will_overflow</strong> <em>(void) const</em><a href='#index-value_005fwill_005foverflow' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-value_005fwill_005funderflow"><span class="category">: </span><span><em>int</em> <strong>value_will_underflow</strong> <em>(void) const</em><a href='#index-value_005fwill_005funderflow' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-coefficient"><span class="category">: </span><span><em>double</em> <strong>coefficient</strong> <em>(void) const</em><a href='#index-coefficient' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-exponent"><span class="category">: </span><span><em>int</em> <strong>exponent</strong> <em>(void) const</em><a href='#index-exponent' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-value"><span class="category">: </span><span><em>double</em> <strong>value</strong> <em>(void) const</em><a href='#index-value' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-10"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const DET &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-10' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexDET"><span class="category">: </span><span><em></em> <strong>ComplexDET</strong> <em>(void)</em><a href='#index-ComplexDET' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexDET-1"><span class="category">: </span><span><em></em> <strong>ComplexDET</strong> <em>(const ComplexDET &amp;<var>a</var>)</em><a href='#index-ComplexDET-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-11"><span class="category">: </span><span><em>ComplexDET&amp;</em> <strong>operator =</strong> <em>(const ComplexDET &amp;<var>a</var>)</em><a href='#index-operator-_003d-11' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-value_005fwill_005foverflow-1"><span class="category">: </span><span><em>int</em> <strong>value_will_overflow</strong> <em>(void) const</em><a href='#index-value_005fwill_005foverflow-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-value_005fwill_005funderflow-1"><span class="category">: </span><span><em>int</em> <strong>value_will_underflow</strong> <em>(void) const</em><a href='#index-value_005fwill_005funderflow-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-coefficient-1"><span class="category">: </span><span><em>Complex</em> <strong>coefficient</strong> <em>(void) const</em><a href='#index-coefficient-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-exponent-1"><span class="category">: </span><span><em>int</em> <strong>exponent</strong> <em>(void) const</em><a href='#index-exponent-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-value-1"><span class="category">: </span><span><em>Complex</em> <strong>value</strong> <em>(void) const</em><a href='#index-value-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-11"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexDET &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-11' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-GEPBALANCE"><span class="category">: </span><span><em></em> <strong>GEPBALANCE</strong> <em>(void)</em><a href='#index-GEPBALANCE' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-GEPBALANCE-1"><span class="category">: </span><span><em></em> <strong>GEPBALANCE</strong> <em>(const Matrix &amp;<var>a</var>, const Matrix &amp;, const char *<var>balance_job</var>)</em><a href='#index-GEPBALANCE-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-GEPBALANCE-2"><span class="category">: </span><span><em></em> <strong>GEPBALANCE</strong> <em>(const GEPBALANCE &amp;<var>a</var>)</em><a href='#index-GEPBALANCE-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-12"><span class="category">: </span><span><em>GEPBALANCE&amp;</em> <strong>operator =</strong> <em>(const GEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003d-12' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-balanced_005fa_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>balanced_a_matrix</strong> <em>(void) const</em><a href='#index-balanced_005fa_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-balanced_005fb_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>balanced_b_matrix</strong> <em>(void) const</em><a href='#index-balanced_005fb_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-left_005fbalancing_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>left_balancing_matrix</strong> <em>(void) const</em><a href='#index-left_005fbalancing_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-right_005fbalancing_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>right_balancing_matrix</strong> <em>(void) const</em><a href='#index-right_005fbalancing_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-12"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const GEPBALANCE &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-12' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-CHOL"><span class="category">: </span><span><em></em> <strong>CHOL</strong> <em>(void)</em><a href='#index-CHOL' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CHOL-1"><span class="category">: </span><span><em></em> <strong>CHOL</strong> <em>(const Matrix &amp;<var>a</var>)</em><a href='#index-CHOL-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CHOL-2"><span class="category">: </span><span><em></em> <strong>CHOL</strong> <em>(const Matrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-CHOL-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CHOL-3"><span class="category">: </span><span><em></em> <strong>CHOL</strong> <em>(const CHOL &amp;<var>a</var>)</em><a href='#index-CHOL-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-13"><span class="category">: </span><span><em>CHOL&amp;</em> <strong>operator =</strong> <em>(const CHOL &amp;<var>a</var>)</em><a href='#index-operator-_003d-13' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-chol_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>chol_matrix</strong> <em>(void) const</em><a href='#index-chol_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-13"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const CHOL &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-13' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexCHOL"><span class="category">: </span><span><em></em> <strong>ComplexCHOL</strong> <em>(void)</em><a href='#index-ComplexCHOL' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexCHOL-1"><span class="category">: </span><span><em></em> <strong>ComplexCHOL</strong> <em>(const ComplexMatrix &amp;<var>a</var>)</em><a href='#index-ComplexCHOL-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexCHOL-2"><span class="category">: </span><span><em></em> <strong>ComplexCHOL</strong> <em>(const ComplexMatrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-ComplexCHOL-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexCHOL-3"><span class="category">: </span><span><em></em> <strong>ComplexCHOL</strong> <em>(const ComplexCHOL &amp;<var>a</var>)</em><a href='#index-ComplexCHOL-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-14"><span class="category">: </span><span><em>ComplexCHOL&amp;</em> <strong>operator =</strong> <em>(const ComplexCHOL &amp;<var>a</var>)</em><a href='#index-operator-_003d-14' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-chol_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>chol_matrix</strong> <em>(void) const</em><a href='#index-chol_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-14"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexCHOL &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-14' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-HESS"><span class="category">: </span><span><em></em> <strong>HESS</strong> <em>(void)</em><a href='#index-HESS' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-HESS-1"><span class="category">: </span><span><em></em> <strong>HESS</strong> <em>(const Matrix &amp;<var>a</var>)</em><a href='#index-HESS-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-HESS-2"><span class="category">: </span><span><em></em> <strong>HESS</strong> <em>(const Matrix&amp;a, int &amp;<var>info</var>)</em><a href='#index-HESS-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-HESS-3"><span class="category">: </span><span><em></em> <strong>HESS</strong> <em>(const HESS &amp;<var>a</var>)</em><a href='#index-HESS-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-15"><span class="category">: </span><span><em>HESS&amp;</em> <strong>operator =</strong> <em>(const HESS &amp;<var>a</var>)</em><a href='#index-operator-_003d-15' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-hess_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>hess_matrix</strong> <em>(void) const</em><a href='#index-hess_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unitary_005fhess_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>unitary_hess_matrix</strong> <em>(void) const</em><a href='#index-unitary_005fhess_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-15"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const HESS &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-15' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexHESS"><span class="category">: </span><span><em></em> <strong>ComplexHESS</strong> <em>(void)</em><a href='#index-ComplexHESS' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexHESS-1"><span class="category">: </span><span><em></em> <strong>ComplexHESS</strong> <em>(const ComplexMatrix &amp;<var>a</var>)</em><a href='#index-ComplexHESS-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexHESS-2"><span class="category">: </span><span><em></em> <strong>ComplexHESS</strong> <em>(const ComplexMatrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-ComplexHESS-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexHESS-3"><span class="category">: </span><span><em></em> <strong>ComplexHESS</strong> <em>(const ComplexHESS &amp;<var>a</var>)</em><a href='#index-ComplexHESS-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-16"><span class="category">: </span><span><em>ComplexHESS&amp;</em> <strong>operator =</strong> <em>(const ComplexHESS &amp;<var>a</var>)</em><a href='#index-operator-_003d-16' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-hess_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>hess_matrix</strong> <em>(void) const</em><a href='#index-hess_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unitary_005fhess_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>unitary_hess_matrix</strong> <em>(void) const</em><a href='#index-unitary_005fhess_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-16"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexHESS &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-16' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-SCHUR"><span class="category">: </span><span><em></em> <strong>SCHUR</strong> <em>(void)</em><a href='#index-SCHUR' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SCHUR-1"><span class="category">: </span><span><em></em> <strong>SCHUR</strong> <em>(const Matrix &amp;<var>a</var>, const char *<var>ord</var>)</em><a href='#index-SCHUR-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SCHUR-2"><span class="category">: </span><span><em></em> <strong>SCHUR</strong> <em>(const Matrix &amp;<var>a</var>, const char *<var>ord</var>, int &amp;<var>info</var>)</em><a href='#index-SCHUR-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SCHUR-3"><span class="category">: </span><span><em></em> <strong>SCHUR</strong> <em>(const SCHUR &amp;<var>a</var>, const char *<var>ord</var>)</em><a href='#index-SCHUR-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-17"><span class="category">: </span><span><em>SCHUR&amp;</em> <strong>operator =</strong> <em>(const SCHUR &amp;<var>a</var>)</em><a href='#index-operator-_003d-17' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-schur_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>schur_matrix</strong> <em>(void) const</em><a href='#index-schur_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unitary_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>unitary_matrix</strong> <em>(void) const</em><a href='#index-unitary_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-17"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const SCHUR &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-17' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexSCHUR"><span class="category">: </span><span><em></em> <strong>ComplexSCHUR</strong> <em>(void)</em><a href='#index-ComplexSCHUR' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSCHUR-1"><span class="category">: </span><span><em></em> <strong>ComplexSCHUR</strong> <em>(const ComplexMatrix &amp;<var>a</var>, const char *<var>ord</var>)</em><a href='#index-ComplexSCHUR-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSCHUR-2"><span class="category">: </span><span><em></em> <strong>ComplexSCHUR</strong> <em>(const ComplexMatrix &amp;<var>a</var>, const char *<var>ord</var>, int &amp;<var>info</var>)</em><a href='#index-ComplexSCHUR-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSCHUR-3"><span class="category">: </span><span><em></em> <strong>ComplexSCHUR</strong> <em>(const ComplexSCHUR &amp;<var>a</var>, const char *<var>ord</var>)</em><a href='#index-ComplexSCHUR-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-18"><span class="category">: </span><span><em>ComplexSCHUR&amp;</em> <strong>operator =</strong> <em>(const ComplexSCHUR &amp;<var>a</var>)</em><a href='#index-operator-_003d-18' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-schur_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>schur_matrix</strong> <em>(void) const</em><a href='#index-schur_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unitary_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>unitary_matrix</strong> <em>(void) const</em><a href='#index-unitary_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-18"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexSCHUR &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-18' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-SVD"><span class="category">: </span><span><em></em> <strong>SVD</strong> <em>(void)</em><a href='#index-SVD' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SVD-1"><span class="category">: </span><span><em></em> <strong>SVD</strong> <em>(const Matrix &amp;<var>a</var>)</em><a href='#index-SVD-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SVD-2"><span class="category">: </span><span><em></em> <strong>SVD</strong> <em>(const Matrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-SVD-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-SVD-3"><span class="category">: </span><span><em></em> <strong>SVD</strong> <em>(const SVD &amp;<var>a</var>)</em><a href='#index-SVD-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-19"><span class="category">: </span><span><em>SVD&amp;</em> <strong>operator =</strong> <em>(const SVD &amp;<var>a</var>)</em><a href='#index-operator-_003d-19' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-singular_005fvalues"><span class="category">: </span><span><em>DiagMatrix</em> <strong>singular_values</strong> <em>(void) const</em><a href='#index-singular_005fvalues' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-left_005fsingular_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>left_singular_matrix</strong> <em>(void) const</em><a href='#index-left_005fsingular_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-right_005fsingular_005fmatrix"><span class="category">: </span><span><em>Matrix</em> <strong>right_singular_matrix</strong> <em>(void) const</em><a href='#index-right_005fsingular_005fmatrix' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-19"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const SVD &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-19' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexSVD"><span class="category">: </span><span><em></em> <strong>ComplexSVD</strong> <em>(void)</em><a href='#index-ComplexSVD' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSVD-1"><span class="category">: </span><span><em></em> <strong>ComplexSVD</strong> <em>(const ComplexMatrix &amp;<var>a</var>)</em><a href='#index-ComplexSVD-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSVD-2"><span class="category">: </span><span><em></em> <strong>ComplexSVD</strong> <em>(const ComplexMatrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-ComplexSVD-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexSVD-3"><span class="category">: </span><span><em></em> <strong>ComplexSVD</strong> <em>(const ComplexSVD &amp;<var>a</var>)</em><a href='#index-ComplexSVD-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-20"><span class="category">: </span><span><em>ComplexSVD&amp;</em> <strong>operator =</strong> <em>(const ComplexSVD &amp;<var>a</var>)</em><a href='#index-operator-_003d-20' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-singular_005fvalues-1"><span class="category">: </span><span><em>DiagMatrix</em> <strong>singular_values</strong> <em>(void) const</em><a href='#index-singular_005fvalues-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-left_005fsingular_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>left_singular_matrix</strong> <em>(void) const</em><a href='#index-left_005fsingular_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-right_005fsingular_005fmatrix-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>right_singular_matrix</strong> <em>(void) const</em><a href='#index-right_005fsingular_005fmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-20"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexSVD &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-20' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-EIG"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(void)</em><a href='#index-EIG' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EIG-1"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(const Matrix &amp;<var>a</var>)</em><a href='#index-EIG-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EIG-2"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(const Matrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-EIG-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EIG-3"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(const ComplexMatrix &amp;<var>a</var>)</em><a href='#index-EIG-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EIG-4"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(const ComplexMatrix &amp;<var>a</var>, int &amp;<var>info</var>)</em><a href='#index-EIG-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-EIG-5"><span class="category">: </span><span><em></em> <strong>EIG</strong> <em>(const EIG &amp;<var>a</var>)</em><a href='#index-EIG-5' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-21"><span class="category">: </span><span><em>EIG&amp;</em> <strong>operator =</strong> <em>(const EIG &amp;<var>a</var>)</em><a href='#index-operator-_003d-21' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-eigenvalues"><span class="category">: </span><span><em>ComplexColumnVector</em> <strong>eigenvalues</strong> <em>(void) const</em><a href='#index-eigenvalues' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-eigenvectors"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>eigenvectors</strong> <em>(void) const</em><a href='#index-eigenvectors' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-21"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const EIG &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-21' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-LU"><span class="category">: </span><span><em></em> <strong>LU</strong> <em>(void)</em><a href='#index-LU' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LU-1"><span class="category">: </span><span><em></em> <strong>LU</strong> <em>(const Matrix &amp;<var>a</var>)</em><a href='#index-LU-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-LU-2"><span class="category">: </span><span><em></em> <strong>LU</strong> <em>(const LU &amp;<var>a</var>)</em><a href='#index-LU-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-22"><span class="category">: </span><span><em>LU&amp;</em> <strong>operator =</strong> <em>(const LU &amp;<var>a</var>)</em><a href='#index-operator-_003d-22' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-L"><span class="category">: </span><span><em>Matrix</em> <strong>L</strong> <em>(void) const</em><a href='#index-L' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-U"><span class="category">: </span><span><em>Matrix</em> <strong>U</strong> <em>(void) const</em><a href='#index-U' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-P"><span class="category">: </span><span><em>Matrix</em> <strong>P</strong> <em>(void) const</em><a href='#index-P' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-22"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const LU &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-22' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexLU"><span class="category">: </span><span><em></em> <strong>ComplexLU</strong> <em>(void)</em><a href='#index-ComplexLU' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexLU-1"><span class="category">: </span><span><em></em> <strong>ComplexLU</strong> <em>(const ComplexMatrix &amp;<var>a</var>)</em><a href='#index-ComplexLU-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexLU-2"><span class="category">: </span><span><em></em> <strong>ComplexLU</strong> <em>(const ComplexLU &amp;<var>a</var>)</em><a href='#index-ComplexLU-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-23"><span class="category">: </span><span><em>ComplexLU&amp;</em> <strong>operator =</strong> <em>(const ComplexLU &amp;<var>a</var>)</em><a href='#index-operator-_003d-23' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-L-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>L</strong> <em>(void) const</em><a href='#index-L-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-U-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>U</strong> <em>(void) const</em><a href='#index-U-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-P-1"><span class="category">: </span><span><em>Matrix</em> <strong>P</strong> <em>(void) const</em><a href='#index-P-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-23"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexLU &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-23' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-QR"><span class="category">: </span><span><em></em> <strong>QR</strong> <em>(void)</em><a href='#index-QR' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QR-1"><span class="category">: </span><span><em></em> <strong>QR</strong> <em>(const Matrix &amp;<var>A</var>)</em><a href='#index-QR-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QR-2"><span class="category">: </span><span><em></em> <strong>QR</strong> <em>(const QR &amp;<var>a</var>)</em><a href='#index-QR-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-24"><span class="category">: </span><span><em>QR&amp;</em> <strong>operator =</strong> <em>(const QR &amp;<var>a</var>)</em><a href='#index-operator-_003d-24' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-Q"><span class="category">: </span><span><em>Matrix</em> <strong>Q</strong> <em>(void) const</em><a href='#index-Q' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-R"><span class="category">: </span><span><em>Matrix</em> <strong>R</strong> <em>(void) const</em><a href='#index-R' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-24"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const QR &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-24' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ComplexQR"><span class="category">: </span><span><em></em> <strong>ComplexQR</strong> <em>(void)</em><a href='#index-ComplexQR' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexQR-1"><span class="category">: </span><span><em></em> <strong>ComplexQR</strong> <em>(const ComplexMatrix &amp;<var>A</var>)</em><a href='#index-ComplexQR-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ComplexQR-2"><span class="category">: </span><span><em></em> <strong>ComplexQR</strong> <em>(const ComplexQR &amp;<var>a</var>)</em><a href='#index-ComplexQR-2' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-25"><span class="category">: </span><span><em>ComplexQR&amp;</em> <strong>operator =</strong> <em>(const ComplexQR &amp;<var>a</var>)</em><a href='#index-operator-_003d-25' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-Q-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>Q</strong> <em>(void) const</em><a href='#index-Q-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-R-1"><span class="category">: </span><span><em>ComplexMatrix</em> <strong>R</strong> <em>(void) const</em><a href='#index-R-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-25"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const ComplexQR &amp;<var>a</var>)</em><a href='#index-operator-_003c_003c-25' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ranges.html">Ranges</a>, Previous: <a href="Matrix-and-Vector-Operations.html">Matrix and Vector Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

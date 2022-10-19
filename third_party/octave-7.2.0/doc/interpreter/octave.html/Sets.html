@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sets (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Sets (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Sets (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Polynomial-Manipulations.html" rel="next" title="Polynomial Manipulations">
+<link href="Statistics.html" rel="prev" title="Statistics">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Sets">
+<div class="header">
+<p>
+Next: <a href="Polynomial-Manipulations.html" accesskey="n" rel="next">Polynomial Manipulations</a>, Previous: <a href="Statistics.html" accesskey="p" rel="prev">Statistics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Sets-1"></span><h2 class="chapter">27 Sets</h2>
+
+<p>Octave has a number of functions for managing sets of data.  A set is defined
+as a collection of unique elements and is typically represented by a vector of
+numbers sorted in ascending order.  Any vector or matrix can be converted to a
+set by removing duplicates through the use of the <code>unique</code> function.
+However, it isn&rsquo;t necessary to explicitly create a set as all of the functions
+which operate on sets will convert their input to a set before proceeding.
+</p>
+<span id="XREFunique"></span><dl class="def">
+<dt id="index-unique"><span class="category">: </span><span><em></em> <strong>unique</strong> <em>(<var>x</var>)</em><a href='#index-unique' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-1"><span class="category">: </span><span><em></em> <strong>unique</strong> <em>(<var>x</var>, &quot;rows&quot;)</em><a href='#index-unique-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-2"><span class="category">: </span><span><em></em> <strong>unique</strong> <em>(&hellip;, &quot;sorted&quot;)</em><a href='#index-unique-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-3"><span class="category">: </span><span><em></em> <strong>unique</strong> <em>(&hellip;, &quot;stable&quot;)</em><a href='#index-unique-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-4"><span class="category">: </span><span><em>[<var>y</var>, <var>i</var>, <var>j</var>] =</em> <strong>unique</strong> <em>(&hellip;)</em><a href='#index-unique-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-5"><span class="category">: </span><span><em>[<var>y</var>, <var>i</var>, <var>j</var>] =</em> <strong>unique</strong> <em>(&hellip;, &quot;first&quot;)</em><a href='#index-unique-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-6"><span class="category">: </span><span><em>[<var>y</var>, <var>i</var>, <var>j</var>] =</em> <strong>unique</strong> <em>(&hellip;, &quot;last&quot;)</em><a href='#index-unique-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-unique-7"><span class="category">: </span><span><em>[<var>y</var>, <var>i</var>, <var>j</var>] =</em> <strong>unique</strong> <em>(&hellip;, &quot;legacy&quot;)</em><a href='#index-unique-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the unique elements of <var>x</var>.
+</p>
+<p>If the input <var>x</var> is a column vector then return a column vector;
+Otherwise, return a row vector.  <var>x</var> may also be a cell array of
+strings.
+</p>
+<p>If the optional argument <code>&quot;rows&quot;</code> is given then return the unique
+rows of <var>x</var>.  The input must be a 2-D numeric matrix to use this option.
+</p>
+<p>The optional argument <code>&quot;sorted&quot;</code>/<code>&quot;stable&quot;</code> controls the order
+in which unique values appear in the output.  The default is
+<code>&quot;sorted&quot;</code> and values in the output are placed in ascending order.
+The alternative <code>&quot;stable&quot;</code> preserves the order found in the input
+<var>x</var>.
+</p>
+<p>If requested, return column index vectors <var>i</var> and <var>j</var> such that
+<code><var>y</var> = <var>x</var>(<var>i</var>)</code> and <code><var>x</var> = <var>y</var>(<var>j</var>)</code>.
+</p>
+<p>Additionally, if <var>i</var> is a requested output then one of the flags
+<code>&quot;first&quot;</code> or <code>&quot;last&quot;</code> may be given.  If <code>&quot;last&quot;</code> is
+specified, return the highest possible indices in <var>i</var>, otherwise, if
+<code>&quot;first&quot;</code> is specified, return the lowest.  The default is
+<code>&quot;first&quot;</code>.
+</p>
+<p>Example 1 : sort order
+</p>
+<div class="example">
+<pre class="example">unique ([3, 1, 1, 2])
+&rArr; [1, 2, 3]
+unique ([3, 1, 1, 2], &quot;stable&quot;)
+&rArr; [3, 1, 2]
+</pre></div>
+
+<p>Example 2 : index selection
+</p>
+<div class="example">
+<pre class="example">[~, <var>i</var>] = unique ([3, 1, 1, 2], &quot;first&quot;)
+&rArr; <var>i</var> = [2; 4; 1]
+[~, <var>i</var>] = unique ([3, 1, 1, 2], &quot;last&quot;)
+&rArr; <var>i</var> = [3; 4; 1]
+</pre></div>
+
+<p>Programming Notes: The input flag <code>&quot;legacy&quot;</code> changes the algorithm
+to be compatible with <small>MATLAB</small> releases prior to R2012b.  Specifically,
+The index ordering flag is changed to <code>&quot;last&quot;</code>, and the shape of the
+outputs <var>i</var>, <var>j</var> will follow the shape of the input <var>x</var> rather
+than always being column vectors.
+</p>
+<p>The third output, <var>j</var>, has not been implemented yet when the sort
+order is <code>&quot;stable&quot;</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="Set-Operations.html#XREFunion">union</a>, <a href="Set-Operations.html#XREFintersect">intersect</a>, <a href="Set-Operations.html#XREFsetdiff">setdiff</a>, <a href="Set-Operations.html#XREFsetxor">setxor</a>, <a href="Set-Operations.html#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+<span id="XREFuniquetol"></span><dl class="def">
+<dt id="index-uniquetol"><span class="category">: </span><span><em><var>c</var> =</em> <strong>uniquetol</strong> <em>(<var>A</var>)</em><a href='#index-uniquetol' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uniquetol-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>uniquetol</strong> <em>(<var>A</var>, <var>tol</var>)</em><a href='#index-uniquetol-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uniquetol-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>uniquetol</strong> <em>(&hellip;, <var>property</var>, <var>value</var>)</em><a href='#index-uniquetol-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uniquetol-3"><span class="category">: </span><span><em>[<var>c</var>, <var>ia</var>, <var>ic</var>] =</em> <strong>uniquetol</strong> <em>(&hellip;)</em><a href='#index-uniquetol-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the unique elements of <var>A</var> within tolerance <var>tol</var>.
+</p>
+<p>Two values, <var>x</var> and <var>y</var>, are within relative tolerance if
+<code>abs (<var>x</var> - <var>y</var>) &lt;= <var>tol</var> * max (abs (<var>A</var>(:)))</code>.
+</p>
+<p>The input <var>A</var> must be a floating point type (double or single).
+</p>
+<p>If <var>tol</var> is unspecified, the default tolerance is 1e-12 for double
+precision input or 1e-6 for single precision input.
+</p>
+<p>The function may also be called with the following optional property/value
+pairs.  Property/value pairs must be passed after other input arguments:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;ByRows&quot;</code> (default: <code>false</code>)</span></dt>
+<dd><p>When true, return the unique rows of <var>A</var>.  <var>A</var> must be a 2-D array
+to use this option.  For rows, the criteria for uniqueness is changed to
+<code>all (abs (<var>x</var> - <var>y</var>) &lt;= <var>tol</var>*max (abs (<var>A</var>),[],1))</code>
+which compares each column component of a row against a column-specific
+tolerance.
+</p>
+</dd>
+<dt><span><code>&quot;DataScale&quot;</code></span></dt>
+<dd><p>The tolerance test is changed to
+<code>abs (<var>x</var> - <var>y</var>) &lt;= <var>tol</var>*<var>DS</var></code> where <var>DS</var> is a
+scalar unless the property <code>&quot;ByRows&quot;</code> is true.  In that case, <var>DS</var>
+can either be a scalar or a vector with a length equal to the number of
+columns in <var>A</var>.  Using a value of <code>1.0</code> for <var>DS</var> will change
+the tolerance from a relative one to an absolute tolerance.  Using a value
+of <code>Inf</code> will disable testing.
+</p>
+</dd>
+<dt><span><code>&quot;OutputAllIndices&quot;</code> (default: <code>false</code>)</span></dt>
+<dd><p>When true, <var>ia</var> is a cell array (not a vector) that contains the indices
+for <em>all</em> elements in <var>A</var> that are within tolerance of a value in
+<var>C</var>.  That is, each cell in <var>ia</var> corresponds to a single unique
+value in <var>C</var>, and the values in each cell correspond to locations in
+<var>A</var>.
+</p></dd>
+</dl>
+
+<p>The output <var>c</var> is a row vector if the input <var>A</var> is a row vector.
+For all other cases, a column vector is returned.
+</p>
+<p>The optional output <var>ia</var> is a column index vector such that
+<code><var>c</var> = <var>A</var>(<var>ia</var>)</code>.  If the <code>&quot;ByRows&quot;</code> property is
+true, the condition is <code><var>c</var> = <var>A</var>(<var>ia</var>, :)</code>.  If the
+<code>&quot;OutputAllIndices&quot;</code> property is true, then the values
+<code><var>A</var>(<var>ia</var>{<var>i</var>})</code> are all within tolerance of the unique
+value <code><var>c</var>(<var>i</var>)</code>.
+</p>
+<p>The optional output <var>ic</var> is a column index vector such that
+<code><var>A</var> = <var>c</var>(<var>ic</var>)</code> when <var>A</var> is a vector.  When <var>A</var>
+is a matrix, <code><var>A</var>(:) = <var>c</var>(<var>ic</var>)</code>.  If the <code>&quot;ByRows&quot;</code>
+property is true then <code><var>A</var> = <var>c</var>(<var>ic</var>,:)</code>.
+</p>
+<p>Example: small round-off errors require <code>uniquetol</code>, not <code>unique</code>
+</p>
+<div class="example">
+<pre class="example">x = [1:5];
+## Inverse_Function (Function (x)) should return exactly x
+y = exp (log (x));
+D = unique ([x, y])
+&rArr; [1.0000   2.0000   3.0000   3.0000   4.0000   5.0000   5.0000]
+C = uniquetol ([x, y])
+&rArr; [1   2   3   4   5]
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFunique">unique</a>, <a href="Set-Operations.html#XREFunion">union</a>, <a href="Set-Operations.html#XREFintersect">intersect</a>, <a href="Set-Operations.html#XREFsetdiff">setdiff</a>, <a href="Set-Operations.html#XREFsetxor">setxor</a>, <a href="Set-Operations.html#XREFismember">ismember</a>.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Set-Operations.html" accesskey="1">Set Operations</a></li>
+</ul>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Polynomial-Manipulations.html">Polynomial Manipulations</a>, Previous: <a href="Statistics.html">Statistics</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

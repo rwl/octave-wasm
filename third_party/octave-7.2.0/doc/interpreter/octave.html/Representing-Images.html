@@ -1,0 +1,913 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Representing Images (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Representing Images (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Representing Images (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Image-Processing.html" rel="up" title="Image Processing">
+<link href="Plotting-on-top-of-Images.html" rel="next" title="Plotting on top of Images">
+<link href="Displaying-Images.html" rel="prev" title="Displaying Images">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Representing-Images">
+<div class="header">
+<p>
+Next: <a href="Plotting-on-top-of-Images.html" accesskey="n" rel="next">Plotting on top of Images</a>, Previous: <a href="Displaying-Images.html" accesskey="p" rel="prev">Displaying Images</a>, Up: <a href="Image-Processing.html" accesskey="u" rel="up">Image Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Representing-Images-1"></span><h3 class="section">32.3 Representing Images</h3>
+
+<p>In general Octave supports four different kinds of images, grayscale
+images, RGB images, binary images, and indexed images.  A grayscale
+image is represented with an M-by-N matrix in which each
+element corresponds to the intensity of a pixel.  An RGB image is
+represented with an M-by-N-by-3 array where each
+3-vector corresponds to the red, green, and blue intensities of each
+pixel.
+</p>
+<p>The actual meaning of the value of a pixel in a grayscale or RGB
+image depends on the class of the matrix.  If the matrix is of class
+<code>double</code> pixel intensities are between 0 and 1, if it is of class
+<code>uint8</code> intensities are between 0 and 255, and if it is of class
+<code>uint16</code> intensities are between 0 and 65535.
+</p>
+<p>A binary image is an M-by-N matrix of class <code>logical</code>.
+A pixel in a binary image is black if it is <code>false</code> and white
+if it is <code>true</code>.
+</p>
+<p>An indexed image consists of an M-by-N matrix of integers
+and a C-by-3 color map.  Each integer corresponds to an
+index in the color map, and each row in the color map corresponds to
+an RGB color.  The color map must be of class <code>double</code> with values
+between 0 and 1.
+</p>
+<p>The following convenience functions are available for conversion between image
+formats.
+</p>
+<span id="XREFim2double"></span><dl class="def">
+<dt id="index-im2double"><span class="category">: </span><span><em></em> <strong>im2double</strong> <em>(<var>img</var>)</em><a href='#index-im2double' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-im2double-1"><span class="category">: </span><span><em></em> <strong>im2double</strong> <em>(<var>img</var>, &quot;indexed&quot;)</em><a href='#index-im2double-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert image to double precision.
+</p>
+<p>The conversion of <var>img</var> to double precision, is dependent
+on the type of input image.  The following input classes are
+supported:
+</p>
+<dl compact="compact">
+<dt><span>&lsquo;<samp>uint8, uint16, and int16</samp>&rsquo;</span></dt>
+<dd><p>The range of values from the class is scaled to the interval [0 1].
+</p>
+</dd>
+<dt><span>&lsquo;<samp>logical</samp>&rsquo;</span></dt>
+<dd><p>True and false values are assigned a value of 0 and 1 respectively.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>single</samp>&rsquo;</span></dt>
+<dd><p>Values are cast to double.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>double</samp>&rsquo;</span></dt>
+<dd><p>Returns the same image.
+</p>
+</dd>
+</dl>
+
+<p>If <var>img</var> is an indexed image, then the second argument should be
+the string <code>&quot;indexed&quot;</code>.  If so, then <var>img</var> must either be
+of floating point class, or unsigned integer class and it will simply
+be cast to double.  If it is an integer class, a +1 offset is applied.
+</p>
+
+<p><strong>See also:</strong> <a href="Numeric-Data-Types.html#XREFdouble">double</a>.
+</p></dd></dl>
+
+
+<span id="XREFgray2ind"></span><dl class="def">
+<dt id="index-gray2ind"><span class="category">: </span><span><em><var>img</var> =</em> <strong>gray2ind</strong> <em>(<var>I</var>)</em><a href='#index-gray2ind' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gray2ind-1"><span class="category">: </span><span><em><var>img</var> =</em> <strong>gray2ind</strong> <em>(<var>I</var>, <var>n</var>)</em><a href='#index-gray2ind-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gray2ind-2"><span class="category">: </span><span><em><var>img</var> =</em> <strong>gray2ind</strong> <em>(<var>BW</var>)</em><a href='#index-gray2ind-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gray2ind-3"><span class="category">: </span><span><em><var>img</var> =</em> <strong>gray2ind</strong> <em>(<var>BW</var>, <var>n</var>)</em><a href='#index-gray2ind-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gray2ind-4"><span class="category">: </span><span><em>[<var>img</var>, <var>map</var>] =</em> <strong>gray2ind</strong> <em>(&hellip;)</em><a href='#index-gray2ind-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert a grayscale or binary intensity image to an indexed image.
+</p>
+<p>The indexed image will consist of <var>n</var> different intensity values.
+If not given <var>n</var> defaults to 64 for grayscale images or 2 for binary
+black and white images.
+</p>
+<p>The output <var>img</var> is of class uint8 if <var>n</var> is less than or equal to
+256; Otherwise the return class is uint16.
+</p>
+<p><strong>See also:</strong> <a href="#XREFind2gray">ind2gray</a>, <a href="#XREFrgb2ind">rgb2ind</a>.
+</p></dd></dl>
+
+
+<span id="XREFind2gray"></span><dl class="def">
+<dt id="index-ind2gray"><span class="category">: </span><span><em><var>I</var> =</em> <strong>ind2gray</strong> <em>(<var>x</var>, <var>map</var>)</em><a href='#index-ind2gray' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert a color indexed image to a grayscale intensity image.
+</p>
+<p>The image <var>x</var> must be an indexed image which will be converted using the
+colormap <var>map</var>.  If <var>map</var> does not contain enough colors for the
+image, pixels in <var>x</var> outside the range are mapped to the last color in
+the map before conversion to grayscale.
+</p>
+<p>The output <var>I</var> is of the same class as the input <var>x</var> and may be
+one of <code>uint8</code>, <code>uint16</code>, <code>single</code>, or <code>double</code>.
+</p>
+<p>Implementation Note: There are several ways of converting colors to
+grayscale intensities.  This functions uses the luminance value obtained
+from <code>rgb2gray</code> which is <code>I = 0.299*R + 0.587*G + 0.114*B</code>.
+Other possibilities include the value component from <code>rgb2hsv</code> or
+using a single color channel from <code>ind2rgb</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgray2ind">gray2ind</a>, <a href="#XREFind2rgb">ind2rgb</a>.
+</p></dd></dl>
+
+
+<span id="XREFrgb2ind"></span><dl class="def">
+<dt id="index-rgb2ind"><span class="category">: </span><span><em>[<var>x</var>, <var>map</var>] =</em> <strong>rgb2ind</strong> <em>(<var>rgb</var>)</em><a href='#index-rgb2ind' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rgb2ind-1"><span class="category">: </span><span><em>[<var>x</var>, <var>map</var>] =</em> <strong>rgb2ind</strong> <em>(<var>R</var>, <var>G</var>, <var>B</var>)</em><a href='#index-rgb2ind-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert an image in red-green-blue (RGB) color space to an indexed image.
+</p>
+<p>The input image <var>rgb</var> can be specified as a single matrix of size
+MxNx3, or as three separate variables, <var>R</var>, <var>G</var>, and
+<var>B</var>, its three color channels, red, green, and blue.
+</p>
+<p>It outputs an indexed image <var>x</var> and a colormap <var>map</var> to interpret
+an image exactly the same as the input.  No dithering or other form of color
+quantization is performed.  The output class of the indexed image <var>x</var>
+can be uint8, uint16 or double, whichever is required to specify the
+number of unique colors in the image (which will be equal to the number
+of rows in <var>map</var>) in order.
+</p>
+<p>Multi-dimensional indexed images (of size MxNx3xK) are also
+supported, both via a single input (<var>rgb</var>) or its three color channels
+as separate variables.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFind2rgb">ind2rgb</a>, <a href="Color-Conversion.html#XREFrgb2hsv">rgb2hsv</a>, <a href="Color-Conversion.html#XREFrgb2gray">rgb2gray</a>.
+</p></dd></dl>
+
+
+<span id="XREFind2rgb"></span><dl class="def">
+<dt id="index-ind2rgb"><span class="category">: </span><span><em><var>rgb</var> =</em> <strong>ind2rgb</strong> <em>(<var>x</var>, <var>map</var>)</em><a href='#index-ind2rgb' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ind2rgb-1"><span class="category">: </span><span><em>[<var>R</var>, <var>G</var>, <var>B</var>] =</em> <strong>ind2rgb</strong> <em>(<var>x</var>, <var>map</var>)</em><a href='#index-ind2rgb-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert an indexed image to red, green, and blue color components.
+</p>
+<p>The image <var>x</var> must be an indexed image which will be converted using the
+colormap <var>map</var>.  If <var>map</var> does not contain enough colors for the
+image, pixels in <var>x</var> outside the range are mapped to the last color in
+the map.
+</p>
+<p>The output may be a single RGB image (MxNx3 matrix where M and N
+are the original image <var>x</var> dimensions, one for each of the red, green
+and blue channels).  Alternatively, the individual red, green, and blue
+color matrices of size MxN may be returned.
+</p>
+<p>Multi-dimensional indexed images (of size MxNx1xK) are also
+supported.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFrgb2ind">rgb2ind</a>, <a href="#XREFind2gray">ind2gray</a>, <a href="Color-Conversion.html#XREFhsv2rgb">hsv2rgb</a>.
+</p></dd></dl>
+
+
+<p>Octave also provides tools to produce and work with movie frame structures.
+Those structures encapsulate the image data (<code>&quot;cdata&quot;</code> field) together
+with the corresponding colormap (<code>&quot;colormap&quot;</code> field).
+</p>
+<span id="XREFgetframe"></span><dl class="def">
+<dt id="index-getframe"><span class="category">: </span><span><em><var>frame</var> =</em> <strong>getframe</strong> <em>()</em><a href='#index-getframe' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getframe-1"><span class="category">: </span><span><em><var>frame</var> =</em> <strong>getframe</strong> <em>(<var>hax</var>)</em><a href='#index-getframe-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getframe-2"><span class="category">: </span><span><em><var>frame</var> =</em> <strong>getframe</strong> <em>(<var>hfig</var>)</em><a href='#index-getframe-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getframe-3"><span class="category">: </span><span><em><var>frame</var> =</em> <strong>getframe</strong> <em>(&hellip;, <var>rect</var>)</em><a href='#index-getframe-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Capture a figure or axes as a movie frame structure.
+</p>
+<p>Without an argument, capture the current axes excluding ticklabels, title,
+and x/y/zlabels.  The returned structure <var>frame</var> has a field
+<code>cdata</code>, which contains the actual image data in the form of an
+NxMx3 (RGB) uint8 matrix, and a field <code>colormap</code> which is
+provided for <small>MATLAB</small> compatibility but is always empty.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then capture this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>If the first argument <var>hfig</var> is a figure handle then the entire
+corresponding figure canvas is captured.
+</p>
+<p>Finally, if a second argument <var>rect</var> is provided it must be a
+four-element vector ([left bottom width height]) defining the region inside
+the figure to be captured.  Regardless of the figure <code>&quot;units&quot;</code>
+property, <var>rect</var> must be defined in <strong>pixels</strong>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFim2frame">im2frame</a>, <a href="#XREFframe2im">frame2im</a>, <a href="#XREFmovie">movie</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovie"></span><dl class="def">
+<dt id="index-movie"><span class="category">: </span><span><em></em> <strong>movie</strong> <em>(<var>mov</var>)</em><a href='#index-movie' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movie-1"><span class="category">: </span><span><em></em> <strong>movie</strong> <em>(<var>mov</var>, <var>n</var>)</em><a href='#index-movie-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movie-2"><span class="category">: </span><span><em></em> <strong>movie</strong> <em>(<var>mov</var>, <var>n</var>, <var>fps</var>)</em><a href='#index-movie-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movie-3"><span class="category">: </span><span><em></em> <strong>movie</strong> <em>(<var>h</var>, &hellip;)</em><a href='#index-movie-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Play a movie defined by an array of frame structures.
+</p>
+<p>The movie <var>mov</var> must be a struct array of frames with fields
+<code>&quot;cdata&quot;</code> and <code>&quot;colormap&quot;</code>, as returned by the <code>getframe</code>
+function.  By default all images are displayed once, at 12 fps, in the
+current axes.
+</p>
+<p>The optional argument <var>n</var> is a scalar or vector of integers that
+controls the number of times the movie is displayed and which particular
+frames are shown:
+</p>
+<dl compact="compact">
+<dt><span>First element:</span></dt>
+<dd>
+<dl compact="compact">
+<dt><span><var>n</var>(1) &gt; 0</span></dt>
+<dd><p>Play the movie <var>n</var>(1) times.
+</p>
+</dd>
+<dt><span><var>n</var>(1) &lt; 0</span></dt>
+<dd><p>Play the movie <code>abs (<var>n</var>(1)</code> times alternatively in forward and
+backward order.
+</p></dd>
+</dl>
+
+</dd>
+<dt><span>Other elements (if any):</span></dt>
+<dd><p>Indices of the frames in <var>mov</var> that will be displayed.
+</p></dd>
+</dl>
+
+<p>If the first argument is a handle to a figure or axes <var>h</var>, the movie is
+played in that figure or axes instead of the current axes.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFgetframe">getframe</a>, <a href="#XREFim2frame">im2frame</a>, <a href="#XREFframe2im">frame2im</a>.
+</p></dd></dl>
+
+
+<span id="XREFframe2im"></span><dl class="def">
+<dt id="index-frame2im"><span class="category">: </span><span><em>[<var>x</var>, <var>map</var>] =</em> <strong>frame2im</strong> <em>(<var>frame</var>)</em><a href='#index-frame2im' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert movie frame to indexed image.
+</p>
+<p>A movie frame is simply a struct with the fields <code>&quot;cdata&quot;</code> and
+<code>&quot;colormap&quot;</code>.
+</p>
+<p>Support for N-dimensional images or movies is given when <var>frame</var> is a
+struct array.  In such cases, <var>x</var> will be a MxNx1xK or MxNx3xK
+for indexed and RGB movies respectively, with each frame concatenated
+along the 4th dimension.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFim2frame">im2frame</a>, <a href="#XREFgetframe">getframe</a>.
+</p></dd></dl>
+
+
+<span id="XREFim2frame"></span><dl class="def">
+<dt id="index-im2frame"><span class="category">: </span><span><em></em> <strong>im2frame</strong> <em>(<var>rgb</var>)</em><a href='#index-im2frame' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-im2frame-1"><span class="category">: </span><span><em></em> <strong>im2frame</strong> <em>(<var>x</var>, <var>map</var>)</em><a href='#index-im2frame-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert image to movie frame.
+</p>
+<p>A movie frame is simply a struct with the fields <code>&quot;cdata&quot;</code> and
+<code>&quot;colormap&quot;</code>.
+</p>
+<p>Support for N-dimensional images is given when each image projection,
+matrix sizes of MxN and MxNx3 for RGB images, is concatenated
+along the fourth dimension.  In such cases, the returned value is a struct
+array.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFframe2im">frame2im</a>.
+</p></dd></dl>
+
+
+<p>The <code>colormap</code> function is used to change the colormap of the current
+axes or figure.
+</p>
+<span id="XREFcolormap"></span><dl class="def">
+<dt id="index-colormap"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>colormap</strong> <em>()</em><a href='#index-colormap' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colormap-1"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>colormap</strong> <em>(<var>map</var>)</em><a href='#index-colormap-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colormap-2"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>colormap</strong> <em>(<code>&quot;default&quot;</code>)</em><a href='#index-colormap-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colormap-3"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>colormap</strong> <em>(<var>map_name</var>)</em><a href='#index-colormap-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colormap-4"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>colormap</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-colormap-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colormap-5"><span class="category">: </span><span><em></em> <strong>colormap</strong> <em><var>map_name</var></em><a href='#index-colormap-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the current colormap.
+</p>
+<p>With no input arguments, <code>colormap</code> returns the current color map.
+</p>
+<p><code>colormap (<var>map</var>)</code> sets the current colormap to <var>map</var>.  The
+colormap should be an <var>n</var> row by 3 column matrix.  The columns
+contain red, green, and blue intensities respectively.  All entries
+must be between 0 and 1 inclusive.  The new colormap is returned.
+</p>
+<p><code>colormap (<code>&quot;default&quot;</code>)</code> restores the default colormap (the
+<code>viridis</code> map with 64 entries).  The default colormap is returned.
+</p>
+<p>The map may also be specified by a string, <var>map_name</var>, which
+is the name of a function that returns a colormap.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then the colormap for
+those axes is queried or set.
+</p>
+<p>For convenience, it is also possible to use this function with the
+command form, <code>colormap <var>map_name</var></code>.
+</p>
+<p>The list of built-in colormaps is:
+</p>
+<table>
+<thead><tr><th width="15%">Map</th><th width="85%">Description</th></tr></thead>
+<tr><td width="15%">viridis</td><td width="85%">default</td></tr>
+<tr><td width="15%">turbo</td><td width="85%">colormap traversing blue, cyan, green, yellow, red; modern replacement for jet.</td></tr>
+<tr><td width="15%">jet</td><td width="85%">colormap traversing blue, cyan, green, yellow, red.</td></tr>
+<tr><td width="15%">cubehelix</td><td width="85%">colormap traversing black, blue, green, red, white with increasing intensity.</td></tr>
+<tr><td width="15%">hsv</td><td width="85%">cyclic colormap traversing Hue, Saturation, Value space.</td></tr>
+<tr><td width="15%">rainbow</td><td width="85%">colormap traversing red, yellow, blue, green, violet.</td></tr>
+<tr><td width="15%">&mdash;&mdash;&mdash;&mdash;-</td><td width="85%">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</td></tr>
+<tr><td width="15%">hot</td><td width="85%">colormap traversing black, red, orange, yellow, white.</td></tr>
+<tr><td width="15%">cool</td><td width="85%">colormap traversing cyan, purple, magenta.</td></tr>
+<tr><td width="15%">spring</td><td width="85%">colormap traversing magenta to yellow.</td></tr>
+<tr><td width="15%">summer</td><td width="85%">colormap traversing green to yellow.</td></tr>
+<tr><td width="15%">autumn</td><td width="85%">colormap traversing red, orange, yellow.</td></tr>
+<tr><td width="15%">winter</td><td width="85%">colormap traversing blue to green.</td></tr>
+<tr><td width="15%">&mdash;&mdash;&mdash;&mdash;-</td><td width="85%">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</td></tr>
+<tr><td width="15%">gray</td><td width="85%">colormap traversing black to white in shades of gray.</td></tr>
+<tr><td width="15%">bone</td><td width="85%">colormap traversing black, gray-blue, white.</td></tr>
+<tr><td width="15%">copper</td><td width="85%">colormap traversing black to light copper.</td></tr>
+<tr><td width="15%">pink</td><td width="85%">colormap traversing black, gray-pink, white.</td></tr>
+<tr><td width="15%">ocean</td><td width="85%">colormap traversing black, dark-blue, white.</td></tr>
+<tr><td width="15%">&mdash;&mdash;&mdash;&mdash;-</td><td width="85%">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</td></tr>
+<tr><td width="15%">colorcube</td><td width="85%">equally spaced colors in RGB color space.</td></tr>
+<tr><td width="15%">flag</td><td width="85%">cyclic 4-color map of red, white, blue, black.</td></tr>
+<tr><td width="15%">lines</td><td width="85%">cyclic colormap with colors from axes <code>&quot;ColorOrder&quot;</code> property.</td></tr>
+<tr><td width="15%">prism</td><td width="85%">cyclic 6-color map of red, orange, yellow, green, blue, violet.</td></tr>
+<tr><td width="15%">&mdash;&mdash;&mdash;&mdash;-</td><td width="85%">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</td></tr>
+<tr><td width="15%">white</td><td width="85%">all white colormap (no colors).</td></tr>
+</table>
+
+<p><strong>See also:</strong> <a href="#XREFviridis">viridis</a>, <a href="#XREFturbo">turbo</a>, <a href="#XREFjet">jet</a>, <a href="#XREFcubehelix">cubehelix</a>, <a href="#XREFhsv">hsv</a>, <a href="#XREFrainbow">rainbow</a>, <a href="#XREFhot">hot</a>, <a href="#XREFcool">cool</a>, <a href="#XREFspring">spring</a>, <a href="#XREFsummer">summer</a>, <a href="#XREFautumn">autumn</a>, <a href="#XREFwinter">winter</a>, <a href="#XREFgray">gray</a>, <a href="#XREFbone">bone</a>, <a href="#XREFcopper">copper</a>, <a href="#XREFpink">pink</a>, <a href="#XREFocean">ocean</a>, <a href="#XREFcolorcube">colorcube</a>, <a href="#XREFflag">flag</a>, <a href="#XREFlines">lines</a>, <a href="#XREFprism">prism</a>, <a href="#XREFwhite">white</a>.
+</p></dd></dl>
+
+
+<span id="XREFiscolormap"></span><dl class="def">
+<dt id="index-iscolormap"><span class="category">: </span><span><em></em> <strong>iscolormap</strong> <em>(<var>cmap</var>)</em><a href='#index-iscolormap' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>cmap</var> is a colormap.
+</p>
+<p>A colormap is a real matrix, of class single or double, with 3 columns.
+Each row represents a single color.  The 3 columns contain red, green,
+and blue intensities respectively.
+</p>
+<p>All values in a colormap should be in the [0 1] range but this is not
+enforced.  Each function must decide what to do for values outside this
+range.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>, <a href="#XREFrgbplot">rgbplot</a>.
+</p></dd></dl>
+
+
+<p>The following functions return predefined colormaps, the same that can be
+requested by name using the <code>colormap</code> function.
+</p>
+<span id="XREFrgbplot"></span><dl class="def">
+<dt id="index-rgbplot"><span class="category">: </span><span><em></em> <strong>rgbplot</strong> <em>(<var>cmap</var>)</em><a href='#index-rgbplot' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rgbplot-1"><span class="category">: </span><span><em></em> <strong>rgbplot</strong> <em>(<var>cmap</var>, <var>style</var>)</em><a href='#index-rgbplot-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rgbplot-2"><span class="category">: </span><span><em><var>h</var> =</em> <strong>rgbplot</strong> <em>(&hellip;)</em><a href='#index-rgbplot-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot the components of a colormap.
+</p>
+<p>Two different <var>style</var>s are available for displaying the <var>cmap</var>:
+</p>
+<dl compact="compact">
+<dt><span>profile (default)</span></dt>
+<dd><p>Plot the RGB line profile of the colormap for each of the channels (red,
+green and blue) with the plot lines colored appropriately.  Each line
+represents the intensity of an RGB component across the colormap.
+</p>
+</dd>
+<dt><span>composite</span></dt>
+<dd><p>Draw the colormap across the X-axis so that the actual index colors are
+visible rather than the individual color components.
+</p>
+</dd>
+</dl>
+
+<p>The optional return value <var>h</var> is a graphics handle to the created plot.
+</p>
+<p>Run <code>demo rgbplot</code> to see an example of <code>rgbplot</code> and each style
+option.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFautumn"></span><dl class="def">
+<dt id="index-autumn"><span class="category">: </span><span><em><var>map</var> =</em> <strong>autumn</strong> <em>()</em><a href='#index-autumn' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-autumn-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>autumn</strong> <em>(<var>n</var>)</em><a href='#index-autumn-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.
+This colormap ranges from red through orange to yellow.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFbone"></span><dl class="def">
+<dt id="index-bone"><span class="category">: </span><span><em><var>map</var> =</em> <strong>bone</strong> <em>()</em><a href='#index-bone' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bone-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>bone</strong> <em>(<var>n</var>)</em><a href='#index-bone-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from black to white with
+gray-blue shades.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcolorcube"></span><dl class="def">
+<dt id="index-colorcube"><span class="category">: </span><span><em><var>map</var> =</em> <strong>colorcube</strong> <em>()</em><a href='#index-colorcube' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-colorcube-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>colorcube</strong> <em>(<var>n</var>)</em><a href='#index-colorcube-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap is composed of as many equally
+spaced colors (not grays) in the RGB color space as possible.
+</p>
+<p>If there are not a perfect number <var>n</var> of regularly spaced colors then
+the remaining entries in the colormap are gradients of pure red, green,
+blue, and gray.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcool"></span><dl class="def">
+<dt id="index-cool"><span class="category">: </span><span><em><var>map</var> =</em> <strong>cool</strong> <em>()</em><a href='#index-cool' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cool-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>cool</strong> <em>(<var>n</var>)</em><a href='#index-cool-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  The colormap varies from cyan to magenta.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcopper"></span><dl class="def">
+<dt id="index-copper"><span class="category">: </span><span><em><var>map</var> =</em> <strong>copper</strong> <em>()</em><a href='#index-copper' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-copper-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>copper</strong> <em>(<var>n</var>)</em><a href='#index-copper-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from black to a light copper
+tone.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcubehelix"></span><dl class="def">
+<dt id="index-cubehelix"><span class="category">: </span><span><em><var>map</var> =</em> <strong>cubehelix</strong> <em>()</em><a href='#index-cubehelix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cubehelix-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>cubehelix</strong> <em>(<var>n</var>)</em><a href='#index-cubehelix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cubehelix-2"><span class="category">: </span><span><em><var>map</var> =</em> <strong>cubehelix</strong> <em>(<var>n</var>, <var>start</var>, <var>rots</var>, <var>hue</var>, <var>gamma</var>)</em><a href='#index-cubehelix-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create cubehelix colormap.
+</p>
+<p>This colormap varies from black to white going though blue, green, and red
+tones while maintaining a monotonically increasing perception of intensity.
+This is achieved by traversing a color cube from black to white through
+a helix, hence the name cubehelix, while taking into account the perceived
+brightness of each channel according to the NTSC specifications from 1953.
+</p>
+<div class="example">
+<pre class="example">rgbplot (cubehelix (256))
+</pre></div>
+
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p>Reference: Green, D. A., 2011,
+<cite>A colour scheme for the display of astronomical intensity
+images</cite>, Bulletin of the Astronomical Society of India, 39, 289.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFflag"></span><dl class="def">
+<dt id="index-flag"><span class="category">: </span><span><em><var>map</var> =</em> <strong>flag</strong> <em>()</em><a href='#index-flag' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-flag-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>flag</strong> <em>(<var>n</var>)</em><a href='#index-flag-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap cycles through red, white, blue, and
+black with each index change.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFgray"></span><dl class="def">
+<dt id="index-gray"><span class="category">: </span><span><em><var>map</var> =</em> <strong>gray</strong> <em>()</em><a href='#index-gray' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gray-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>gray</strong> <em>(<var>n</var>)</em><a href='#index-gray-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create gray colormap.  This colormap varies from black to white with shades
+of gray.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFhot"></span><dl class="def">
+<dt id="index-hot"><span class="category">: </span><span><em><var>map</var> =</em> <strong>hot</strong> <em>()</em><a href='#index-hot' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hot-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>hot</strong> <em>(<var>n</var>)</em><a href='#index-hot-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap ranges from black through dark red,
+red, orange, yellow, to white.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFhsv"></span><dl class="def">
+<dt id="index-hsv"><span class="category">: </span><span><em></em> <strong>hsv</strong> <em>(<var>n</var>)</em><a href='#index-hsv' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap begins with red, changes through
+yellow, green, cyan, blue, and magenta, before returning to red.
+</p>
+<p>It is useful for displaying periodic functions.  The map is obtained by
+linearly varying the hue through all possible values while keeping constant
+maximum saturation and value.  The equivalent code is
+<code>hsv2rgb ([(0:N-1)'/N, ones(N,2)])</code>.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFjet"></span><dl class="def">
+<dt id="index-jet"><span class="category">: </span><span><em><var>map</var> =</em> <strong>jet</strong> <em>()</em><a href='#index-jet' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-jet-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>jet</strong> <em>(<var>n</var>)</em><a href='#index-jet-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap ranges from dark blue through blue,
+cyan, green, yellow, red, to dark red.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p>Programming Note: The <code>jet</code> colormap is not perceptually uniform.
+Try the <code>viridis</code> colormap if that is important.  For a drop-in
+replacement for <code>jet</code> with better perceptual characteristics try
+the <code>turbo</code> colormap.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>, <a href="#XREFturbo">turbo</a>.
+</p></dd></dl>
+
+
+<span id="XREFlines"></span><dl class="def">
+<dt id="index-lines"><span class="category">: </span><span><em><var>map</var> =</em> <strong>lines</strong> <em>()</em><a href='#index-lines' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-lines-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>lines</strong> <em>(<var>n</var>)</em><a href='#index-lines-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap is composed of the list of colors
+in the current axes <code>&quot;ColorOrder&quot;</code> property.  The default is blue,
+orange, yellow, purple, green, light blue, and dark red.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFocean"></span><dl class="def">
+<dt id="index-ocean"><span class="category">: </span><span><em><var>map</var> =</em> <strong>ocean</strong> <em>()</em><a href='#index-ocean' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ocean-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>ocean</strong> <em>(<var>n</var>)</em><a href='#index-ocean-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from black to white with shades
+of blue.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFpink"></span><dl class="def">
+<dt id="index-pink"><span class="category">: </span><span><em><var>map</var> =</em> <strong>pink</strong> <em>()</em><a href='#index-pink' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pink-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>pink</strong> <em>(<var>n</var>)</em><a href='#index-pink-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from black to white with
+shades of gray-pink.
+</p>
+<p>This colormap gives a sepia tone when used on grayscale images.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFprism"></span><dl class="def">
+<dt id="index-prism"><span class="category">: </span><span><em><var>map</var> =</em> <strong>prism</strong> <em>()</em><a href='#index-prism' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prism-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>prism</strong> <em>(<var>n</var>)</em><a href='#index-prism-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap cycles through red, orange, yellow,
+green, blue and violet with each index change.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFrainbow"></span><dl class="def">
+<dt id="index-rainbow"><span class="category">: </span><span><em><var>map</var> =</em> <strong>rainbow</strong> <em>()</em><a href='#index-rainbow' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rainbow-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>rainbow</strong> <em>(<var>n</var>)</em><a href='#index-rainbow-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap ranges from red through orange,
+yellow, green, blue, to violet.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFspring"></span><dl class="def">
+<dt id="index-spring"><span class="category">: </span><span><em><var>map</var> =</em> <strong>spring</strong> <em>()</em><a href='#index-spring' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-spring-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>spring</strong> <em>(<var>n</var>)</em><a href='#index-spring-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from magenta to yellow.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFsummer"></span><dl class="def">
+<dt id="index-summer"><span class="category">: </span><span><em><var>map</var> =</em> <strong>summer</strong> <em>()</em><a href='#index-summer' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-summer-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>summer</strong> <em>(<var>n</var>)</em><a href='#index-summer-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from green to yellow.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFturbo"></span><dl class="def">
+<dt id="index-turbo"><span class="category">: </span><span><em><var>map</var> =</em> <strong>turbo</strong> <em>()</em><a href='#index-turbo' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-turbo-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>turbo</strong> <em>(<var>n</var>)</em><a href='#index-turbo-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap ranges from dark blue through green
+to dark red; similar to the outdated <code>jet</code> colormap but perceptually
+uniform.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFviridis"></span><dl class="def">
+<dt id="index-viridis"><span class="category">: </span><span><em><var>map</var> =</em> <strong>viridis</strong> <em>()</em><a href='#index-viridis' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-viridis-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>viridis</strong> <em>(<var>n</var>)</em><a href='#index-viridis-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap ranges from dark purplish-blue through
+blue, green, to yellow.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFwhite"></span><dl class="def">
+<dt id="index-white"><span class="category">: </span><span><em><var>map</var> =</em> <strong>white</strong> <em>()</em><a href='#index-white' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-white-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>white</strong> <em>(<var>n</var>)</em><a href='#index-white-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap is completely white.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFwinter"></span><dl class="def">
+<dt id="index-winter"><span class="category">: </span><span><em><var>map</var> =</em> <strong>winter</strong> <em>()</em><a href='#index-winter' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-winter-1"><span class="category">: </span><span><em><var>map</var> =</em> <strong>winter</strong> <em>(<var>n</var>)</em><a href='#index-winter-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create color colormap.  This colormap varies from blue to green.
+</p>
+<p>The argument <var>n</var> must be a scalar.
+If unspecified, the length of the current colormap, or 64, is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcontrast"></span><dl class="def">
+<dt id="index-contrast"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>contrast</strong> <em>(<var>x</var>)</em><a href='#index-contrast' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contrast-1"><span class="category">: </span><span><em><var>cmap</var> =</em> <strong>contrast</strong> <em>(<var>x</var>, <var>n</var>)</em><a href='#index-contrast-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a gray colormap that maximizes the contrast in an image.
+</p>
+<p>The returned colormap will have <var>n</var> rows.  If <var>n</var> is not defined
+then the size of the current colormap is used.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>, <a href="#XREFbrighten">brighten</a>.
+</p></dd></dl>
+
+
+<p>The following three functions modify the existing colormap rather than
+replace it.
+</p>
+<span id="XREFbrighten"></span><dl class="def">
+<dt id="index-brighten"><span class="category">: </span><span><em><var>map_out</var> =</em> <strong>brighten</strong> <em>(<var>beta</var>)</em><a href='#index-brighten' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-brighten-1"><span class="category">: </span><span><em><var>map_out</var> =</em> <strong>brighten</strong> <em>(<var>map</var>, <var>beta</var>)</em><a href='#index-brighten-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-brighten-2"><span class="category">: </span><span><em><var>map_out</var> =</em> <strong>brighten</strong> <em>(<var>h</var>, <var>beta</var>)</em><a href='#index-brighten-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-brighten-3"><span class="category">: </span><span><em></em> <strong>brighten</strong> <em>(&hellip;)</em><a href='#index-brighten-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Brighten or darken a colormap.
+</p>
+<p>The argument <var>beta</var> must be a scalar between -1 and 1, where a negative
+value darkens and a positive value brightens the colormap.
+</p>
+<p>If the <var>map</var> argument is omitted, the function is applied to the current
+colormap.
+</p>
+<p>The first argument can also be a valid graphics handle <var>h</var>, in which
+case <code>brighten</code> is applied to the colormap associated with this handle.
+</p>
+<p>If no output is specified then the result is written to the current
+colormap.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>, <a href="#XREFcontrast">contrast</a>.
+</p></dd></dl>
+
+
+<span id="XREFspinmap"></span><dl class="def">
+<dt id="index-spinmap"><span class="category">: </span><span><em></em> <strong>spinmap</strong> <em>()</em><a href='#index-spinmap' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-spinmap-1"><span class="category">: </span><span><em></em> <strong>spinmap</strong> <em>(<var>t</var>)</em><a href='#index-spinmap-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-spinmap-2"><span class="category">: </span><span><em></em> <strong>spinmap</strong> <em>(<var>t</var>, <var>inc</var>)</em><a href='#index-spinmap-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-spinmap-3"><span class="category">: </span><span><em></em> <strong>spinmap</strong> <em>(&quot;inf&quot;)</em><a href='#index-spinmap-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Cycle the colormap for <var>t</var> seconds with a color increment of <var>inc</var>.
+</p>
+<p>Both parameters are optional.  The default cycle time is 5 seconds and the
+default increment is 2.  If the option <code>&quot;inf&quot;</code> is given then cycle
+continuously until <kbd>Control-C</kbd> is pressed.
+</p>
+<p>When rotating, the original color 1 becomes color 2, color 2 becomes
+color 3, etc.  A positive or negative increment is allowed and a higher
+value of <var>inc</var> will cause faster cycling through the colormap.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFwhitebg"></span><dl class="def">
+<dt id="index-whitebg"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>()</em><a href='#index-whitebg' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-whitebg-1"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>(<var>color</var>)</em><a href='#index-whitebg-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-whitebg-2"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>(&quot;none&quot;)</em><a href='#index-whitebg-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-whitebg-3"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>(<var>hfig</var>)</em><a href='#index-whitebg-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-whitebg-4"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>(<var>hfig</var>, <var>color</var>)</em><a href='#index-whitebg-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-whitebg-5"><span class="category">: </span><span><em></em> <strong>whitebg</strong> <em>(<var>hfig</var>, &quot;none&quot;)</em><a href='#index-whitebg-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Invert the colors in the current color scheme.
+</p>
+<p>The root properties are also inverted such that all subsequent plots will
+use the new color scheme.
+</p>
+<p>If the optional argument <var>color</var> is present then the background color
+is set to <var>color</var> rather than inverted.  <var>color</var> may be a string
+representing one of the eight known colors or an RGB triplet.  The special
+string argument <code>&quot;none&quot;</code> restores the plot to the factory default
+colors.
+</p>
+<p>If the first argument <var>hfig</var> is a figure handle or list of figure
+handles, then operate on these figures rather than the current figure
+returned by <code>gcf</code>.  The root properties will not be changed unless 0
+is in the list of figures.
+</p>
+<p>Programming Note: <code>whitebg</code> operates by changing the color properties
+of the children of the specified figures.  Only objects with a single color
+are affected.  For example, a patch with a single <code>&quot;FaceColor&quot;</code> will
+be changed, but a patch with shading (<code>&quot;interp&quot;</code>) will not be
+modified.  For inversion, the new color is simply the inversion in RGB
+space: <code><var>cnew</var> = [1-<var>R</var> 1-<var>G</var> 1-<var>B</var>]</code>.  When a color
+is specified, the axes and figure are set to the new color, and the color
+of child objects are then adjusted to have some contrast (visibility)
+against the new background.
+</p>
+<p><strong>See also:</strong> <a href="Managing-Default-Properties.html#XREFreset">reset</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The following functions can be used to manipulate colormaps.
+</p>
+<span id="XREFcmunique"></span><dl class="def">
+<dt id="index-cmunique"><span class="category">: </span><span><em>[<var>Y</var>, <var>newmap</var>] =</em> <strong>cmunique</strong> <em>(<var>X</var>, <var>map</var>)</em><a href='#index-cmunique' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cmunique-1"><span class="category">: </span><span><em>[<var>Y</var>, <var>newmap</var>] =</em> <strong>cmunique</strong> <em>(<var>RGB</var>)</em><a href='#index-cmunique-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cmunique-2"><span class="category">: </span><span><em>[<var>Y</var>, <var>newmap</var>] =</em> <strong>cmunique</strong> <em>(<var>I</var>)</em><a href='#index-cmunique-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert an input image <var>X</var> to an output indexed image <var>Y</var> which uses
+the smallest colormap possible <var>newmap</var>.
+</p>
+<p>When the input is an indexed image (<var>X</var> with colormap <var>map</var>) the
+output is a colormap <var>newmap</var> from which any repeated rows have been
+eliminated.  The output image, <var>Y</var>, is the original input image with
+the indices adjusted to match the new, possibly smaller, colormap.
+</p>
+<p>When the input is an RGB image (an MxNx3 array), the output
+colormap will contain one entry for every unique color in the original
+image.  In the worst case the new map could have as many rows as the
+number of pixels in the original image.
+</p>
+<p>When the input is a grayscale image <var>I</var>, the output colormap will
+contain one entry for every unique intensity value in the original image.
+In the worst case the new map could have as many rows as the number of
+pixels in the original image.
+</p>
+<p>Implementation Details:
+</p>
+<p><var>newmap</var> is always an Mx3 matrix, even if the input image is
+an intensity grayscale image <var>I</var> (all three RGB planes are
+assigned the same value).
+</p>
+<p>The output image is of class uint8 if the size of the new colormap is
+less than or equal to 256.  Otherwise, the output image is of class double.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFrgb2ind">rgb2ind</a>, <a href="#XREFgray2ind">gray2ind</a>.
+</p></dd></dl>
+
+
+<span id="XREFcmpermute"></span><dl class="def">
+<dt id="index-cmpermute"><span class="category">: </span><span><em>[<var>Y</var>, <var>newmap</var>] =</em> <strong>cmpermute</strong> <em>(<var>X</var>, <var>map</var>)</em><a href='#index-cmpermute' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cmpermute-1"><span class="category">: </span><span><em>[<var>Y</var>, <var>newmap</var>] =</em> <strong>cmpermute</strong> <em>(<var>X</var>, <var>map</var>, <var>index</var>)</em><a href='#index-cmpermute-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Reorder colors in a colormap.
+</p>
+<p>When called with only two arguments, <code>cmpermute</code> randomly rearranges
+the colormap <var>map</var> and returns a new colormap <var>newmap</var>.  It also
+returns the indexed image <var>Y</var> which is the equivalent of the original
+input image <var>X</var> when displayed using <var>newmap</var>.
+</p>
+<p>When called with an optional third argument the order of colors in the new
+colormap is defined by <var>index</var>.
+</p>
+<p><strong>Caution:</strong> <var>index</var> should not have repeated elements or the
+function will fail.
+</p>
+</dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Plotting-on-top-of-Images.html">Plotting on top of Images</a>, Previous: <a href="Displaying-Images.html">Displaying Images</a>, Up: <a href="Image-Processing.html">Image Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Evaluation Notation (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Evaluation Notation (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Evaluation Notation (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Conventions.html" rel="up" title="Conventions">
+<link href="Printing-Notation.html" rel="next" title="Printing Notation">
+<link href="Fonts.html" rel="prev" title="Fonts">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Evaluation-Notation">
+<div class="header">
+<p>
+Next: <a href="Printing-Notation.html" accesskey="n" rel="next">Printing Notation</a>, Previous: <a href="Fonts.html" accesskey="p" rel="prev">Fonts</a>, Up: <a href="Conventions.html" accesskey="u" rel="up">Conventions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Evaluation-Notation-1"></span><h4 class="subsection">1.3.2 Evaluation Notation</h4>
+<span id="index-evaluation-notation"></span>
+<span id="index-documentation-notation"></span>
+
+<p>In the examples in this manual, results from expressions that you
+evaluate are indicated with &lsquo;<samp>&rArr;</samp>&rsquo;.  For example:
+</p>
+<div class="example">
+<pre class="example">sqrt (2)
+     &rArr; 1.4142
+</pre></div>
+
+<p>You can read this as &ldquo;<code>sqrt (2)</code> evaluates to 1.4142&rdquo;.
+</p>
+<p>In some cases, matrix values that are returned by expressions are
+displayed like this
+</p>
+<div class="example">
+<pre class="example">[1, 2; 3, 4] == [1, 3; 2, 4]
+     &rArr; [ 1, 0; 0, 1 ]
+</pre></div>
+
+<p>and in other cases, they are displayed like this
+</p>
+<div class="example">
+<pre class="example">eye (3)
+     &rArr;  1  0  0
+         0  1  0
+         0  0  1
+</pre></div>
+
+<p>in order to clearly show the structure of the result.
+</p>
+<p>Sometimes to help describe one expression, another expression is shown
+that produces identical results.  The exact equivalence of expressions
+is indicated with &lsquo;<samp>&equiv;</samp>&rsquo;.  For example:
+</p>
+<div class="example">
+<pre class="example">rot90 ([1, 2; 3, 4], -1)
+&equiv;
+rot90 ([1, 2; 3, 4], 3)
+&equiv;
+rot90 ([1, 2; 3, 4], 7)
+</pre></div>
+
+</div>
+
+
+
+</body>
+</html>

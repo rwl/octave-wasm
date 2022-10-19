@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Logical Values (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Logical Values (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Logical Values (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Automatic-Conversion-of-Data-Types.html" rel="next" title="Automatic Conversion of Data Types">
+<link href="Bit-Manipulations.html" rel="prev" title="Bit Manipulations">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Logical-Values">
+<div class="header">
+<p>
+Next: <a href="Automatic-Conversion-of-Data-Types.html" accesskey="n" rel="next">Automatic Conversion of Data Types</a>, Previous: <a href="Bit-Manipulations.html" accesskey="p" rel="prev">Bit Manipulations</a>, Up: <a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Logical-Values-1"></span><h3 class="section">4.6 Logical Values</h3>
+
+<p>Octave has built-in support for logical values, i.e., variables that
+are either <code>true</code> or <code>false</code>.  When comparing two variables,
+the result will be a logical value whose value depends on whether or
+not the comparison is true.
+</p>
+<p>The basic logical operations are <code>&amp;</code>, <code>|</code>, and <code>!</code>,
+which correspond to &ldquo;Logical And&rdquo;, &ldquo;Logical Or&rdquo;, and &ldquo;Logical
+Negation&rdquo;.  These operations all follow the usual rules of logic.
+</p>
+<p>It is also possible to use logical values as part of standard numerical
+calculations.  In this case <code>true</code> is converted to <code>1</code>, and
+<code>false</code> to 0, both represented using double precision floating
+point numbers.  So, the result of <code>true*22 - false/6</code> is <code>22</code>.
+</p>
+<p>Logical values can also be used to index matrices and cell arrays.
+When indexing with a logical array the result will be a vector containing
+the values corresponding to <code>true</code> parts of the logical array.
+The following example illustrates this.
+</p>
+<div class="example">
+<pre class="example">data = [ 1, 2; 3, 4 ];
+idx = (data &lt;= 2);
+data(idx)
+     &rArr; ans = [ 1; 2 ]
+</pre></div>
+
+<p>Instead of creating the <code>idx</code> array it is possible to replace
+<code>data(idx)</code> with <code>data(&nbsp;data&nbsp;&lt;=&nbsp;2&nbsp;)</code><!-- /@w --> in the above code.
+</p>
+<p>Logical values can also be constructed by
+casting numeric objects to logical values, or by using the <code>true</code>
+or <code>false</code> functions.
+</p>
+<span id="XREFlogical"></span><dl class="def">
+<dt id="index-logical"><span class="category">: </span><span><em></em> <strong>logical</strong> <em>(<var>x</var>)</em><a href='#index-logical' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert the numeric object <var>x</var> to logical type.
+</p>
+<p>Any nonzero values will be converted to true (1) while zero values will be
+converted to false (0).  The non-numeric value NaN cannot be converted and
+will produce an error.
+</p>
+<p>Compatibility Note: Octave accepts complex values as input, whereas
+<small>MATLAB</small> issues an error.
+</p>
+<p><strong>See also:</strong> <a href="Numeric-Data-Types.html#XREFdouble">double</a>, <a href="Single-Precision-Data-Types.html#XREFsingle">single</a>, <a href="Concatenating-Strings.html#XREFchar">char</a>.
+</p></dd></dl>
+
+
+<span id="XREFtrue"></span><dl class="def">
+<dt id="index-true"><span class="category">: </span><span><em><var>val</var> =</em> <strong>true</strong> <em>(<var>x</var>)</em><a href='#index-true' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-true-1"><span class="category">: </span><span><em><var>val</var> =</em> <strong>true</strong> <em>(<var>n</var>, <var>m</var>)</em><a href='#index-true-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-true-2"><span class="category">: </span><span><em><var>val</var> =</em> <strong>true</strong> <em>(<var>n</var>, <var>m</var>, <var>k</var>, &hellip;)</em><a href='#index-true-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-true-3"><span class="category">: </span><span><em><var>val</var> =</em> <strong>true</strong> <em>(&hellip;, &quot;<var>like</var>&quot;, <var>var</var>))</em><a href='#index-true-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a matrix or N-dimensional array whose elements are all logical 1.
+</p>
+<p>If invoked with a single scalar integer argument, return a square
+matrix of the specified size.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with given dimensions.
+</p>
+<p>If a logical variable <var>var</var> is specified after <code>&quot;like&quot;</code>, the output
+<var>val</var> will have the same sparsity as <var>var</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFfalse">false</a>.
+</p></dd></dl>
+
+
+<span id="XREFfalse"></span><dl class="def">
+<dt id="index-false"><span class="category">: </span><span><em><var>val</var> =</em> <strong>false</strong> <em>(<var>x</var>)</em><a href='#index-false' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-false-1"><span class="category">: </span><span><em><var>val</var> =</em> <strong>false</strong> <em>(<var>n</var>, <var>m</var>)</em><a href='#index-false-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-false-2"><span class="category">: </span><span><em><var>val</var> =</em> <strong>false</strong> <em>(<var>n</var>, <var>m</var>, <var>k</var>, &hellip;)</em><a href='#index-false-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-false-3"><span class="category">: </span><span><em><var>val</var> =</em> <strong>false</strong> <em>(&hellip;, &quot;<var>like</var>&quot;, <var>var</var>))</em><a href='#index-false-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a matrix or N-dimensional array whose elements are all logical 0.
+</p>
+<p>If invoked with a single scalar integer argument, return a square
+matrix of the specified size.
+</p>
+<p>If invoked with two or more scalar integer arguments, or a vector of integer
+values, return an array with given dimensions.
+</p>
+<p>If a logical variable <var>var</var> is specified after <code>&quot;like&quot;</code>, the output
+<var>val</var> will have the same sparsity as <var>var</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtrue">true</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Automatic-Conversion-of-Data-Types.html">Automatic Conversion of Data Types</a>, Previous: <a href="Bit-Manipulations.html">Bit Manipulations</a>, Up: <a href="Numeric-Data-Types.html">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>FTP Objects (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="FTP Objects (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="FTP Objects (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Networking-Utilities.html" rel="up" title="Networking Utilities">
+<link href="WWW-Access.html" rel="next" title="WWW Access">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="FTP-Objects">
+<div class="header">
+<p>
+Next: <a href="WWW-Access.html" accesskey="n" rel="next">WWW Access</a>, Up: <a href="Networking-Utilities.html" accesskey="u" rel="up">Networking Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="FTP-Objects-1"></span><h4 class="subsection">36.4.1 FTP Objects</h4>
+
+<p>Octave supports the FTP protocol through an object-oriented interface.
+Use the function <code>ftp</code> to create an FTP object which represents the
+connection.  All FTP functions take an FTP object as the first argument.
+</p>
+<span id="XREF_0040ftp_002fftp"></span><dl class="def">
+<dt id="index-ftp"><span class="category">: </span><span><em><var>f</var> =</em> <strong>ftp</strong> <em>(<var>host</var>)</em><a href='#index-ftp' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ftp-1"><span class="category">: </span><span><em><var>f</var> =</em> <strong>ftp</strong> <em>(<var>host</var>, <var>username</var>, <var>password</var>)</em><a href='#index-ftp-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Connect to the FTP server <var>host</var> with <var>username</var> and <var>password</var>.
+</p>
+<p>If <var>username</var> and <var>password</var> are not specified, user
+<code>&quot;anonymous&quot;</code> with no password is used.  The returned FTP object
+<var>f</var> represents the established FTP connection.
+</p>
+<p>The list of actions for an FTP object are shown below.  All functions
+require an FTP object as the first argument.
+</p>
+<table>
+<thead><tr><th width="15%">Method</th><th width="80%">Description</th></tr></thead>
+<tr><td width="15%">ascii</td><td width="80%">Set transfer type to ascii</td></tr>
+<tr><td width="15%">binary</td><td width="80%">Set transfer type to binary</td></tr>
+<tr><td width="15%">cd</td><td width="80%">Change remote working directory</td></tr>
+<tr><td width="15%">close</td><td width="80%">Close FTP connection</td></tr>
+<tr><td width="15%">delete</td><td width="80%">Delete remote file</td></tr>
+<tr><td width="15%">dir</td><td width="80%">List remote directory contents</td></tr>
+<tr><td width="15%">mget</td><td width="80%">Download remote files</td></tr>
+<tr><td width="15%">mkdir</td><td width="80%">Create remote directory</td></tr>
+<tr><td width="15%">mput</td><td width="80%">Upload local files</td></tr>
+<tr><td width="15%">rename</td><td width="80%">Rename remote file or directory</td></tr>
+<tr><td width="15%">rmdir</td><td width="80%">Remove remote directory</td></tr>
+</table>
+
+</dd></dl>
+
+
+<span id="XREF_0040ftp_002fclose"></span><dl class="def">
+<dt id="index-close-6"><span class="category">: </span><span><em></em> <strong>close</strong> <em>(<var>f</var>)</em><a href='#index-close-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Close the FTP connection represented by the FTP object <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fmget"></span><dl class="def">
+<dt id="index-mget"><span class="category">: </span><span><em></em> <strong>mget</strong> <em>(<var>f</var>, <var>file</var>)</em><a href='#index-mget' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-mget-1"><span class="category">: </span><span><em></em> <strong>mget</strong> <em>(<var>f</var>, <var>dir</var>)</em><a href='#index-mget-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-mget-2"><span class="category">: </span><span><em></em> <strong>mget</strong> <em>(<var>f</var>, <var>remote_name</var>, <var>target</var>)</em><a href='#index-mget-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Download a remote file <var>file</var> or directory <var>dir</var> to the local
+directory on the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p>
+<p>The arguments <var>file</var> and <var>dir</var> can include wildcards and any
+files or directories on the remote server that match will be downloaded.
+</p>
+<p>If a third string argument <var>target</var> is given, then it must indicate
+the path to the local destination directory.  <var>target</var> may be a
+relative or absolute path.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fmput"></span><dl class="def">
+<dt id="index-mput"><span class="category">: </span><span><em></em> <strong>mput</strong> <em>(<var>f</var>, <var>file</var>)</em><a href='#index-mput' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Upload the local file <var>file</var> into the current remote directory on the
+FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the ftp function.
+</p>
+<p>The argument <var>file</var> is passed through the <code>glob</code> function and any
+files that match the wildcards in <var>file</var> will be uploaded.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fcd"></span><dl class="def">
+<dt id="index-cd"><span class="category">: </span><span><em></em> <strong>cd</strong> <em>(<var>f</var>)</em><a href='#index-cd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cd-1"><span class="category">: </span><span><em></em> <strong>cd</strong> <em>(<var>f</var>, <var>path</var>)</em><a href='#index-cd-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Get or set the remote directory on the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p>
+<p>If <var>path</var> is not specified, return the remote current working
+directory.  Otherwise, set the remote directory to <var>path</var> and return
+the new remote working directory.
+</p>
+<p>If the directory does not exist, an error message is printed and the
+working directory is not changed.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fdir"></span><dl class="def">
+<dt id="index-dir"><span class="category">: </span><span><em><var>lst</var> =</em> <strong>dir</strong> <em>(<var>f</var>)</em><a href='#index-dir' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>List the current directory in verbose form for the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fascii"></span><dl class="def">
+<dt id="index-ascii"><span class="category">: </span><span><em></em> <strong>ascii</strong> <em>(<var>f</var>)</em><a href='#index-ascii' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set the FTP connection <var>f</var> to use ASCII mode for transfers.
+</p>
+<p>ASCII mode is only appropriate for text files as it will convert the
+remote host&rsquo;s newline representation to the local host&rsquo;s newline
+representation.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fbinary"></span><dl class="def">
+<dt id="index-binary"><span class="category">: </span><span><em></em> <strong>binary</strong> <em>(<var>f</var>)</em><a href='#index-binary' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set the FTP connection <var>f</var> to use binary mode for transfers.
+</p>
+<p>In binary mode there is no conversion of newlines from the remote
+representation to the local representation.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fdelete"></span><dl class="def">
+<dt id="index-delete-3"><span class="category">: </span><span><em></em> <strong>delete</strong> <em>(<var>f</var>, <var>file</var>)</em><a href='#index-delete-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Delete the remote file <var>file</var> over the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002frename"></span><dl class="def">
+<dt id="index-rename-2"><span class="category">: </span><span><em></em> <strong>rename</strong> <em>(<var>f</var>, <var>oldname</var>, <var>newname</var>)</em><a href='#index-rename-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Rename or move the remote file or directory <var>oldname</var> to <var>newname</var>,
+over the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the ftp function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002fmkdir"></span><dl class="def">
+<dt id="index-mkdir-5"><span class="category">: </span><span><em></em> <strong>mkdir</strong> <em>(<var>f</var>, <var>path</var>)</em><a href='#index-mkdir-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create the remote directory <var>path</var>, over the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+<span id="XREF_0040ftp_002frmdir"></span><dl class="def">
+<dt id="index-rmdir-3"><span class="category">: </span><span><em></em> <strong>rmdir</strong> <em>(<var>f</var>, <var>path</var>)</em><a href='#index-rmdir-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Remove the remote directory <var>path</var>, over the FTP connection <var>f</var>.
+</p>
+<p><var>f</var> is an FTP object returned by the <code>ftp</code> function.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="WWW-Access.html">WWW Access</a>, Up: <a href="Networking-Utilities.html">Networking Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

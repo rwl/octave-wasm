@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Data Sources in Object Groups (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Data Sources in Object Groups (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Data Sources in Object Groups (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Object-Groups.html" rel="up" title="Object Groups">
+<link href="Area-Series.html" rel="next" title="Area Series">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Data-Sources-in-Object-Groups">
+<div class="header">
+<p>
+Next: <a href="Area-Series.html" accesskey="n" rel="next">Area Series</a>, Up: <a href="Object-Groups.html" accesskey="u" rel="up">Object Groups</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Data-Sources-in-Object-Groups-1"></span><h4 class="subsubsection">15.4.6.1 Data Sources in Object Groups</h4>
+<span id="index-data-sources-in-object-groups"></span>
+<span id="XREFdatasources"></span><p>All of the group objects contain data source parameters.  There are
+string parameters that contain an expression that is evaluated to update
+the relevant data property of the group when the <code>refreshdata</code>
+function is called.
+</p>
+<span id="XREFrefreshdata"></span><dl class="def">
+<dt id="index-refreshdata"><span class="category">: </span><span><em></em> <strong>refreshdata</strong> <em>()</em><a href='#index-refreshdata' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-refreshdata-1"><span class="category">: </span><span><em></em> <strong>refreshdata</strong> <em>(<var>h</var>)</em><a href='#index-refreshdata-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-refreshdata-2"><span class="category">: </span><span><em></em> <strong>refreshdata</strong> <em>(<var>h</var>, <var>workspace</var>)</em><a href='#index-refreshdata-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Evaluate any &lsquo;<samp>datasource</samp>&rsquo; properties of the current figure and update
+the plot if the corresponding data has changed.
+</p>
+<p>If the first argument <var>h</var> is a list of graphic handles, then operate
+on these objects rather than the current figure returned by <code>gcf</code>.
+</p>
+<p>The optional second argument <var>workspace</var> can take the following values:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;base&quot;</code></span></dt>
+<dd><p>Evaluate the datasource properties in the base workspace.  (default).
+</p>
+</dd>
+<dt><span><code>&quot;caller&quot;</code></span></dt>
+<dd><p>Evaluate the datasource properties in the workspace of the function
+that called <code>refreshdata</code>.
+</p></dd>
+</dl>
+
+<p>An example of the use of <code>refreshdata</code> is:
+</p>
+<div class="example">
+<pre class="example">x = 0:0.1:10;
+y = sin (x);
+plot (x, y, &quot;ydatasource&quot;, &quot;y&quot;);
+for i = 1 : 100
+  pause (0.1);
+  y = sin (x + 0.1*i);
+  refreshdata ();
+endfor
+</pre></div>
+</dd></dl>
+
+
+<span id="XREFlinkdata"></span>
+</div>
+
+
+
+</body>
+</html>

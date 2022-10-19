@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uimenu Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Uimenu Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Uimenu Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uibuttongroup-Properties.html" rel="next" title="Uibuttongroup Properties">
+<link href="Light-Properties.html" rel="prev" title="Light Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Uimenu-Properties">
+<div class="header">
+<p>
+Next: <a href="Uibuttongroup-Properties.html" accesskey="n" rel="next">Uibuttongroup Properties</a>, Previous: <a href="Light-Properties.html" accesskey="p" rel="prev">Light Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Uimenu-Properties-1"></span><h4 class="subsubsection">15.3.3.12 Uimenu Properties</h4>
+<span id="index--Uimenu-PropertiesUimenu-Properties"></span>
+
+
+
+<p>Properties of <code>uimenu</code> objects (see <a href="UI-Elements.html#XREFuimenu">uimenu</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFuimenuaccelerator"></span><span id="index-uimenu-accelerator"></span>
+</dd>
+<dt><span><code>accelerator</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenubeingdeleted"></span><span id="index-uimenu-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenubusyaction"></span><span id="index-uimenu-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenubuttondownfcn"></span><span id="index-uimenu-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p><code>buttondownfcn</code> is unused.
+</p>
+
+<span id="XREFuimenucallback"></span><span id="index-uimenu-callback"></span>
+</dd>
+<dt><span><code>callback</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuchecked"></span><span id="index-uimenu-checked"></span>
+</dd>
+<dt><span><code>checked</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuchildren"></span><span id="index-uimenu-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p>Graphics handles of the uimenu&rsquo;s children.
+</p>
+
+<span id="XREFuimenuclipping"></span><span id="index-uimenu-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>clipping</code> is <code>&quot;on&quot;</code>, the uimenu is clipped in its parent axes limits.
+</p>
+
+<span id="XREFuimenucontextmenu"></span><span id="index-uimenu-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uimenu object.
+</p>
+
+<span id="XREFuimenucreatefcn"></span><span id="index-uimenu-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after uimenu has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaultuimenucreatefcn&quot;, 'disp (&quot;uimenu created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenudeletefcn"></span><span id="index-uimenu-deletefcn"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before uimenu is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenuenable"></span><span id="index-uimenu-enable"></span>
+</dd>
+<dt><span><code>enable</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFuimenuforegroundcolor"></span><span id="index-uimenu-foregroundcolor"></span>
+</dd>
+<dt><span><code>foregroundcolor</code>: def. <code>[0   0   0]</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuhandlevisibility"></span><span id="index-uimenu-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the uimenu&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFuimenuhittest"></span><span id="index-uimenu-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether uimenu processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFuimenupickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenuinterruptible"></span><span id="index-uimenu-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenulabel"></span><span id="index-uimenu-label"></span>
+</dd>
+<dt><span><code>label</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuparent"></span><span id="index-uimenu-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle</span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFuimenupickableparts"></span><span id="index-uimenu-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code>: <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p>Specify whether uimenu will accept mouse clicks.  By default, <code>pickableparts</code> is <code>&quot;visible&quot;</code> and only visible parts of the uimenu or its children may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code>&quot;hittest&quot;</code> property will determine how they are processed.  See <a href="#XREFuimenuhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFuimenuposition"></span><span id="index-uimenu-position"></span>
+</dd>
+<dt><span><code>position</code>: def. <code>4</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuselected"></span><span id="index-uimenu-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenuselectionhighlight"></span><span id="index-uimenu-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFuimenuseparator"></span><span id="index-uimenu-separator"></span>
+</dd>
+<dt><span><code>separator</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenutag"></span><span id="index-uimenu-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFuimenutext"></span><span id="index-uimenu-text"></span>
+</dd>
+<dt><span><code>text</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuimenutype"></span><span id="index-uimenu-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;uimenu&quot;</code>
+</p>
+
+<span id="XREFuimenuuserdata"></span><span id="index-uimenu-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFuimenuvisible"></span><span id="index-uimenu-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the uimenu is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Uibuttongroup-Properties.html">Uibuttongroup Properties</a>, Previous: <a href="Light-Properties.html">Light Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

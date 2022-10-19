@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Current Working Directory (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Current Working Directory (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Current Working Directory (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="System-Utilities.html" rel="up" title="System Utilities">
+<link href="Password-Database-Functions.html" rel="next" title="Password Database Functions">
+<link href="Environment-Variables.html" rel="prev" title="Environment Variables">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Current-Working-Directory">
+<div class="header">
+<p>
+Next: <a href="Password-Database-Functions.html" accesskey="n" rel="next">Password Database Functions</a>, Previous: <a href="Environment-Variables.html" accesskey="p" rel="prev">Environment Variables</a>, Up: <a href="System-Utilities.html" accesskey="u" rel="up">System Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Current-Working-Directory-1"></span><h3 class="section">36.8 Current Working Directory</h3>
+
+<span id="XREFcd"></span><dl class="def">
+<dt id="index-cd-2"><span class="category">: </span><span><em></em> <strong>cd</strong> <em><var>dir</var></em><a href='#index-cd-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cd-3"><span class="category">: </span><span><em></em> <strong>cd</strong><a href='#index-cd-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cd-4"><span class="category">: </span><span><em><var>old_dir</var> =</em> <strong>cd</strong><a href='#index-cd-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cd-5"><span class="category">: </span><span><em><var>old_dir</var> =</em> <strong>cd</strong> <em>(<var>dir</var>)</em><a href='#index-cd-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-chdir"><span class="category">: </span><span><em></em> <strong>chdir</strong> <em>&hellip;</em><a href='#index-chdir' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Change the current working directory to <var>dir</var>.
+</p>
+<p>If called with no input or output arguments, the current directory is
+changed to the user&rsquo;s home directory (<code>&quot;~&quot;</code>).
+</p>
+<p>For example,
+</p>
+<div class="example">
+<pre class="example">cd ~/octave
+</pre></div>
+
+<p>changes the current working directory to <samp>~/octave</samp>.  If the
+directory does not exist, an error message is printed and the working
+directory is not changed.
+</p>
+<p><code>chdir</code> is an alias for <code>cd</code> and can be used in all of the same
+calling formats.
+</p>
+<p>Compatibility Note: When called with no arguments, <small>MATLAB</small> prints the
+present working directory rather than changing to the user&rsquo;s home directory.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpwd">pwd</a>, <a href="Filesystem-Utilities.html#XREFmkdir">mkdir</a>, <a href="Filesystem-Utilities.html#XREFrmdir">rmdir</a>, <a href="#XREFdir">dir</a>, <a href="#XREFls">ls</a>.
+</p></dd></dl>
+
+
+<span id="XREFls"></span><dl class="def">
+<dt id="index-ls"><span class="category">: </span><span><em></em> <strong>ls</strong><a href='#index-ls' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ls-1"><span class="category">: </span><span><em></em> <strong>ls</strong> <em><var>filenames</var></em><a href='#index-ls-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ls-2"><span class="category">: </span><span><em></em> <strong>ls</strong> <em><var>options</var></em><a href='#index-ls-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ls-3"><span class="category">: </span><span><em></em> <strong>ls</strong> <em><var>options</var> <var>filenames</var></em><a href='#index-ls-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ls-4"><span class="category">: </span><span><em><var>list</var> =</em> <strong>ls</strong> <em>(&hellip;)</em><a href='#index-ls-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>List directory contents.
+</p>
+<p>The <code>ls</code> function forwards to the <code>ls</code> command if it is available.
+It falls back to calling the native operating system&rsquo;s directory listing
+command.  Available <var>options</var> may vary from system to system.
+</p>
+<p>Filenames are subject to shell expansion if they contain any wildcard
+characters &lsquo;<samp>*</samp>&rsquo;, &lsquo;<samp>?</samp>&rsquo;, &lsquo;<samp>[]</samp>&rsquo;.  If these wildcard characters are
+escaped with a backslash &lsquo;<samp>\</samp>&rsquo; (e.g., &lsquo;<samp>\*</samp>&rsquo;) then they are not
+treated as wildcards, but instead as the corresponding literal character.
+</p>
+<p>If the optional output <var>list</var> is requested then <code>ls</code> returns a
+character array with one row for each file/directory name.
+</p>
+<p>Example usage on a UNIX-like system:
+</p>
+<div class="example">
+<pre class="example">ls -l
+     -| total 12
+     -| -rw-r--r--   1 jwe  users  4488 Aug 19 04:02 foo.m
+     -| -rw-r--r--   1 jwe  users  1315 Aug 17 23:14 bar.m
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFdir">dir</a>, <a href="Filesystem-Utilities.html#XREFreaddir">readdir</a>, <a href="Filesystem-Utilities.html#XREFglob">glob</a>, <a href="Status-of-Variables.html#XREFwhat">what</a>, <a href="Filesystem-Utilities.html#XREFstat">stat</a>, <a href="Filesystem-Utilities.html#XREFfilesep">filesep</a>, <a href="#XREFls_005fcommand">ls_command</a>.
+</p></dd></dl>
+
+
+<span id="XREFls_005fcommand"></span><dl class="def">
+<dt id="index-ls_005fcommand"><span class="category">: </span><span><em><var>val</var> =</em> <strong>ls_command</strong> <em>()</em><a href='#index-ls_005fcommand' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ls_005fcommand-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>ls_command</strong> <em>(<var>new_val</var>)</em><a href='#index-ls_005fcommand-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the shell command used by Octave&rsquo;s <code>ls</code> command.
+</p>
+<p><strong>See also:</strong> <a href="#XREFls">ls</a>.
+</p></dd></dl>
+
+
+<span id="XREFdir"></span><dl class="def">
+<dt id="index-dir-1"><span class="category">: </span><span><em></em> <strong>dir</strong><a href='#index-dir-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dir-2"><span class="category">: </span><span><em></em> <strong>dir</strong> <em>(<var>directory</var>)</em><a href='#index-dir-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dir-3"><span class="category">: </span><span><em>[<var>list</var>] =</em> <strong>dir</strong> <em>(<var>directory</var>)</em><a href='#index-dir-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Display file listing for directory <var>directory</var>.
+</p>
+<p>If <var>directory</var> is not specified then list the present working directory.
+</p>
+<p>If a return value is requested, return a structure array with the fields
+</p>
+<dl compact="compact">
+<dt><span>name</span></dt>
+<dd><p>File or directory name.
+</p>
+</dd>
+<dt><span>folder</span></dt>
+<dd><p>Location of file or directory
+</p>
+</dd>
+<dt><span>date</span></dt>
+<dd><p>Timestamp of file modification (string value).
+</p>
+</dd>
+<dt><span>bytes</span></dt>
+<dd><p>File size in bytes.
+</p>
+</dd>
+<dt><span>isdir</span></dt>
+<dd><p>True if name is a directory.
+</p>
+</dd>
+<dt><span>datenum</span></dt>
+<dd><p>Timestamp of file modification as serial date number (double).
+</p>
+</dd>
+<dt><span>statinfo</span></dt>
+<dd><p>Information structure returned from <code>stat</code>.
+</p></dd>
+</dl>
+
+<p>If <var>directory</var> is a filename, rather than a directory, then return
+information about the named file.  <var>directory</var> may also be a list rather
+than a single directory or file.
+</p>
+<p><var>directory</var> is subject to shell expansion if it contains any wildcard
+characters &lsquo;<samp>*</samp>&rsquo;, &lsquo;<samp>?</samp>&rsquo;, &lsquo;<samp>[]</samp>&rsquo;.  If these wildcard characters are
+escaped with a backslash &lsquo;<samp>\</samp>&rsquo; (e.g., &lsquo;<samp>\*</samp>&rsquo;) on a POSIX platform,
+then they are not treated as wildcards, but as the corresponding literal
+character.  On Windows, it is not possible to escape wildcard characters
+because backslash &lsquo;<samp>\</samp>&rsquo; is treated as a file separator.  On Windows, use
+<code>ls</code> for file or folder names that contain characters that would be
+treated as wildcards by <code>dir</code>.
+</p>
+<p>Note that for symbolic links, <code>dir</code> returns information about the
+file that the symbolic link points to rather than the link itself.  However,
+if the link points to a nonexistent file, <code>dir</code> returns information
+about the link.
+</p>
+<p><strong>See also:</strong> <a href="#XREFls">ls</a>, <a href="Filesystem-Utilities.html#XREFreaddir">readdir</a>, <a href="Filesystem-Utilities.html#XREFglob">glob</a>, <a href="Status-of-Variables.html#XREFwhat">what</a>, <a href="Filesystem-Utilities.html#XREFstat">stat</a>, <a href="Filesystem-Utilities.html#XREFlstat">lstat</a>.
+</p></dd></dl>
+
+
+<span id="XREFpwd"></span><dl class="def">
+<dt id="index-pwd"><span class="category">: </span><span><em></em> <strong>pwd</strong> <em>()</em><a href='#index-pwd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pwd-1"><span class="category">: </span><span><em><var>dir</var> =</em> <strong>pwd</strong> <em>()</em><a href='#index-pwd-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the current working directory.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcd">cd</a>, <a href="#XREFdir">dir</a>, <a href="#XREFls">ls</a>, <a href="Filesystem-Utilities.html#XREFmkdir">mkdir</a>, <a href="Filesystem-Utilities.html#XREFrmdir">rmdir</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Password-Database-Functions.html">Password Database Functions</a>, Previous: <a href="Environment-Variables.html">Environment Variables</a>, Up: <a href="System-Utilities.html">System Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

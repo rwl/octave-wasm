@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Splitting and Joining Strings (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Splitting and Joining Strings (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Splitting and Joining Strings (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="String-Operations.html" rel="up" title="String Operations">
+<link href="Searching-in-Strings.html" rel="next" title="Searching in Strings">
+<link href="Concatenating-Strings.html" rel="prev" title="Concatenating Strings">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Splitting-and-Joining-Strings">
+<div class="header">
+<p>
+Next: <a href="Searching-in-Strings.html" accesskey="n" rel="next">Searching in Strings</a>, Previous: <a href="Concatenating-Strings.html" accesskey="p" rel="prev">Concatenating Strings</a>, Up: <a href="String-Operations.html" accesskey="u" rel="up">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Splitting-and-Joining-Strings-1"></span><h4 class="subsection">5.3.3 Splitting and Joining Strings</h4>
+
+<span id="XREFsubstr"></span><dl class="def">
+<dt id="index-substr"><span class="category">: </span><span><em></em> <strong>substr</strong> <em>(<var>s</var>, <var>offset</var>)</em><a href='#index-substr' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-substr-1"><span class="category">: </span><span><em></em> <strong>substr</strong> <em>(<var>s</var>, <var>offset</var>, <var>len</var>)</em><a href='#index-substr-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the substring of <var>s</var> which starts at character number
+<var>offset</var> and is <var>len</var> characters long.
+</p>
+<p>Position numbering for offsets begins with 1.  If <var>offset</var> is negative,
+extraction starts that far from the end of the string.
+</p>
+<p>If <var>len</var> is omitted, the substring extends to the end of <var>s</var>.  A
+negative value for <var>len</var> extracts to within <var>len</var> characters of
+the end of the string
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">substr (&quot;This is a test string&quot;, 6, 9)
+     &rArr; &quot;is a test&quot;
+substr (&quot;This is a test string&quot;, -11)
+     &rArr; &quot;test string&quot;
+substr (&quot;This is a test string&quot;, -11, -7)
+     &rArr; &quot;test&quot;
+</pre></div>
+
+<p>This function is patterned after the equivalent function in Perl.
+</p></dd></dl>
+
+
+<span id="XREFstrtok"></span><dl class="def">
+<dt id="index-strtok"><span class="category">: </span><span><em>[<var>tok</var>, <var>rem</var>] =</em> <strong>strtok</strong> <em>(<var>str</var>)</em><a href='#index-strtok' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strtok-1"><span class="category">: </span><span><em>[<var>tok</var>, <var>rem</var>] =</em> <strong>strtok</strong> <em>(<var>str</var>, <var>delim</var>)</em><a href='#index-strtok-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Find all characters in the string <var>str</var> up to, but not including, the
+first character which is in the string <var>delim</var>.
+</p>
+<p><var>str</var> may also be a cell array of strings in which case the function
+executes on every individual string and returns a cell array of tokens and
+remainders.
+</p>
+<p>Leading delimiters are ignored.  If <var>delim</var> is not specified,
+whitespace is assumed.
+</p>
+<p>If <var>rem</var> is requested, it contains the remainder of the string, starting
+at the first delimiter.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">strtok (&quot;this is the life&quot;)
+     &rArr; &quot;this&quot;
+
+[tok, rem] = strtok (&quot;14*27+31&quot;, &quot;+-*/&quot;)
+     &rArr;
+        tok = 14
+        rem = *27+31
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Searching-in-Strings.html#XREFindex">index</a>, <a href="#XREFstrsplit">strsplit</a>, <a href="Searching-in-Strings.html#XREFstrchr">strchr</a>, <a href="Character-Class-Functions.html#XREFisspace">isspace</a>.
+</p></dd></dl>
+
+
+<span id="XREFstrsplit"></span><dl class="def">
+<dt id="index-strsplit"><span class="category">: </span><span><em>[<var>cstr</var>] =</em> <strong>strsplit</strong> <em>(<var>str</var>)</em><a href='#index-strsplit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strsplit-1"><span class="category">: </span><span><em>[<var>cstr</var>] =</em> <strong>strsplit</strong> <em>(<var>str</var>, <var>del</var>)</em><a href='#index-strsplit-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strsplit-2"><span class="category">: </span><span><em>[<var>cstr</var>] =</em> <strong>strsplit</strong> <em>(&hellip;, <var>name</var>, <var>value</var>)</em><a href='#index-strsplit-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strsplit-3"><span class="category">: </span><span><em>[<var>cstr</var>, <var>matches</var>] =</em> <strong>strsplit</strong> <em>(&hellip;)</em><a href='#index-strsplit-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Split the string <var>str</var> using the delimiters specified by <var>del</var> and
+return a cell string array of substrings.
+</p>
+<p>If a delimiter is not specified the string is split at whitespace
+<code>{&quot; &quot;, &quot;\f&quot;, &quot;\n&quot;, &quot;\r&quot;, &quot;\t&quot;, &quot;\v&quot;}</code>.  Otherwise, the delimiter,
+<var>del</var> must be a string or cell array of strings.  By default,
+consecutive delimiters in the input string <var>s</var> are collapsed into one
+resulting in a single split.
+</p>
+<p>Supported <var>name</var>/<var>value</var> pair arguments are:
+</p>
+<ul>
+<li> <var>collapsedelimiters</var> which may take the value of <code>true</code>
+(default) or <code>false</code>.
+
+</li><li> <var>delimitertype</var> which may take the value of <code>&quot;simple&quot;</code>
+(default) or <code>&quot;regularexpression&quot;</code>.  A simple delimiter
+matches the text exactly as written.  Otherwise, the syntax for regular
+expressions outlined in <code>regexp</code> is used.
+</li></ul>
+
+<p>The optional second output, <var>matches</var>, returns the delimiters which were
+matched in the original string.
+</p>
+<p>Examples with simple delimiters:
+</p>
+<div class="example">
+<pre class="example">strsplit (&quot;a b c&quot;)
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          }
+
+strsplit (&quot;a,b,c&quot;, &quot;,&quot;)
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          }
+
+strsplit (&quot;a foo b,bar c&quot;, {&quot; &quot;, &quot;,&quot;, &quot;foo&quot;, &quot;bar&quot;})
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          }
+
+strsplit (&quot;a,,b, c&quot;, {&quot;,&quot;, &quot; &quot;}, &quot;collapsedelimiters&quot;, false)
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] =
+            [1,3] = b
+            [1,4] =
+            [1,5] = c
+          }
+
+</pre></div>
+
+<p>Examples with regularexpression delimiters:
+</p>
+<div class="example">
+<pre class="example">strsplit (&quot;a foo b,bar c&quot;, ',|\s|foo|bar', ...
+          &quot;delimitertype&quot;, &quot;regularexpression&quot;)
+&rArr;
+{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+}
+
+strsplit (&quot;a,,b, c&quot;, '[, ]', &quot;collapsedelimiters&quot;, false, ...
+          &quot;delimitertype&quot;, &quot;regularexpression&quot;)
+&rArr;
+{
+            [1,1] = a
+            [1,2] =
+            [1,3] = b
+            [1,4] =
+            [1,5] = c
+}
+
+strsplit (&quot;a,\t,b, c&quot;, {',', '\s'}, &quot;delimitertype&quot;, &quot;regularexpression&quot;)
+&rArr;
+{
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+}
+
+strsplit (&quot;a,\t,b, c&quot;, {',', ' ', '\t'}, &quot;collapsedelimiters&quot;, false)
+&rArr;
+{
+            [1,1] = a
+            [1,2] =
+            [1,3] =
+            [1,4] = b
+            [1,5] =
+            [1,6] = c
+}
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFostrsplit">ostrsplit</a>, <a href="#XREFstrjoin">strjoin</a>, <a href="#XREFstrtok">strtok</a>, <a href="Searching-and-Replacing-in-Strings.html#XREFregexp">regexp</a>.
+</p></dd></dl>
+
+
+<span id="XREFostrsplit"></span><dl class="def">
+<dt id="index-ostrsplit"><span class="category">: </span><span><em>[<var>cstr</var>] =</em> <strong>ostrsplit</strong> <em>(<var>s</var>, <var>sep</var>)</em><a href='#index-ostrsplit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostrsplit-1"><span class="category">: </span><span><em>[<var>cstr</var>] =</em> <strong>ostrsplit</strong> <em>(<var>s</var>, <var>sep</var>, <var>strip_empty</var>)</em><a href='#index-ostrsplit-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Split the string <var>s</var> using one or more separators <var>sep</var> and return
+a cell array of strings.
+</p>
+<p>Consecutive separators and separators at boundaries result in empty
+strings, unless <var>strip_empty</var> is true.  The default value of
+<var>strip_empty</var> is false.
+</p>
+<p>2-D character arrays are split at separators and at the original column
+boundaries.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">ostrsplit (&quot;a,b,c&quot;, &quot;,&quot;)
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] = b
+            [1,3] = c
+          }
+
+ostrsplit ([&quot;a,b&quot; ; &quot;cde&quot;], &quot;,&quot;)
+      &rArr;
+          {
+            [1,1] = a
+            [1,2] = b
+            [1,3] = cde
+          }
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFstrsplit">strsplit</a>, <a href="#XREFstrtok">strtok</a>.
+</p></dd></dl>
+
+
+<span id="XREFstrjoin"></span><dl class="def">
+<dt id="index-strjoin"><span class="category">: </span><span><em><var>str</var> =</em> <strong>strjoin</strong> <em>(<var>cstr</var>)</em><a href='#index-strjoin' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strjoin-1"><span class="category">: </span><span><em><var>str</var> =</em> <strong>strjoin</strong> <em>(<var>cstr</var>, <var>delimiter</var>)</em><a href='#index-strjoin-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Join the elements of the cell string array, <var>cstr</var>, into a single
+string.
+</p>
+<p>If no <var>delimiter</var> is specified, the elements of <var>cstr</var> are
+separated by a space.
+</p>
+<p>If <var>delimiter</var> is specified as a string, the cell string array is
+joined using the string.  Escape sequences are supported.
+</p>
+<p>If <var>delimiter</var> is a cell string array whose length is one less than
+<var>cstr</var>, then the elements of <var>cstr</var> are joined by interleaving the
+cell string elements of <var>delimiter</var>.  Escape sequences are not
+supported.
+</p>
+<div class="example">
+<pre class="example">strjoin ({'Octave','Scilab','Lush','Yorick'}, '*')
+      &rArr; 'Octave*Scilab*Lush*Yorick'
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFstrsplit">strsplit</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Searching-in-Strings.html">Searching in Strings</a>, Previous: <a href="Concatenating-Strings.html">Concatenating Strings</a>, Up: <a href="String-Operations.html">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

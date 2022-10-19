@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Commands for Text (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Commands for Text (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Commands for Text (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Commands-for-Completion.html" rel="next" title="Commands for Completion">
+<link href="Killing-and-Yanking.html" rel="prev" title="Killing and Yanking">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Commands-for-Text">
+<div class="header">
+<p>
+Next: <a href="Commands-for-Completion.html" accesskey="n" rel="next">Letting Readline Type for You</a>, Previous: <a href="Killing-and-Yanking.html" accesskey="p" rel="prev">Killing and Yanking</a>, Up: <a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Commands-for-Changing-Text"></span><h4 class="subsection">2.4.3 Commands for Changing Text</h4>
+
+<p>The following commands can be used for entering characters that would
+otherwise have a special meaning (e.g., <tt class="key">TAB</tt>, <kbd>C-q</kbd>, etc.), or
+for quickly correcting typing mistakes.
+</p>
+<dl compact="compact">
+<dt><span><kbd>C-q</kbd></span></dt>
+<dt><span><kbd>C-v</kbd></span></dt>
+<dd><p>Add the next character that you type to the line verbatim.  This is
+how to insert things like <kbd>C-q</kbd> for example.
+</p>
+</dd>
+<dt><span><kbd>M-<span class="key">TAB</span></kbd></span></dt>
+<dd><p>Insert a tab character.
+</p>
+</dd>
+<dt><span><kbd>C-t</kbd></span></dt>
+<dd><p>Drag the character before the cursor forward over the character at the
+cursor, also moving the cursor forward.  If the cursor is at the end of
+the line, then transpose the two characters before it.
+</p>
+</dd>
+<dt><span><kbd>M-t</kbd></span></dt>
+<dd><p>Drag the word behind the cursor past the word in front of the cursor
+moving the cursor over that word as well.
+</p>
+</dd>
+<dt><span><kbd>M-u</kbd></span></dt>
+<dd><p>Uppercase the characters following the cursor to the end of the current
+(or following) word, moving the cursor to the end of the word.
+</p>
+</dd>
+<dt><span><kbd>M-l</kbd></span></dt>
+<dd><p>Lowercase the characters following the cursor to the end of the current
+(or following) word, moving the cursor to the end of the word.
+</p>
+</dd>
+<dt><span><kbd>M-c</kbd></span></dt>
+<dd><p>Uppercase the character following the cursor (or the beginning of the
+next word if the cursor is between words), moving the cursor to the end
+of the word.
+</p></dd>
+</dl>
+
+</div>
+
+
+
+</body>
+</html>

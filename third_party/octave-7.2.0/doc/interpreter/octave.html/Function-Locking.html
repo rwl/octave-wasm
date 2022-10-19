@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Function Locking (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Function Locking (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Function Locking (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Function-Files.html" rel="up" title="Function Files">
+<link href="Function-Precedence.html" rel="next" title="Function Precedence">
+<link href="Overloading-and-Autoloading.html" rel="prev" title="Overloading and Autoloading">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Function-Locking">
+<div class="header">
+<p>
+Next: <a href="Function-Precedence.html" accesskey="n" rel="next">Function Precedence</a>, Previous: <a href="Overloading-and-Autoloading.html" accesskey="p" rel="prev">Overloading and Autoloading</a>, Up: <a href="Function-Files.html" accesskey="u" rel="up">Function Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Function-Locking-1"></span><h4 class="subsection">11.10.6 Function Locking</h4>
+
+<p>It is sometime desirable to lock a function into memory with the <code>mlock</code>
+function.  This is typically used for dynamically linked functions in
+oct-files or mex-files that contain some initialization, and it is desirable
+that calling <code>clear</code> does not remove this initialization.
+</p>
+<p>As an example,
+</p>
+<div class="example">
+<pre class="example">function my_function ()
+  mlock ();
+  &hellip;
+endfunction
+</pre></div>
+
+<p>prevents <code>my_function</code> from being removed from memory after it is called,
+even if <code>clear</code> is called.  It is possible to determine if a function is
+locked into memory with the <code>mislocked</code>, and to unlock a function with
+<code>munlock</code>, which the following code illustrates.
+</p>
+<div class="example">
+<pre class="example">my_function ();
+mislocked (&quot;my_function&quot;)
+&rArr; ans = 1
+munlock (&quot;my_function&quot;);
+mislocked (&quot;my_function&quot;)
+&rArr; ans = 0
+</pre></div>
+
+<p>A common use of <code>mlock</code> is to prevent persistent variables from being
+removed from memory, as the following example shows:
+</p>
+<div class="example">
+<pre class="example">function count_calls ()
+  mlock ();
+  persistent calls = 0;
+  printf (&quot;count_calls() has been called %d times\n&quot;, ++calls);
+endfunction
+
+count_calls ();
+-| count_calls() has been called 1 times
+
+clear count_calls
+count_calls ();
+-| count_calls() has been called 2 times
+</pre></div>
+
+<p><code>mlock</code> might also be used to prevent changes to an m-file, such as in an
+external editor, from having any effect in the current Octave session; A
+similar effect can be had with the <code>ignore_function_time_stamp</code> function.
+</p>
+<span id="XREFmlock"></span><dl class="def">
+<dt id="index-mlock"><span class="category">: </span><span><em></em> <strong>mlock</strong> <em>()</em><a href='#index-mlock' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Lock the current function into memory so that it can&rsquo;t be removed with
+<code>clear</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmunlock">munlock</a>, <a href="#XREFmislocked">mislocked</a>, <a href="Persistent-Variables.html#XREFpersistent">persistent</a>, <a href="Status-of-Variables.html#XREFclear">clear</a>.
+</p></dd></dl>
+
+
+<span id="XREFmunlock"></span><dl class="def">
+<dt id="index-munlock"><span class="category">: </span><span><em></em> <strong>munlock</strong> <em>()</em><a href='#index-munlock' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-munlock-1"><span class="category">: </span><span><em></em> <strong>munlock</strong> <em>(<var>fcn</var>)</em><a href='#index-munlock-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Unlock the named function <var>fcn</var> so that it may be removed from memory with
+<code>clear</code>.
+</p>
+<p>If no function is named then unlock the current function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmlock">mlock</a>, <a href="#XREFmislocked">mislocked</a>, <a href="Persistent-Variables.html#XREFpersistent">persistent</a>, <a href="Status-of-Variables.html#XREFclear">clear</a>.
+</p></dd></dl>
+
+
+<span id="XREFmislocked"></span><dl class="def">
+<dt id="index-mislocked"><span class="category">: </span><span><em></em> <strong>mislocked</strong> <em>()</em><a href='#index-mislocked' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-mislocked-1"><span class="category">: </span><span><em></em> <strong>mislocked</strong> <em>(<var>fcn</var>)</em><a href='#index-mislocked-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if the named function <var>fcn</var> is locked in memory.
+</p>
+<p>If no function is named then return true if the current function is locked.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmlock">mlock</a>, <a href="#XREFmunlock">munlock</a>, <a href="Persistent-Variables.html#XREFpersistent">persistent</a>, <a href="Status-of-Variables.html#XREFclear">clear</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Function-Precedence.html">Function Precedence</a>, Previous: <a href="Overloading-and-Autoloading.html">Overloading and Autoloading</a>, Up: <a href="Function-Files.html">Function Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

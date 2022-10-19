@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Administrating Packages (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Administrating Packages (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Administrating Packages (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Packages.html" rel="up" title="Packages">
+<link href="Creating-Packages.html" rel="next" title="Creating Packages">
+<link href="Using-Packages.html" rel="prev" title="Using Packages">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Administrating-Packages">
+<div class="header">
+<p>
+Next: <a href="Creating-Packages.html" accesskey="n" rel="next">Creating Packages</a>, Previous: <a href="Using-Packages.html" accesskey="p" rel="prev">Using Packages</a>, Up: <a href="Packages.html" accesskey="u" rel="up">Packages</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Administrating-Packages-1"></span><h3 class="section">37.3 Administrating Packages</h3>
+
+<p>It is possible to make both per-user (local) and system-wide (global)
+installations of a package.  If the user performing the installation is
+<code>root</code> (or Administrator with elevated privileges on Windows), the
+packages by default install in a system-wide directory that defaults to
+<samp><var>OCTAVE_HOME</var>/share/octave/packages/</samp>.  If the user is not
+<code>root</code> (or Octave is running without elevated privileges),
+packages are installed locally.  The default installation directory for
+local packages is
+<samp><var>user_data_dir</var>/octave/<var>OCTAVE_API_VERSION</var>/packages</samp>.
+Packages will be installed in a subdirectory of the installation
+directory that will be named after the package.  It is possible to
+change the installation directory by using the <code>pkg prefix</code>
+command:
+</p>
+<div class="example">
+<pre class="example">pkg prefix new_installation_directory
+</pre></div>
+
+<p>The current installation directory can be retrieved by typing
+</p>
+<div class="example">
+<pre class="example">current_installation_directory = pkg (&quot;prefix&quot;)
+</pre></div>
+
+<p>The package manager stores some information about the installed
+packages in configuration files.  For per-user (local) packages, this
+information is stored in the file
+<samp><var>user_config_dir</var>/octave/<var>OCTAVE_API_VERSION</var>/octave_packages</samp>
+by default.  For system-wide (global) installations, it is stored in
+<samp><var>OCTAVE_HOME</var>/share/octave/octave_packages</samp>.  The path to the
+per-user file can be changed with the <code>pkg local_list</code> command:
+</p>
+<div class="example">
+<pre class="example">pkg local_list /path/to/new_file
+</pre></div>
+
+<p>For system-wide installations, this can be changed in the same way
+using the <code>pkg global_list</code> command.  If these commands are called
+without a new path, the current path will be returned.  To retain these
+settings between sessions, they can be set in one of the startup files,
+see <a href="Startup-Files.html">Startup Files</a>.
+</p>
+</div>
+
+
+
+</body>
+</html>

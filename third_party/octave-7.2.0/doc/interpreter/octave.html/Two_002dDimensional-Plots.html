@@ -1,0 +1,2336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Two-Dimensional Plots (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Two-Dimensional Plots (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Two-Dimensional Plots (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Three_002dDimensional-Plots.html" rel="next" title="Three-Dimensional Plots">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Two_002dDimensional-Plots">
+<div class="header">
+<p>
+Next: <a href="Three_002dDimensional-Plots.html" accesskey="n" rel="next">Three-Dimensional Plots</a>, Up: <a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Two_002dDimensional-Plots-1"></span><h4 class="subsection">15.2.1 Two-Dimensional Plots</h4>
+
+
+<p>The <code>plot</code> function allows you to create simple x-y plots with
+linear axes.  For example,
+</p>
+<div class="example">
+<pre class="example">x = -10:0.1:10;
+plot (x, sin (x));
+xlabel (&quot;x&quot;);
+ylabel (&quot;sin (x)&quot;);
+title (&quot;Simple 2-D Plot&quot;);
+</pre></div>
+
+<p>displays a sine wave shown in <a href="#fig_003aplot">Figure 15.1</a>.  On most systems, this
+command will open a separate plot window to display the graph.
+</p>
+<div class="float"><span id="fig_003aplot"></span>
+<div align="center"><img src="plot.png" alt="plot">
+</div>
+<div class="float-caption"><p><strong>Figure 15.1: </strong>Simple Two-Dimensional Plot.</p></div></div>
+<span id="XREFplot"></span><dl class="def">
+<dt id="index-plot"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(<var>y</var>)</em><a href='#index-plot' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-1"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-plot-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-2"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(<var>x</var>, <var>y</var>, <var>fmt</var>)</em><a href='#index-plot-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-3"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(&hellip;, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-plot-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-4"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(<var>x1</var>, <var>y1</var>, &hellip;, <var>xn</var>, <var>yn</var>)</em><a href='#index-plot-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-5"><span class="category">: </span><span><em></em> <strong>plot</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-plot-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plot-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>plot</strong> <em>(&hellip;)</em><a href='#index-plot-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce 2-D plots.
+</p>
+<p>Many different combinations of arguments are possible.  The simplest
+form is
+</p>
+<div class="example">
+<pre class="example">plot (<var>y</var>)
+</pre></div>
+
+<p>where the argument is taken as the set of <var>y</var> coordinates and the
+<var>x</var> coordinates are taken to be the range <code>1:numel (<var>y</var>)</code>.
+</p>
+<p>If more than one argument is given, they are interpreted as
+</p>
+<div class="example">
+<pre class="example">plot (<var>y</var>, <var>property</var>, <var>value</var>, &hellip;)
+</pre></div>
+
+<p>or
+</p>
+<div class="example">
+<pre class="example">plot (<var>x</var>, <var>y</var>, <var>property</var>, <var>value</var>, &hellip;)
+</pre></div>
+
+<p>or
+</p>
+<div class="example">
+<pre class="example">plot (<var>x</var>, <var>y</var>, <var>fmt</var>, &hellip;)
+</pre></div>
+
+<p>and so on.  Any number of argument sets may appear.  The <var>x</var> and
+<var>y</var> values are interpreted as follows:
+</p>
+<ul>
+<li> If a single data argument is supplied, it is taken as the set of <var>y</var>
+coordinates and the <var>x</var> coordinates are taken to be the indices of
+the elements, starting with 1.
+
+</li><li> If <var>x</var> and <var>y</var> are scalars, a single point is plotted.
+
+</li><li> <code>squeeze()</code> is applied to arguments with more than two dimensions,
+but no more than two singleton dimensions.
+
+</li><li> If both arguments are vectors, the elements of <var>y</var> are plotted versus
+the elements of <var>x</var>.
+
+</li><li> If <var>x</var> is a vector and <var>y</var> is a matrix, then
+the columns (or rows) of <var>y</var> are plotted versus <var>x</var>.
+(using whichever combination matches, with columns tried first.)
+
+</li><li> If the <var>x</var> is a matrix and <var>y</var> is a vector,
+<var>y</var> is plotted versus the columns (or rows) of <var>x</var>.
+(using whichever combination matches, with columns tried first.)
+
+</li><li> If both arguments are matrices, the columns of <var>y</var> are plotted
+versus the columns of <var>x</var>.  In this case, both matrices must have
+the same number of rows and columns and no attempt is made to transpose
+the arguments to make the number of rows match.
+</li></ul>
+
+<p>Multiple property-value pairs may be specified, but they must appear
+in pairs.  These arguments are applied to the line objects drawn by
+<code>plot</code>.  Useful properties to modify are <code>&quot;linestyle&quot;</code>,
+<code>&quot;linewidth&quot;</code>, <code>&quot;color&quot;</code>, <code>&quot;marker&quot;</code>,
+<code>&quot;markersize&quot;</code>, <code>&quot;markeredgecolor&quot;</code>, <code>&quot;markerfacecolor&quot;</code>.
+The full list of properties is documented at
+<a href="Line-Properties.html">Line Properties</a>.
+</p>
+<p>The <var>fmt</var> format argument can also be used to control the plot style.
+It is a string composed of four optional parts:
+&quot;&lt;linestyle&gt;&lt;marker&gt;&lt;color&gt;&lt;;displayname;&gt;&quot;.
+When a marker is specified, but no linestyle, only the markers are
+plotted.  Similarly, if a linestyle is specified, but no marker, then
+only lines are drawn.  If both are specified then lines and markers will
+be plotted.  If no <var>fmt</var> and no <var>property</var>/<var>value</var> pairs are
+given, then the default plot style is solid lines with no markers and the
+color determined by the <code>&quot;colororder&quot;</code> property of the current axes.
+</p>
+<p>Format arguments:
+</p>
+<dl compact="compact">
+<dt><span>linestyle</span></dt>
+<dd>
+<table>
+<tr><td width="6%">&lsquo;<samp>-</samp>&rsquo;</td><td width="94%">Use solid lines (default).</td></tr>
+<tr><td width="6%">&lsquo;<samp>--</samp>&rsquo;</td><td width="94%">Use dashed lines.</td></tr>
+<tr><td width="6%">&lsquo;<samp>:</samp>&rsquo;</td><td width="94%">Use dotted lines.</td></tr>
+<tr><td width="6%">&lsquo;<samp>-.</samp>&rsquo;</td><td width="94%">Use dash-dotted lines.</td></tr>
+</table>
+
+</dd>
+<dt><span>marker</span></dt>
+<dd>
+<table>
+<tr><td width="6%">&lsquo;<samp>+</samp>&rsquo;</td><td width="94%">crosshair</td></tr>
+<tr><td width="6%">&lsquo;<samp>o</samp>&rsquo;</td><td width="94%">circle</td></tr>
+<tr><td width="6%">&lsquo;<samp>*</samp>&rsquo;</td><td width="94%">star</td></tr>
+<tr><td width="6%">&lsquo;<samp>.</samp>&rsquo;</td><td width="94%">point</td></tr>
+<tr><td width="6%">&lsquo;<samp>x</samp>&rsquo;</td><td width="94%">cross</td></tr>
+<tr><td width="6%">&lsquo;<samp>|</samp>&rsquo;</td><td width="94%">vertical line</td></tr>
+<tr><td width="6%">&lsquo;<samp>_</samp>&rsquo;</td><td width="94%">horizontal line</td></tr>
+<tr><td width="6%">&lsquo;<samp>s</samp>&rsquo;</td><td width="94%">square</td></tr>
+<tr><td width="6%">&lsquo;<samp>d</samp>&rsquo;</td><td width="94%">diamond</td></tr>
+<tr><td width="6%">&lsquo;<samp>^</samp>&rsquo;</td><td width="94%">upward-facing triangle</td></tr>
+<tr><td width="6%">&lsquo;<samp>v</samp>&rsquo;</td><td width="94%">downward-facing triangle</td></tr>
+<tr><td width="6%">&lsquo;<samp>&gt;</samp>&rsquo;</td><td width="94%">right-facing triangle</td></tr>
+<tr><td width="6%">&lsquo;<samp>&lt;</samp>&rsquo;</td><td width="94%">left-facing triangle</td></tr>
+<tr><td width="6%">&lsquo;<samp>p</samp>&rsquo;</td><td width="94%">pentagram</td></tr>
+<tr><td width="6%">&lsquo;<samp>h</samp>&rsquo;</td><td width="94%">hexagram</td></tr>
+</table>
+
+</dd>
+<dt><span>color</span></dt>
+<dd>
+<table>
+<tr><td width="21%">&lsquo;<samp>k</samp>&rsquo;, <code>&quot;black&quot;</code></td><td width="79%">blacK</td></tr>
+<tr><td width="21%">&lsquo;<samp>r</samp>&rsquo;, <code>&quot;red&quot;</code></td><td width="79%">Red</td></tr>
+<tr><td width="21%">&lsquo;<samp>g</samp>&rsquo;, <code>&quot;green&quot;</code></td><td width="79%">Green</td></tr>
+<tr><td width="21%">&lsquo;<samp>b</samp>&rsquo;, <code>&quot;blue&quot;</code></td><td width="79%">Blue</td></tr>
+<tr><td width="21%">&lsquo;<samp>y</samp>&rsquo;, <code>&quot;yellow&quot;</code></td><td width="79%">Yellow</td></tr>
+<tr><td width="21%">&lsquo;<samp>m</samp>&rsquo;, <code>&quot;magenta&quot;</code></td><td width="79%">Magenta</td></tr>
+<tr><td width="21%">&lsquo;<samp>c</samp>&rsquo;, <code>&quot;cyan&quot;</code></td><td width="79%">Cyan</td></tr>
+<tr><td width="21%">&lsquo;<samp>w</samp>&rsquo;, <code>&quot;white&quot;</code></td><td width="79%">White</td></tr>
+</table>
+
+</dd>
+<dt><span><code>&quot;;displayname;&quot;</code></span></dt>
+<dd><p>The text between semicolons is used to set the <code>&quot;displayname&quot;</code>
+property which determines the label used for the plot legend.
+</p>
+</dd>
+</dl>
+
+<p>The <var>fmt</var> argument may also be used to assign legend labels.
+To do so, include the desired label between semicolons after the
+formatting sequence described above, e.g., <code>&quot;+b;Data Series 3;&quot;</code>.
+Note that the last semicolon is required and Octave will generate
+an error if it is left out.
+</p>
+<p>Here are some plot examples:
+</p>
+<div class="example">
+<pre class="example">plot (x, y, &quot;or&quot;, x, y2, x, y3, &quot;m&quot;, x, y4, &quot;+&quot;)
+</pre></div>
+
+<p>This command will plot <code>y</code> with red circles, <code>y2</code> with solid
+lines, <code>y3</code> with solid magenta lines, and <code>y4</code> with points
+displayed as &lsquo;<samp>+</samp>&rsquo;.
+</p>
+<div class="example">
+<pre class="example">plot (b, &quot;*&quot;, &quot;markersize&quot;, 10)
+</pre></div>
+
+<p>This command will plot the data in the variable <code>b</code>,
+with points displayed as &lsquo;<samp>*</samp>&rsquo; and a marker size of 10.
+</p>
+<div class="example">
+<pre class="example">t = 0:0.1:6.3;
+plot (t, cos(t), &quot;-;cos(t);&quot;, t, sin(t), &quot;-b;sin(t);&quot;);
+</pre></div>
+
+<p>This will plot the cosine and sine functions and label them accordingly
+in the legend.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to
+the created line objects.
+</p>
+<p>To save a plot, in one of several image formats such as PostScript
+or PNG, use the <code>print</code> command.
+</p>
+
+<p><strong>See also:</strong> <a href="Axis-Configuration.html#XREFaxis">axis</a>, <a href="Plot-Annotations.html#XREFbox">box</a>, <a href="Plot-Annotations.html#XREFgrid">grid</a>, <a href="Manipulation-of-Plot-Windows.html#XREFhold">hold</a>, <a href="Plot-Annotations.html#XREFlegend">legend</a>, <a href="Plot-Annotations.html#XREFtitle">title</a>, <a href="Plot-Annotations.html#XREFxlabel">xlabel</a>, <a href="Plot-Annotations.html#XREFylabel">ylabel</a>, <a href="Axis-Configuration.html#XREFxlim">xlim</a>, <a href="Axis-Configuration.html#XREFylim">ylim</a>, <a href="Two_002ddimensional-Function-Plotting.html#XREFezplot">ezplot</a>, <a href="#XREFerrorbar">errorbar</a>, <a href="Two_002ddimensional-Function-Plotting.html#XREFfplot">fplot</a>, <a href="Graphics-Objects.html#XREFline">line</a>, <a href="Three_002dDimensional-Plots.html#XREFplot3">plot3</a>, <a href="#XREFpolar">polar</a>, <a href="#XREFloglog">loglog</a>, <a href="#XREFsemilogx">semilogx</a>, <a href="#XREFsemilogy">semilogy</a>, <a href="Multiple-Plots-on-One-Page.html#XREFsubplot">subplot</a>.
+</p></dd></dl>
+
+
+<p>The <code>plotyy</code> function may be used to create a plot with two
+independent y axes.
+</p>
+<span id="XREFplotyy"></span><dl class="def">
+<dt id="index-plotyy"><span class="category">: </span><span><em></em> <strong>plotyy</strong> <em>(<var>x1</var>, <var>y1</var>, <var>x2</var>, <var>y2</var>)</em><a href='#index-plotyy' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotyy-1"><span class="category">: </span><span><em></em> <strong>plotyy</strong> <em>(&hellip;, <var>fun</var>)</em><a href='#index-plotyy-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotyy-2"><span class="category">: </span><span><em></em> <strong>plotyy</strong> <em>(&hellip;, <var>fun1</var>, <var>fun2</var>)</em><a href='#index-plotyy-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotyy-3"><span class="category">: </span><span><em></em> <strong>plotyy</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-plotyy-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotyy-4"><span class="category">: </span><span><em>[<var>ax</var>, <var>h1</var>, <var>h2</var>] =</em> <strong>plotyy</strong> <em>(&hellip;)</em><a href='#index-plotyy-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot two sets of data with independent y-axes and a common x-axis.
+</p>
+<p>The arguments <var>x1</var> and <var>y1</var> define the arguments for the first plot
+and <var>x1</var> and <var>y2</var> for the second.
+</p>
+<p>By default the arguments are evaluated with
+<code>feval (@plot, <var>x</var>, <var>y</var>)</code>.  However the type of plot can be
+modified with the <var>fun</var> argument, in which case the plots are
+generated by <code>feval (<var>fun</var>, <var>x</var>, <var>y</var>)</code>.  <var>fun</var> can be
+a function handle, an inline function, or a string of a function name.
+</p>
+<p>The function to use for each of the plots can be independently defined
+with <var>fun1</var> and <var>fun2</var>.
+</p>
+<p>The first argument <var>hax</var> can be an axes handle to the principal axes in
+which to plot the <var>x1</var> and <var>y1</var> data.  It can also be a two-element
+vector with the axes handles to the primary and secondary axes (see output
+<var>ax</var>).
+</p>
+<p>The return value <var>ax</var> is a vector with the axes handles of the two
+y-axes.  <var>h1</var> and <var>h2</var> are handles to the objects generated by the
+plot commands.
+</p>
+<div class="example">
+<pre class="example">x = 0:0.1:2*pi;
+y1 = sin (x);
+y2 = exp (x - 1);
+ax = plotyy (x, y1, x - 1, y2, @plot, @semilogy);
+xlabel (&quot;X&quot;);
+ylabel (ax(1), &quot;Axis 1&quot;);
+ylabel (ax(2), &quot;Axis 2&quot;);
+</pre></div>
+
+<p>When using <code>plotyy</code> in conjunction with <code>subplot</code> make sure to
+call <code>subplot</code> first and pass the resulting axes handle to
+<code>plotyy</code>.  Do not call <code>subplot</code> with any of the axes handles
+returned by <code>plotyy</code> or the other axes will be removed.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="Multiple-Plots-on-One-Page.html#XREFsubplot">subplot</a>.
+</p></dd></dl>
+
+
+<p>The functions <code>semilogx</code>, <code>semilogy</code>, and <code>loglog</code> are
+similar to the <code>plot</code> function, but produce plots in which one or
+both of the axes use log scales.
+</p>
+<span id="XREFsemilogx"></span><dl class="def">
+<dt id="index-semilogx"><span class="category">: </span><span><em></em> <strong>semilogx</strong> <em>(<var>y</var>)</em><a href='#index-semilogx' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogx-1"><span class="category">: </span><span><em></em> <strong>semilogx</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-semilogx-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogx-2"><span class="category">: </span><span><em></em> <strong>semilogx</strong> <em>(<var>x</var>, <var>y</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-semilogx-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogx-3"><span class="category">: </span><span><em></em> <strong>semilogx</strong> <em>(<var>x</var>, <var>y</var>, <var>fmt</var>)</em><a href='#index-semilogx-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogx-4"><span class="category">: </span><span><em></em> <strong>semilogx</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-semilogx-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogx-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>semilogx</strong> <em>(&hellip;)</em><a href='#index-semilogx-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a 2-D plot using a logarithmic scale for the x-axis.
+</p>
+<p>See the documentation of <code>plot</code> for a description of the
+arguments that <code>semilogx</code> will accept.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created plot.
+</p>
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="#XREFsemilogy">semilogy</a>, <a href="#XREFloglog">loglog</a>.
+</p></dd></dl>
+
+
+<span id="XREFsemilogy"></span><dl class="def">
+<dt id="index-semilogy"><span class="category">: </span><span><em></em> <strong>semilogy</strong> <em>(<var>y</var>)</em><a href='#index-semilogy' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogy-1"><span class="category">: </span><span><em></em> <strong>semilogy</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-semilogy-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogy-2"><span class="category">: </span><span><em></em> <strong>semilogy</strong> <em>(<var>x</var>, <var>y</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-semilogy-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogy-3"><span class="category">: </span><span><em></em> <strong>semilogy</strong> <em>(<var>x</var>, <var>y</var>, <var>fmt</var>)</em><a href='#index-semilogy-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogy-4"><span class="category">: </span><span><em></em> <strong>semilogy</strong> <em>(<var>h</var>, &hellip;)</em><a href='#index-semilogy-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogy-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>semilogy</strong> <em>(&hellip;)</em><a href='#index-semilogy-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a 2-D plot using a logarithmic scale for the y-axis.
+</p>
+<p>See the documentation of <code>plot</code> for a description of the
+arguments that <code>semilogy</code> will accept.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created plot.
+</p>
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="#XREFsemilogx">semilogx</a>, <a href="#XREFloglog">loglog</a>.
+</p></dd></dl>
+
+
+<span id="XREFloglog"></span><dl class="def">
+<dt id="index-loglog"><span class="category">: </span><span><em></em> <strong>loglog</strong> <em>(<var>y</var>)</em><a href='#index-loglog' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglog-1"><span class="category">: </span><span><em></em> <strong>loglog</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-loglog-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglog-2"><span class="category">: </span><span><em></em> <strong>loglog</strong> <em>(<var>x</var>, <var>y</var>, <var>prop</var>, <var>value</var>, &hellip;)</em><a href='#index-loglog-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglog-3"><span class="category">: </span><span><em></em> <strong>loglog</strong> <em>(<var>x</var>, <var>y</var>, <var>fmt</var>)</em><a href='#index-loglog-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglog-4"><span class="category">: </span><span><em></em> <strong>loglog</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-loglog-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglog-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>loglog</strong> <em>(&hellip;)</em><a href='#index-loglog-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a 2-D plot using logarithmic scales for both axes.
+</p>
+<p>See the documentation of <code>plot</code> for a description of the arguments
+that <code>loglog</code> will accept.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created plot.
+</p>
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="#XREFsemilogx">semilogx</a>, <a href="#XREFsemilogy">semilogy</a>.
+</p></dd></dl>
+
+
+<p>The functions <code>bar</code>, <code>barh</code>, <code>stairs</code>, and <code>stem</code>
+are useful for displaying discrete data.  For example,
+</p>
+<div class="example">
+<pre class="example">randn (&quot;state&quot;, 1);
+hist (randn (10000, 1), 30);
+xlabel (&quot;Value&quot;);
+ylabel (&quot;Count&quot;);
+title (&quot;Histogram of 10,000 normally distributed random numbers&quot;);
+</pre></div>
+
+<p>produces the histogram of 10,000 normally distributed random numbers
+shown in <a href="#fig_003ahist">Figure 15.2</a>.  Note that, <code>randn (&quot;state&quot;, 1);</code>, initializes
+the random number generator for <code>randn</code> to a known value so that the
+returned values are reproducible; This guarantees that the figure produced
+is identical to the one in this manual.
+</p>
+<div class="float"><span id="fig_003ahist"></span>
+<div align="center"><img src="hist.png" alt="hist">
+</div>
+<div class="float-caption"><p><strong>Figure 15.2: </strong>Histogram.</p></div></div>
+<span id="XREFbar"></span><dl class="def">
+<dt id="index-bar"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(<var>y</var>)</em><a href='#index-bar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-1"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-bar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-2"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(&hellip;, <var>w</var>)</em><a href='#index-bar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-3"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-bar-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-4"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-bar-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-5"><span class="category">: </span><span><em></em> <strong>bar</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-bar-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-bar-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>bar</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-bar-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a bar graph from two vectors of X-Y data.
+</p>
+<p>If only one argument is given, <var>y</var>, it is taken as a vector of Y values
+and the X coordinates are the range <code>1:numel (<var>y</var>)</code>.
+</p>
+<p>The optional input <var>w</var> controls the width of the bars.  A value of
+1.0 will cause each bar to exactly touch any adjacent bars.
+The default width is 0.8.
+</p>
+<p>If <var>y</var> is a matrix, then each column of <var>y</var> is taken to be a
+separate bar graph plotted on the same graph.  By default the columns
+are plotted side-by-side.  This behavior can be changed by the <var>style</var>
+argument which can take the following values:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;grouped&quot;</code> (default)</span></dt>
+<dd><p>Side-by-side bars with a gap between bars and centered over the
+X-coordinate.
+</p>
+</dd>
+<dt><span><code>&quot;stacked&quot;</code></span></dt>
+<dd><p>Bars are stacked so that each X value has a single bar composed of
+multiple segments.
+</p>
+</dd>
+<dt><span><code>&quot;hist&quot;</code></span></dt>
+<dd><p>Side-by-side bars with no gap between bars and centered over the
+X-coordinate.
+</p>
+</dd>
+<dt><span><code>&quot;histc&quot;</code></span></dt>
+<dd><p>Side-by-side bars with no gap between bars and left-aligned to the
+X-coordinate.
+</p></dd>
+</dl>
+
+<p>Optional property/value pairs are passed directly to the underlying patch
+objects.  The full list of properties is documented at
+<a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of handles to the created
+&quot;bar series&quot; hggroups with one handle per column of the variable <var>y</var>.
+This series makes it possible to change a common element in one bar series
+object and have the change reflected in the other &quot;bar series&quot;.
+For example,
+</p>
+<div class="example">
+<pre class="example">h = bar (rand (5, 10));
+set (h(1), &quot;basevalue&quot;, 0.5);
+</pre></div>
+
+<p>changes the position on the base of all of the bar series.
+</p>
+<p>The following example modifies the face and edge colors using
+property/value pairs.
+</p>
+<div class="example">
+<pre class="example">bar (randn (1, 100), &quot;facecolor&quot;, &quot;r&quot;, &quot;edgecolor&quot;, &quot;b&quot;);
+</pre></div>
+
+<p>The default color for bars is taken from the axes&rsquo; <code>&quot;ColorOrder&quot;</code>
+property.  The default color for bars when a histogram option
+(<code>&quot;hist&quot;</code>, <code>&quot;histc&quot;</code> is used is the <code>&quot;Colormap&quot;</code> property
+of either the axes or figure.  The color of bars can also be set manually
+using the <code>&quot;facecolor&quot;</code> property as shown below.
+</p>
+<div class="example">
+<pre class="example">h = bar (rand (10, 3));
+set (h(1), &quot;facecolor&quot;, &quot;r&quot;)
+set (h(2), &quot;facecolor&quot;, &quot;g&quot;)
+set (h(3), &quot;facecolor&quot;, &quot;b&quot;)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFbarh">barh</a>, <a href="#XREFhist">hist</a>, <a href="#XREFpie">pie</a>, <a href="#XREFplot">plot</a>, <a href="Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<span id="XREFbarh"></span><dl class="def">
+<dt id="index-barh"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(<var>y</var>)</em><a href='#index-barh' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-1"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-barh-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-2"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(&hellip;, <var>w</var>)</em><a href='#index-barh-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-3"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-barh-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-4"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-barh-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-5"><span class="category">: </span><span><em></em> <strong>barh</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-barh-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-barh-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>barh</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-barh-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a horizontal bar graph from two vectors of X-Y data.
+</p>
+<p>If only one argument is given, it is taken as a vector of Y values
+and the X coordinates are the range <code>1:numel (<var>y</var>)</code>.
+</p>
+<p>The optional input <var>w</var> controls the width of the bars.  A value of
+1.0 will cause each bar to exactly touch any adjacent bars.
+The default width is 0.8.
+</p>
+<p>If <var>y</var> is a matrix, then each column of <var>y</var> is taken to be a
+separate bar graph plotted on the same graph.  By default the columns
+are plotted side-by-side.  This behavior can be changed by the <var>style</var>
+argument which can take the following values:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;grouped&quot;</code> (default)</span></dt>
+<dd><p>Side-by-side bars with a gap between bars and centered over the
+Y-coordinate.
+</p>
+</dd>
+<dt><span><code>&quot;stacked&quot;</code></span></dt>
+<dd><p>Bars are stacked so that each Y value has a single bar composed of
+multiple segments.
+</p>
+</dd>
+<dt><span><code>&quot;hist&quot;</code></span></dt>
+<dd><p>Side-by-side bars with no gap between bars and centered over the
+Y-coordinate.
+</p>
+</dd>
+<dt><span><code>&quot;histc&quot;</code></span></dt>
+<dd><p>Side-by-side bars with no gap between bars and left-aligned to the
+Y-coordinate.
+</p></dd>
+</dl>
+
+<p>Optional property/value pairs are passed directly to the underlying patch
+objects.  The full list of properties is documented at
+<a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created
+bar series hggroup.  For a description of the use of the
+bar series, see <a href="#XREFbar"><code>bar</code></a>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFpie">pie</a>, <a href="#XREFplot">plot</a>, <a href="Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<span id="XREFhist"></span><dl class="def">
+<dt id="index-hist"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(<var>y</var>)</em><a href='#index-hist' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-1"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(<var>y</var>, <var>nbins</var>)</em><a href='#index-hist-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-2"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(<var>y</var>, <var>x</var>)</em><a href='#index-hist-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-3"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(<var>y</var>, <var>x</var>, <var>norm</var>)</em><a href='#index-hist-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-4"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-hist-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-5"><span class="category">: </span><span><em></em> <strong>hist</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-hist-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hist-6"><span class="category">: </span><span><em>[<var>nn</var>, <var>xx</var>] =</em> <strong>hist</strong> <em>(&hellip;)</em><a href='#index-hist-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce histogram counts or plots.
+</p>
+<p>With one vector input argument, <var>y</var>, plot a histogram of the values
+with 10 bins.  The range of the histogram bins is determined by the
+range of the data (difference between maximum and minimum value in <var>y</var>).
+Extreme values are lumped into the first and last bins.  If <var>y</var> is a
+matrix then plot a histogram where each bin contains one bar per input
+column of <var>y</var>.
+</p>
+<p>If the optional second argument is a scalar, <var>nbins</var>, it defines the
+number of bins.
+</p>
+<p>If the optional second argument is a vector, <var>x</var>, it defines the centers
+of the bins.  The width of the bins is determined from the adjacent values
+in the vector.  The total number of bins is <code>numel (<var>x</var>)</code>.
+</p>
+<p>If a third argument <var>norm</var> is provided, the histogram is normalized.
+In case <var>norm</var> is a positive scalar, the resulting bars are normalized
+to <var>norm</var>.  If <var>norm</var> is a vector of positive scalars of length
+<code>columns (<var>y</var>)</code>, then the resulting bar of <code><var>y</var>(:,i)</code> is
+normalized to <code><var>norm</var>(i)</code>.
+</p>
+<div class="example">
+<pre class="example">[nn, xx] = hist (rand (10, 3), 5, [1 2 3]);
+sum (nn, 1)
+&rArr; ans =
+      1   2   3
+</pre></div>
+
+<p>The histogram&rsquo;s appearance may be modified by specifying property/value
+pairs to the underlying patch object.  For example, the face and edge color
+may be modified:
+</p>
+<div class="example">
+<pre class="example">hist (randn (1, 100), 25, &quot;facecolor&quot;, &quot;r&quot;, &quot;edgecolor&quot;, &quot;b&quot;);
+</pre></div>
+
+<p>The full list of patch properties is documented at <a href="Patch-Properties.html">Patch Properties</a>.
+property.  If not specified, the default colors for the histogram are taken
+from the <code>&quot;Colormap&quot;</code> property of the axes or figure.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>If an output is requested then no plot is made.  Instead, return the values
+<var>nn</var> (numbers of elements) and <var>xx</var> (bin centers) such that
+<code>bar (<var>xx</var>, <var>nn</var>)</code> will plot the histogram.
+</p>
+
+<p><strong>See also:</strong> <a href="Basic-Statistical-Functions.html#XREFhistc">histc</a>, <a href="#XREFbar">bar</a>, <a href="#XREFpie">pie</a>, <a href="#XREFrose">rose</a>.
+</p></dd></dl>
+
+
+<span id="XREFstemleaf"></span><dl class="def">
+<dt id="index-stemleaf"><span class="category">: </span><span><em></em> <strong>stemleaf</strong> <em>(<var>x</var>, <var>caption</var>)</em><a href='#index-stemleaf' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stemleaf-1"><span class="category">: </span><span><em></em> <strong>stemleaf</strong> <em>(<var>x</var>, <var>caption</var>, <var>stem_sz</var>)</em><a href='#index-stemleaf-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stemleaf-2"><span class="category">: </span><span><em><var>plotstr</var> =</em> <strong>stemleaf</strong> <em>(&hellip;)</em><a href='#index-stemleaf-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute and display a stem and leaf plot of the vector <var>x</var>.
+</p>
+<p>The input <var>x</var> should be a vector of integers.  Any non-integer values
+will be converted to integer by <code><var>x</var> = fix (<var>x</var>)</code>.  By default
+each element of <var>x</var> will be plotted with the last digit of the element
+as a leaf value and the remaining digits as the stem.  For example, 123
+will be plotted with the stem &lsquo;<samp>12</samp>&rsquo; and the leaf &lsquo;<samp>3</samp>&rsquo;.  The second
+argument, <var>caption</var>, should be a character array which provides a
+description of the data.  It is included as a heading for the output.
+</p>
+<p>The optional input <var>stem_sz</var> sets the width of each stem.
+The stem width is determined by <code>10^(<var>stem_sz</var> + 1)</code>.
+The default stem width is 10.
+</p>
+<p>The output of <code>stemleaf</code> is composed of two parts: a
+&quot;Fenced Letter Display,&quot; followed by the stem-and-leaf plot itself.
+The Fenced Letter Display is described in <cite>Exploratory Data Analysis</cite>.
+Briefly, the entries are as shown:
+</p>
+<div class="example">
+<pre class="example">
+
+        Fenced Letter Display
+#% nx|___________________     nx = numel (x)
+M% mi|       md         |     mi median index, md median
+H% hi|hl              hu| hs  hi lower hinge index, hl,hu hinges,
+1    |x(1)         x(nx)|     hs h_spreadx(1), x(nx) first
+           _______            and last data value.
+     ______|step |_______     step 1.5*h_spread
+    f|ifl            ifh|     inner fence, lower and higher
+     |nfl            nfh|     no.\ of data points within fences
+    F|ofl            ofh|     outer fence, lower and higher
+     |nFl            nFh|     no.\ of data points outside outer
+                              fences
+</pre></div>
+
+<p>The stem-and-leaf plot shows on each line the stem value followed by the
+string made up of the leaf digits.  If the <var>stem_sz</var> is not 1 the
+successive leaf values are separated by &quot;,&quot;.
+</p>
+<p>With no return argument, the plot is immediately displayed.  If an output
+argument is provided, the plot is returned as an array of strings.
+</p>
+<p>The leaf digits are not sorted.  If sorted leaf values are desired, use
+<code><var>xs</var> = sort (<var>x</var>)</code> before calling <code>stemleaf (<var>xs</var>)</code>.
+</p>
+<p>The stem and leaf plot and associated displays are described in:
+Chapter 3, <cite>Exploratory Data Analysis</cite> by J. W. Tukey,
+Addison-Wesley, 1977.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhist">hist</a>, <a href="#XREFprintd">printd</a>.
+</p></dd></dl>
+
+
+<span id="XREFprintd"></span><dl class="def">
+<dt id="index-printd"><span class="category">: </span><span><em></em> <strong>printd</strong> <em>(<var>obj</var>, <var>filename</var>)</em><a href='#index-printd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-printd-1"><span class="category">: </span><span><em><var>out_file</var> =</em> <strong>printd</strong> <em>(&hellip;)</em><a href='#index-printd-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Convert any object acceptable to <code>disp</code> into the format selected by
+the suffix of <var>filename</var>.
+</p>
+<p>If the return argument <var>out_file</var> is given, the name of the created
+file is returned.
+</p>
+<p>This function is intended to facilitate manipulation of the output of
+functions such as <code>stemleaf</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstemleaf">stemleaf</a>.
+</p></dd></dl>
+
+
+<span id="XREFstairs"></span><dl class="def">
+<dt id="index-stairs"><span class="category">: </span><span><em></em> <strong>stairs</strong> <em>(<var>y</var>)</em><a href='#index-stairs' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-1"><span class="category">: </span><span><em></em> <strong>stairs</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-stairs-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-2"><span class="category">: </span><span><em></em> <strong>stairs</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-stairs-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-3"><span class="category">: </span><span><em></em> <strong>stairs</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-stairs-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-4"><span class="category">: </span><span><em></em> <strong>stairs</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-stairs-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>stairs</strong> <em>(&hellip;)</em><a href='#index-stairs-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stairs-6"><span class="category">: </span><span><em>[<var>xstep</var>, <var>ystep</var>] =</em> <strong>stairs</strong> <em>(&hellip;)</em><a href='#index-stairs-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a stairstep plot.
+</p>
+<p>The arguments <var>x</var> and <var>y</var> may be vectors or matrices.
+If only one argument is given, it is taken as a vector of Y values
+and the X coordinates are taken to be the indices of the elements
+(<code><var>x</var> = 1:numel (<var>y</var>)</code>).
+</p>
+<p>The style to use for the plot can be defined with a line style <var>style</var>
+of the same format as the <code>plot</code> command.
+</p>
+<p>Multiple property/value pairs may be specified, but they must appear in
+pairs.  The full list of properties is documented at
+<a href="Line-Properties.html">Line Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>If one output argument is requested, return a graphics handle to the
+created plot.  If two output arguments are specified, the data are generated
+but not plotted.  For example,
+</p>
+<div class="example">
+<pre class="example">stairs (x, y);
+</pre></div>
+
+<p>and
+</p>
+<div class="example">
+<pre class="example">[xs, ys] = stairs (x, y);
+plot (xs, ys);
+</pre></div>
+
+<p>are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFplot">plot</a>, <a href="#XREFstem">stem</a>.
+</p></dd></dl>
+
+
+<span id="XREFstem"></span><dl class="def">
+<dt id="index-stem"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(<var>y</var>)</em><a href='#index-stem' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-1"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-stem-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-2"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(&hellip;, <var>linespec</var>)</em><a href='#index-stem-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-3"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(&hellip;, &quot;filled&quot;)</em><a href='#index-stem-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-4"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-stem-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-5"><span class="category">: </span><span><em></em> <strong>stem</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-stem-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>stem</strong> <em>(&hellip;)</em><a href='#index-stem-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot a 2-D stem graph.
+</p>
+<p>If only one argument is given, it is taken as the y-values and the
+x-coordinates are taken from the indices of the elements.
+</p>
+<p>If <var>y</var> is a matrix, then each column of the matrix is plotted as
+a separate stem graph.  In this case <var>x</var> can either be a vector,
+the same length as the number of rows in <var>y</var>, or it can be a
+matrix of the same size as <var>y</var>.
+</p>
+<p>The default color is <code>&quot;b&quot;</code> (blue), the default line style is
+<code>&quot;-&quot;</code>, and the default marker is <code>&quot;o&quot;</code>.  The line style can
+be altered by the <var>linespec</var> argument in the same manner as the
+<code>plot</code> command.  If the <code>&quot;filled&quot;</code> argument is present the
+markers at the top of the stems will be filled in.  For example,
+</p>
+<div class="example">
+<pre class="example">x = 1:10;
+y = 2*x;
+stem (x, y, &quot;r&quot;);
+</pre></div>
+
+<p>plots 10 stems with heights from 2 to 20 in red;
+</p>
+<p>Optional property/value pairs may be specified to control the appearance
+of the plot.  The full list of properties is documented at
+<a href="Line-Properties.html">Line Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a handle to a &quot;stem series&quot;
+hggroup.  The single hggroup handle has all of the graphical elements
+comprising the plot as its children; This allows the properties of
+multiple graphics objects to be changed by modifying just a single
+property of the &quot;stem series&quot; hggroup.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<pre class="example">x = [0:10]';
+y = [sin(x), cos(x)]
+h = stem (x, y);
+set (h(2), &quot;color&quot;, &quot;g&quot;);
+set (h(1), &quot;basevalue&quot;, -1)
+</pre></div>
+
+<p>changes the color of the second &quot;stem series&quot; and moves the base
+line of the first.
+</p>
+<p>Stem Series Properties
+</p>
+<dl compact="compact">
+<dt><span>linestyle</span></dt>
+<dd><p>The linestyle of the stem.  (Default: <code>&quot;-&quot;</code>)
+</p>
+</dd>
+<dt><span>linewidth</span></dt>
+<dd><p>The width of the stem.  (Default: 0.5)
+</p>
+</dd>
+<dt><span>color</span></dt>
+<dd><p>The color of the stem, and if not separately specified, the marker.
+(Default: <code>&quot;b&quot;</code> [blue])
+</p>
+</dd>
+<dt><span>marker</span></dt>
+<dd><p>The marker symbol to use at the top of each stem.  (Default: <code>&quot;o&quot;</code>)
+</p>
+</dd>
+<dt><span>markeredgecolor</span></dt>
+<dd><p>The edge color of the marker.  (Default: <code>&quot;color&quot;</code> property)
+</p>
+</dd>
+<dt><span>markerfacecolor</span></dt>
+<dd><p>The color to use for &quot;filling&quot; the marker.
+(Default: <code>&quot;none&quot;</code> [unfilled])
+</p>
+</dd>
+<dt><span>markersize</span></dt>
+<dd><p>The size of the marker.  (Default: 6)
+</p>
+</dd>
+<dt><span>baseline</span></dt>
+<dd><p>The handle of the line object which implements the baseline.  Use <code>set</code>
+with the returned handle to change graphic properties of the baseline.
+</p>
+</dd>
+<dt><span>basevalue</span></dt>
+<dd><p>The y-value where the baseline is drawn.  (Default: 0)
+</p></dd>
+</dl>
+
+<p><strong>See also:</strong> <a href="#XREFstem3">stem3</a>, <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFplot">plot</a>, <a href="#XREFstairs">stairs</a>.
+</p></dd></dl>
+
+
+<span id="XREFstem3"></span><dl class="def">
+<dt id="index-stem3"><span class="category">: </span><span><em></em> <strong>stem3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-stem3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem3-1"><span class="category">: </span><span><em></em> <strong>stem3</strong> <em>(&hellip;, <var>linespec</var>)</em><a href='#index-stem3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem3-2"><span class="category">: </span><span><em></em> <strong>stem3</strong> <em>(&hellip;, &quot;filled&quot;)</em><a href='#index-stem3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem3-3"><span class="category">: </span><span><em></em> <strong>stem3</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-stem3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem3-4"><span class="category">: </span><span><em></em> <strong>stem3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-stem3-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stem3-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>stem3</strong> <em>(&hellip;)</em><a href='#index-stem3-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot a 3-D stem graph.
+</p>
+<p>Stems are drawn from the height <var>z</var> to the location in the x-y plane
+determined by <var>x</var> and <var>y</var>.  The default color is <code>&quot;b&quot;</code> (blue),
+the default line style is <code>&quot;-&quot;</code>, and the default marker is
+<code>&quot;o&quot;</code>.
+</p>
+<p>The line style can be altered by the <var>linespec</var> argument in the same
+manner as the <code>plot</code> command.  If the <code>&quot;filled&quot;</code> argument is
+present the markers at the top of the stems will be filled in.
+</p>
+<p>Optional property/value pairs may be specified to control the appearance
+of the plot.  The full list of properties is documented at
+<a href="Line-Properties.html">Line Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a handle to the &quot;stem series&quot;
+hggroup containing the line and marker objects used for the plot.
+See <a href="#XREFstem"><code>stem</code></a>, for a description of the
+&quot;stem series&quot; object.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">theta = 0:0.2:6;
+stem3 (cos (theta), sin (theta), theta);
+</pre></div>
+
+<p>plots 31 stems with heights from 0 to 6 lying on a circle.
+</p>
+<p>Implementation Note: Color definitions with RGB-triples are not valid.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstem">stem</a>, <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFscatter"></span><dl class="def">
+<dt id="index-scatter"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-scatter' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-1"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(<var>x</var>, <var>y</var>, <var>s</var>)</em><a href='#index-scatter-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-2"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(<var>x</var>, <var>y</var>, <var>s</var>, <var>c</var>)</em><a href='#index-scatter-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-3"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-scatter-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-4"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(&hellip;, &quot;filled&quot;)</em><a href='#index-scatter-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-5"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-scatter-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-6"><span class="category">: </span><span><em></em> <strong>scatter</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-scatter-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-scatter-7"><span class="category">: </span><span><em><var>h</var> =</em> <strong>scatter</strong> <em>(&hellip;)</em><a href='#index-scatter-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Draw a 2-D scatter plot.
+</p>
+<p>A marker is plotted at each point defined by the coordinates in the vectors
+<var>x</var> and <var>y</var>.
+</p>
+<p>The size of the markers is determined by <var>s</var>, which can be a scalar
+or a vector of the same length as <var>x</var> and <var>y</var>.  If <var>s</var>
+is not given, or is an empty matrix, then a default value of 36 square
+points is used (The marker size itself is <code>sqrt (s)</code>).
+</p>
+<p>The color of the markers is determined by <var>c</var>, which can be a string
+defining a fixed color; a 3-element vector giving the red, green, and blue
+components of the color; a vector of the same length as <var>x</var> that gives
+a scaled index into the current colormap; or an Nx3 matrix
+defining the RGB color of each marker individually.
+</p>
+<p>The marker to use can be changed with the <var>style</var> argument; it is a
+string defining a marker in the same manner as the <code>plot</code> command.
+If no marker is specified it defaults to <code>&quot;o&quot;</code> or circles.
+If the argument <code>&quot;filled&quot;</code> is given then the markers are filled.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created
+scatter object.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">x = randn (100, 1);
+y = randn (100, 1);
+scatter (x, y, [], sqrt (x.^2 + y.^2));
+</pre></div>
+
+<p>Programming Note: The full list of properties is documented at
+<a href="Scatter-Properties.html">Scatter Properties</a>.
+</p>
+<p><strong>See also:</strong> <a href="Three_002dDimensional-Plots.html#XREFscatter3">scatter3</a>, <a href="Graphics-Objects.html#XREFpatch">patch</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFplotmatrix"></span><dl class="def">
+<dt id="index-plotmatrix"><span class="category">: </span><span><em></em> <strong>plotmatrix</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-plotmatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotmatrix-1"><span class="category">: </span><span><em></em> <strong>plotmatrix</strong> <em>(<var>x</var>)</em><a href='#index-plotmatrix-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotmatrix-2"><span class="category">: </span><span><em></em> <strong>plotmatrix</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-plotmatrix-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotmatrix-3"><span class="category">: </span><span><em></em> <strong>plotmatrix</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-plotmatrix-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plotmatrix-4"><span class="category">: </span><span><em>[<var>h</var>, <var>ax</var>, <var>bigax</var>, <var>p</var>, <var>pax</var>] =</em> <strong>plotmatrix</strong> <em>(&hellip;)</em><a href='#index-plotmatrix-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Scatter plot of the columns of one matrix against another.
+</p>
+<p>Given the arguments <var>x</var> and <var>y</var> that have a matching number of
+rows, <code>plotmatrix</code> plots a set of axes corresponding to
+</p>
+<div class="example">
+<pre class="example">plot (<var>x</var>(:, i), <var>y</var>(:, j))
+</pre></div>
+
+<p>When called with a single argument <var>x</var> this is equivalent to
+</p>
+<div class="example">
+<pre class="example">plotmatrix (<var>x</var>, <var>x</var>)
+</pre></div>
+
+<p>except that the diagonal of the set of axes will be replaced with the
+histogram <code>hist (<var>x</var>(:, i))</code>.
+</p>
+<p>The marker to use can be changed with the <var>style</var> argument, that is a
+string defining a marker in the same manner as the <code>plot</code> command.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> provides handles to the individual
+graphics objects in the scatter plots, whereas <var>ax</var> returns the
+handles to the scatter plot axes objects.
+</p>
+<p><var>bigax</var> is a hidden axes object that surrounds the other axes, such
+that the commands <code>xlabel</code>, <code>title</code>, etc., will be associated
+with this hidden axes.
+</p>
+<p>Finally, <var>p</var> returns the graphics objects associated with the histogram
+and <var>pax</var> the corresponding axes objects.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">plotmatrix (randn (100, 3), &quot;g+&quot;)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFscatter">scatter</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFpareto"></span><dl class="def">
+<dt id="index-pareto"><span class="category">: </span><span><em></em> <strong>pareto</strong> <em>(<var>y</var>)</em><a href='#index-pareto' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pareto-1"><span class="category">: </span><span><em></em> <strong>pareto</strong> <em>(<var>y</var>, <var>x</var>)</em><a href='#index-pareto-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pareto-2"><span class="category">: </span><span><em></em> <strong>pareto</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-pareto-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pareto-3"><span class="category">: </span><span><em><var>h</var> =</em> <strong>pareto</strong> <em>(&hellip;)</em><a href='#index-pareto-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Draw a Pareto chart.
+</p>
+<p>A Pareto chart is a bar graph that arranges information in such a way
+that priorities for process improvement can be established; It organizes
+and displays information to show the relative importance of data.  The chart
+is similar to the histogram or bar chart, except that the bars are arranged
+in decreasing magnitude from left to right along the x-axis.
+</p>
+<p>The fundamental idea (Pareto principle) behind the use of Pareto
+diagrams is that the majority of an effect is due to a small subset of the
+causes.  For quality improvement, the first few contributing causes
+(leftmost bars as presented on the diagram) to a problem usually account for
+the majority of the result.  Thus, targeting these &quot;major causes&quot; for
+elimination results in the most cost-effective improvement scheme.
+</p>
+<p>Typically only the magnitude data <var>y</var> is present in which case
+<var>x</var> is taken to be the range <code>1 : length (<var>y</var>)</code>.  If <var>x</var>
+is given it may be a string array, a cell array of strings, or a numerical
+vector.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a 2-element vector with a graphics
+handle for the created bar plot and a second handle for the created line
+plot.
+</p>
+<p>An example of the use of <code>pareto</code> is
+</p>
+<div class="example">
+<pre class="example">Cheese = {&quot;Cheddar&quot;, &quot;Swiss&quot;, &quot;Camembert&quot;, ...
+          &quot;Munster&quot;, &quot;Stilton&quot;, &quot;Blue&quot;};
+Sold = [105, 30, 70, 10, 15, 20];
+pareto (Sold, Cheese);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFbar">bar</a>, <a href="#XREFbarh">barh</a>, <a href="#XREFhist">hist</a>, <a href="#XREFpie">pie</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFrose"></span><dl class="def">
+<dt id="index-rose"><span class="category">: </span><span><em></em> <strong>rose</strong> <em>(<var>th</var>)</em><a href='#index-rose' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rose-1"><span class="category">: </span><span><em></em> <strong>rose</strong> <em>(<var>th</var>, <var>nbins</var>)</em><a href='#index-rose-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rose-2"><span class="category">: </span><span><em></em> <strong>rose</strong> <em>(<var>th</var>, <var>bins</var>)</em><a href='#index-rose-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rose-3"><span class="category">: </span><span><em></em> <strong>rose</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-rose-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rose-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>rose</strong> <em>(&hellip;)</em><a href='#index-rose-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rose-5"><span class="category">: </span><span><em>[<var>thout</var> <var>rout</var>] =</em> <strong>rose</strong> <em>(&hellip;)</em><a href='#index-rose-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot an angular histogram.
+</p>
+<p>With one vector argument, <var>th</var>, plot the histogram with 20 angular bins.
+If <var>th</var> is a matrix then each column of <var>th</var> produces a separate
+histogram.
+</p>
+<p>If <var>nbins</var> is given and is a scalar, then the histogram is produced with
+<var>nbin</var> bins.  If <var>bins</var> is a vector, then the center of each bin is
+defined by the values in <var>bins</var> and the number of bins is
+given by the number of elements in <var>bins</var>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to the
+line objects representing each histogram.
+</p>
+<p>If two output arguments are requested then no plot is made and
+the polar vectors necessary to plot the histogram are returned instead.
+</p>
+<p>Example
+</p>
+<div class="example">
+<pre class="example">[th, r] = rose ([2*randn(1e5,1), pi + 2*randn(1e5,1)]);
+polar (th, r);
+</pre></div>
+
+<p>Programming Note: When specifying bin centers with the <var>bins</var> input,
+the edges for bins 2 to N-1 are spaced so that <code><var>bins</var>(i)</code> is
+centered between the edges.  The final edge is drawn halfway between bin N
+and bin 1.  This guarantees that all input <var>th</var> will be placed into one
+of the bins, but also means that for some combinations bin 1 and bin N may
+not be centered on the user&rsquo;s given values.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhist">hist</a>, <a href="#XREFpolar">polar</a>.
+</p></dd></dl>
+
+
+<p>The <code>contour</code>, <code>contourf</code> and <code>contourc</code> functions
+produce two-dimensional contour plots from three-dimensional data.
+</p>
+<span id="XREFcontour"></span><dl class="def">
+<dt id="index-contour"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(<var>z</var>)</em><a href='#index-contour' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-1"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(<var>z</var>, <var>vn</var>)</em><a href='#index-contour-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-2"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-contour-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-3"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>vn</var>)</em><a href='#index-contour-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-4"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-contour-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-5"><span class="category">: </span><span><em></em> <strong>contour</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-contour-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour-6"><span class="category">: </span><span><em>[<var>c</var>, <var>h</var>] =</em> <strong>contour</strong> <em>(&hellip;)</em><a href='#index-contour-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a 2-D contour plot.
+</p>
+<p>Plot level curves (contour lines) of the matrix <var>z</var>, using the
+contour matrix <var>c</var> computed by <code>contourc</code> from the same
+arguments; see the latter for their interpretation.
+</p>
+<p>The appearance of contour lines can be defined with a line style <var>style</var>
+in the same manner as <code>plot</code>.  Only line style and color are used;
+Any markers defined by <var>style</var> are ignored.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional output <var>c</var> contains the contour levels in <code>contourc</code>
+format.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the hggroup
+comprising the contour lines.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">x = 0:3;
+y = 0:2;
+z = y' * x;
+contour (x, y, z, 2:3)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Two_002ddimensional-Function-Plotting.html#XREFezcontour">ezcontour</a>, <a href="#XREFcontourc">contourc</a>, <a href="#XREFcontourf">contourf</a>, <a href="#XREFcontour3">contour3</a>, <a href="Plot-Annotations.html#XREFclabel">clabel</a>, <a href="Three_002dDimensional-Plots.html#XREFmeshc">meshc</a>, <a href="Three_002dDimensional-Plots.html#XREFsurfc">surfc</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>, <a href="#XREFplot">plot</a>.
+</p>
+</dd></dl>
+
+
+<span id="XREFcontourf"></span><dl class="def">
+<dt id="index-contourf"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(<var>z</var>)</em><a href='#index-contourf' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-1"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(<var>z</var>, <var>vn</var>)</em><a href='#index-contourf-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-2"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-contourf-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-3"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>vn</var>)</em><a href='#index-contourf-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-4"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-contourf-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-5"><span class="category">: </span><span><em></em> <strong>contourf</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-contourf-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourf-6"><span class="category">: </span><span><em>[<var>c</var>, <var>h</var>] =</em> <strong>contourf</strong> <em>(&hellip;)</em><a href='#index-contourf-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a 2-D contour plot with filled intervals.
+</p>
+<p>Plot level curves (contour lines) of the matrix <var>z</var> and fill the region
+between lines with colors from the current colormap.
+</p>
+<p>The level curves are taken from the contour matrix <var>c</var> computed by
+<code>contourc</code> for the same arguments; see the latter for their
+interpretation.
+</p>
+<p>The appearance of contour lines can be defined with a line style <var>style</var>
+in the same manner as <code>plot</code>.  Only line style and color are used;
+Any markers defined by <var>style</var> are ignored.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional output <var>c</var> contains the contour levels in <code>contourc</code>
+format.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the hggroup
+comprising the contour lines.
+</p>
+<p>The following example plots filled contours of the <code>peaks</code> function.
+</p>
+<div class="example">
+<pre class="example">[x, y, z] = peaks (50);
+contourf (x, y, z, -7:9)
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Two_002ddimensional-Function-Plotting.html#XREFezcontourf">ezcontourf</a>, <a href="#XREFcontour">contour</a>, <a href="#XREFcontourc">contourc</a>, <a href="#XREFcontour3">contour3</a>, <a href="Plot-Annotations.html#XREFclabel">clabel</a>, <a href="Three_002dDimensional-Plots.html#XREFmeshc">meshc</a>, <a href="Three_002dDimensional-Plots.html#XREFsurfc">surfc</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFcontourc"></span><dl class="def">
+<dt id="index-contourc"><span class="category">: </span><span><em><var>c</var> =</em> <strong>contourc</strong> <em>(<var>z</var>)</em><a href='#index-contourc' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourc-1"><span class="category">: </span><span><em><var>c</var> =</em> <strong>contourc</strong> <em>(<var>z</var>, <var>vn</var>)</em><a href='#index-contourc-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourc-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>contourc</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-contourc-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourc-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>contourc</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>vn</var>)</em><a href='#index-contourc-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contourc-4"><span class="category">: </span><span><em>[<var>c</var>, <var>lev</var>] =</em> <strong>contourc</strong> <em>(&hellip;)</em><a href='#index-contourc-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute contour lines (isolines of constant Z value).
+</p>
+<p>The matrix <var>z</var> contains height values above the rectangular grid
+determined by <var>x</var> and <var>y</var>.  If only a single input <var>z</var> is
+provided then <var>x</var> is taken to be <code>1:columns (<var>z</var>)</code> and <var>y</var>
+is taken to be <code>1:rows (<var>z</var>)</code>.  The minimum data size is 2x2.
+</p>
+<p>The optional input <var>vn</var> is either a scalar denoting the number of
+contour lines to compute or a vector containing the Z values where lines
+will be computed.  When <var>vn</var> is a vector the number of contour lines
+is <code>numel (<var>vn</var>)</code>.  However, to compute a single contour line
+at a given value use <code><var>vn</var> = [val, val]</code>.  If <var>vn</var> is omitted
+it defaults to 10.
+</p>
+<p>The return value <var>c</var> is a 2x<var>n</var> matrix containing the contour lines
+in the following format
+</p>
+<div class="example">
+<pre class="example"><var>c</var> = [lev1, x1, x2, &hellip;, levn, x1, x2, ...
+     len1, y1, y2, &hellip;, lenn, y1, y2, &hellip;]
+</pre></div>
+
+<p>in which contour line <var>n</var> has a level (height) of <var>levn</var> and length
+of <var>lenn</var>.
+</p>
+<p>The optional return value <var>lev</var> is a vector with the Z values of the
+contour levels.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">x = 0:2;
+y = x;
+z = x' * y;
+c = contourc (x, y, z, 2:3)
+  &rArr; c =
+        2.0000   1.0000   1.0000   2.0000   2.0000   3.0000   1.5000   2.0000
+        4.0000   2.0000   2.0000   1.0000   1.0000   2.0000   2.0000   1.5000
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFcontour">contour</a>, <a href="#XREFcontourf">contourf</a>, <a href="#XREFcontour3">contour3</a>, <a href="Plot-Annotations.html#XREFclabel">clabel</a>.
+</p></dd></dl>
+
+
+<span id="XREFcontour3"></span><dl class="def">
+<dt id="index-contour3"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(<var>z</var>)</em><a href='#index-contour3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-1"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(<var>z</var>, <var>vn</var>)</em><a href='#index-contour3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-2"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-contour3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-3"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>vn</var>)</em><a href='#index-contour3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-4"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-contour3-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-5"><span class="category">: </span><span><em></em> <strong>contour3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-contour3-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-contour3-6"><span class="category">: </span><span><em>[<var>c</var>, <var>h</var>] =</em> <strong>contour3</strong> <em>(&hellip;)</em><a href='#index-contour3-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a 3-D contour plot.
+</p>
+<p><code>contour3</code> plots level curves (contour lines) of the matrix <var>z</var>
+at a Z level corresponding to each contour.  This is in contrast to
+<code>contour</code> which plots all of the contour lines at the same Z level
+and produces a 2-D plot.
+</p>
+<p>The level curves are taken from the contour matrix <var>c</var> computed by
+<code>contourc</code> for the same arguments; see the latter for their
+interpretation.
+</p>
+<p>The appearance of contour lines can be defined with a line style <var>style</var>
+in the same manner as <code>plot</code>.  Only line style and color are used;
+Any markers defined by <var>style</var> are ignored.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional output <var>c</var> are the contour levels in <code>contourc</code>
+format.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the hggroup
+comprising the contour lines.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">contour3 (peaks (19));
+colormap cool;
+hold on;
+surf (peaks (19), &quot;facecolor&quot;, &quot;none&quot;, &quot;edgecolor&quot;, &quot;black&quot;);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFcontour">contour</a>, <a href="#XREFcontourc">contourc</a>, <a href="#XREFcontourf">contourf</a>, <a href="Plot-Annotations.html#XREFclabel">clabel</a>, <a href="Three_002dDimensional-Plots.html#XREFmeshc">meshc</a>, <a href="Three_002dDimensional-Plots.html#XREFsurfc">surfc</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<p>The <code>errorbar</code>, <code>semilogxerr</code>, <code>semilogyerr</code>, and
+<code>loglogerr</code> functions produce plots with error bar markers.  For
+example,
+</p>
+<div class="example">
+<pre class="example">rand (&quot;state&quot;, 2);
+x = 0:0.1:10;
+y = sin (x);
+lerr = 0.1 .* rand (size (x));
+uerr = 0.1 .* rand (size (x));
+errorbar (x, y, lerr, uerr);
+axis ([0, 10, -1.1, 1.1]);
+xlabel (&quot;x&quot;);
+ylabel (&quot;sin (x)&quot;);
+title (&quot;Errorbar plot of sin (x)&quot;);
+</pre></div>
+
+<p>produces the figure shown in <a href="#fig_003aerrorbar">Figure 15.3</a>.
+</p>
+<div class="float"><span id="fig_003aerrorbar"></span>
+<div align="center"><img src="errorbar.png" alt="errorbar">
+</div>
+<div class="float-caption"><p><strong>Figure 15.3: </strong>Errorbar plot.</p></div></div>
+<span id="XREFerrorbar"></span><dl class="def">
+<dt id="index-errorbar"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>y</var>, <var>ey</var>)</em><a href='#index-errorbar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-1"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>y</var>, &hellip;, <var>fmt</var>)</em><a href='#index-errorbar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-2"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x</var>, <var>y</var>, <var>ey</var>)</em><a href='#index-errorbar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-3"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x</var>, <var>y</var>, <var>err</var>, <var>fmt</var>)</em><a href='#index-errorbar-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-4"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x</var>, <var>y</var>, <var>lerr</var>, <var>uerr</var>, <var>fmt</var>)</em><a href='#index-errorbar-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-5"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x</var>, <var>y</var>, <var>ex</var>, <var>ey</var>, <var>fmt</var>)</em><a href='#index-errorbar-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-6"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x</var>, <var>y</var>, <var>lx</var>, <var>ux</var>, <var>ly</var>, <var>uy</var>, <var>fmt</var>)</em><a href='#index-errorbar-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-7"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>x1</var>, <var>y1</var>, &hellip;, <var>fmt</var>, <var>xn</var>, <var>yn</var>, &hellip;)</em><a href='#index-errorbar-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-8"><span class="category">: </span><span><em></em> <strong>errorbar</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-errorbar-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-errorbar-9"><span class="category">: </span><span><em><var>h</var> =</em> <strong>errorbar</strong> <em>(&hellip;)</em><a href='#index-errorbar-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a 2-D plot with errorbars.
+</p>
+<p>Many different combinations of arguments are possible.  The simplest form is
+</p>
+<div class="example">
+<pre class="example">errorbar (<var>y</var>, <var>ey</var>)
+</pre></div>
+
+<p>where the first argument is taken as the set of <var>y</var> coordinates, the
+second argument <var>ey</var> are the errors around the <var>y</var> values, and the
+<var>x</var> coordinates are taken to be the indices of the elements
+(<code>1:numel (<var>y</var>)</code>).
+</p>
+<p>The general form of the function is
+</p>
+<div class="example">
+<pre class="example">errorbar (<var>x</var>, <var>y</var>, <var>err1</var>, &hellip;, <var>fmt</var>, &hellip;)
+</pre></div>
+
+<p>After the <var>x</var> and <var>y</var> arguments there can be 1, 2, or 4
+parameters specifying the error values depending on the nature of the error
+values and the plot format <var>fmt</var>.
+</p>
+<dl compact="compact">
+<dt><span><var>err</var> (scalar)</span></dt>
+<dd><p>When the error is a scalar all points share the same error value.
+The errorbars are symmetric and are drawn from <var>data</var>-<var>err</var> to
+<var>data</var>+<var>err</var>.
+The <var>fmt</var> argument determines whether <var>err</var> is in the x-direction,
+y-direction (default), or both.
+</p>
+</dd>
+<dt><span><var>err</var> (vector or matrix)</span></dt>
+<dd><p>Each data point has a particular error value.
+The errorbars are symmetric and are drawn from <var>data</var>(n)-<var>err</var>(n) to
+<var>data</var>(n)+<var>err</var>(n).
+</p>
+</dd>
+<dt><span><var>lerr</var>, <var>uerr</var> (scalar)</span></dt>
+<dd><p>The errors have a single low-side value and a single upper-side value.
+The errorbars are not symmetric and are drawn from <var>data</var>-<var>lerr</var> to
+<var>data</var>+<var>uerr</var>.
+</p>
+</dd>
+<dt><span><var>lerr</var>, <var>uerr</var> (vector or matrix)</span></dt>
+<dd><p>Each data point has a low-side error and an upper-side error.
+The errorbars are not symmetric and are drawn from
+<var>data</var>(n)-<var>lerr</var>(n) to <var>data</var>(n)+<var>uerr</var>(n).
+</p></dd>
+</dl>
+
+<p>Any number of data sets (<var>x1</var>,<var>y1</var>, <var>x2</var>,<var>y2</var>, &hellip;) may
+appear as long as they are separated by a format string <var>fmt</var>.
+</p>
+<p>If <var>y</var> is a matrix, <var>x</var> and the error parameters must also be
+matrices having the same dimensions.  The columns of <var>y</var> are plotted
+versus the corresponding columns of <var>x</var> and errorbars are taken from
+the corresponding columns of the error parameters.
+</p>
+<p>If <var>fmt</var> is missing, the yerrorbars (&quot;~&quot;) plot style is assumed.
+</p>
+<p>If the <var>fmt</var> argument is supplied then it is interpreted, as in normal
+plots, to specify the line style, marker, and color.  In addition,
+<var>fmt</var> may include an errorbar style which <strong>must precede</strong> the
+ordinary format codes.  The following errorbar styles are supported:
+</p>
+<dl compact="compact">
+<dt><span>&lsquo;<samp>~</samp>&rsquo;</span></dt>
+<dd><p>Set yerrorbars plot style (default).
+</p>
+</dd>
+<dt><span>&lsquo;<samp>&gt;</samp>&rsquo;</span></dt>
+<dd><p>Set xerrorbars plot style.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>~&gt;</samp>&rsquo;</span></dt>
+<dd><p>Set xyerrorbars plot style.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>#~</samp>&rsquo;</span></dt>
+<dd><p>Set yboxes plot style.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>#</samp>&rsquo;</span></dt>
+<dd><p>Set xboxes plot style.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>#~&gt;</samp>&rsquo;</span></dt>
+<dd><p>Set xyboxes plot style.
+</p></dd>
+</dl>
+
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a handle to the hggroup object
+representing the data plot and errorbars.
+</p>
+<p>Note: For compatibility with <small>MATLAB</small> a line is drawn through all data
+points.  However, most scientific errorbar plots are a scatter plot of
+points with errorbars.  To accomplish this, add a marker style to the
+<var>fmt</var> argument such as <code>&quot;.&quot;</code>.  Alternatively, remove the line
+by modifying the returned graphic handle with
+<code>set (h, &quot;linestyle&quot;, &quot;none&quot;)</code>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">errorbar (<var>x</var>, <var>y</var>, <var>ex</var>, &quot;&gt;.r&quot;)
+</pre></div>
+
+<p>produces an xerrorbar plot of <var>y</var> versus <var>x</var> with <var>x</var>
+errorbars drawn from <var>x</var>-<var>ex</var> to <var>x</var>+<var>ex</var>.  The marker
+<code>&quot;.&quot;</code> is used so no connecting line is drawn and the errorbars
+appear in red.
+</p>
+<div class="example">
+<pre class="example">errorbar (<var>x</var>, <var>y1</var>, <var>ey</var>, &quot;~&quot;,
+          <var>x</var>, <var>y2</var>, <var>ly</var>, <var>uy</var>)
+</pre></div>
+
+<p>produces yerrorbar plots with <var>y1</var> and <var>y2</var> versus <var>x</var>.
+Errorbars for <var>y1</var> are drawn from <var>y1</var>-<var>ey</var> to
+<var>y1</var>+<var>ey</var>, errorbars for <var>y2</var> from <var>y2</var>-<var>ly</var> to
+<var>y2</var>+<var>uy</var>.
+</p>
+<div class="example">
+<pre class="example">errorbar (<var>x</var>, <var>y</var>, <var>lx</var>, <var>ux</var>,
+          <var>ly</var>, <var>uy</var>, &quot;~&gt;&quot;)
+</pre></div>
+
+<p>produces an xyerrorbar plot of <var>y</var> versus <var>x</var> in which
+<var>x</var> errorbars are drawn from <var>x</var>-<var>lx</var> to <var>x</var>+<var>ux</var>
+and <var>y</var> errorbars from <var>y</var>-<var>ly</var> to <var>y</var>+<var>uy</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsemilogxerr">semilogxerr</a>, <a href="#XREFsemilogyerr">semilogyerr</a>, <a href="#XREFloglogerr">loglogerr</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFsemilogxerr"></span><dl class="def">
+<dt id="index-semilogxerr"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>y</var>, <var>ey</var>)</em><a href='#index-semilogxerr' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-1"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>y</var>, &hellip;, <var>fmt</var>)</em><a href='#index-semilogxerr-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-2"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ey</var>)</em><a href='#index-semilogxerr-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-3"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x</var>, <var>y</var>, <var>err</var>, <var>fmt</var>)</em><a href='#index-semilogxerr-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-4"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lerr</var>, <var>uerr</var>, <var>fmt</var>)</em><a href='#index-semilogxerr-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-5"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ex</var>, <var>ey</var>, <var>fmt</var>)</em><a href='#index-semilogxerr-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-6"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lx</var>, <var>ux</var>, <var>ly</var>, <var>uy</var>, <var>fmt</var>)</em><a href='#index-semilogxerr-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-7"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>x1</var>, <var>y1</var>, &hellip;, <var>fmt</var>, <var>xn</var>, <var>yn</var>, &hellip;)</em><a href='#index-semilogxerr-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-8"><span class="category">: </span><span><em></em> <strong>semilogxerr</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-semilogxerr-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogxerr-9"><span class="category">: </span><span><em><var>h</var> =</em> <strong>semilogxerr</strong> <em>(&hellip;)</em><a href='#index-semilogxerr-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce 2-D plots using a logarithmic scale for the x-axis and errorbars
+at each data point.
+</p>
+<p>Many different combinations of arguments are possible.  The most common
+form is
+</p>
+<div class="example">
+<pre class="example">semilogxerr (<var>x</var>, <var>y</var>, <var>ey</var>, <var>fmt</var>)
+</pre></div>
+
+<p>which produces a semi-logarithmic plot of <var>y</var> versus <var>x</var>
+with errors in the <var>y</var>-scale defined by <var>ey</var> and the plot
+format defined by <var>fmt</var>.  See <a href="#XREFerrorbar"><code>errorbar</code></a>, for
+available formats and additional information.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFerrorbar">errorbar</a>, <a href="#XREFsemilogyerr">semilogyerr</a>, <a href="#XREFloglogerr">loglogerr</a>.
+</p></dd></dl>
+
+
+<span id="XREFsemilogyerr"></span><dl class="def">
+<dt id="index-semilogyerr"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>y</var>, <var>ey</var>)</em><a href='#index-semilogyerr' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-1"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>y</var>, &hellip;, <var>fmt</var>)</em><a href='#index-semilogyerr-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-2"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ey</var>)</em><a href='#index-semilogyerr-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-3"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x</var>, <var>y</var>, <var>err</var>, <var>fmt</var>)</em><a href='#index-semilogyerr-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-4"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lerr</var>, <var>uerr</var>, <var>fmt</var>)</em><a href='#index-semilogyerr-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-5"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ex</var>, <var>ey</var>, <var>fmt</var>)</em><a href='#index-semilogyerr-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-6"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lx</var>, <var>ux</var>, <var>ly</var>, <var>uy</var>, <var>fmt</var>)</em><a href='#index-semilogyerr-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-7"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>x1</var>, <var>y1</var>, &hellip;, <var>fmt</var>, <var>xn</var>, <var>yn</var>, &hellip;)</em><a href='#index-semilogyerr-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-8"><span class="category">: </span><span><em></em> <strong>semilogyerr</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-semilogyerr-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-semilogyerr-9"><span class="category">: </span><span><em><var>h</var> =</em> <strong>semilogyerr</strong> <em>(&hellip;)</em><a href='#index-semilogyerr-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce 2-D plots using a logarithmic scale for the y-axis and errorbars
+at each data point.
+</p>
+<p>Many different combinations of arguments are possible.  The most common
+form is
+</p>
+<div class="example">
+<pre class="example">semilogyerr (<var>x</var>, <var>y</var>, <var>ey</var>, <var>fmt</var>)
+</pre></div>
+
+<p>which produces a semi-logarithmic plot of <var>y</var> versus <var>x</var>
+with errors in the <var>y</var>-scale defined by <var>ey</var> and the plot
+format defined by <var>fmt</var>.  See <a href="#XREFerrorbar"><code>errorbar</code></a>, for
+available formats and additional information.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFerrorbar">errorbar</a>, <a href="#XREFsemilogxerr">semilogxerr</a>, <a href="#XREFloglogerr">loglogerr</a>.
+</p></dd></dl>
+
+
+<span id="XREFloglogerr"></span><dl class="def">
+<dt id="index-loglogerr"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>y</var>, <var>ey</var>)</em><a href='#index-loglogerr' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-1"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>y</var>, &hellip;, <var>fmt</var>)</em><a href='#index-loglogerr-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-2"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ey</var>)</em><a href='#index-loglogerr-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-3"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x</var>, <var>y</var>, <var>err</var>, <var>fmt</var>)</em><a href='#index-loglogerr-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-4"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lerr</var>, <var>uerr</var>, <var>fmt</var>)</em><a href='#index-loglogerr-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-5"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x</var>, <var>y</var>, <var>ex</var>, <var>ey</var>, <var>fmt</var>)</em><a href='#index-loglogerr-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-6"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x</var>, <var>y</var>, <var>lx</var>, <var>ux</var>, <var>ly</var>, <var>uy</var>, <var>fmt</var>)</em><a href='#index-loglogerr-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-7"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>x1</var>, <var>y1</var>, &hellip;, <var>fmt</var>, <var>xn</var>, <var>yn</var>, &hellip;)</em><a href='#index-loglogerr-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-8"><span class="category">: </span><span><em></em> <strong>loglogerr</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-loglogerr-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-loglogerr-9"><span class="category">: </span><span><em><var>h</var> =</em> <strong>loglogerr</strong> <em>(&hellip;)</em><a href='#index-loglogerr-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce 2-D plots on a double logarithm axis with errorbars.
+</p>
+<p>Many different combinations of arguments are possible.  The most common
+form is
+</p>
+<div class="example">
+<pre class="example">loglogerr (<var>x</var>, <var>y</var>, <var>ey</var>, <var>fmt</var>)
+</pre></div>
+
+<p>which produces a double logarithm plot of <var>y</var> versus <var>x</var>
+with errors in the <var>y</var>-scale defined by <var>ey</var> and the plot
+format defined by <var>fmt</var>.  See <a href="#XREFerrorbar"><code>errorbar</code></a>, for
+available formats and additional information.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFerrorbar">errorbar</a>, <a href="#XREFsemilogxerr">semilogxerr</a>, <a href="#XREFsemilogyerr">semilogyerr</a>.
+</p></dd></dl>
+
+
+<p>Finally, the <code>polar</code> function allows you to easily plot data in
+polar coordinates.  However, the display coordinates remain rectangular
+and linear.  For example,
+</p>
+<div class="example">
+<pre class="example">polar (0:0.1:10*pi, 0:0.1:10*pi);
+title (&quot;Example polar plot from 0 to 10*pi&quot;);
+</pre></div>
+
+<p>produces the spiral plot shown in <a href="#fig_003apolar">Figure 15.4</a>.
+</p>
+<div class="float"><span id="fig_003apolar"></span>
+<div align="center"><img src="polar.png" alt="polar">
+</div>
+<div class="float-caption"><p><strong>Figure 15.4: </strong>Polar plot.</p></div></div>
+<span id="XREFpolar"></span><dl class="def">
+<dt id="index-polar"><span class="category">: </span><span><em></em> <strong>polar</strong> <em>(<var>theta</var>, <var>rho</var>)</em><a href='#index-polar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-polar-1"><span class="category">: </span><span><em></em> <strong>polar</strong> <em>(<var>theta</var>, <var>rho</var>, <var>fmt</var>)</em><a href='#index-polar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-polar-2"><span class="category">: </span><span><em></em> <strong>polar</strong> <em>(<var>cplx</var>)</em><a href='#index-polar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-polar-3"><span class="category">: </span><span><em></em> <strong>polar</strong> <em>(<var>cplx</var>, <var>fmt</var>)</em><a href='#index-polar-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-polar-4"><span class="category">: </span><span><em></em> <strong>polar</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-polar-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-polar-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>polar</strong> <em>(&hellip;)</em><a href='#index-polar-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a 2-D plot from polar coordinates <var>theta</var> and <var>rho</var>.
+</p>
+<p>The input <var>theta</var> is assumed to be radians and is converted to degrees
+for plotting.  If you have degrees then you must convert
+(see <a href="Coordinate-Transformations.html#XREFcart2pol"><code>cart2pol</code></a>) to radians before passing the
+data to this function.
+</p>
+<p>If a single complex input <var>cplx</var> is given then the real part is used
+for <var>theta</var> and the imaginary part is used for <var>rho</var>.
+</p>
+<p>The optional argument <var>fmt</var> specifies the line format in the same way
+as <code>plot</code>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created plot.
+</p>
+<p>Implementation Note: The polar axis is drawn using line and text objects
+encapsulated in an hggroup.  The hggroup properties are linked to the
+original axes object such that altering an appearance property, for example
+<code>fontname</code>, will update the polar axis.  Two new properties are
+added to the original axes&ndash;<code>rtick</code>, <code>ttick</code>&ndash;which replace
+<code>xtick</code>, <code>ytick</code>.  The first is a list of tick locations in the
+radial (rho) direction; The second is a list of tick locations in the
+angular (theta) direction specified in degrees, i.e., in the range 0&ndash;359.
+</p>
+<p><strong>See also:</strong> <a href="#XREFrose">rose</a>, <a href="#XREFcompass">compass</a>, <a href="#XREFplot">plot</a>, <a href="Coordinate-Transformations.html#XREFcart2pol">cart2pol</a>.
+</p></dd></dl>
+
+
+<span id="XREFpie"></span><dl class="def">
+<dt id="index-pie"><span class="category">: </span><span><em></em> <strong>pie</strong> <em>(<var>x</var>)</em><a href='#index-pie' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie-1"><span class="category">: </span><span><em></em> <strong>pie</strong> <em>(&hellip;, <var>explode</var>)</em><a href='#index-pie-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie-2"><span class="category">: </span><span><em></em> <strong>pie</strong> <em>(&hellip;, <var>labels</var>)</em><a href='#index-pie-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie-3"><span class="category">: </span><span><em></em> <strong>pie</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-pie-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>pie</strong> <em>(&hellip;)</em><a href='#index-pie-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot a 2-D pie chart.
+</p>
+<p>When called with a single vector argument, produce a pie chart of the
+elements in <var>x</var>.  The size of the ith slice is the percentage that the
+element <var>x</var>i represents of the total sum of <var>x</var>:
+<code>pct = <var>x</var>(i) / sum (<var>x</var>)</code>.
+</p>
+<p>The optional input <var>explode</var> is a vector of the same length as <var>x</var>
+that, if nonzero, &quot;explodes&quot; the slice from the pie chart.
+</p>
+<p>The optional input <var>labels</var> is a cell array of strings of the same
+length as <var>x</var> specifying the label for each slice.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a list of handles to the patch
+and text objects generating the plot.
+</p>
+<p>Note: If <code>sum (<var>x</var>) &le; 1</code> then the elements of <var>x</var> are
+interpreted as percentages directly and are not normalized by <code>sum
+(x)</code>.  Furthermore, if the sum is less than 1 then there will be a missing
+slice in the pie plot to represent the missing, unspecified percentage.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpie3">pie3</a>, <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFrose">rose</a>.
+</p></dd></dl>
+
+
+<span id="XREFpie3"></span><dl class="def">
+<dt id="index-pie3"><span class="category">: </span><span><em></em> <strong>pie3</strong> <em>(<var>x</var>)</em><a href='#index-pie3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie3-1"><span class="category">: </span><span><em></em> <strong>pie3</strong> <em>(&hellip;, <var>explode</var>)</em><a href='#index-pie3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie3-2"><span class="category">: </span><span><em></em> <strong>pie3</strong> <em>(&hellip;, <var>labels</var>)</em><a href='#index-pie3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie3-3"><span class="category">: </span><span><em></em> <strong>pie3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-pie3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pie3-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>pie3</strong> <em>(&hellip;)</em><a href='#index-pie3-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot a 3-D pie chart.
+</p>
+<p>Called with a single vector argument, produces a 3-D pie chart of the
+elements in <var>x</var>.  The size of the ith slice is the percentage that the
+element <var>x</var>i represents of the total sum of <var>x</var>:
+<code>pct = <var>x</var>(i) / sum (<var>x</var>)</code>.
+</p>
+<p>The optional input <var>explode</var> is a vector of the same length as <var>x</var>
+that, if nonzero, &quot;explodes&quot; the slice from the pie chart.
+</p>
+<p>The optional input <var>labels</var> is a cell array of strings of the same
+length as <var>x</var> specifying the label for each slice.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a list of graphics handles to the
+patch, surface, and text objects generating the plot.
+</p>
+<p>Note: If <code>sum (<var>x</var>) &le; 1</code> then the elements of <var>x</var> are
+interpreted as percentages directly and are not normalized by <code>sum
+(x)</code>.  Furthermore, if the sum is less than 1 then there will be a missing
+slice in the pie plot to represent the missing, unspecified percentage.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpie">pie</a>, <a href="#XREFbar">bar</a>, <a href="#XREFhist">hist</a>, <a href="#XREFrose">rose</a>.
+</p></dd></dl>
+
+
+<span id="XREFquiver"></span><dl class="def">
+<dt id="index-quiver"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(<var>u</var>, <var>v</var>)</em><a href='#index-quiver' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-1"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(<var>x</var>, <var>y</var>, <var>u</var>, <var>v</var>)</em><a href='#index-quiver-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-2"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(&hellip;, <var>s</var>)</em><a href='#index-quiver-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-3"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-quiver-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-4"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(&hellip;, &quot;filled&quot;)</em><a href='#index-quiver-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-5"><span class="category">: </span><span><em></em> <strong>quiver</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-quiver-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>quiver</strong> <em>(&hellip;)</em><a href='#index-quiver-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Plot a 2-D vector field with arrows.
+</p>
+<p>Plot the (<var>u</var>, <var>v</var>) components of a vector field at the grid points
+defined by (<var>x</var>, <var>y</var>).  If the grid is uniform then <var>x</var> and
+<var>y</var> can be specified as vectors and <code>meshgrid</code> is used to create
+the 2-D grid.
+</p>
+<p>If <var>x</var> and <var>y</var> are not given they are assumed to be
+<code>(1:<var>m</var>, 1:<var>n</var>)</code> where
+<code>[<var>m</var>, <var>n</var>] = size (<var>u</var>)</code>.
+</p>
+<p>The optional input <var>s</var> is a scalar defining a scaling factor to use for
+the arrows of the field relative to the mesh spacing.  A value of 1.0 will
+result in the longest vector exactly filling one grid square.  A value of 0
+disables all scaling.  The default value is 0.9.
+</p>
+<p>The style to use for the plot can be defined with a line style <var>style</var>
+of the same format as the <code>plot</code> command.  If a marker is specified
+then the markers are drawn at the origin of the vectors (which are the grid
+points defined by <var>x</var> and <var>y</var>).  When a marker is specified, the
+arrowhead is not drawn.  If the argument <code>&quot;filled&quot;</code> is given then the
+markers are filled.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to a quiver object.
+A quiver object regroups the components of the quiver plot (body, arrow,
+and marker), and allows them to be changed together.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y] = meshgrid (1:2:20);
+h = quiver (x, y, sin (2*pi*x/10), sin (2*pi*y/10));
+set (h, &quot;maxheadsize&quot;, 0.33);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFquiver3">quiver3</a>, <a href="#XREFcompass">compass</a>, <a href="#XREFfeather">feather</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFquiver3"></span><dl class="def">
+<dt id="index-quiver3"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>)</em><a href='#index-quiver3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-1"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(<var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>)</em><a href='#index-quiver3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-2"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(&hellip;, <var>s</var>)</em><a href='#index-quiver3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-3"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-quiver3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-4"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(&hellip;, &quot;filled&quot;)</em><a href='#index-quiver3-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-5"><span class="category">: </span><span><em></em> <strong>quiver3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-quiver3-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quiver3-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>quiver3</strong> <em>(&hellip;)</em><a href='#index-quiver3-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Plot a 3-D vector field with arrows.
+</p>
+<p>Plot the (<var>u</var>, <var>v</var>, <var>w</var>) components of a vector field at the
+grid points defined by (<var>x</var>, <var>y</var>, <var>z</var>).  If the grid is uniform
+then <var>x</var>, <var>y</var>, and <var>z</var> can be specified as vectors and
+<code>meshgrid</code> is used to create the 3-D grid.
+</p>
+<p>If <var>x</var> and <var>y</var> are not given they are assumed to be
+<code>(1:<var>m</var>, 1:<var>n</var>)</code> where
+<code>[<var>m</var>, <var>n</var>] = size (<var>u</var>)</code>.
+</p>
+<p>The optional input <var>s</var> is a scalar defining a scaling factor to use for
+the arrows of the field relative to the mesh spacing.  A value of 1.0 will
+result in the longest vector exactly filling one grid cube.  A value of 0
+disables all scaling.  The default value is 0.9.
+</p>
+<p>The style to use for the plot can be defined with a line style <var>style</var>
+of the same format as the <code>plot</code> command.  If a marker is specified
+then the markers are drawn at the origin of the vectors (which are the grid
+points defined by <var>x</var>, <var>y</var>, <var>z</var>).  When a marker is specified,
+the arrowhead is not drawn.  If the argument <code>&quot;filled&quot;</code> is given then
+the markers are filled.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to a quiver object.
+A quiver object regroups the components of the quiver plot (body, arrow,
+and marker), and allows them to be changed together.
+</p>
+<div class="example">
+<pre class="example">[x, y, z] = peaks (25);
+surf (x, y, z);
+hold on;
+[u, v, w] = surfnorm (x, y, z / 10);
+h = quiver3 (x, y, z, u, v, w);
+set (h, &quot;maxheadsize&quot;, 0.33);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFquiver">quiver</a>, <a href="#XREFcompass">compass</a>, <a href="#XREFfeather">feather</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFstreamribbon"></span><dl class="def">
+<dt id="index-streamribbon"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamribbon' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-1"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamribbon-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-2"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>xyz</var>, <var>x</var>, <var>y</var>, <var>z</var>, <var>anlr_spd</var>, <var>lin_spd</var>)</em><a href='#index-streamribbon-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-3"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>xyz</var>, <var>anlr_spd</var>, <var>lin_spd</var>)</em><a href='#index-streamribbon-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-4"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>xyz</var>, <var>anlr_rot</var>)</em><a href='#index-streamribbon-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-5"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(&hellip;, <var>width</var>)</em><a href='#index-streamribbon-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-6"><span class="category">: </span><span><em></em> <strong>streamribbon</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-streamribbon-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamribbon-7"><span class="category">: </span><span><em><var>h</var> =</em> <strong>streamribbon</strong> <em>(&hellip;)</em><a href='#index-streamribbon-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate and display streamribbons.
+</p>
+<p>The streamribbon is constructed by rotating a normal vector around a
+streamline according to the angular rotation of the vector field.
+</p>
+<p>The vector field is given by <code>[<var>u</var>, <var>v</var>, <var>w</var>]</code> and is
+defined over a rectangular grid given by <code>[<var>x</var>, <var>y</var>, <var>z</var>]</code>.
+The streamribbons start at the seed points
+<code>[<var>sx</var>, <var>sy</var>, <var>sz</var>]</code>.
+</p>
+<p><code>streamribbon</code> can be called with a cell array that contains
+pre-computed streamline data.  To do this, <var>xyz</var> must be created with
+the <code>stream3</code> function.  <var>lin_spd</var> is the linear speed of the
+vector field and can be calculated from <code>[<var>u</var>, <var>v</var>, <var>w</var>]</code>
+by the square root of the sum of the squares.  The angular speed
+<var>anlr_spd</var> is the projection of the angular velocity onto the velocity
+of the normalized vector field and can be calculated with the <code>curl</code>
+command.  This option is useful if you need to alter the integrator step
+size or the maximum number of streamline vertices.
+</p>
+<p>Alternatively, ribbons can be created from an array of vertices <var>xyz</var> of
+a path curve.  <var>anlr_rot</var> contains the angles of rotation around the
+edges between adjacent vertices of the path curve.
+</p>
+<p>The input parameter <var>width</var> sets the width of the streamribbons.
+</p>
+<p>Streamribbons are colored according to the total angle of rotation along the
+ribbon.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the plot objects
+created for each streamribbon.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y, z] = meshgrid (0:0.2:4, -1:0.2:1, -1:0.2:1);
+u = - x + 10;
+v = 10 * z.*x;
+w = - 10 * y.*x;
+streamribbon (x, y, z, u, v, w, [0, 0], [0, 0.6], [0, 0]);
+view (3);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFstreamline">streamline</a>, <a href="#XREFstream3">stream3</a>, <a href="#XREFstreamtube">streamtube</a>, <a href="#XREFostreamtube">ostreamtube</a>.
+</p>
+</dd></dl>
+
+
+<span id="XREFstreamtube"></span><dl class="def">
+<dt id="index-streamtube"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamtube' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-1"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamtube-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-2"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>xyz</var>, <var>x</var>, <var>y</var>, <var>z</var>, <var>div</var>)</em><a href='#index-streamtube-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-3"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>xyz</var>, <var>div</var>)</em><a href='#index-streamtube-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-4"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>xyz</var>, <var>dia</var>)</em><a href='#index-streamtube-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-5"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-streamtube-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-6"><span class="category">: </span><span><em></em> <strong>streamtube</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-streamtube-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamtube-7"><span class="category">: </span><span><em><var>h</var> =</em> <strong>streamtube</strong> <em>(&hellip;)</em><a href='#index-streamtube-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot tubes scaled by the divergence along streamlines.
+</p>
+<p><code>streamtube</code> draws tubes whose diameter is scaled by the divergence of
+a vector field.  The vector field is given by
+<code>[<var>u</var>, <var>v</var>, <var>w</var>]</code> and is defined over a rectangular grid
+given by <code>[<var>x</var>, <var>y</var>, <var>z</var>]</code>.  The tubes start at the
+seed points <code>[<var>sx</var>, <var>sy</var>, <var>sz</var>]</code> and are plot along
+streamlines.
+</p>
+<p><code>streamtube</code> can also be called with a cell array containing
+pre-computed streamline data.  To do this, <var>xyz</var> must be created with
+the <code>stream3</code> command.  <var>div</var> is used to scale the tubes.
+In order to plot tubes scaled by the vector field divergence, <var>div</var>
+must be calculated with the <code>divergence</code> command.
+</p>
+<p>A tube diameter of zero corresponds to the smallest scaling value along the
+streamline and the largest tube diameter corresponds to the largest scaling
+value.
+</p>
+<p>It is also possible to draw a tube along an arbitrary array of vertices
+<var>xyz</var>.  The tube diameter can be specified by the vertex array <var>dia</var>
+or by a constant.
+</p>
+<p>The input parameter <var>options</var> is a 2-D vector of the form
+<code>[<var>scale</var>, <var>n</var>]</code>.  The first parameter scales the tube
+diameter (default 1).  The second parameter specifies the number of vertices
+that are used to construct the tube circumference (default 20).
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the plot objects
+created for each tube.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFstream3">stream3</a>, <a href="#XREFstreamline">streamline</a>, <a href="#XREFstreamribbon">streamribbon</a>, <a href="#XREFostreamtube">ostreamtube</a>.
+</p></dd></dl>
+
+
+<span id="XREFostreamtube"></span><dl class="def">
+<dt id="index-ostreamtube"><span class="category">: </span><span><em></em> <strong>ostreamtube</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-ostreamtube' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostreamtube-1"><span class="category">: </span><span><em></em> <strong>ostreamtube</strong> <em>(<var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-ostreamtube-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostreamtube-2"><span class="category">: </span><span><em></em> <strong>ostreamtube</strong> <em>(<var>xyz</var>, <var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>)</em><a href='#index-ostreamtube-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostreamtube-3"><span class="category">: </span><span><em></em> <strong>ostreamtube</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-ostreamtube-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostreamtube-4"><span class="category">: </span><span><em></em> <strong>ostreamtube</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-ostreamtube-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ostreamtube-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>ostreamtube</strong> <em>(&hellip;)</em><a href='#index-ostreamtube-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Calculate and display streamtubes.
+</p>
+<p>Streamtubes are approximated by connecting circular crossflow areas
+along a streamline.  The expansion of the flow is determined by the local
+crossflow divergence.
+</p>
+<p>The vector field is given by <code>[<var>u</var>, <var>v</var>, <var>w</var>]</code> and is
+defined over a rectangular grid given by <code>[<var>x</var>, <var>y</var>, <var>z</var>]</code>.
+The streamtubes start at the seed points
+<code>[<var>sx</var>, <var>sy</var>, <var>sz</var>]</code>.
+</p>
+<p>The tubes are colored based on the local vector field strength.
+</p>
+<p>The input parameter <var>options</var> is a 2-D vector of the form
+<code>[<var>scale</var>, <var>n</var>]</code>.  The first parameter scales the start radius
+of the streamtubes (default 1).  The second parameter specifies the number
+of vertices that are used to construct the tube circumference (default 20).
+</p>
+<p><code>ostreamtube</code> can be called with a cell array containing pre-computed
+streamline data.  To do this, <var>xyz</var> must be created with the
+<code>stream3</code> function.  This option is useful if you need to alter the
+integrator step size or the maximum number of vertices of the streamline.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the plot
+objects created for each streamtube.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y, z] = meshgrid (-1:0.1:1, -1:0.1:1, -3:0.1:0);
+u = -x / 10 - y;
+v = x - y / 10;
+w = - ones (size (x)) / 10;
+ostreamtube (x, y, z, u, v, w, 1, 0, 0);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFstream3">stream3</a>, <a href="#XREFstreamline">streamline</a>, <a href="#XREFstreamribbon">streamribbon</a>, <a href="#XREFstreamtube">streamtube</a>.
+</p></dd></dl>
+
+
+<span id="XREFstreamline"></span><dl class="def">
+<dt id="index-streamline"><span class="category">: </span><span><em></em> <strong>streamline</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamline' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamline-1"><span class="category">: </span><span><em></em> <strong>streamline</strong> <em>(<var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-streamline-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamline-2"><span class="category">: </span><span><em></em> <strong>streamline</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-streamline-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamline-3"><span class="category">: </span><span><em></em> <strong>streamline</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-streamline-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-streamline-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>streamline</strong> <em>(&hellip;)</em><a href='#index-streamline-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Plot streamlines of 2-D or 3-D vector fields.
+</p>
+<p>Plot streamlines of a 2-D or 3-D vector field given by
+<code>[<var>u</var>, <var>v</var>]</code> or <code>[<var>u</var>, <var>v</var>, <var>w</var>]</code>.  The vector
+field is defined over a rectangular grid given by <code>[<var>x</var>, <var>y</var>]</code>
+or <code>[<var>x</var>, <var>y</var>, <var>z</var>]</code>.  The streamlines start at the seed
+points <code>[<var>sx</var>, <var>sy</var>]</code> or <code>[<var>sx</var>, <var>sy</var>, <var>sz</var>]</code>.
+</p>
+<p>The input parameter <var>options</var> is a 2-D vector of the form
+<code>[<var>stepsize</var>, <var>max_vertices</var>]</code>.  The first parameter
+specifies the step size used for trajectory integration (default 0.1).  A
+negative value is allowed which will reverse the direction of integration.
+The second parameter specifies the maximum number of segments used to
+create a streamline (default 10,000).
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the hggroup
+comprising the field lines.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y] = meshgrid (-1.5:0.2:2, -1:0.2:2);
+u = - x / 4 - y;
+v = x - y / 4;
+streamline (x, y, u, v, 1.7, 1.5);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFstream2">stream2</a>, <a href="#XREFstream3">stream3</a>, <a href="#XREFstreamribbon">streamribbon</a>, <a href="#XREFstreamtube">streamtube</a>, <a href="#XREFostreamtube">ostreamtube</a>.
+</p></dd></dl>
+
+
+<span id="XREFstream2"></span><dl class="def">
+<dt id="index-stream2"><span class="category">: </span><span><em><var>xy</var> =</em> <strong>stream2</strong> <em>(<var>x</var>, <var>y</var>, <var>u</var>, <var>v</var>, <var>sx</var>, <var>sy</var>)</em><a href='#index-stream2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stream2-1"><span class="category">: </span><span><em><var>xy</var> =</em> <strong>stream2</strong> <em>(<var>u</var>, <var>v</var>, <var>sx</var>, <var>sy</var>)</em><a href='#index-stream2-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stream2-2"><span class="category">: </span><span><em><var>xy</var> =</em> <strong>stream2</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-stream2-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute 2-D streamline data.
+</p>
+<p>Calculates streamlines of a vector field given by <code>[<var>u</var>, <var>v</var>]</code>.
+The vector field is defined over a rectangular grid given by
+<code>[<var>x</var>, <var>y</var>]</code>.  The streamlines start at the seed points
+<code>[<var>sx</var>, <var>sy</var>]</code>.  The returned value <var>xy</var> contains a cell
+array of vertex arrays.  If the starting point is outside the vector field,
+<code>[]</code> is returned.
+</p>
+<p>The input parameter <var>options</var> is a 2-D vector of the form
+<code>[<var>stepsize</var>, <var>max_vertices</var>]</code>.  The first parameter
+specifies the step size used for trajectory integration (default 0.1).  A
+negative value is allowed which will reverse the direction of integration.
+The second parameter specifies the maximum number of segments used to
+create a streamline (default 10,000).
+</p>
+<p>The return value <var>xy</var> is a nverts x 2 matrix containing the
+coordinates of the field line segments.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y] = meshgrid (0:3);
+u = 2 * x;
+v = y;
+xy = stream2 (x, y, u, v, 1.0, 0.5);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFstreamline">streamline</a>, <a href="#XREFstream3">stream3</a>.
+</p></dd></dl>
+
+
+<span id="XREFstream3"></span><dl class="def">
+<dt id="index-stream3"><span class="category">: </span><span><em><var>xyz</var> =</em> <strong>stream3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-stream3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stream3-1"><span class="category">: </span><span><em><var>xyz</var> =</em> <strong>stream3</strong> <em>(<var>u</var>, <var>v</var>, <var>w</var>, <var>sx</var>, <var>sy</var>, <var>sz</var>)</em><a href='#index-stream3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-stream3-2"><span class="category">: </span><span><em><var>xyz</var> =</em> <strong>stream3</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-stream3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute 3-D streamline data.
+</p>
+<p>Calculate streamlines of a vector field given by <code>[<var>u</var>, <var>v</var>,
+<var>w</var>]</code>.  The vector field is defined over a rectangular grid given by
+<code>[<var>x</var>, <var>y</var>, <var>z</var>]</code>.  The streamlines start at the seed
+points <code>[<var>sx</var>, <var>sy</var>, <var>sz</var>]</code>.  The returned value <var>xyz</var>
+contains a cell array of vertex arrays.  If the starting point is outside
+the vector field, <code>[]</code> is returned.
+</p>
+<p>The input parameter <var>options</var> is a 2-D vector of the form
+<code>[<var>stepsize</var>, <var>max_vertices</var>]</code>.  The first parameter
+specifies the step size used for trajectory integration (default 0.1).  A
+negative value is allowed which will reverse the direction of integration.
+The second parameter specifies the maximum number of segments used to
+create a streamline (default 10,000).
+</p>
+<p>The return value <var>xyz</var> is a nverts x 3 matrix containing the
+coordinates of the field line segments.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">[x, y, z] = meshgrid (0:3);
+u = 2 * x;
+v = y;
+w = 3 * z;
+xyz = stream3 (x, y, z, u, v, w, 1.0, 0.5, 0.0);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFstream2">stream2</a>, <a href="#XREFstreamline">streamline</a>, <a href="#XREFstreamribbon">streamribbon</a>, <a href="#XREFstreamtube">streamtube</a>, <a href="#XREFostreamtube">ostreamtube</a>.
+</p></dd></dl>
+
+
+<span id="XREFcompass"></span><dl class="def">
+<dt id="index-compass"><span class="category">: </span><span><em></em> <strong>compass</strong> <em>(<var>u</var>, <var>v</var>)</em><a href='#index-compass' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-compass-1"><span class="category">: </span><span><em></em> <strong>compass</strong> <em>(<var>z</var>)</em><a href='#index-compass-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-compass-2"><span class="category">: </span><span><em></em> <strong>compass</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-compass-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-compass-3"><span class="category">: </span><span><em></em> <strong>compass</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-compass-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-compass-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>compass</strong> <em>(&hellip;)</em><a href='#index-compass-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Plot the <code>(<var>u</var>, <var>v</var>)</code> components of a vector field emanating
+from the origin of a polar plot.
+</p>
+<p>The arrow representing each vector has one end at the origin and the tip at
+[<var>u</var>(i), <var>v</var>(i)].  If a single complex argument <var>z</var> is given,
+then <code><var>u</var> = real (<var>z</var>)</code> and <code><var>v</var> = imag (<var>z</var>)</code>.
+</p>
+<p>The style to use for the plot can be defined with a line style <var>style</var>
+of the same format as the <code>plot</code> command.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to the
+line objects representing the drawn vectors.
+</p>
+<div class="example">
+<pre class="example">a = toeplitz ([1;randn(9,1)], [1,randn(1,9)]);
+compass (eig (a));
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFpolar">polar</a>, <a href="#XREFfeather">feather</a>, <a href="#XREFquiver">quiver</a>, <a href="#XREFrose">rose</a>, <a href="#XREFplot">plot</a>.
+</p></dd></dl>
+
+
+<span id="XREFfeather"></span><dl class="def">
+<dt id="index-feather"><span class="category">: </span><span><em></em> <strong>feather</strong> <em>(<var>u</var>, <var>v</var>)</em><a href='#index-feather' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-feather-1"><span class="category">: </span><span><em></em> <strong>feather</strong> <em>(<var>z</var>)</em><a href='#index-feather-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-feather-2"><span class="category">: </span><span><em></em> <strong>feather</strong> <em>(&hellip;, <var>style</var>)</em><a href='#index-feather-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-feather-3"><span class="category">: </span><span><em></em> <strong>feather</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-feather-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-feather-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>feather</strong> <em>(&hellip;)</em><a href='#index-feather-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Plot the <code>(<var>u</var>, <var>v</var>)</code> components of a vector field emanating
+from equidistant points on the x-axis.
+</p>
+<p>If a single complex argument <var>z</var> is given, then
+<code><var>u</var> = real (<var>z</var>)</code> and <code><var>v</var> = imag (<var>z</var>)</code>.
+</p>
+<p>The style to use for the plot can be defined with a line style <var>style</var>
+of the same format as the <code>plot</code> command.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to the
+line objects representing the drawn vectors.
+</p>
+<div class="example">
+<pre class="example">phi = [0 : 15 : 360] * pi/180;
+feather (sin (phi), cos (phi));
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="#XREFquiver">quiver</a>, <a href="#XREFcompass">compass</a>.
+</p></dd></dl>
+
+
+<span id="XREFpcolor"></span><dl class="def">
+<dt id="index-pcolor"><span class="category">: </span><span><em></em> <strong>pcolor</strong> <em>(<var>x</var>, <var>y</var>, <var>c</var>)</em><a href='#index-pcolor' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pcolor-1"><span class="category">: </span><span><em></em> <strong>pcolor</strong> <em>(<var>c</var>)</em><a href='#index-pcolor-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pcolor-2"><span class="category">: </span><span><em></em> <strong>pcolor</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-pcolor-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pcolor-3"><span class="category">: </span><span><em><var>h</var> =</em> <strong>pcolor</strong> <em>(&hellip;)</em><a href='#index-pcolor-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a 2-D density plot.
+</p>
+<p>A <code>pcolor</code> plot draws rectangles with colors from the matrix <var>c</var>
+over the two-dimensional region represented by the matrices <var>x</var> and
+<var>y</var>.  <var>x</var> and <var>y</var> are the coordinates of the mesh&rsquo;s vertices
+and are typically the output of <code>meshgrid</code>.  If <var>x</var> and <var>y</var> are
+vectors, then a typical vertex is (<var>x</var>(j), <var>y</var>(i), <var>c</var>(i,j)).
+Thus, columns of <var>c</var> correspond to different <var>x</var> values and rows
+of <var>c</var> correspond to different <var>y</var> values.
+</p>
+<p>The values in <var>c</var> are scaled to span the range of the current
+colormap.  Limits may be placed on the color axis by the command
+<code>caxis</code>, or by setting the <code>clim</code> property of the parent axis.
+</p>
+<p>The face color of each cell of the mesh is determined by interpolating
+the values of <var>c</var> for each of the cell&rsquo;s vertices; Contrast this with
+<code>imagesc</code> which renders one cell for each element of <var>c</var>.
+</p>
+<p><code>shading</code> modifies an attribute determining the manner by which the
+face color of each cell is interpolated from the values of <var>c</var>,
+and the visibility of the cells&rsquo; edges.  By default the attribute is
+<code>&quot;faceted&quot;</code>, which renders a single color for each cell&rsquo;s face with
+the edge visible.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created
+surface object.
+</p>
+
+<p><strong>See also:</strong> <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Three_002dDimensional-Plots.html#XREFshading">shading</a>, <a href="Three_002dDimensional-Plots.html#XREFmeshgrid">meshgrid</a>, <a href="#XREFcontour">contour</a>, <a href="Displaying-Images.html#XREFimagesc">imagesc</a>.
+</p></dd></dl>
+
+
+<span id="XREFarea"></span><dl class="def">
+<dt id="index-area"><span class="category">: </span><span><em></em> <strong>area</strong> <em>(<var>y</var>)</em><a href='#index-area' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-area-1"><span class="category">: </span><span><em></em> <strong>area</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-area-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-area-2"><span class="category">: </span><span><em></em> <strong>area</strong> <em>(&hellip;, <var>lvl</var>)</em><a href='#index-area-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-area-3"><span class="category">: </span><span><em></em> <strong>area</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>, &hellip;)</em><a href='#index-area-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-area-4"><span class="category">: </span><span><em></em> <strong>area</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-area-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-area-5"><span class="category">: </span><span><em><var>h</var> =</em> <strong>area</strong> <em>(&hellip;)</em><a href='#index-area-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Area plot of the columns of <var>y</var>.
+</p>
+<p>This plot shows the contributions of each column value to the row sum.
+It is functionally similar to <code>plot (<var>x</var>, cumsum (<var>y</var>, 2))</code>,
+except that the area under the curve is shaded.
+</p>
+<p>If the <var>x</var> argument is omitted it defaults to <code>1:rows (<var>y</var>)</code>.
+A value <var>lvl</var> can be defined that determines where the base level of
+the shading under the curve should be defined.  The default level is 0.
+</p>
+<p>Additional property/value pairs are passed directly to the underlying patch
+object.  The full list of properties is documented at
+<a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the hggroup
+object comprising the area patch objects.  The <code>&quot;BaseValue&quot;</code> property
+of the hggroup can be used to adjust the level where shading begins.
+</p>
+<p>Example: Verify identity sin^2 + cos^2 = 1
+</p>
+<div class="example">
+<pre class="example">t = linspace (0, 2*pi, 100)';
+y = [sin(t).^2, cos(t).^2];
+area (t, y);
+legend (&quot;sin^2&quot;, &quot;cos^2&quot;, &quot;location&quot;, &quot;NorthEastOutside&quot;);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFplot">plot</a>, <a href="Graphics-Objects.html#XREFpatch">patch</a>.
+</p></dd></dl>
+
+
+<span id="XREFfill"></span><dl class="def">
+<dt id="index-fill"><span class="category">: </span><span><em></em> <strong>fill</strong> <em>(<var>x</var>, <var>y</var>, <var>c</var>)</em><a href='#index-fill' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill-1"><span class="category">: </span><span><em></em> <strong>fill</strong> <em>(<var>x1</var>, <var>y1</var>, <var>c1</var>, <var>x2</var>, <var>y2</var>, <var>c2</var>)</em><a href='#index-fill-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill-2"><span class="category">: </span><span><em></em> <strong>fill</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>)</em><a href='#index-fill-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill-3"><span class="category">: </span><span><em></em> <strong>fill</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-fill-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>fill</strong> <em>(&hellip;)</em><a href='#index-fill-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create one or more filled 2-D polygons.
+</p>
+<p>The inputs <var>x</var> and <var>y</var> are the coordinates of the polygon vertices.
+If the inputs are matrices then the rows represent different vertices and
+each column produces a different polygon.  <code>fill</code> will close any open
+polygons before plotting.
+</p>
+<p>The input <var>c</var> determines the color of the polygon.  The simplest form
+is a single color specification such as a <code>plot</code> format or an
+RGB-triple.  In this case the polygon(s) will have one unique color.  If
+<var>c</var> is a vector or matrix then the color data is first scaled using
+<code>caxis</code> and then indexed into the current colormap.  A row vector will
+color each polygon (a column from matrices <var>x</var> and <var>y</var>) with a
+single computed color.  A matrix <var>c</var> of the same size as <var>x</var> and
+<var>y</var> will compute the color of each vertex and then interpolate the face
+color between the vertices.
+</p>
+<p>Multiple property/value pairs for the underlying patch object may be
+specified, but they must appear in pairs.  The full list of properties is
+documented at <a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to
+the created patch objects.
+</p>
+<p>Example: red square
+</p>
+<div class="example">
+<pre class="example">vertices = [0 0
+            1 0
+            1 1
+            0 1];
+fill (vertices(:,1), vertices(:,2), &quot;r&quot;);
+axis ([-0.5 1.5, -0.5 1.5])
+axis equal
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Graphics-Objects.html#XREFpatch">patch</a>, <a href="#XREFfill3">fill3</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFfill3"></span><dl class="def">
+<dt id="index-fill3"><span class="category">: </span><span><em></em> <strong>fill3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>c</var>)</em><a href='#index-fill3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill3-1"><span class="category">: </span><span><em></em> <strong>fill3</strong> <em>(<var>x1</var>, <var>y1</var>, <var>z1</var>, <var>c1</var>, <var>x2</var>, <var>y2</var>, <var>z2</var>, <var>c2</var>)</em><a href='#index-fill3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill3-2"><span class="category">: </span><span><em></em> <strong>fill3</strong> <em>(&hellip;, <var>prop</var>, <var>val</var>)</em><a href='#index-fill3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill3-3"><span class="category">: </span><span><em></em> <strong>fill3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-fill3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fill3-4"><span class="category">: </span><span><em><var>h</var> =</em> <strong>fill3</strong> <em>(&hellip;)</em><a href='#index-fill3-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create one or more filled 3-D polygons.
+</p>
+<p>The inputs <var>x</var>, <var>y</var>, and <var>z</var> are the coordinates of the polygon
+vertices.  If the inputs are matrices then the rows represent different
+vertices and each column produces a different polygon.  <code>fill3</code> will
+close any open polygons before plotting.
+</p>
+<p>The input <var>c</var> determines the color of the polygon.  The simplest form
+is a single color specification such as a <code>plot</code> format or an
+RGB-triple.  In this case the polygon(s) will have one unique color.  If
+<var>c</var> is a vector or matrix then the color data is first scaled using
+<code>caxis</code> and then indexed into the current colormap.  A row vector will
+color each polygon (a column from matrices <var>x</var>, <var>y</var>, and <var>z</var>)
+with a single computed color.  A matrix <var>c</var> of the same size as <var>x</var>,
+<var>y</var>, and <var>z</var> will compute the color of each vertex and then
+interpolate the face color between the vertices.
+</p>
+<p>Multiple property/value pairs for the underlying patch object may be
+specified, but they must appear in pairs.  The full list of properties is
+documented at <a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a vector of graphics handles to
+the created patch objects.
+</p>
+<p>Example: oblique red rectangle
+</p>
+<div class="example">
+<pre class="example">vertices = [0 0 0
+            1 1 0
+            1 1 1
+            0 0 1];
+fill3 (vertices(:,1), vertices(:,2), vertices(:,3), &quot;r&quot;);
+axis ([-0.5 1.5, -0.5 1.5, -0.5 1.5]);
+axis (&quot;equal&quot;);
+grid (&quot;on&quot;);
+view (-80, 25);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Graphics-Objects.html#XREFpatch">patch</a>, <a href="#XREFfill">fill</a>, <a href="Axis-Configuration.html#XREFcaxis">caxis</a>, <a href="Representing-Images.html#XREFcolormap">colormap</a>.
+</p></dd></dl>
+
+
+<span id="XREFcomet"></span><dl class="def">
+<dt id="index-comet"><span class="category">: </span><span><em></em> <strong>comet</strong> <em>(<var>y</var>)</em><a href='#index-comet' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet-1"><span class="category">: </span><span><em></em> <strong>comet</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-comet-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet-2"><span class="category">: </span><span><em></em> <strong>comet</strong> <em>(<var>x</var>, <var>y</var>, <var>p</var>)</em><a href='#index-comet-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet-3"><span class="category">: </span><span><em></em> <strong>comet</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-comet-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a simple comet style animation along the trajectory provided by
+the input coordinate vectors (<var>x</var>, <var>y</var>).
+</p>
+<p>If <var>x</var> is not specified it defaults to the indices of <var>y</var>.
+</p>
+<p>The speed of the comet may be controlled by <var>p</var>, which represents the
+time each point is displayed before moving to the next one.  The default for
+<var>p</var> is <code>5 / numel (<var>y</var>)</code>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcomet3">comet3</a>.
+</p></dd></dl>
+
+
+<span id="XREFcomet3"></span><dl class="def">
+<dt id="index-comet3"><span class="category">: </span><span><em></em> <strong>comet3</strong> <em>(<var>z</var>)</em><a href='#index-comet3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet3-1"><span class="category">: </span><span><em></em> <strong>comet3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-comet3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet3-2"><span class="category">: </span><span><em></em> <strong>comet3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>p</var>)</em><a href='#index-comet3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-comet3-3"><span class="category">: </span><span><em></em> <strong>comet3</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-comet3-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Produce a simple comet style animation along the trajectory provided by
+the input coordinate vectors (<var>x</var>, <var>y</var>, <var>z</var>).
+</p>
+<p>If only <var>z</var> is specified then <var>x</var>, <var>y</var> default to the indices
+of <var>z</var>.
+</p>
+<p>The speed of the comet may be controlled by <var>p</var>, which represents the
+time each point is displayed before moving to the next one.  The default for
+<var>p</var> is <code>5 / numel (<var>z</var>)</code>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcomet">comet</a>.
+</p></dd></dl>
+
+
+<ul class="section-toc">
+<li><a href="Axis-Configuration.html" accesskey="1">Axis Configuration</a></li>
+<li><a href="Two_002ddimensional-Function-Plotting.html" accesskey="2">Two-dimensional Function Plotting</a></li>
+<li><a href="Two_002ddimensional-Geometric-Shapes.html" accesskey="3">Two-dimensional Geometric Shapes</a></li>
+</ul>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Three_002dDimensional-Plots.html">Three-Dimensional Plots</a>, Up: <a href="High_002dLevel-Plotting.html">High-Level Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

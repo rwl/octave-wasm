@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sums and Products (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Sums and Products (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Sums and Products (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Utility-Functions.html" rel="next" title="Utility Functions">
+<link href="Trigonometry.html" rel="prev" title="Trigonometry">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Sums-and-Products">
+<div class="header">
+<p>
+Next: <a href="Utility-Functions.html" accesskey="n" rel="next">Utility Functions</a>, Previous: <a href="Trigonometry.html" accesskey="p" rel="prev">Trigonometry</a>, Up: <a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Sums-and-Products-1"></span><h3 class="section">17.4 Sums and Products</h3>
+
+<span id="XREFsum"></span><dl class="def">
+<dt id="index-sum"><span class="category">: </span><span><em></em> <strong>sum</strong> <em>(<var>x</var>)</em><a href='#index-sum' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sum-1"><span class="category">: </span><span><em></em> <strong>sum</strong> <em>(<var>x</var>, <var>dim</var>)</em><a href='#index-sum-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sum-2"><span class="category">: </span><span><em></em> <strong>sum</strong> <em>(&hellip;, &quot;native&quot;)</em><a href='#index-sum-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sum-3"><span class="category">: </span><span><em></em> <strong>sum</strong> <em>(&hellip;, &quot;double&quot;)</em><a href='#index-sum-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sum-4"><span class="category">: </span><span><em></em> <strong>sum</strong> <em>(&hellip;, &quot;extra&quot;)</em><a href='#index-sum-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Sum of elements along dimension <var>dim</var>.
+</p>
+<p>If <var>dim</var> is omitted, it defaults to the first non-singleton dimension.
+</p>
+<p>The optional <code>&quot;type&quot;</code> input determines the class of the variable
+used for calculations.  By default, operations on floating point inputs (double
+or single) are performed in their native data type, while operations on
+integer, logical, and character data types are performed using doubles.  If the
+argument <code>&quot;native&quot;</code> is given, then the operation is performed in the same
+type as the original argument.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">sum ([true, true])
+   &rArr; 2
+sum ([true, true], &quot;native&quot;)
+   &rArr; true
+</pre></div>
+
+<p>If <code>&quot;double&quot;</code> is given the sum is performed in double precision even for
+single precision inputs.
+</p>
+<p>For double precision inputs, the <code>&quot;extra&quot;</code> option will use a more
+accurate algorithm than straightforward summation.  For single precision
+inputs, <code>&quot;extra&quot;</code> is the same as <code>&quot;double&quot;</code>.  For all other data
+type <code>&quot;extra&quot;</code> has no effect.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcumsum">cumsum</a>, <a href="#XREFsumsq">sumsq</a>, <a href="#XREFprod">prod</a>.
+</p></dd></dl>
+
+
+<span id="XREFprod"></span><dl class="def">
+<dt id="index-prod"><span class="category">: </span><span><em></em> <strong>prod</strong> <em>(<var>x</var>)</em><a href='#index-prod' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prod-1"><span class="category">: </span><span><em></em> <strong>prod</strong> <em>(<var>x</var>, <var>dim</var>)</em><a href='#index-prod-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prod-2"><span class="category">: </span><span><em></em> <strong>prod</strong> <em>(&hellip;, &quot;native&quot;)</em><a href='#index-prod-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prod-3"><span class="category">: </span><span><em></em> <strong>prod</strong> <em>(&hellip;, &quot;double&quot;)</em><a href='#index-prod-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Product of elements along dimension <var>dim</var>.
+</p>
+<p>If <var>dim</var> is omitted, it defaults to the first non-singleton dimension.
+</p>
+<p>The optional <code>&quot;type&quot;</code> input determines the class of the variable
+used for calculations.  If the argument <code>&quot;native&quot;</code> is given, then
+the operation is performed in the same type as the original argument, rather
+than the default double type.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">prod ([true, true])
+   &rArr; 1
+prod ([true, true], &quot;native&quot;)
+   &rArr; true
+</pre></div>
+
+<p>On the contrary, if <code>&quot;double&quot;</code> is given, the operation is performed
+in double precision even for single precision inputs.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcumprod">cumprod</a>, <a href="#XREFsum">sum</a>.
+</p></dd></dl>
+
+
+<span id="XREFcumsum"></span><dl class="def">
+<dt id="index-cumsum"><span class="category">: </span><span><em></em> <strong>cumsum</strong> <em>(<var>x</var>)</em><a href='#index-cumsum' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cumsum-1"><span class="category">: </span><span><em></em> <strong>cumsum</strong> <em>(<var>x</var>, <var>dim</var>)</em><a href='#index-cumsum-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cumsum-2"><span class="category">: </span><span><em></em> <strong>cumsum</strong> <em>(&hellip;, &quot;native&quot;)</em><a href='#index-cumsum-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cumsum-3"><span class="category">: </span><span><em></em> <strong>cumsum</strong> <em>(&hellip;, &quot;double&quot;)</em><a href='#index-cumsum-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Cumulative sum of elements along dimension <var>dim</var>.
+</p>
+<p>If <var>dim</var> is omitted, it defaults to the first non-singleton dimension.
+For example:
+</p>
+<div class="example">
+<pre class="example">cumsum ([1, 2; 3, 4; 5, 6])
+   &rArr;  1   2
+       4   6
+       9  12
+</pre></div>
+
+<p>For an explanation of the optional parameters <code>&quot;native&quot;</code> and
+<code>&quot;double&quot;</code>, see <a href="#XREFsum"><code>sum</code></a>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsum">sum</a>, <a href="#XREFcumprod">cumprod</a>.
+</p></dd></dl>
+
+
+<span id="XREFcumprod"></span><dl class="def">
+<dt id="index-cumprod"><span class="category">: </span><span><em></em> <strong>cumprod</strong> <em>(<var>x</var>)</em><a href='#index-cumprod' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cumprod-1"><span class="category">: </span><span><em></em> <strong>cumprod</strong> <em>(<var>x</var>, <var>dim</var>)</em><a href='#index-cumprod-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Cumulative product of elements along dimension <var>dim</var>.
+</p>
+<p>If <var>dim</var> is omitted, it defaults to the first non-singleton dimension.
+For example:
+</p>
+<div class="example">
+<pre class="example">cumprod ([1, 2; 3, 4; 5, 6])
+   &rArr;  1   2
+       3   8
+      15  48
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFprod">prod</a>, <a href="#XREFcumsum">cumsum</a>.
+</p></dd></dl>
+
+
+<span id="XREFsumsq"></span><dl class="def">
+<dt id="index-sumsq"><span class="category">: </span><span><em></em> <strong>sumsq</strong> <em>(<var>x</var>)</em><a href='#index-sumsq' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sumsq-1"><span class="category">: </span><span><em></em> <strong>sumsq</strong> <em>(<var>x</var>, <var>dim</var>)</em><a href='#index-sumsq-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Sum of squares of elements along dimension <var>dim</var>.
+</p>
+<p>If <var>dim</var> is omitted, it defaults to the first non-singleton dimension.
+</p>
+<p>This function is conceptually equivalent to computing
+</p>
+<div class="example">
+<pre class="example">sum (x .* conj (x), dim)
+</pre></div>
+
+<p>but it uses less memory and avoids calling <code>conj</code> if <var>x</var> is real.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsum">sum</a>, <a href="#XREFprod">prod</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Utility-Functions.html">Utility Functions</a>, Previous: <a href="Trigonometry.html">Trigonometry</a>, Up: <a href="Arithmetic.html">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

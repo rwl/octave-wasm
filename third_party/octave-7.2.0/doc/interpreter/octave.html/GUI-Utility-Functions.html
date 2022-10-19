@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>GUI Utility Functions (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="GUI Utility Functions (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="GUI Utility Functions (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="GUI-Development.html" rel="up" title="GUI Development">
+<link href="User_002dDefined-Preferences.html" rel="next" title="User-Defined Preferences">
+<link href="UI-Elements.html" rel="prev" title="UI Elements">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="GUI-Utility-Functions">
+<div class="header">
+<p>
+Next: <a href="User_002dDefined-Preferences.html" accesskey="n" rel="next">User-Defined Preferences</a>, Previous: <a href="UI-Elements.html" accesskey="p" rel="prev">UI Elements</a>, Up: <a href="GUI-Development.html" accesskey="u" rel="up">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="GUI-Utility-Functions-1"></span><h3 class="section">35.4 GUI Utility Functions</h3>
+
+<p>These functions do not implement a GUI element but are useful when developing
+programs that do.  The functions <code>uiwait</code>, <code>uiresume</code>, and
+<code>waitfor</code> are only available with the <code>qt</code> or <code>fltk</code> toolkits.
+</p>
+<span id="XREFguidata"></span><dl class="def">
+<dt id="index-guidata"><span class="category">: </span><span><em><var>data</var> =</em> <strong>guidata</strong> <em>(<var>h</var>)</em><a href='#index-guidata' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-guidata-1"><span class="category">: </span><span><em></em> <strong>guidata</strong> <em>(<var>h</var>, <var>data</var>)</em><a href='#index-guidata-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set user-custom GUI data.
+</p>
+<p>The GUI data is stored in the figure handle <var>h</var>.  If <var>h</var> is not a
+figure handle then it&rsquo;s parent figure will be used for storage.
+</p>
+<p><var>data</var> must be a single object which means it is usually preferable
+for it to be a data container such as a cell array or struct so that
+additional data items can be added easily.
+</p>
+
+<p><strong>See also:</strong> <a href="Application_002ddefined-Data.html#XREFgetappdata">getappdata</a>, <a href="Application_002ddefined-Data.html#XREFsetappdata">setappdata</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFset">set</a>, <a href="User_002dDefined-Preferences.html#XREFgetpref">getpref</a>, <a href="User_002dDefined-Preferences.html#XREFsetpref">setpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFguihandles"></span><dl class="def">
+<dt id="index-guihandles"><span class="category">: </span><span><em><var>hdata</var> =</em> <strong>guihandles</strong> <em>(<var>h</var>)</em><a href='#index-guihandles' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-guihandles-1"><span class="category">: </span><span><em><var>hdata</var> =</em> <strong>guihandles</strong><a href='#index-guihandles-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a structure of object handles for the figure associated with
+handle <var>h</var>.
+</p>
+<p>If no handle is specified the current figure returned by <code>gcf</code> is used.
+</p>
+<p>The fieldname for each entry of <var>hdata</var> is taken from the <code>&quot;tag&quot;</code>
+property of the graphic object.  If the tag is empty then the handle is not
+returned.  If there are multiple graphic objects with the same tag then
+the entry in <var>hdata</var> will be a vector of handles.  <code>guihandles</code>
+includes all possible handles, including those for
+which <code>&quot;HandleVisibility&quot;</code> is <code>&quot;off&quot;</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFguidata">guidata</a>, <a href="Searching-Properties.html#XREFfindobj">findobj</a>, <a href="Searching-Properties.html#XREFfindall">findall</a>, <a href="Graphics-Objects.html#XREFallchild">allchild</a>.
+</p></dd></dl>
+
+
+<span id="XREFhave_005fwindow_005fsystem"></span><dl class="def">
+<dt id="index-have_005fwindow_005fsystem"><span class="category">: </span><span><em></em> <strong>have_window_system</strong> <em>()</em><a href='#index-have_005fwindow_005fsystem' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if a window system is available (X11, Windows, or Apple OS X)
+and false otherwise.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisguirunning">isguirunning</a>.
+</p></dd></dl>
+
+
+<span id="XREFisguirunning"></span><dl class="def">
+<dt id="index-isguirunning"><span class="category">: </span><span><em></em> <strong>isguirunning</strong> <em>()</em><a href='#index-isguirunning' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if Octave is running in GUI mode and false otherwise.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhave_005fwindow_005fsystem">have_window_system</a>.
+</p></dd></dl>
+
+
+<span id="XREFgetpixelposition"></span><dl class="def">
+<dt id="index-getpixelposition"><span class="category">: </span><span><em><var>pos</var> =</em> <strong>getpixelposition</strong> <em>(<var>h</var>)</em><a href='#index-getpixelposition' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getpixelposition-1"><span class="category">: </span><span><em><var>pos</var> =</em> <strong>getpixelposition</strong> <em>(<var>h</var>, <var>rel_to_fig</var>)</em><a href='#index-getpixelposition-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the position of a user interface component in pixel units.
+</p>
+<p>The first argument <var>h</var> must be a handle to a valid graphics object of
+type uibuttongroup, uicontrol, uipanel, uitable, axes, or figure.  For other
+object types, the function returns zeros.
+</p>
+<p>By default, the position is returned relative to the object&rsquo;s parent.
+If the second argument <var>rel_to_fig</var> is logically true, the position
+is computed relative to the enclosing figure object.
+</p>
+<p>The return value <var>pos</var> is a 4-element vector with values
+<code>[ lower_left_X, lower_left_Y, width, height ]</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="Graphics-Objects.html#XREFget">get</a>.
+</p></dd></dl>
+
+
+<span id="XREFlistfonts"></span><dl class="def">
+<dt id="index-listfonts"><span class="category">: </span><span><em>fonts =</em> <strong>listfonts</strong> <em>()</em><a href='#index-listfonts' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-listfonts-1"><span class="category">: </span><span><em>fonts =</em> <strong>listfonts</strong> <em>(<var>h</var>)</em><a href='#index-listfonts-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>List system fonts.
+</p>
+<p>If a handle to a graphics object <var>h</var> is provided, also include the
+font from the object&rsquo;s <code>&quot;FontName&quot;</code> property in the list.
+</p>
+<p>Programming Note: On systems that don&rsquo;t use FontConfig natively (all but
+Linux), the font cache is built when Octave is installed.  You will need to
+run <code>system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<p><strong>See also:</strong> <a href="I_002fO-Dialogs.html#XREFuisetfont">uisetfont</a>, <a href="Plot-Annotations.html#XREFtext">text</a>, <a href="Graphics-Objects.html#XREFaxes">axes</a>, <a href="UI-Elements.html#XREFuicontrol">uicontrol</a>.
+</p></dd></dl>
+
+
+<span id="XREFmovegui"></span><dl class="def">
+<dt id="index-movegui"><span class="category">: </span><span><em></em> <strong>movegui</strong><a href='#index-movegui' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movegui-1"><span class="category">: </span><span><em></em> <strong>movegui</strong> <em>(<var>h</var>)</em><a href='#index-movegui-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movegui-2"><span class="category">: </span><span><em></em> <strong>movegui</strong> <em>(<var>pos</var>)</em><a href='#index-movegui-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movegui-3"><span class="category">: </span><span><em></em> <strong>movegui</strong> <em>(<var>h</var>, <var>pos</var>)</em><a href='#index-movegui-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movegui-4"><span class="category">: </span><span><em></em> <strong>movegui</strong> <em>(<var>h</var>, <var>event</var>)</em><a href='#index-movegui-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-movegui-5"><span class="category">: </span><span><em></em> <strong>movegui</strong> <em>(<var>h</var>, <var>event</var>, <var>pos</var>)</em><a href='#index-movegui-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Move a figure specified by figure handle <var>h</var> to a position on the screen
+defined by <var>pos</var>.
+</p>
+<p><var>h</var> is a figure handle, or a handle to a graphics object.  In the latter
+case, its parent figure will be used.  If unspecified, <var>h</var> will be
+set to the handle of the relevant figure if a callback is being executed
+(<code>gcbf</code>), otherwise it will be set to the handle of the current figure
+(<code>gcf</code>).
+</p>
+<p><var>pos</var> is either a two-value numeric vector or a string.  If <var>pos</var> is
+numeric then it must be of the form <code>[h, v]</code> specifying the horizontal
+and vertical offsets of the figure with respect to the screen.  A positive
+value indicates the offset between the left (or bottom for the vertical
+component) of the screen, and the left (or bottom) of the figure.  A
+negative value indicates the offset between the right (or top) of the screen
+and the right (or top) of the figure.
+</p>
+<p>Possible values for <var>pos</var> as a string are
+</p>
+<dl compact="compact">
+<dt><span><code>north</code></span></dt>
+<dd><p>Top center of the screen.
+</p>
+</dd>
+<dt><span><code>south</code></span></dt>
+<dd><p>Bottom center of the screen.
+</p>
+</dd>
+<dt><span><code>east</code></span></dt>
+<dd><p>Right center of the screen.
+</p>
+</dd>
+<dt><span><code>west</code></span></dt>
+<dd><p>Left center of the screen.
+</p>
+</dd>
+<dt><span><code>northeast</code></span></dt>
+<dd><p>Top right of the screen.
+</p>
+</dd>
+<dt><span><code>northwest</code></span></dt>
+<dd><p>Top left of the screen.
+</p>
+</dd>
+<dt><span><code>southeast</code></span></dt>
+<dd><p>Bottom right of the screen.
+</p>
+</dd>
+<dt><span><code>southwest</code></span></dt>
+<dd><p>Bottom left of the screen.
+</p>
+</dd>
+<dt><span><code>center</code></span></dt>
+<dd><p>Center of the screen.
+</p>
+</dd>
+<dt><span><code>onscreen (default)</code></span></dt>
+<dd><p>The figure will be minimally moved to be entirely visible on the screen,
+with a 30 pixel extra padding from the sides of the screen.  This is the
+default value if none is provided.
+</p></dd>
+</dl>
+
+<p><var>event</var> contains event data that will be ignored.  This construct
+facilitates a call to movegui from a callback.
+</p>
+</dd></dl>
+
+
+<span id="XREFopenvar"></span><dl class="def">
+<dt id="index-openvar"><span class="category">: </span><span><em></em> <strong>openvar</strong> <em>(<var>name</var>)</em><a href='#index-openvar' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Open the variable <var>name</var> in the graphical Variable Editor.
+</p></dd></dl>
+
+
+<span id="XREFuiwait"></span><dl class="def">
+<dt id="index-uiwait"><span class="category">: </span><span><em></em> <strong>uiwait</strong><a href='#index-uiwait' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uiwait-1"><span class="category">: </span><span><em></em> <strong>uiwait</strong> <em>(<var>h</var>)</em><a href='#index-uiwait-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uiwait-2"><span class="category">: </span><span><em></em> <strong>uiwait</strong> <em>(<var>h</var>, <var>timeout</var>)</em><a href='#index-uiwait-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Suspend program execution until the figure with handle <var>h</var> is deleted
+or <code>uiresume</code> is called.
+</p>
+<p>When no figure handle is specified this function uses the current figure.
+If the figure handle is invalid or there is no current figure, this
+functions returns immediately.
+</p>
+<p>When specified, <var>timeout</var> defines the number of seconds to wait
+for the figure deletion or the <code>uiresume</code> call.  The timeout value
+must be at least 1.  If a smaller value is specified, a warning is issued
+and a timeout value of 1 is used instead.  If a non-integer value is
+specified, it is truncated towards 0.  If <var>timeout</var> is not specified,
+the program execution is suspended indefinitely.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuiresume">uiresume</a>, <a href="#XREFwaitfor">waitfor</a>.
+</p></dd></dl>
+
+
+<span id="XREFuiresume"></span><dl class="def">
+<dt id="index-uiresume"><span class="category">: </span><span><em></em> <strong>uiresume</strong> <em>(<var>h</var>)</em><a href='#index-uiresume' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Resume program execution suspended with <code>uiwait</code>.
+</p>
+<p>The handle <var>h</var> must be the same as the on specified in <code>uiwait</code>.
+If the handle is invalid or there is no <code>uiwait</code> call pending for the
+figure with handle <var>h</var>, this function does nothing.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuiwait">uiwait</a>.
+</p></dd></dl>
+
+
+<span id="XREFwaitfor"></span><dl class="def">
+<dt id="index-waitfor"><span class="category">: </span><span><em></em> <strong>waitfor</strong> <em>(<var>h</var>)</em><a href='#index-waitfor' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-waitfor-1"><span class="category">: </span><span><em></em> <strong>waitfor</strong> <em>(<var>h</var>, <var>prop</var>)</em><a href='#index-waitfor-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-waitfor-2"><span class="category">: </span><span><em></em> <strong>waitfor</strong> <em>(<var>h</var>, <var>prop</var>, <var>value</var>)</em><a href='#index-waitfor-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-waitfor-3"><span class="category">: </span><span><em></em> <strong>waitfor</strong> <em>(&hellip;, &quot;timeout&quot;, <var>timeout</var>)</em><a href='#index-waitfor-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Suspend the execution of the current program until a condition is
+satisfied on the graphics handle <var>h</var>.
+</p>
+<p>While the program is suspended graphics events are still processed normally,
+allowing callbacks to modify the state of graphics objects.  This function
+is reentrant and can be called from a callback, while another <code>waitfor</code>
+call is pending at the top-level.
+</p>
+<p>In the first form, program execution is suspended until the graphics object
+<var>h</var> is destroyed.  If the graphics handle is invalid or if <var>h</var> is
+the root graphics handle and no property <var>prop</var> was provided, the function
+returns immediately.
+</p>
+<p>In the second form, execution is suspended until the graphics object is
+destroyed or the property named <var>prop</var> is modified.  If the graphics
+handle is invalid or the property does not exist, the function returns
+immediately.
+</p>
+<p>In the third form, execution is suspended until the graphics object is
+destroyed or the property named <var>prop</var> is set to <var>value</var>.  The
+function <code>isequal</code> is used to compare property values.  If the graphics
+handle is invalid, the property does not exist or the property is already
+set to <var>value</var>, the function returns immediately.
+</p>
+<p>An optional timeout can be specified using the property <code>&quot;timeout&quot;</code>.
+This timeout value is the number of seconds to wait for the condition to be
+true.  <var>timeout</var> must be at least 1.  If a smaller value is specified, a
+warning is issued and a value of 1 is used instead.  If the timeout value is
+not an integer, it is truncated towards 0.
+</p>
+<p>To define a condition on a property named <code>&quot;timeout&quot;</code>, use the string
+<code>'\timeout'</code> instead.
+</p>
+<p>In all cases, typing CTRL-C stops program execution immediately.
+</p>
+<p><strong>See also:</strong> <a href="Interacting-with-Plots.html#XREFwaitforbuttonpress">waitforbuttonpress</a>, <a href="Comparison-Ops.html#XREFisequal">isequal</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="User_002dDefined-Preferences.html">User-Defined Preferences</a>, Previous: <a href="UI-Elements.html">UI Elements</a>, Up: <a href="GUI-Development.html">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

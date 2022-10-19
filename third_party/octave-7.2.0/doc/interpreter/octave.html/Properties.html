@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="classdef-Classes.html" rel="up" title="classdef Classes">
+<link href="Methods.html" rel="next" title="Methods">
+<link href="Creating-a-classdef-Class.html" rel="prev" title="Creating a classdef Class">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Properties">
+<div class="header">
+<p>
+Next: <a href="Methods.html" accesskey="n" rel="next">Methods</a>, Previous: <a href="Creating-a-classdef-Class.html" accesskey="p" rel="prev">Creating a <code>classdef</code> Class</a>, Up: <a href="classdef-Classes.html" accesskey="u" rel="up"><code>classdef</code> Classes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Properties-3"></span><h4 class="subsection">34.6.2 Properties</h4>
+
+<p>All class properties must be defined within <code>properties</code> blocks.  The
+definition of a default value for a property is optional and can be omitted.
+The default initial value for each class property is <code>[]</code>.
+</p>
+<p>A <code>properties</code> block can have additional attributes to specify access
+rights or to define constants:
+</p>
+<div class="example">
+<pre class="example">classdef some_class
+  properties (Access = <var>mode</var>)
+    <var>prop1</var>
+  endproperties
+
+  properties (SetAccess = <var>mode</var>, GetAccess = <var>mode</var>)
+    <var>prop2</var>
+  endproperties
+
+  properties (Constant = true)
+    <var>prop3</var> = pi ()
+  endproperties
+
+  properties
+    <var>prop4</var> = 1337
+  endproperties
+endclassdef
+</pre></div>
+
+<p>where <var>mode</var> can be one of:
+</p>
+<dl compact="compact">
+<dt><span><code>public</code></span></dt>
+<dd><p>The properties can be accessed from everywhere.
+</p>
+</dd>
+<dt><span><code>private</code></span></dt>
+<dd><p>The properties can only be accessed from class methods.  Subclasses of that
+class cannot access them.
+</p>
+</dd>
+<dt><span><code>protected</code></span></dt>
+<dd><p>The properties can only be accessed from class methods and from subclasses
+of that class.
+</p></dd>
+</dl>
+
+<p>When creating an object of <code>some_class</code>, <var>prop1</var> has the default
+value <code>[]</code> and reading from and writing to <var>prop1</var> is defined by
+a single <var>mode</var>.  For <var>prop2</var> the read and write access can be set
+differently.  Finally, <var>prop3</var> is a constant property which can only be
+initialized once within the <code>properties</code> block.
+</p>
+<p>By default, in the example <var>prop4</var>, properties are not constant and have
+public read and write access.
+</p>
+<span id="XREFproperties"></span><dl class="def">
+<dt id="index-properties"><span class="category">: </span><span><em></em> <strong>properties</strong> <em>(<var>class_name</var>)</em><a href='#index-properties' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-properties-1"><span class="category">: </span><span><em></em> <strong>properties</strong> <em>(<var>obj</var>)</em><a href='#index-properties-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-properties-2"><span class="category">: </span><span><em><var>plist</var> =</em> <strong>properties</strong> <em>(&hellip;)</em><a href='#index-properties-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return or display the public properties for the named class
+<var>class_name</var> or classdef object <var>obj</var>.
+</p>
+<p>If an output value is requested, return the list of property names in a
+cell array.
+</p>
+<p>Programming Note: Property names are returned if the <code>GetAccess</code>
+attribute is public and if the <code>Hidden</code> attribute is false.
+</p>
+<p><strong>See also:</strong> <a href="Creating-a-Class.html#XREFmethods">methods</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Methods.html">Methods</a>, Previous: <a href="Creating-a-classdef-Class.html">Creating a <code>classdef</code> Class</a>, Up: <a href="classdef-Classes.html"><code>classdef</code> Classes</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Vector Rotation Matrices (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Vector Rotation Matrices (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Vector Rotation Matrices (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Geometry.html" rel="up" title="Geometry">
+<link href="Interpolation-on-Scattered-Data.html" rel="prev" title="Interpolation on Scattered Data">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Vector-Rotation-Matrices">
+<div class="header">
+<p>
+Previous: <a href="Interpolation-on-Scattered-Data.html" accesskey="p" rel="prev">Interpolation on Scattered Data</a>, Up: <a href="Geometry.html" accesskey="u" rel="up">Geometry</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Vector-Rotation-Matrices-1"></span><h3 class="section">30.5 Vector Rotation Matrices</h3>
+
+<p>Also included in Octave&rsquo;s geometry functions are primitive functions to enable
+vector rotations in 3-dimensional space.  Separate functions are provided for
+rotation about each of the principle axes, <var>x</var>, <var>y</var>, and <var>z</var>.
+According to Euler&rsquo;s rotation theorem, any arbitrary rotation, <var>R</var>, of any
+vector, <var>p</var>, can be expressed as a product of the three principle
+rotations:
+</p>
+
+<div class="example">
+<pre class="example">p' = Rp = Rz*Ry*Rx*p
+</pre></div>
+
+<span id="XREFrotx"></span><dl class="def">
+<dt id="index-rotx"><span class="category">: </span><span><em><var>T</var> =</em> <strong>rotx</strong> <em>(<var>angle</var>)</em><a href='#index-rotx' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p><code>rotx</code> returns the 3x3 transformation matrix corresponding to an active
+rotation of a vector about the x-axis by the specified <var>angle</var>, given in
+degrees, where a positive angle corresponds to a counterclockwise
+rotation when viewing the y-z plane from the positive x side.
+</p>
+<p>The form of the transformation matrix is:
+</p>
+<div class="example">
+<pre class="example">     | 1      0           0      |
+ T = | 0  cos(<var>angle</var>) -sin(<var>angle</var>) |
+     | 0  sin(<var>angle</var>)  cos(<var>angle</var>) |
+</pre></div>
+
+<p>This rotation matrix is intended to be used as a left-multiplying matrix
+when acting on a column vector, using the notation
+<code><var>v</var> = <var>T</var>*<var>u</var></code>.
+For example, a vector, <var>u</var>, pointing along the positive y-axis, rotated
+90-degrees about the x-axis, will result in a vector pointing along the
+positive z-axis:
+</p>
+<div class="example">
+<pre class="example">&gt;&gt; u = [0 1 0]'
+u =
+   0
+   1
+   0
+
+&gt;&gt; T = rotx (90)
+T =
+   1.00000   0.00000   0.00000
+   0.00000   0.00000  -1.00000
+   0.00000   1.00000   0.00000
+
+&gt;&gt; v = T*u
+v =
+   0.00000
+   0.00000
+   1.00000
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFroty">roty</a>, <a href="#XREFrotz">rotz</a>.
+</p></dd></dl>
+
+
+<span id="XREFroty"></span><dl class="def">
+<dt id="index-roty"><span class="category">: </span><span><em><var>T</var> =</em> <strong>roty</strong> <em>(<var>angle</var>)</em><a href='#index-roty' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p><code>roty</code> returns the 3x3 transformation matrix corresponding to an active
+rotation of a vector about the y-axis by the specified <var>angle</var>, given in
+degrees, where a positive angle corresponds to a counterclockwise
+rotation when viewing the z-x plane from the positive y side.
+</p>
+<p>The form of the transformation matrix is:
+</p>
+<div class="example">
+<pre class="example">     |  cos(<var>angle</var>)  0  sin(<var>angle</var>) |
+ T = |      0       1      0      |
+     | -sin(<var>angle</var>)  0  cos(<var>angle</var>) |
+</pre></div>
+
+<p>This rotation matrix is intended to be used as a left-multiplying matrix
+when acting on a column vector, using the notation
+<code><var>v</var> = <var>T</var>*<var>u</var></code>.
+For example, a vector, <var>u</var>, pointing along the positive z-axis, rotated
+90-degrees about the y-axis, will result in a vector pointing along the
+positive x-axis:
+</p>
+<div class="example">
+<pre class="example">  &gt;&gt; u = [0 0 1]'
+   u =
+      0
+      0
+      1
+
+   &gt;&gt; T = roty (90)
+   T =
+      0.00000   0.00000   1.00000
+      0.00000   1.00000   0.00000
+     -1.00000   0.00000   0.00000
+
+   &gt;&gt; v = T*u
+   v =
+      1.00000
+      0.00000
+      0.00000
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFrotx">rotx</a>, <a href="#XREFrotz">rotz</a>.
+</p></dd></dl>
+
+
+<span id="XREFrotz"></span><dl class="def">
+<dt id="index-rotz"><span class="category">: </span><span><em><var>T</var> =</em> <strong>rotz</strong> <em>(<var>angle</var>)</em><a href='#index-rotz' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p><code>rotz</code> returns the 3x3 transformation matrix corresponding to an active
+rotation of a vector about the z-axis by the specified <var>angle</var>, given in
+degrees, where a positive angle corresponds to a counterclockwise
+rotation when viewing the x-y plane from the positive z side.
+</p>
+<p>The form of the transformation matrix is:
+</p>
+<div class="example">
+<pre class="example">     | cos(<var>angle</var>) -sin(<var>angle</var>) 0 |
+ T = | sin(<var>angle</var>)  cos(<var>angle</var>) 0 |
+     |     0           0      1 |
+</pre></div>
+
+<p>This rotation matrix is intended to be used as a left-multiplying matrix
+when acting on a column vector, using the notation
+<code><var>v</var> = <var>T</var>*<var>u</var></code>.
+For example, a vector, <var>u</var>, pointing along the positive x-axis, rotated
+90-degrees about the z-axis, will result in a vector pointing along the
+positive y-axis:
+</p>
+<div class="example">
+<pre class="example">  &gt;&gt; u = [1 0 0]'
+   u =
+      1
+      0
+      0
+
+   &gt;&gt; T = rotz (90)
+   T =
+      0.00000  -1.00000   0.00000
+      1.00000   0.00000   0.00000
+      0.00000   0.00000   1.00000
+
+   &gt;&gt; v = T*u
+   v =
+      0.00000
+      1.00000
+      0.00000
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFrotx">rotx</a>, <a href="#XREFroty">roty</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Interpolation-on-Scattered-Data.html">Interpolation on Scattered Data</a>, Up: <a href="Geometry.html">Geometry</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

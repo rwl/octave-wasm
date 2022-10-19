@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Scatter Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Scatter Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Scatter Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Surface-Properties.html" rel="next" title="Surface Properties">
+<link href="Patch-Properties.html" rel="prev" title="Patch Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Scatter-Properties">
+<div class="header">
+<p>
+Next: <a href="Surface-Properties.html" accesskey="n" rel="next">Surface Properties</a>, Previous: <a href="Patch-Properties.html" accesskey="p" rel="prev">Patch Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Scatter-Properties-1"></span><h4 class="subsubsection">15.3.3.9 Scatter Properties</h4>
+<span id="index--Scatter-PropertiesScatter-Properties"></span>
+
+
+
+<p>Properties of <code>scatter</code> objects (see <a href="Two_002dDimensional-Plots.html#XREFscatter">scatter</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFscatterannotation"></span><span id="index-scatter-annotation"></span>
+</dd>
+<dt><span><code>annotation</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterbeingdeleted"></span><span id="index-scatter-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterbusyaction"></span><span id="index-scatter-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterbuttondownfcn"></span><span id="index-scatter-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFscattercdata"></span><span id="index-scatter-cdata"></span>
+</dd>
+<dt><span><code>cdata</code>: scalar | matrix, def. <code>[0   0.4470   0.7410]</code></span></dt>
+<dd><p>Data defining the scatter object color.
+</p>
+<p>If <code>cdata</code> is a scalar index into the current colormap or a RGB triplet, it defines the color of all scatter markers.
+</p>
+<p>If <code>cdata</code> is an N-by-1 vector of indices or an N-by-3 (RGB) matrix, it defines the color of each one of the N scatter markers.
+</p>
+
+<span id="XREFscattercdatamode"></span><span id="index-scatter-cdatamode"></span>
+</dd>
+<dt><span><code>cdatamode</code>: {<code>&quot;auto&quot;</code>} | <code>&quot;manual&quot;</code></span></dt>
+<dd><p>If <code>cdatamode</code> is <code>&quot;auto&quot;</code>, <code>cdata</code> is set to the color from the <code>colororder</code> of the ancestor axes corresponding to the <code>seriesindex</code>.
+</p>
+
+<span id="XREFscattercdatasource"></span><span id="index-scatter-cdatasource"></span>
+</dd>
+<dt><span><code>cdatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code>cdatasource</code> is unused.
+</p>
+
+<span id="XREFscatterchildren"></span><span id="index-scatter-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p><code>children</code> is unused.
+</p>
+
+<span id="XREFscatterclipping"></span><span id="index-scatter-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>clipping</code> is <code>&quot;on&quot;</code>, the scatter is clipped in its parent axes limits.
+</p>
+
+<span id="XREFscattercontextmenu"></span><span id="index-scatter-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this scatter object.
+</p>
+
+<span id="XREFscattercreatefcn"></span><span id="index-scatter-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after scatter has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaultscattercreatefcn&quot;, 'disp (&quot;scatter created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterdatatiptemplate"></span><span id="index-scatter-datatiptemplate"></span>
+</dd>
+<dt><span><code>datatiptemplate</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterdeletefcn"></span><span id="index-scatter-deletefcn"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before scatter is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterdisplayname"></span><span id="index-scatter-displayname"></span>
+</dd>
+<dt><span><code>displayname</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Text of the legend entry corresponding to this scatter object.
+</p>
+
+<span id="XREFscatterhandlevisibility"></span><span id="index-scatter-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the scatter&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFscatterhittest"></span><span id="index-scatter-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether scatter processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFscatterpickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterinterruptible"></span><span id="index-scatter-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterlatitudedata"></span><span id="index-scatter-latitudedata"></span>
+</dd>
+<dt><span><code>latitudedata</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterlatitudedatasource"></span><span id="index-scatter-latitudedatasource"></span>
+</dd>
+<dt><span><code>latitudedatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterlinewidth"></span><span id="index-scatter-linewidth"></span>
+</dd>
+<dt><span><code>linewidth</code>: def. <code>0.5000</code></span></dt>
+<dd><p>Line width of the edge of the markers.
+</p>
+
+<span id="XREFscatterlongitudedata"></span><span id="index-scatter-longitudedata"></span>
+</dd>
+<dt><span><code>longitudedata</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterlongitudedatasource"></span><span id="index-scatter-longitudedatasource"></span>
+</dd>
+<dt><span><code>longitudedatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscattermarker"></span><span id="index-scatter-marker"></span>
+</dd>
+<dt><span><code>marker</code>: <code>&quot;*&quot;</code> | <code>&quot;+&quot;</code> | <code>&quot;.&quot;</code> | <code>&quot;&lt;&quot;</code> | <code>&quot;&gt;&quot;</code> | <code>&quot;^&quot;</code> | <code>&quot;_&quot;</code> | <code>&quot;d&quot;</code> | <code>&quot;diamond&quot;</code> | <code>&quot;h&quot;</code> | <code>&quot;hexagram&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;o&quot;</code>} | <code>&quot;p&quot;</code> | <code>&quot;pentagram&quot;</code> | <code>&quot;s&quot;</code> | <code>&quot;square&quot;</code> | <code>&quot;v&quot;</code> | <code>&quot;x&quot;</code> | <code>&quot;|&quot;</code></span></dt>
+<dd><p>See <a href="Line-Properties.html#XREFlinemarker">line&nbsp;marker&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFscattermarkeredgealpha"></span><span id="index-scatter-markeredgealpha"></span>
+</dd>
+<dt><span><code>markeredgealpha</code>: scalar, def. <code>1</code></span></dt>
+<dd><p>Transparency level of the faces of the markers where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Note that the markers are not sorted from back to front which might lead to unexpected results when rendering layered transparent markers or in combination with other transparent objects.
+</p>
+
+<span id="XREFscattermarkeredgecolor"></span><span id="index-scatter-markeredgecolor"></span>
+</dd>
+<dt><span><code>markeredgecolor</code>: {<code>&quot;none&quot;</code>} | {<code>&quot;flat&quot;</code>} | colorspec</span></dt>
+<dd><p>Color of the edge of the markers.  <code>&quot;none&quot;</code> means that the edges are transparent and <code>&quot;flat&quot;</code> means that the value from <code>cdata</code> is used.  See <a href="Line-Properties.html#XREFlinemarkeredgecolor">line&nbsp;markeredgecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFscattermarkerfacealpha"></span><span id="index-scatter-markerfacealpha"></span>
+</dd>
+<dt><span><code>markerfacealpha</code>: scalar, def. <code>1</code></span></dt>
+<dd><p>Transparency level of the faces of the markers where a value of 0 means complete transparency and a value of 1 means solid faces without transparency.  Note that the markers are not sorted from back to front which might lead to unexpected results when rendering layered transparent markers or in combination with other transparent objects.
+</p>
+
+<span id="XREFscattermarkerfacecolor"></span><span id="index-scatter-markerfacecolor"></span>
+</dd>
+<dt><span><code>markerfacecolor</code>: {{<code>&quot;none&quot;</code>}} | <code>&quot;flat&quot;</code> | <code>&quot;auto&quot;</code> | colorspec</span></dt>
+<dd><p>Color of the face of the markers.  <code>&quot;none&quot;</code> means that the faces are transparent, <code>&quot;flat&quot;</code> means that the value from <code>cdata</code> is used, and <code>&quot;auto&quot;</code> uses the <code>color</code> property of the ancestor axes. See <a href="Line-Properties.html#XREFlinemarkerfacecolor">line&nbsp;markerfacecolor&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterparent"></span><span id="index-scatter-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle</span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFscatterpickableparts"></span><span id="index-scatter-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code>: <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p>Specify whether scatter will accept mouse clicks.  By default, <code>pickableparts</code> is <code>&quot;visible&quot;</code> and only visible parts of the scatter or its children may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code>&quot;hittest&quot;</code> property will determine how they are processed.  See <a href="#XREFscatterhittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFscatterrdata"></span><span id="index-scatter-rdata"></span>
+</dd>
+<dt><span><code>rdata</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterrdatasource"></span><span id="index-scatter-rdatasource"></span>
+</dd>
+<dt><span><code>rdatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterselected"></span><span id="index-scatter-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterselectionhighlight"></span><span id="index-scatter-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFscatterseriesindex"></span><span id="index-scatter-seriesindex"></span>
+</dd>
+<dt><span><code>seriesindex</code>: def. <code>1</code></span></dt>
+<dd><p>Each scatter object in the same axes is asigned an incrementing integer.  This corresponds to the index into the <code>colororder</code> of the ancestor axes that is used if <code>cdatamode</code> is set to <code>&quot;auto&quot;</code>.
+</p>
+
+<span id="XREFscattersizedata"></span><span id="index-scatter-sizedata"></span>
+</dd>
+<dt><span><code>sizedata</code>: [] | scalar | vector, def. <code>[](0x0)</code></span></dt>
+<dd><p>Size of the area of the marker. A scalar value applies to all markers.  If <code>cdata</code> is an N-by-1 vector, it defines the color of each one of the N scatter markers.
+</p>
+
+<span id="XREFscattersizedatasource"></span><span id="index-scatter-sizedatasource"></span>
+</dd>
+<dt><span><code>sizedatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code>sizedatasource</code> is unused.
+</p>
+
+<span id="XREFscattertag"></span><span id="index-scatter-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFscatterthetadata"></span><span id="index-scatter-thetadata"></span>
+</dd>
+<dt><span><code>thetadata</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFscatterthetadatasource"></span><span id="index-scatter-thetadatasource"></span>
+</dd>
+<dt><span><code>thetadatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFscattertype"></span><span id="index-scatter-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;scatter&quot;</code>
+</p>
+
+<span id="XREFscatteruserdata"></span><span id="index-scatter-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFscattervisible"></span><span id="index-scatter-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the scatter is not rendered on screen.
+</p>
+
+<span id="XREFscatterxdata"></span><span id="index-scatter-xdata"></span>
+</dd>
+<dt><span><code>xdata</code>: vector, def. <code>[](0x0)</code></span></dt>
+<dd><p>Vector with the x coordinates of the scatter object.
+</p>
+
+<span id="XREFscatterxdatasource"></span><span id="index-scatter-xdatasource"></span>
+</dd>
+<dt><span><code>xdatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code>xdatasource</code> is unused.
+</p>
+
+<span id="XREFscatterydata"></span><span id="index-scatter-ydata"></span>
+</dd>
+<dt><span><code>ydata</code>: vector, def. <code>[](0x0)</code></span></dt>
+<dd><p>Vector with the y coordinates of the scatter object.
+</p>
+
+<span id="XREFscatterydatasource"></span><span id="index-scatter-ydatasource"></span>
+</dd>
+<dt><span><code>ydatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code>ydatasource</code> is unused.
+</p>
+
+<span id="XREFscatterzdata"></span><span id="index-scatter-zdata"></span>
+</dd>
+<dt><span><code>zdata</code>: [] | vector, def. <code>[](0x0)</code></span></dt>
+<dd><p>For 3D data, vector with the y coordinates of the scatter object.
+</p>
+
+<span id="XREFscatterzdatasource"></span><span id="index-scatter-zdatasource"></span>
+</dd>
+<dt><span><code>zdatasource</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Data from workspace variables is not yet implemented for scatter objects.  <code>zdatasource</code> is unused.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Surface-Properties.html">Surface Properties</a>, Previous: <a href="Patch-Properties.html">Patch Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Rational Approximations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Rational Approximations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Rational Approximations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Coordinate-Transformations.html" rel="next" title="Coordinate Transformations">
+<link href="Special-Functions.html" rel="prev" title="Special Functions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Rational-Approximations">
+<div class="header">
+<p>
+Next: <a href="Coordinate-Transformations.html" accesskey="n" rel="next">Coordinate Transformations</a>, Previous: <a href="Special-Functions.html" accesskey="p" rel="prev">Special Functions</a>, Up: <a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Rational-Approximations-1"></span><h3 class="section">17.7 Rational Approximations</h3>
+
+<span id="XREFrat"></span><dl class="def">
+<dt id="index-rat"><span class="category">: </span><span><em><var>s</var> =</em> <strong>rat</strong> <em>(<var>x</var>)</em><a href='#index-rat' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rat-1"><span class="category">: </span><span><em><var>s</var> =</em> <strong>rat</strong> <em>(<var>x</var>, <var>tol</var>)</em><a href='#index-rat-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rat-2"><span class="category">: </span><span><em>[<var>n</var>, <var>d</var>] =</em> <strong>rat</strong> <em>(&hellip;)</em><a href='#index-rat-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Find a rational approximation of <var>x</var> to within the tolerance defined by
+<var>tol</var>.
+</p>
+<p>If unspecified, the default tolerance is <code>1e-6 * norm (<var>x</var>(:), 1)</code>.
+</p>
+<p>When called with one output argument, return a string containing a
+continued fraction expansion (multiple terms).
+</p>
+<p>When called with two output arguments, return numeric matrices for the
+numerator and denominator of a fractional representation of <var>x</var> such
+that <code><var>x</var> = <var>n</var> ./ <var>d</var></code>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">s = rat (pi)
+&rArr; s = 3 + 1/(7 + 1/16)
+
+[n, d] = rat (pi)
+&rArr; n =  355
+&rArr; d =  113
+
+n / d - pi
+&rArr; 0.00000026676
+</pre></div>
+
+<p>Programming Note: With one output <code>rat</code> produces a string which is a
+continued fraction expansion.  To produce a string which is a simple
+fraction (one numerator, one denominator) use <code>rats</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFrats">rats</a>, <a href="Terminal-Output.html#XREFformat">format</a>.
+</p></dd></dl>
+
+
+<span id="XREFrats"></span><dl class="def">
+<dt id="index-rats"><span class="category">: </span><span><em><var>s</var> =</em> <strong>rats</strong> <em>(<var>x</var>)</em><a href='#index-rats' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rats-1"><span class="category">: </span><span><em><var>s</var> =</em> <strong>rats</strong> <em>(<var>x</var>, <var>len</var>)</em><a href='#index-rats-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert <var>x</var> into a rational approximation represented as a string.
+</p>
+<p>A rational approximation to a floating point number is a simple fraction
+with numerator <var>N</var> and denominator <var>D</var> such that
+<code><var>x</var> = <var>N</var>/<var>D</var></code>.
+</p>
+<p>The optional second argument defines the maximum length of the string
+representing the elements of <var>x</var>.  By default, <var>len</var> is 9.
+</p>
+<p>If the length of the smallest possible rational approximation exceeds
+<var>len</var>, an asterisk (*) padded with spaces will be returned instead.
+</p>
+<p>Example conversion from matrix to string, and back again.
+</p>
+<div class="example">
+<pre class="example">r = rats (hilb (4));
+x = str2num (r)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFrat">rat</a>, <a href="Terminal-Output.html#XREFformat">format</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Coordinate-Transformations.html">Coordinate Transformations</a>, Previous: <a href="Special-Functions.html">Special Functions</a>, Up: <a href="Arithmetic.html">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

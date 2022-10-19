@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Paging Screen Output (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Paging Screen Output (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Paging Screen Output (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Terminal-Output.html" rel="up" title="Terminal Output">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Paging-Screen-Output">
+<div class="header">
+<p>
+Up: <a href="Terminal-Output.html" accesskey="u" rel="up">Terminal Output</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Paging-Screen-Output-1"></span><h4 class="subsubsection">14.1.1.1 Paging Screen Output</h4>
+
+<p>When running interactively, Octave normally sends all output directly to the
+Command Window.  However, when using the CLI version of Octave this can create
+a problem because large volumes of data will stream by before you can read
+them.  In such cases, it is better to use a paging program such as <code>less</code>
+or <code>more</code> which displays just one screenful at a time.  With <code>less</code>
+(and some versions of <code>more</code>) you can also scan forward and backward, and
+search for specific items.  The pager is enabled by the command <code>more on</code>.
+</p>
+<p>Normally, no output is displayed by the pager until just before Octave is ready
+to print the top level prompt, or read from the standard input (for example, by
+using the <code>fscanf</code> or <code>scanf</code> functions).  This means that there may
+be some delay before any output appears on your screen if you have asked Octave
+to perform a significant amount of work with a single command statement.  The
+function <code>fflush</code> may be used to force output to be sent to the pager (or
+any other stream) immediately.
+</p>
+<p>You can select the program to run as the pager with the <code>PAGER</code> function,
+and configure the pager itself with the <code>PAGER_FLAGS</code> function.
+</p>
+<span id="XREFmore"></span><dl class="def">
+<dt id="index-more"><span class="category">: </span><span><em></em> <strong>more</strong><a href='#index-more' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-more-1"><span class="category">: </span><span><em></em> <strong>more</strong> <em>on</em><a href='#index-more-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-more-2"><span class="category">: </span><span><em></em> <strong>more</strong> <em>off</em><a href='#index-more-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Turn output pagination on or off.
+</p>
+<p>Without an argument, <code>more</code> toggles the current state.
+</p>
+<p>The current state can be determined via <code>page_screen_output</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpage_005fscreen_005foutput">page_screen_output</a>, <a href="#XREFpage_005foutput_005fimmediately">page_output_immediately</a>, <a href="#XREFPAGER">PAGER</a>, <a href="#XREFPAGER_005fFLAGS">PAGER_FLAGS</a>.
+</p></dd></dl>
+
+
+<span id="XREFPAGER"></span><dl class="def">
+<dt id="index-PAGER"><span class="category">: </span><span><em><var>val</var> =</em> <strong>PAGER</strong> <em>()</em><a href='#index-PAGER' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-PAGER-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>PAGER</strong> <em>(<var>new_val</var>)</em><a href='#index-PAGER-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-PAGER-2"><span class="category">: </span><span><em></em> <strong>PAGER</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-PAGER-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the program to use
+to display terminal output on your system.
+</p>
+<p>The default value is normally <code>&quot;less&quot;</code>, <code>&quot;more&quot;</code>, or
+<code>&quot;pg&quot;</code>, depending on what programs are installed on your system.
+See <a href="Installation.html">Installing Octave</a>.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFPAGER_005fFLAGS">PAGER_FLAGS</a>, <a href="#XREFpage_005foutput_005fimmediately">page_output_immediately</a>, <a href="#XREFmore">more</a>, <a href="#XREFpage_005fscreen_005foutput">page_screen_output</a>.
+</p></dd></dl>
+
+
+<span id="XREFPAGER_005fFLAGS"></span><dl class="def">
+<dt id="index-PAGER_005fFLAGS"><span class="category">: </span><span><em><var>val</var> =</em> <strong>PAGER_FLAGS</strong> <em>()</em><a href='#index-PAGER_005fFLAGS' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-PAGER_005fFLAGS-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>PAGER_FLAGS</strong> <em>(<var>new_val</var>)</em><a href='#index-PAGER_005fFLAGS-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-PAGER_005fFLAGS-2"><span class="category">: </span><span><em></em> <strong>PAGER_FLAGS</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-PAGER_005fFLAGS-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the options to pass
+to the pager.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFPAGER">PAGER</a>, <a href="#XREFmore">more</a>, <a href="#XREFpage_005fscreen_005foutput">page_screen_output</a>, <a href="#XREFpage_005foutput_005fimmediately">page_output_immediately</a>.
+</p></dd></dl>
+
+
+<span id="XREFpage_005fscreen_005foutput"></span><dl class="def">
+<dt id="index-page_005fscreen_005foutput"><span class="category">: </span><span><em><var>val</var> =</em> <strong>page_screen_output</strong> <em>()</em><a href='#index-page_005fscreen_005foutput' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-page_005fscreen_005foutput-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>page_screen_output</strong> <em>(<var>new_val</var>)</em><a href='#index-page_005fscreen_005foutput-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-page_005fscreen_005foutput-2"><span class="category">: </span><span><em></em> <strong>page_screen_output</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-page_005fscreen_005foutput-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether output intended
+for the terminal window that is longer than one page is sent through a
+pager.
+</p>
+<p>This allows you to view one screenful at a time.  Some pagers
+(such as <code>less</code>&mdash;see <a href="Installation.html">Installing Octave</a>) are also capable of moving
+backward on the output.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmore">more</a>, <a href="#XREFpage_005foutput_005fimmediately">page_output_immediately</a>, <a href="#XREFPAGER">PAGER</a>, <a href="#XREFPAGER_005fFLAGS">PAGER_FLAGS</a>.
+</p></dd></dl>
+
+
+<span id="XREFpage_005foutput_005fimmediately"></span><dl class="def">
+<dt id="index-page_005foutput_005fimmediately"><span class="category">: </span><span><em><var>val</var> =</em> <strong>page_output_immediately</strong> <em>()</em><a href='#index-page_005foutput_005fimmediately' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-page_005foutput_005fimmediately-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>page_output_immediately</strong> <em>(<var>new_val</var>)</em><a href='#index-page_005foutput_005fimmediately-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-page_005foutput_005fimmediately-2"><span class="category">: </span><span><em></em> <strong>page_output_immediately</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-page_005foutput_005fimmediately-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave sends
+output to the pager as soon as it is available.
+</p>
+<p>When the value is <code>false</code>, Octave buffers its output and waits until just
+before the prompt is printed to flush it to the pager.  This is the default.
+</p>
+<p>When <code>page_screen_output</code> is <code>false</code>, this variable has no effect.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpage_005fscreen_005foutput">page_screen_output</a>, <a href="#XREFmore">more</a>, <a href="#XREFPAGER">PAGER</a>, <a href="#XREFPAGER_005fFLAGS">PAGER_FLAGS</a>.
+</p></dd></dl>
+
+
+<span id="XREFfflush"></span><dl class="def">
+<dt id="index-fflush"><span class="category">: </span><span><em></em> <strong>fflush</strong> <em>(<var>fid</var>)</em><a href='#index-fflush' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Flush output to file descriptor <var>fid</var>.
+</p>
+<p><code>fflush</code> returns 0 on success and an OS dependent error value
+(-1 on Unix) on error.
+</p>
+<p>Programming Note: Flushing is useful for ensuring that all pending output
+makes it to the screen before some other event occurs.  For example, it is
+always a good idea to flush the standard output stream before calling
+<code>input</code>.
+</p>
+<p><strong>See also:</strong> <a href="Opening-and-Closing-Files.html#XREFfopen">fopen</a>, <a href="Opening-and-Closing-Files.html#XREFfclose">fclose</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Up: <a href="Terminal-Output.html">Terminal Output</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

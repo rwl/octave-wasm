@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Statements (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Statements (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Statements (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Functions-and-Scripts.html" rel="next" title="Functions and Scripts">
+<link href="Evaluation.html" rel="prev" title="Evaluation">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Statements">
+<div class="header">
+<p>
+Next: <a href="Functions-and-Scripts.html" accesskey="n" rel="next">Functions and Scripts</a>, Previous: <a href="Evaluation.html" accesskey="p" rel="prev">Evaluation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Statements-1"></span><h2 class="chapter">10 Statements</h2>
+<span id="index-statements"></span>
+
+<p>Statements may be a simple constant expression or a complicated list of
+nested loops and conditional statements.
+</p>
+<p><em>Control statements</em> such as <code>if</code>, <code>while</code>, and so on
+control the flow of execution in Octave programs.  All the control
+statements start with special keywords such as <code>if</code> and
+<code>while</code>, to distinguish them from simple expressions.
+Many control statements contain other statements; for example, the
+<code>if</code> statement contains another statement which may or may not be
+executed.
+</p>
+<span id="index-end-statement"></span>
+<p>Each control statement has a corresponding <em>end</em> statement that
+marks the end of the control statement.  For example, the
+keyword <code>endif</code> marks the end of an <code>if</code> statement, and
+<code>endwhile</code> marks the end of a <code>while</code> statement.  You can use
+the keyword <code>end</code> anywhere a more specific end keyword is expected,
+but using the more specific keywords is preferred because if you use
+them, Octave is able to provide better diagnostics for mismatched or
+missing end tokens.
+</p>
+<p>The list of statements contained between keywords like <code>if</code> or
+<code>while</code> and the corresponding end statement is called the
+<em>body</em> of a control statement.
+</p>
+
+<ul class="section-toc">
+<li><a href="The-if-Statement.html" accesskey="1">The if Statement</a></li>
+<li><a href="The-switch-Statement.html" accesskey="2">The switch Statement</a></li>
+<li><a href="The-while-Statement.html" accesskey="3">The while Statement</a></li>
+<li><a href="The-do_002duntil-Statement.html" accesskey="4">The do-until Statement</a></li>
+<li><a href="The-for-Statement.html" accesskey="5">The for Statement</a></li>
+<li><a href="The-break-Statement.html" accesskey="6">The break Statement</a></li>
+<li><a href="The-continue-Statement.html" accesskey="7">The continue Statement</a></li>
+<li><a href="The-unwind_005fprotect-Statement.html" accesskey="8">The unwind_protect Statement</a></li>
+<li><a href="The-try-Statement.html" accesskey="9">The try Statement</a></li>
+<li><a href="Continuation-Lines.html">Continuation Lines</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Complex Arithmetic (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Complex Arithmetic (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Complex Arithmetic (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Trigonometry.html" rel="next" title="Trigonometry">
+<link href="Exponents-and-Logarithms.html" rel="prev" title="Exponents and Logarithms">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Complex-Arithmetic">
+<div class="header">
+<p>
+Next: <a href="Trigonometry.html" accesskey="n" rel="next">Trigonometry</a>, Previous: <a href="Exponents-and-Logarithms.html" accesskey="p" rel="prev">Exponents and Logarithms</a>, Up: <a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Complex-Arithmetic-1"></span><h3 class="section">17.2 Complex Arithmetic</h3>
+
+<p>In the descriptions of the following functions,
+<var>z</var> is the complex number <var>x</var> + <var>i</var><var>y</var>, where <var>i</var> is
+defined as <code>sqrt (-1)</code>.
+</p>
+<span id="XREFabs"></span><dl class="def">
+<dt id="index-abs"><span class="category">: </span><span><em></em> <strong>abs</strong> <em>(<var>z</var>)</em><a href='#index-abs' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the magnitude of <var>z</var>.
+</p>
+<p>The magnitude is defined as
+|<var>z</var>| = <code>sqrt (x^2 + y^2)</code>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">abs (3 + 4i)
+     &rArr; 5
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFarg">arg</a>.
+</p></dd></dl>
+
+
+<span id="XREFarg"></span><dl class="def">
+<dt id="index-arg"><span class="category">: </span><span><em></em> <strong>arg</strong> <em>(<var>z</var>)</em><a href='#index-arg' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-angle"><span class="category">: </span><span><em></em> <strong>angle</strong> <em>(<var>z</var>)</em><a href='#index-angle' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the argument, i.e., angle of <var>z</var>.
+</p>
+<p>This is defined as,
+<var>theta</var> = <code>atan2 (<var>y</var>, <var>x</var>)</code>,
+in radians.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">arg (3 + 4i)
+     &rArr; 0.92730
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFabs">abs</a>.
+</p></dd></dl>
+
+
+<span id="XREFconj"></span><dl class="def">
+<dt id="index-conj"><span class="category">: </span><span><em></em> <strong>conj</strong> <em>(<var>z</var>)</em><a href='#index-conj' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the complex conjugate of <var>z</var>.
+</p>
+<p>The complex conjugate is defined as
+<code>conj (<var>z</var>)</code> = <var>x</var> - <var>i</var><var>y</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFreal">real</a>, <a href="#XREFimag">imag</a>.
+</p></dd></dl>
+
+
+<span id="XREFcplxpair"></span><dl class="def">
+<dt id="index-cplxpair"><span class="category">: </span><span><em></em> <strong>cplxpair</strong> <em>(<var>z</var>)</em><a href='#index-cplxpair' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cplxpair-1"><span class="category">: </span><span><em></em> <strong>cplxpair</strong> <em>(<var>z</var>, <var>tol</var>)</em><a href='#index-cplxpair-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cplxpair-2"><span class="category">: </span><span><em></em> <strong>cplxpair</strong> <em>(<var>z</var>, <var>tol</var>, <var>dim</var>)</em><a href='#index-cplxpair-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Sort the numbers <var>z</var> into complex conjugate pairs ordered by increasing
+real part.
+</p>
+<p>The negative imaginary complex numbers are placed first within each pair.
+All real numbers (those with
+<code>abs (imag (<var>z</var>)) / abs (<var>z</var>) &lt; <var>tol</var></code>) are placed after
+the complex pairs.
+</p>
+<p><var>tol</var> is a weighting factor in the range [0, 1) which determines the
+tolerance of the matching.  The default value is <code>100 * eps</code> and the
+resulting tolerance for a given complex pair is
+<code><var>tol</var> * abs (<var>z</var>(i)))</code>.
+</p>
+<p>By default the complex pairs are sorted along the first non-singleton
+dimension of <var>z</var>.  If <var>dim</var> is specified, then the complex pairs are
+sorted along this dimension.
+</p>
+<p>Signal an error if some complex numbers could not be paired.  Signal an
+error if all complex numbers are not exact conjugates (to within <var>tol</var>).
+Note that there is no defined order for pairs with identical real parts but
+differing imaginary parts.
+</p>
+<div class="example">
+<pre class="example">cplxpair (exp (2i*pi*[0:4]'/5)) == exp (2i*pi*[3; 2; 4; 1; 0]/5)
+</pre></div>
+</dd></dl>
+
+
+<span id="XREFimag"></span><dl class="def">
+<dt id="index-imag"><span class="category">: </span><span><em></em> <strong>imag</strong> <em>(<var>z</var>)</em><a href='#index-imag' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the imaginary part of <var>z</var> as a real number.
+</p>
+<p><strong>See also:</strong> <a href="#XREFreal">real</a>, <a href="#XREFconj">conj</a>.
+</p></dd></dl>
+
+
+<span id="XREFreal"></span><dl class="def">
+<dt id="index-real"><span class="category">: </span><span><em></em> <strong>real</strong> <em>(<var>z</var>)</em><a href='#index-real' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the real part of <var>z</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFimag">imag</a>, <a href="#XREFconj">conj</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Trigonometry.html">Trigonometry</a>, Previous: <a href="Exponents-and-Logarithms.html">Exponents and Logarithms</a>, Up: <a href="Arithmetic.html">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

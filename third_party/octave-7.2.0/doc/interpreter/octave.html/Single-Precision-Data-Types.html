@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Single Precision Data Types (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Single Precision Data Types (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Single Precision Data Types (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Integer-Data-Types.html" rel="next" title="Integer Data Types">
+<link href="Ranges.html" rel="prev" title="Ranges">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Single-Precision-Data-Types">
+<div class="header">
+<p>
+Next: <a href="Integer-Data-Types.html" accesskey="n" rel="next">Integer Data Types</a>, Previous: <a href="Ranges.html" accesskey="p" rel="prev">Ranges</a>, Up: <a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Single-Precision-Data-Types-1"></span><h3 class="section">4.3 Single Precision Data Types</h3>
+
+<p>Octave includes support for single precision data types, and most of the
+functions in Octave accept single precision values and return single
+precision answers.  A single precision variable is created with the
+<code>single</code> function.
+</p>
+<span id="XREFsingle"></span><dl class="def">
+<dt id="index-single"><span class="category">: </span><span><em></em> <strong>single</strong> <em>(<var>x</var>)</em><a href='#index-single' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert <var>x</var> to single precision type.
+</p>
+<p><strong>See also:</strong> <a href="Numeric-Data-Types.html#XREFdouble">double</a>.
+</p></dd></dl>
+
+
+<p>for example:
+</p>
+<div class="example">
+<pre class="example">sngl = single (rand (2, 2))
+     &rArr; sngl =
+        0.37569   0.92982
+        0.11962   0.50876
+class (sngl)
+    &rArr; single
+</pre></div>
+
+<p>Many functions can also return single precision values directly.  For
+example
+</p>
+<div class="example">
+<pre class="example">ones (2, 2, &quot;single&quot;)
+zeros (2, 2, &quot;single&quot;)
+eye (2, 2,  &quot;single&quot;)
+rand (2, 2, &quot;single&quot;)
+NaN (2, 2, &quot;single&quot;)
+NA (2, 2, &quot;single&quot;)
+Inf (2, 2, &quot;single&quot;)
+</pre></div>
+
+<p>will all return single precision matrices.
+</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Playback (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Playback (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Playback (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Audio-Player.html" rel="up" title="Audio Player">
+<link href="Player-Properties.html" rel="next" title="Player Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Playback">
+<div class="header">
+<p>
+Next: <a href="Player-Properties.html" accesskey="n" rel="next">Properties</a>, Up: <a href="Audio-Player.html" accesskey="u" rel="up">Audio Player</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Playback-1"></span><h4 class="subsection">33.3.1 Playback</h4>
+
+<p>The following methods are used to control player playback.
+</p>
+<span id="XREF_0040audioplayer_002fplay"></span><dl class="def">
+<dt id="index-play"><span class="category">: </span><span><em></em> <strong>play</strong> <em>(<var>player</var>)</em><a href='#index-play' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-play-1"><span class="category">: </span><span><em></em> <strong>play</strong> <em>(<var>player</var>, <var>start</var>)</em><a href='#index-play-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-play-2"><span class="category">: </span><span><em></em> <strong>play</strong> <em>(<var>player</var>, <var>limits</var>)</em><a href='#index-play-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Play audio stored in the audioplayer object <var>player</var> without blocking.
+</p>
+<p>Given optional argument start, begin playing at <var>start</var> samples in the
+recording.  Given a two-element vector <var>limits</var>, begin and end playing
+at the number of samples specified by the elements of the vector.
+</p></dd></dl>
+
+
+<span id="XREF_0040audioplayer_002fplayblocking"></span><dl class="def">
+<dt id="index-playblocking"><span class="category">: </span><span><em></em> <strong>playblocking</strong> <em>(<var>player</var>)</em><a href='#index-playblocking' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-playblocking-1"><span class="category">: </span><span><em></em> <strong>playblocking</strong> <em>(<var>player</var>, <var>start</var>)</em><a href='#index-playblocking-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-playblocking-2"><span class="category">: </span><span><em></em> <strong>playblocking</strong> <em>(<var>player</var>, <var>limits</var>)</em><a href='#index-playblocking-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Play audio stored in the audioplayer object <var>player</var> with blocking.
+</p>
+<p>Given optional argument start, begin playing at <var>start</var> samples in the
+recording.  Given a two-element vector <var>limits</var>, begin and end playing
+at the number of samples specified by the elements of the vector.
+</p></dd></dl>
+
+
+<span id="XREF_0040audioplayer_002fpause"></span><dl class="def">
+<dt id="index-pause"><span class="category">: </span><span><em></em> <strong>pause</strong> <em>(<var>player</var>)</em><a href='#index-pause' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Pause the audioplayer <var>player</var>.
+</p></dd></dl>
+
+
+<span id="XREF_0040audioplayer_002fresume"></span><dl class="def">
+<dt id="index-resume"><span class="category">: </span><span><em></em> <strong>resume</strong> <em>(<var>player</var>)</em><a href='#index-resume' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Resume playback for the paused audioplayer object <var>player</var>.
+</p></dd></dl>
+
+
+<span id="XREF_0040audioplayer_002fstop"></span><dl class="def">
+<dt id="index-stop"><span class="category">: </span><span><em></em> <strong>stop</strong> <em>(<var>player</var>)</em><a href='#index-stop' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Stop the playback for the audioplayer <var>player</var> and reset the
+relevant variables to their starting values.
+</p></dd></dl>
+
+
+<span id="XREF_0040audioplayer_002fisplaying"></span><dl class="def">
+<dt id="index-isplaying"><span class="category">: </span><span><em></em> <strong>isplaying</strong> <em>(<var>player</var>)</em><a href='#index-isplaying' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if the audioplayer object <var>player</var> is currently playing back
+audio and false otherwise.
+</p></dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Diary and Echo Commands (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Diary and Echo Commands (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Diary and Echo Commands (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Customizing-the-Prompt.html" rel="prev" title="Customizing the Prompt">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Diary-and-Echo-Commands">
+<div class="header">
+<p>
+Previous: <a href="Customizing-the-Prompt.html" accesskey="p" rel="prev">Customizing the Prompt</a>, Up: <a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Diary-and-Echo-Commands-1"></span><h4 class="subsection">2.4.8 Diary and Echo Commands</h4>
+<span id="index-diary-of-commands-and-output"></span>
+<span id="index-command-and-output-logs"></span>
+<span id="index-logging-commands-and-output"></span>
+<span id="index-echoing-executing-commands"></span>
+<span id="index-command-echoing"></span>
+
+<p>Octave&rsquo;s diary feature allows you to keep a log of all or part of an
+interactive session by recording the input you type and the output that
+Octave produces in a separate file.
+</p>
+<span id="XREFdiary"></span><dl class="def">
+<dt id="index-diary-5"><span class="category">: </span><span><em></em> <strong>diary</strong><a href='#index-diary-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-diary-6"><span class="category">: </span><span><em></em> <strong>diary</strong> <em>on</em><a href='#index-diary-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-diary-7"><span class="category">: </span><span><em></em> <strong>diary</strong> <em>off</em><a href='#index-diary-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-diary-8"><span class="category">: </span><span><em></em> <strong>diary</strong> <em><var>filename</var></em><a href='#index-diary-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-diary-9"><span class="category">: </span><span><em>[<var>status</var>, <var>diaryfile</var>] =</em> <strong>diary</strong><a href='#index-diary-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Record a list of all commands <em>and</em> the output they produce, mixed
+together just as they appear on the terminal.
+</p>
+<p>Valid options are:
+</p>
+<dl compact="compact">
+<dt><span>on</span></dt>
+<dd><p>Start recording a session in a file called <samp>diary</samp> in the current working
+directory.
+</p>
+</dd>
+<dt><span>off</span></dt>
+<dd><p>Stop recording the session in the diary file.
+</p>
+</dd>
+<dt><span><var>filename</var></span></dt>
+<dd><p>Record the session in the file named <var>filename</var>.
+</p></dd>
+</dl>
+
+<p>With no input or output arguments, <code>diary</code> toggles the current diary
+state.
+</p>
+<p>If output arguments are requested, <code>diary</code> ignores inputs and returns
+the current status.  The boolean <var>status</var> indicates whether recording is on
+or off, and <var>diaryfile</var> is the name of the file where the session is
+stored.
+</p>
+<p><strong>See also:</strong> <a href="Commands-for-History.html#XREFhistory">history</a>, <a href="Evaluation.html#XREFevalc">evalc</a>.
+</p></dd></dl>
+
+
+<p>Sometimes it is useful to see the commands in a function or script as
+they are being evaluated.  This can be especially helpful for debugging
+some kinds of problems.
+</p>
+<span id="XREFecho"></span><dl class="def">
+<dt id="index-echo"><span class="category">: </span><span><em></em> <strong>echo</strong><a href='#index-echo' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-1"><span class="category">: </span><span><em></em> <strong>echo</strong> <em>on</em><a href='#index-echo-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-2"><span class="category">: </span><span><em></em> <strong>echo</strong> <em>off</em><a href='#index-echo-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-3"><span class="category">: </span><span><em></em> <strong>echo</strong> <em>on all</em><a href='#index-echo-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-4"><span class="category">: </span><span><em></em> <strong>echo</strong> <em>off all</em><a href='#index-echo-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-5"><span class="category">: </span><span><em></em> <strong>echo</strong> <em><var>function</var> on</em><a href='#index-echo-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-echo-6"><span class="category">: </span><span><em></em> <strong>echo</strong> <em><var>function</var> off</em><a href='#index-echo-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Control whether commands are displayed as they are executed.
+</p>
+<p>Valid options are:
+</p>
+<dl compact="compact">
+<dt><span><code>on</code></span></dt>
+<dd><p>Enable echoing of commands as they are executed in script files.
+</p>
+</dd>
+<dt><span><code>off</code></span></dt>
+<dd><p>Disable echoing of commands as they are executed in script files.
+</p>
+</dd>
+<dt><span><code>on all</code></span></dt>
+<dd><p>Enable echoing of commands as they are executed in script files and
+functions.
+</p>
+</dd>
+<dt><span><code>off all</code></span></dt>
+<dd><p>Disable echoing of commands as they are executed in script files and
+functions.
+</p>
+</dd>
+<dt><span><code><var>function</var> on</code></span></dt>
+<dd><p>Enable echoing of commands as they are executed in the named function.
+</p>
+</dd>
+<dt><span><code><var>function</var> off</code></span></dt>
+<dd><p>Disable echoing of commands as they are executed in the named function.
+</p></dd>
+</dl>
+
+<p>With no arguments, <code>echo</code> toggles the current echo state.
+</p>
+
+<p><strong>See also:</strong> <a href="Customizing-the-Prompt.html#XREFPS4">PS4</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Customizing-the-Prompt.html">Customizing the Prompt</a>, Up: <a href="Command-Line-Editing.html">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Call Stack (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Call Stack (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Call Stack (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Debugging.html" rel="up" title="Debugging">
+<link href="Profiling.html" rel="next" title="Profiling">
+<link href="Debug-Mode.html" rel="prev" title="Debug Mode">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Call-Stack">
+<div class="header">
+<p>
+Next: <a href="Profiling.html" accesskey="n" rel="next">Profiling</a>, Previous: <a href="Debug-Mode.html" accesskey="p" rel="prev">Debug Mode</a>, Up: <a href="Debugging.html" accesskey="u" rel="up">Debugging</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Call-Stack-1"></span><h3 class="section">13.5 Call Stack</h3>
+
+<p>The function being debugged may be the leaf node of a series of function calls.
+After examining values in the current subroutine it may turn out that the
+problem occurred in earlier pieces of code.  Use <code>dbup</code> and <code>dbdown</code>
+to move up and down through the series of function calls to locate where
+variables first took on the wrong values.  <code>dbstack</code> shows the entire
+series of function calls and at what level debugging is currently taking place.
+</p>
+<span id="XREFdbstack"></span><dl class="def">
+<dt id="index-dbstack"><span class="category">: </span><span><em></em> <strong>dbstack</strong><a href='#index-dbstack' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstack-1"><span class="category">: </span><span><em></em> <strong>dbstack</strong> <em><var>n</var></em><a href='#index-dbstack-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstack-2"><span class="category">: </span><span><em></em> <strong>dbstack</strong> <em><var>-completenames</var></em><a href='#index-dbstack-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstack-3"><span class="category">: </span><span><em>[<var>stack</var>, <var>idx</var>] =</em> <strong>dbstack</strong> <em>(&hellip;)</em><a href='#index-dbstack-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Display or return current debugging function stack information.
+</p>
+<p>With optional argument <var>n</var>, omit the <var>n</var> innermost stack frames.
+</p>
+<p>Although accepted, the argument <var>-completenames</var> is silently ignored.
+Octave always returns absolute filenames.
+</p>
+<p>The arguments <var>n</var> and <var>-completenames</var> can both be specified and may
+appear in any order.
+</p>
+<p>The optional return argument <var>stack</var> is a struct array with the
+following fields:
+</p>
+<dl compact="compact">
+<dt><span>file</span></dt>
+<dd><p>The name of the m-file where the function code is located.
+</p>
+</dd>
+<dt><span>name</span></dt>
+<dd><p>The name of the function with a breakpoint.
+</p>
+</dd>
+<dt><span>line</span></dt>
+<dd><p>The line number of an active breakpoint.
+</p>
+</dd>
+<dt><span>column</span></dt>
+<dd><p>The column number of the line where the breakpoint begins.
+</p>
+</dd>
+</dl>
+
+<p>The return argument <var>idx</var> specifies which element of the <var>stack</var>
+struct array is currently active.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbup">dbup</a>, <a href="#XREFdbdown">dbdown</a>, <a href="Debug-Mode.html#XREFdbwhere">dbwhere</a>, <a href="Debug-Mode.html#XREFdblist">dblist</a>, <a href="Breakpoints.html#XREFdbstatus">dbstatus</a>.
+</p></dd></dl>
+
+
+<span id="XREFdbup"></span><dl class="def">
+<dt id="index-dbup"><span class="category">: </span><span><em></em> <strong>dbup</strong><a href='#index-dbup' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbup-1"><span class="category">: </span><span><em></em> <strong>dbup</strong> <em><var>n</var></em><a href='#index-dbup-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In debugging mode, move up the execution stack <var>n</var> frames.
+</p>
+<p>If <var>n</var> is omitted, move up one frame.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbstack">dbstack</a>, <a href="#XREFdbdown">dbdown</a>.
+</p></dd></dl>
+
+
+<span id="XREFdbdown"></span><dl class="def">
+<dt id="index-dbdown"><span class="category">: </span><span><em></em> <strong>dbdown</strong><a href='#index-dbdown' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbdown-1"><span class="category">: </span><span><em></em> <strong>dbdown</strong> <em><var>n</var></em><a href='#index-dbdown-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In debugging mode, move down the execution stack <var>n</var> frames.
+</p>
+<p>If <var>n</var> is omitted, move down one frame.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbstack">dbstack</a>, <a href="#XREFdbup">dbup</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Profiling.html">Profiling</a>, Previous: <a href="Debug-Mode.html">Debug Mode</a>, Up: <a href="Debugging.html">Debugging</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

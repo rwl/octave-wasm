@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Line Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Line Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Line Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Text-Properties.html" rel="next" title="Text Properties">
+<link href="Legend-Properties.html" rel="prev" title="Legend Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Line-Properties">
+<div class="header">
+<p>
+Next: <a href="Text-Properties.html" accesskey="n" rel="next">Text Properties</a>, Previous: <a href="Legend-Properties.html" accesskey="p" rel="prev">Legend Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Line-Properties-1"></span><h4 class="subsubsection">15.3.3.5 Line Properties</h4>
+<span id="index--Line-PropertiesLine-Properties"></span>
+
+
+
+<p>Properties of <code>line</code> objects (see <a href="Graphics-Objects.html#XREFline">line</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFlinebeingdeleted"></span><span id="index-line-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFlinebusyaction"></span><span id="index-line-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFlinebuttondownfcn"></span><span id="index-line-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFlinechildren"></span><span id="index-line-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p><code>children</code> is unused.
+</p>
+
+<span id="XREFlineclipping"></span><span id="index-line-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>clipping</code> is <code>&quot;on&quot;</code>, the line is clipped in its parent axes limits.
+</p>
+
+<span id="XREFlinecolor"></span><span id="index-line-color"></span>
+</dd>
+<dt><span><code>color</code>: colorspec, def. <code>[0   0   0]</code></span></dt>
+<dd><p>Color of the line object.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFlinecontextmenu"></span><span id="index-line-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this line object.
+</p>
+
+<span id="XREFlinecreatefcn"></span><span id="index-line-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after line has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaultlinecreatefcn&quot;, 'disp (&quot;line created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFlinedeletefcn"></span><span id="index-line-deletefcn"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before line is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFlinedisplayname"></span><span id="index-line-displayname"></span>
+</dd>
+<dt><span><code>displayname</code>: string | cell array of strings, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Text for the legend entry corresponding to this line.
+</p>
+
+<span id="XREFlinehandlevisibility"></span><span id="index-line-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the line&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFlinehittest"></span><span id="index-line-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether line processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFlinepickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFlineinterruptible"></span><span id="index-line-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFlinelinejoin"></span><span id="index-line-linejoin"></span>
+</dd>
+<dt><span><code>linejoin</code>: <code>&quot;chamfer&quot;</code> | <code>&quot;miter&quot;</code> | {<code>&quot;round&quot;</code>}</span></dt>
+<dd><p>Control the shape of the junction of line segments. This property currently only affects the printed output.
+</p>
+
+<span id="XREFlinelinestyle"></span><span id="index-line-linestyle"></span>
+</dd>
+<dt><span><code>linestyle</code>: {<code>&quot;-&quot;</code>} | <code>&quot;--&quot;</code> | <code>&quot;-.&quot;</code> | <code>&quot;:&quot;</code> | <code>&quot;none&quot;</code></span></dt>
+<dd><p>See <a href="Line-Styles.html">Line Styles</a>.
+</p>
+
+<span id="XREFlinelinewidth"></span><span id="index-line-linewidth"></span>
+</dd>
+<dt><span><code>linewidth</code>: def. <code>0.5000</code></span></dt>
+<dd><p>Width of the line object measured in points.
+</p>
+
+<span id="XREFlinemarker"></span><span id="index-line-marker"></span>
+</dd>
+<dt><span><code>marker</code>: <code>&quot;*&quot;</code> | <code>&quot;+&quot;</code> | <code>&quot;.&quot;</code> | <code>&quot;&lt;&quot;</code> | <code>&quot;&gt;&quot;</code> | <code>&quot;^&quot;</code> | <code>&quot;_&quot;</code> | <code>&quot;d&quot;</code> | <code>&quot;diamond&quot;</code> | <code>&quot;h&quot;</code> | <code>&quot;hexagram&quot;</code> | {<code>&quot;none&quot;</code>} | <code>&quot;o&quot;</code> | <code>&quot;p&quot;</code> | <code>&quot;pentagram&quot;</code> | <code>&quot;s&quot;</code> | <code>&quot;square&quot;</code> | <code>&quot;v&quot;</code> | <code>&quot;x&quot;</code> | <code>&quot;|&quot;</code></span></dt>
+<dd><p>Shape of the marker for each data point.  See <a href="Marker-Styles.html">Marker Styles</a>.
+</p>
+
+<span id="XREFlinemarkeredgecolor"></span><span id="index-line-markeredgecolor"></span>
+</dd>
+<dt><span><code>markeredgecolor</code>: {<code>&quot;auto&quot;</code>} | <code>&quot;none&quot;</code></span></dt>
+<dd><p>Color of the edge of the markers.  When set to <code>&quot;auto&quot;</code>, the marker edges have the same color as the line.  If set to <code>&quot;none&quot;</code>, no marker edges are displayed.  This property can also be set to any color.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFlinemarkerfacecolor"></span><span id="index-line-markerfacecolor"></span>
+</dd>
+<dt><span><code>markerfacecolor</code>: <code>&quot;auto&quot;</code> | {<code>&quot;none&quot;</code>}</span></dt>
+<dd><p>Color of the face of the markers.  When set to <code>&quot;auto&quot;</code>, the marker faces have the same color as the line.  If set to <code>&quot;none&quot;</code>, the marker faces are not displayed.  This property can also be set to any color.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFlinemarkersize"></span><span id="index-line-markersize"></span>
+</dd>
+<dt><span><code>markersize</code>: scalar, def. <code>6</code></span></dt>
+<dd><p>Size of the markers measured in points.
+</p>
+
+<span id="XREFlineparent"></span><span id="index-line-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle</span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFlinepickableparts"></span><span id="index-line-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code>: <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p>Specify whether line will accept mouse clicks.  By default, <code>pickableparts</code> is <code>&quot;visible&quot;</code> and only visible parts of the line or its children may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code>&quot;hittest&quot;</code> property will determine how they are processed.  See <a href="#XREFlinehittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFlineselected"></span><span id="index-line-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFlineselectionhighlight"></span><span id="index-line-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFlinetag"></span><span id="index-line-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFlinetype"></span><span id="index-line-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;line&quot;</code>
+</p>
+
+<span id="XREFlineuserdata"></span><span id="index-line-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFlinevisible"></span><span id="index-line-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the line is not rendered on screen.
+</p>
+
+<span id="XREFlinexdata"></span><span id="index-line-xdata"></span>
+</dd>
+<dt><span><code>xdata</code>: vector, def. <code>[0   1]</code></span></dt>
+<dd><p>Vector of x data to be plotted.
+</p>
+
+<span id="XREFlinexdatasource"></span><span id="index-line-xdatasource"></span>
+</dd>
+<dt><span><code>xdatasource</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Name of a vector in the current base workspace to use as x data.
+</p>
+
+<span id="XREFlineydata"></span><span id="index-line-ydata"></span>
+</dd>
+<dt><span><code>ydata</code>: vector, def. <code>[0   1]</code></span></dt>
+<dd><p>Vector of y data to be plotted.
+</p>
+
+<span id="XREFlineydatasource"></span><span id="index-line-ydatasource"></span>
+</dd>
+<dt><span><code>ydatasource</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Name of a vector in the current base workspace to use as y data.
+</p>
+
+<span id="XREFlinezdata"></span><span id="index-line-zdata"></span>
+</dd>
+<dt><span><code>zdata</code>: vector, def. <code>[](0x0)</code></span></dt>
+<dd><p>Vector of z data to be plotted.
+</p>
+
+<span id="XREFlinezdatasource"></span><span id="index-line-zdatasource"></span>
+</dd>
+<dt><span><code>zdatasource</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>Name of a vector in the current base workspace to use as z data.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Text-Properties.html">Text Properties</a>, Previous: <a href="Legend-Properties.html">Legend Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

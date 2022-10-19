@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Saving Data on Unexpected Exits (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Saving Data on Unexpected Exits (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Saving Data on Unexpected Exits (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Simple-File-I_002fO.html" rel="up" title="Simple File I/O">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Saving-Data-on-Unexpected-Exits">
+<div class="header">
+<p>
+Up: <a href="Simple-File-I_002fO.html" accesskey="u" rel="up">Simple File I/O</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Saving-Data-on-Unexpected-Exits-1"></span><h4 class="subsubsection">14.1.3.1 Saving Data on Unexpected Exits</h4>
+
+<p>If Octave for some reason exits unexpectedly it will by default save the
+variables available in the workspace to a file in the current directory.
+By default this file is named &lsquo;<samp>octave-workspace</samp>&rsquo; and can be loaded
+into memory with the <code>load</code> command.  While the default behavior
+most often is reasonable it can be changed through the following
+functions.
+</p>
+<span id="XREFcrash_005fdumps_005foctave_005fcore"></span><dl class="def">
+<dt id="index-crash_005fdumps_005foctave_005fcore"><span class="category">: </span><span><em><var>val</var> =</em> <strong>crash_dumps_octave_core</strong> <em>()</em><a href='#index-crash_005fdumps_005foctave_005fcore' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-crash_005fdumps_005foctave_005fcore-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>crash_dumps_octave_core</strong> <em>(<var>new_val</var>)</em><a href='#index-crash_005fdumps_005foctave_005fcore-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-crash_005fdumps_005foctave_005fcore-2"><span class="category">: </span><span><em></em> <strong>crash_dumps_octave_core</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-crash_005fdumps_005foctave_005fcore-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp>octave-workspace</samp> if it
+crashes or receives a hangup, terminate or similar signal.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFoctave_005fcore_005ffile_005flimit">octave_core_file_limit</a>, <a href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+<span id="XREFsighup_005fdumps_005foctave_005fcore"></span><dl class="def">
+<dt id="index-sighup_005fdumps_005foctave_005fcore"><span class="category">: </span><span><em><var>val</var> =</em> <strong>sighup_dumps_octave_core</strong> <em>()</em><a href='#index-sighup_005fdumps_005foctave_005fcore' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sighup_005fdumps_005foctave_005fcore-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>sighup_dumps_octave_core</strong> <em>(<var>new_val</var>)</em><a href='#index-sighup_005fdumps_005foctave_005fcore-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sighup_005fdumps_005foctave_005fcore-2"><span class="category">: </span><span><em></em> <strong>sighup_dumps_octave_core</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-sighup_005fdumps_005foctave_005fcore-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp>octave-workspace</samp> if it
+receives a hangup signal.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<span id="XREFsigquit_005fdumps_005foctave_005fcore"></span><dl class="def">
+<dt id="index-sigquit_005fdumps_005foctave_005fcore"><span class="category">: </span><span><em><var>val</var> =</em> <strong>sigquit_dumps_octave_core</strong> <em>()</em><a href='#index-sigquit_005fdumps_005foctave_005fcore' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sigquit_005fdumps_005foctave_005fcore-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>sigquit_dumps_octave_core</strong> <em>(<var>new_val</var>)</em><a href='#index-sigquit_005fdumps_005foctave_005fcore-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sigquit_005fdumps_005foctave_005fcore-2"><span class="category">: </span><span><em></em> <strong>sigquit_dumps_octave_core</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-sigquit_005fdumps_005foctave_005fcore-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp>octave-workspace</samp> if it
+receives a quit signal.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<span id="XREFsigterm_005fdumps_005foctave_005fcore"></span><dl class="def">
+<dt id="index-sigterm_005fdumps_005foctave_005fcore"><span class="category">: </span><span><em><var>val</var> =</em> <strong>sigterm_dumps_octave_core</strong> <em>()</em><a href='#index-sigterm_005fdumps_005foctave_005fcore' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sigterm_005fdumps_005foctave_005fcore-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>sigterm_dumps_octave_core</strong> <em>(<var>new_val</var>)</em><a href='#index-sigterm_005fdumps_005foctave_005fcore-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sigterm_005fdumps_005foctave_005fcore-2"><span class="category">: </span><span><em></em> <strong>sigterm_dumps_octave_core</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-sigterm_005fdumps_005foctave_005fcore-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether Octave tries
+to save all current variables to the file <samp>octave-workspace</samp> if it
+receives a terminate signal.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<span id="XREFoctave_005fcore_005ffile_005foptions"></span><dl class="def">
+<dt id="index-octave_005fcore_005ffile_005foptions"><span class="category">: </span><span><em><var>val</var> =</em> <strong>octave_core_file_options</strong> <em>()</em><a href='#index-octave_005fcore_005ffile_005foptions' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005foptions-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>octave_core_file_options</strong> <em>(<var>new_val</var>)</em><a href='#index-octave_005fcore_005ffile_005foptions-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005foptions-2"><span class="category">: </span><span><em></em> <strong>octave_core_file_options</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-octave_005fcore_005ffile_005foptions-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the options used for
+saving the workspace data if Octave aborts.
+</p>
+<p>The value of <code>octave_core_file_options</code> should follow the same format
+as the options for the <code>save</code> function.  The default value is Octave&rsquo;s
+binary format.
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a href="#XREFoctave_005fcore_005ffile_005flimit">octave_core_file_limit</a>.
+</p></dd></dl>
+
+
+<span id="XREFoctave_005fcore_005ffile_005flimit"></span><dl class="def">
+<dt id="index-octave_005fcore_005ffile_005flimit"><span class="category">: </span><span><em><var>val</var> =</em> <strong>octave_core_file_limit</strong> <em>()</em><a href='#index-octave_005fcore_005ffile_005flimit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005flimit-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>octave_core_file_limit</strong> <em>(<var>new_val</var>)</em><a href='#index-octave_005fcore_005ffile_005flimit-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005flimit-2"><span class="category">: </span><span><em></em> <strong>octave_core_file_limit</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-octave_005fcore_005ffile_005flimit-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the maximum amount of memory
+that Octave will save when writing a crash dump file.
+</p>
+<p>The limit is measured in kilobytes and is applied to the top-level workspace.
+The name of the crash dump file is specified by
+<var>octave_core_file_name</var>.
+</p>
+<p>If <var>octave_core_file_options</var> flags specify a binary format, then
+<var>octave_core_file_limit</var> will be approximately the maximum size of the
+file.  If a text file format is used, then the file could be much larger than
+the limit.  The default value is -1 (unlimited).
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+<span id="XREFoctave_005fcore_005ffile_005fname"></span><dl class="def">
+<dt id="index-octave_005fcore_005ffile_005fname"><span class="category">: </span><span><em><var>val</var> =</em> <strong>octave_core_file_name</strong> <em>()</em><a href='#index-octave_005fcore_005ffile_005fname' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005fname-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>octave_core_file_name</strong> <em>(<var>new_val</var>)</em><a href='#index-octave_005fcore_005ffile_005fname-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-octave_005fcore_005ffile_005fname-2"><span class="category">: </span><span><em></em> <strong>octave_core_file_name</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-octave_005fcore_005ffile_005fname-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that specifies the name of the file
+used for saving data from the top-level workspace if Octave aborts.
+</p>
+<p>The default value is <code>&quot;octave-workspace&quot;</code>
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcrash_005fdumps_005foctave_005fcore">crash_dumps_octave_core</a>, <a href="#XREFoctave_005fcore_005ffile_005fname">octave_core_file_name</a>, <a href="#XREFoctave_005fcore_005ffile_005foptions">octave_core_file_options</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Up: <a href="Simple-File-I_002fO.html">Simple File I/O</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Continuation Lines (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Continuation Lines (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Continuation Lines (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-try-Statement.html" rel="prev" title="The try Statement">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Continuation-Lines">
+<div class="header">
+<p>
+Previous: <a href="The-try-Statement.html" accesskey="p" rel="prev">The try Statement</a>, Up: <a href="Statements.html" accesskey="u" rel="up">Statements</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Continuation-Lines-1"></span><h3 class="section">10.10 Continuation Lines</h3>
+<span id="index-continuation-lines"></span>
+
+<span id="index-_002e_002e_002e-continuation-marker"></span>
+<p>In the Octave language, most statements end with a newline character and
+you must tell Octave to ignore the newline character in order to
+continue a statement from one line to the next.  Lines that end with the
+characters <code>...</code> are joined with the following line before they are
+divided into tokens by Octave&rsquo;s parser.  For example, the lines
+</p>
+<div class="example">
+<pre class="example">x = long_variable_name ...
+    + longer_variable_name ...
+    - 42
+</pre></div>
+
+<p>form a single statement.
+</p>
+<p>Any text between the continuation marker and the newline character is
+ignored.  For example, the statement
+</p>
+<div class="example">
+<pre class="example">x = long_variable_name ...    # comment one
+    + longer_variable_name ...comment two
+    - 42                      # last comment
+</pre></div>
+
+<p>is equivalent to the one shown above.
+</p>
+<span id="index-_005c-continuation-marker"></span>
+<p>Inside double-quoted string constants, the character <code>\</code> has to be
+used as continuation marker.  The <code>\</code> must appear at the end of the
+line just before the newline character:
+</p>
+<div class="example">
+<pre class="example">s = &quot;This text starts in the first line \
+and is continued in the second line.&quot;
+</pre></div>
+
+<p>Input that occurs inside parentheses can be continued to the next line
+without having to use a continuation marker.  For example, it is
+possible to write statements like
+</p>
+<div class="example">
+<pre class="example">if (fine_dining_destination == on_a_boat
+    || fine_dining_destination == on_a_train)
+  seuss (i, will, not, eat, them, sam, i, am, i,
+         will, not, eat, green, eggs, and, ham);
+endif
+</pre></div>
+
+<p>without having to add to the clutter with continuation markers.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

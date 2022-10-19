@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Parsing Arguments (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Parsing Arguments (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Parsing Arguments (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Validating-Arguments.html" rel="up" title="Validating Arguments">
+<link href="Validating-the-type-of-Arguments.html" rel="prev" title="Validating the type of Arguments">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Parsing-Arguments">
+<div class="header">
+<p>
+Previous: <a href="Validating-the-type-of-Arguments.html" accesskey="p" rel="prev">Validating the type of Arguments</a>, Up: <a href="Validating-Arguments.html" accesskey="u" rel="up">Validating Arguments</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Parsing-Arguments-1"></span><h4 class="subsection">11.9.3 Parsing Arguments</h4>
+
+<p>If none of the preceding validation functions is sufficient there is also
+the class <code>inputParser</code> which can perform extremely complex input
+checking for functions.
+</p>
+<span id="XREFinputParser"></span><dl class="def">
+<dt id="index-inputParser"><span class="category">: </span><span><em><var>p</var> =</em> <strong>inputParser</strong> <em>()</em><a href='#index-inputParser' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create object <var>p</var> of the inputParser class.
+</p>
+<p>This class is designed to allow easy parsing of function arguments.  The
+class supports four types of arguments:
+</p>
+<ol>
+<li> mandatory (see <code>addRequired</code>);
+
+</li><li> optional (see <code>addOptional</code>);
+
+</li><li> named (see <code>addParameter</code>);
+
+</li><li> switch (see <code>addSwitch</code>).
+</li></ol>
+
+<p>After defining the function API with these methods, the supplied arguments
+can be parsed with the <code>parse</code> method and the parsing results
+accessed with the <code>Results</code> accessor.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eParameters"><span class="category">: </span><span><em></em> <strong>inputParser.Parameters</strong><a href='#index-inputParser_002eParameters' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return list of parameter names already defined.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eResults"><span class="category">: </span><span><em></em> <strong>inputParser.Results</strong><a href='#index-inputParser_002eResults' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return structure with argument names as fieldnames and corresponding
+values.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eUnmatched"><span class="category">: </span><span><em></em> <strong>inputParser.Unmatched</strong><a href='#index-inputParser_002eUnmatched' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return structure similar to <code>Results</code>, but for unmatched parameters.
+See the <code>KeepUnmatched</code> property.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eUsingDefaults"><span class="category">: </span><span><em></em> <strong>inputParser.UsingDefaults</strong><a href='#index-inputParser_002eUsingDefaults' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return cell array with the names of arguments that are using default
+values.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eCaseSensitive"><span class="category">: </span><span><em></em> <strong>inputParser.CaseSensitive</strong> <em>= <var>boolean</var></em><a href='#index-inputParser_002eCaseSensitive' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set whether matching of argument names should be case sensitive.  Defaults
+to false.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eFunctionName"><span class="category">: </span><span><em></em> <strong>inputParser.FunctionName</strong> <em>= <var>name</var></em><a href='#index-inputParser_002eFunctionName' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set function name to be used in error messages; Defaults to empty string.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eKeepUnmatched"><span class="category">: </span><span><em></em> <strong>inputParser.KeepUnmatched</strong> <em>= <var>boolean</var></em><a href='#index-inputParser_002eKeepUnmatched' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set whether an error should be given for non-defined arguments.  Defaults
+to false.  If set to true, the extra arguments can be accessed through
+<code>Unmatched</code> after the <code>parse</code> method.  Note that since
+<code>Switch</code> and <code>Parameter</code> arguments can be mixed, it is
+not possible to know the unmatched type.  If argument is found unmatched
+it is assumed to be of the <code>Parameter</code> type and it is expected to
+be followed by a value.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-inputParser_002eStructExpand"><span class="category">: </span><span><em></em> <strong>inputParser.StructExpand</strong> <em>= <var>boolean</var></em><a href='#index-inputParser_002eStructExpand' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set whether a structure can be passed to the function instead of
+parameter/value pairs.  Defaults to true.
+</p>
+<p>The following example shows how to use this class:
+</p>
+<div class="example">
+<pre class="example">function check (varargin)
+  p = inputParser ();                      # create object
+  p.FunctionName = &quot;check&quot;;                # set function name
+  p.addRequired (&quot;pack&quot;, @ischar);         # mandatory argument
+  p.addOptional (&quot;path&quot;, pwd(), @ischar);  # optional argument
+
+  ## create a function handle to anonymous functions for validators
+  val_mat = @(x) isvector (x) &amp;&amp; all (x &lt;= 1) &amp;&amp; all (x &gt;= 0);
+  p.addOptional (&quot;mat&quot;, [0 0], val_mat);
+
+  ## create two arguments of type &quot;Parameter&quot;
+  val_type = @(x) any (strcmp (x, {&quot;linear&quot;, &quot;quadratic&quot;}));
+  p.addParameter (&quot;type&quot;, &quot;linear&quot;, val_type);
+  val_verb = @(x) any (strcmp (x, {&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;}));
+  p.addParameter (&quot;tolerance&quot;, &quot;low&quot;, val_verb);
+
+  ## create a switch type of argument
+  p.addSwitch (&quot;verbose&quot;);
+
+  p.parse (varargin{:});  # Run created parser on inputs
+
+  ## the rest of the function can access inputs by using p.Results.
+  ## for example, get the tolerance input with p.Results.tolerance
+endfunction
+</pre></div>
+
+<div class="example">
+<pre class="example">check (&quot;mech&quot;);           # valid, use defaults for other arguments
+check ();                 # error, one argument is mandatory
+check (1);                # error, since ! ischar
+check (&quot;mech&quot;, &quot;~/dev&quot;);  # valid, use defaults for other arguments
+
+check (&quot;mech&quot;, &quot;~/dev&quot;, [0 1 0 0], &quot;type&quot;, &quot;linear&quot;);  # valid
+
+## following is also valid.  Note how the Switch argument type can
+## be mixed into or before the Parameter argument type (but it
+## must still appear after any Optional argument).
+check (&quot;mech&quot;, &quot;~/dev&quot;, [0 1 0 0], &quot;verbose&quot;, &quot;tolerance&quot;, &quot;high&quot;);
+
+## following returns an error since not all optional arguments,
+## 'path' and 'mat', were given before the named argument 'type'.
+check (&quot;mech&quot;, &quot;~/dev&quot;, &quot;type&quot;, &quot;linear&quot;);
+</pre></div>
+
+<p><em>Note 1</em>: A function can have any mixture of the four API types but
+they must appear in a specific order.  <code>Required</code> arguments must be
+first and can be followed by any <code>Optional</code> arguments.  Only
+the <code>Parameter</code> and <code>Switch</code> arguments may be mixed
+together and they must appear at the end.
+</p>
+<p><em>Note 2</em>: If both <code>Optional</code> and <code>Parameter</code> arguments
+are mixed in a function API then once a string Optional argument fails to
+validate it will be considered the end of the <code>Optional</code>
+arguments.  The remaining arguments will be compared against any
+<code>Parameter</code> or <code>Switch</code> arguments.
+</p>
+
+<p><strong>See also:</strong> <a href="Defining-Functions.html#XREFnargin">nargin</a>, <a href="Validating-the-type-of-Arguments.html#XREFvalidateattributes">validateattributes</a>, <a href="Validating-the-type-of-Arguments.html#XREFvalidatestring">validatestring</a>, <a href="Variable_002dlength-Argument-Lists.html#XREFvarargin">varargin</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Validating-the-type-of-Arguments.html">Validating the type of Arguments</a>, Up: <a href="Validating-Arguments.html">Validating Arguments</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

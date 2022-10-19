@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Predicates for Numeric Objects (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Predicates for Numeric Objects (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Predicates for Numeric Objects (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Automatic-Conversion-of-Data-Types.html" rel="prev" title="Automatic Conversion of Data Types">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Predicates-for-Numeric-Objects">
+<div class="header">
+<p>
+Previous: <a href="Automatic-Conversion-of-Data-Types.html" accesskey="p" rel="prev">Automatic Conversion of Data Types</a>, Up: <a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Predicates-for-Numeric-Objects-1"></span><h3 class="section">4.8 Predicates for Numeric Objects</h3>
+
+<p>Since the type of a variable may change during the execution of a
+program, it can be necessary to do type checking at run-time.  Doing this
+also allows you to change the behavior of a function depending on the
+type of the input.  As an example, this naive implementation of <code>abs</code>
+returns the absolute value of the input if it is a real number, and the
+length of the input if it is a complex number.
+</p>
+<div class="example">
+<pre class="example">function a = abs (x)
+  if (isreal (x))
+    a = sign (x) .* x;
+  elseif (iscomplex (x))
+    a = sqrt (real(x).^2 + imag(x).^2);
+  endif
+endfunction
+</pre></div>
+
+<p>The following functions are available for determining the type of a
+variable.
+</p>
+<span id="XREFisnumeric"></span><dl class="def">
+<dt id="index-isnumeric"><span class="category">: </span><span><em></em> <strong>isnumeric</strong> <em>(<var>x</var>)</em><a href='#index-isnumeric' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a numeric object, i.e., an integer, real, or
+complex array.
+</p>
+<p>Logical and character arrays are not considered to be numeric.
+</p>
+<p><strong>See also:</strong> <a href="Integer-Data-Types.html#XREFisinteger">isinteger</a>, <a href="#XREFisfloat">isfloat</a>, <a href="#XREFisreal">isreal</a>, <a href="#XREFiscomplex">iscomplex</a>, <a href="Character-Arrays.html#XREFischar">ischar</a>, <a href="#XREFislogical">islogical</a>, <a href="Character-Arrays.html#XREFisstring">isstring</a>, <a href="Basic-Usage-of-Cell-Arrays.html#XREFiscell">iscell</a>, <a href="Creating-Structures.html#XREFisstruct">isstruct</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFislogical"></span><dl class="def">
+<dt id="index-islogical"><span class="category">: </span><span><em></em> <strong>islogical</strong> <em>(<var>x</var>)</em><a href='#index-islogical' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-isbool"><span class="category">: </span><span><em></em> <strong>isbool</strong> <em>(<var>x</var>)</em><a href='#index-isbool' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a logical object.
+</p>
+<p><strong>See also:</strong> <a href="Character-Arrays.html#XREFischar">ischar</a>, <a href="#XREFisfloat">isfloat</a>, <a href="Integer-Data-Types.html#XREFisinteger">isinteger</a>, <a href="Character-Arrays.html#XREFisstring">isstring</a>, <a href="#XREFisnumeric">isnumeric</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFisfloat"></span><dl class="def">
+<dt id="index-isfloat"><span class="category">: </span><span><em></em> <strong>isfloat</strong> <em>(<var>x</var>)</em><a href='#index-isfloat' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a floating-point numeric object.
+</p>
+<p>Objects of class double or single are floating-point objects.
+</p>
+<p><strong>See also:</strong> <a href="Integer-Data-Types.html#XREFisinteger">isinteger</a>, <a href="Character-Arrays.html#XREFischar">ischar</a>, <a href="#XREFislogical">islogical</a>, <a href="#XREFisnumeric">isnumeric</a>, <a href="Character-Arrays.html#XREFisstring">isstring</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFisreal"></span><dl class="def">
+<dt id="index-isreal"><span class="category">: </span><span><em></em> <strong>isreal</strong> <em>(<var>x</var>)</em><a href='#index-isreal' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a non-complex matrix or scalar.
+</p>
+<p>For compatibility with <small>MATLAB</small>, this includes logical and character
+matrices.
+</p>
+<p><strong>See also:</strong> <a href="#XREFiscomplex">iscomplex</a>, <a href="#XREFisnumeric">isnumeric</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFiscomplex"></span><dl class="def">
+<dt id="index-iscomplex"><span class="category">: </span><span><em></em> <strong>iscomplex</strong> <em>(<var>x</var>)</em><a href='#index-iscomplex' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a complex-valued numeric object.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisreal">isreal</a>, <a href="#XREFisnumeric">isnumeric</a>, <a href="Character-Arrays.html#XREFischar">ischar</a>, <a href="#XREFisfloat">isfloat</a>, <a href="#XREFislogical">islogical</a>, <a href="Character-Arrays.html#XREFisstring">isstring</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFismatrix"></span><dl class="def">
+<dt id="index-ismatrix"><span class="category">: </span><span><em></em> <strong>ismatrix</strong> <em>(<var>x</var>)</em><a href='#index-ismatrix' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a 2-D array.
+</p>
+<p>A matrix is an object with two dimensions (<code>ndims (<var>x</var>) == 2</code>) for
+which <code>size (<var>x</var>)</code> returns <code>[M,&nbsp;N]</code><!-- /@w --> with non-negative M and
+N.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisscalar">isscalar</a>, <a href="#XREFisvector">isvector</a>, <a href="Basic-Usage-of-Cell-Arrays.html#XREFiscell">iscell</a>, <a href="Creating-Structures.html#XREFisstruct">isstruct</a>, <a href="Information.html#XREFissparse">issparse</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFisvector"></span><dl class="def">
+<dt id="index-isvector"><span class="category">: </span><span><em></em> <strong>isvector</strong> <em>(<var>x</var>)</em><a href='#index-isvector' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a vector.
+</p>
+<p>A vector is a 2-D array where one of the dimensions is equal to 1 (either
+1xN or Nx1).  As a consequence of this definition, a 1x1
+array (a scalar) is also a vector.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisscalar">isscalar</a>, <a href="#XREFismatrix">ismatrix</a>, <a href="#XREFiscolumn">iscolumn</a>, <a href="#XREFisrow">isrow</a>, <a href="Object-Sizes.html#XREFsize">size</a>.
+</p></dd></dl>
+
+
+<span id="XREFisrow"></span><dl class="def">
+<dt id="index-isrow"><span class="category">: </span><span><em></em> <strong>isrow</strong> <em>(<var>x</var>)</em><a href='#index-isrow' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a row vector.
+</p>
+<p>A row vector is a 2-D array for which <code>size (<var>x</var>)</code> returns
+<code>[1,&nbsp;N]</code><!-- /@w --> with non-negative N.
+</p>
+<p><strong>See also:</strong> <a href="#XREFiscolumn">iscolumn</a>, <a href="#XREFisscalar">isscalar</a>, <a href="#XREFisvector">isvector</a>, <a href="#XREFismatrix">ismatrix</a>, <a href="Object-Sizes.html#XREFsize">size</a>.
+</p></dd></dl>
+
+
+<span id="XREFiscolumn"></span><dl class="def">
+<dt id="index-iscolumn"><span class="category">: </span><span><em></em> <strong>iscolumn</strong> <em>(<var>x</var>)</em><a href='#index-iscolumn' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a column vector.
+</p>
+<p>A column vector is a 2-D array for which <code>size (<var>x</var>)</code> returns
+<code>[N,&nbsp;1]</code><!-- /@w --> with non-negative N.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisrow">isrow</a>, <a href="#XREFisscalar">isscalar</a>, <a href="#XREFisvector">isvector</a>, <a href="#XREFismatrix">ismatrix</a>, <a href="Object-Sizes.html#XREFsize">size</a>.
+</p></dd></dl>
+
+
+<span id="XREFisscalar"></span><dl class="def">
+<dt id="index-isscalar"><span class="category">: </span><span><em></em> <strong>isscalar</strong> <em>(<var>x</var>)</em><a href='#index-isscalar' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a scalar.
+</p>
+<p>A scalar is an object with two dimensions for which <code>size (<var>x</var>)</code>
+returns <code>[1,&nbsp;1]</code><!-- /@w -->.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisvector">isvector</a>, <a href="#XREFismatrix">ismatrix</a>, <a href="Object-Sizes.html#XREFsize">size</a>.
+</p></dd></dl>
+
+
+<span id="XREFissquare"></span><dl class="def">
+<dt id="index-issquare"><span class="category">: </span><span><em></em> <strong>issquare</strong> <em>(<var>x</var>)</em><a href='#index-issquare' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a 2-D square array.
+</p>
+<p>A square array is a 2-D object for which <code>size (<var>x</var>)</code> returns
+<code>[N,&nbsp;N]</code><!-- /@w --> where N is a non-negative integer.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisscalar">isscalar</a>, <a href="#XREFisvector">isvector</a>, <a href="#XREFismatrix">ismatrix</a>, <a href="Object-Sizes.html#XREFsize">size</a>.
+</p></dd></dl>
+
+
+<span id="XREFissymmetric"></span><dl class="def">
+<dt id="index-issymmetric"><span class="category">: </span><span><em></em> <strong>issymmetric</strong> <em>(<var>A</var>)</em><a href='#index-issymmetric' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-issymmetric-1"><span class="category">: </span><span><em></em> <strong>issymmetric</strong> <em>(<var>A</var>, <var>tol</var>)</em><a href='#index-issymmetric-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-issymmetric-2"><span class="category">: </span><span><em></em> <strong>issymmetric</strong> <em>(<var>A</var>, <code>&quot;skew&quot;</code>)</em><a href='#index-issymmetric-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-issymmetric-3"><span class="category">: </span><span><em></em> <strong>issymmetric</strong> <em>(<var>A</var>, <code>&quot;skew&quot;</code>, <var>tol</var>)</em><a href='#index-issymmetric-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is a symmetric or skew-symmetric matrix within the
+tolerance specified by <var>tol</var>.
+</p>
+<p>The default tolerance is zero (uses faster code).
+</p>
+<p>The type of symmetry to check may be specified with the additional input
+<code>&quot;nonskew&quot;</code> (default) for regular symmetry or <code>&quot;skew&quot;</code> for
+skew-symmetry.
+</p>
+<p>Background: A matrix is symmetric if the transpose of the matrix is equal
+to the original matrix: <code><var>A</var>&nbsp;==&nbsp;<var>A</var>.'</code><!-- /@w -->.  If a tolerance
+is given then symmetry is determined by
+<code>norm (<var>A</var> - <var>A</var>.', Inf) / norm (<var>A</var>, Inf) &lt; <var>tol</var></code>.
+</p>
+<p>A matrix is skew-symmetric if the transpose of the matrix is equal to the
+negative of the original matrix: <code><var>A</var>&nbsp;==&nbsp;<span class="nolinebreak">-</span><var>A</var>.'</code><!-- /@w -->.  If a
+tolerance is given then skew-symmetry is determined by
+<code>norm (<var>A</var> + <var>A</var>.', Inf) / norm (<var>A</var>, Inf) &lt; <var>tol</var></code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFishermitian">ishermitian</a>, <a href="#XREFisdefinite">isdefinite</a>.
+</p></dd></dl>
+
+
+<span id="XREFishermitian"></span><dl class="def">
+<dt id="index-ishermitian"><span class="category">: </span><span><em></em> <strong>ishermitian</strong> <em>(<var>A</var>)</em><a href='#index-ishermitian' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ishermitian-1"><span class="category">: </span><span><em></em> <strong>ishermitian</strong> <em>(<var>A</var>, <var>tol</var>)</em><a href='#index-ishermitian-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ishermitian-2"><span class="category">: </span><span><em></em> <strong>ishermitian</strong> <em>(<var>A</var>, <code>&quot;skew&quot;</code>)</em><a href='#index-ishermitian-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ishermitian-3"><span class="category">: </span><span><em></em> <strong>ishermitian</strong> <em>(<var>A</var>, <code>&quot;skew&quot;</code>, <var>tol</var>)</em><a href='#index-ishermitian-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is a Hermitian or skew-Hermitian matrix within the
+tolerance specified by <var>tol</var>.
+</p>
+<p>The default tolerance is zero (uses faster code).
+</p>
+<p>The type of symmetry to check may be specified with the additional input
+<code>&quot;nonskew&quot;</code> (default) for regular Hermitian or <code>&quot;skew&quot;</code> for
+skew-Hermitian.
+</p>
+<p>Background: A matrix is Hermitian if the complex conjugate transpose of the
+matrix is equal to the original matrix: <code><var>A</var>&nbsp;==&nbsp;<var>A</var>'</code><!-- /@w -->.  If
+a tolerance is given then the calculation is
+<code>norm (<var>A</var> - <var>A</var>', Inf) / norm (<var>A</var>, Inf) &lt; <var>tol</var></code>.
+</p>
+<p>A matrix is skew-Hermitian if the complex conjugate transpose of the matrix
+is equal to the negative of the original matrix:
+<code><var>A</var>&nbsp;==&nbsp;<span class="nolinebreak">-</span><var>A</var>'</code><!-- /@w -->.  If a
+tolerance is given then the calculation is
+<code>norm (<var>A</var> + <var>A</var>', Inf) / norm (<var>A</var>, Inf) &lt; <var>tol</var></code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFissymmetric">issymmetric</a>, <a href="#XREFisdefinite">isdefinite</a>.
+</p></dd></dl>
+
+
+<span id="XREFisdefinite"></span><dl class="def">
+<dt id="index-isdefinite"><span class="category">: </span><span><em></em> <strong>isdefinite</strong> <em>(<var>A</var>)</em><a href='#index-isdefinite' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-isdefinite-1"><span class="category">: </span><span><em></em> <strong>isdefinite</strong> <em>(<var>A</var>, <var>tol</var>)</em><a href='#index-isdefinite-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is symmetric positive definite matrix within the
+tolerance specified by <var>tol</var>.
+</p>
+<p>If <var>tol</var> is omitted, use a tolerance of
+<code>100 * eps * norm (<var>A</var>, &quot;fro&quot;)</code>.
+</p>
+<p>Background: A positive definite matrix has eigenvalues which are all
+greater than zero.  A positive semi-definite matrix has eigenvalues which
+are all greater than or equal to zero.  The matrix <var>A</var> is very likely to
+be positive semi-definite if the following two conditions hold for a
+suitably small tolerance <var>tol</var>.
+</p>
+<div class="example">
+<pre class="example">isdefinite (<var>A</var>) &rArr; 0
+isdefinite (<var>A</var> + 5*<var>tol</var>, <var>tol</var>) &rArr; 1
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFissymmetric">issymmetric</a>, <a href="#XREFishermitian">ishermitian</a>.
+</p></dd></dl>
+
+
+<span id="XREFisbanded"></span><dl class="def">
+<dt id="index-isbanded"><span class="category">: </span><span><em></em> <strong>isbanded</strong> <em>(<var>A</var>, <var>lower</var>, <var>upper</var>)</em><a href='#index-isbanded' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is a matrix with entries confined between
+<var>lower</var> diagonals below the main diagonal and <var>upper</var> diagonals
+above the main diagonal.
+</p>
+<p><var>lower</var> and <var>upper</var> must be non-negative integers.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisdiag">isdiag</a>, <a href="#XREFistril">istril</a>, <a href="#XREFistriu">istriu</a>, <a href="Basic-Matrix-Functions.html#XREFbandwidth">bandwidth</a>.
+</p></dd></dl>
+
+
+<span id="XREFisdiag"></span><dl class="def">
+<dt id="index-isdiag"><span class="category">: </span><span><em></em> <strong>isdiag</strong> <em>(<var>A</var>)</em><a href='#index-isdiag' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is a diagonal matrix.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisbanded">isbanded</a>, <a href="#XREFistril">istril</a>, <a href="#XREFistriu">istriu</a>, <a href="Rearranging-Matrices.html#XREFdiag">diag</a>, <a href="Basic-Matrix-Functions.html#XREFbandwidth">bandwidth</a>.
+</p></dd></dl>
+
+
+<span id="XREFistril"></span><dl class="def">
+<dt id="index-istril"><span class="category">: </span><span><em></em> <strong>istril</strong> <em>(<var>A</var>)</em><a href='#index-istril' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is a lower triangular matrix.
+</p>
+<p>A lower triangular matrix has nonzero entries only on the main diagonal and
+below.
+</p>
+<p><strong>See also:</strong> <a href="#XREFistriu">istriu</a>, <a href="#XREFisbanded">isbanded</a>, <a href="#XREFisdiag">isdiag</a>, <a href="Rearranging-Matrices.html#XREFtril">tril</a>, <a href="Basic-Matrix-Functions.html#XREFbandwidth">bandwidth</a>.
+</p></dd></dl>
+
+
+<span id="XREFistriu"></span><dl class="def">
+<dt id="index-istriu"><span class="category">: </span><span><em></em> <strong>istriu</strong> <em>(<var>A</var>)</em><a href='#index-istriu' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>A</var> is an upper triangular matrix.
+</p>
+<p>An upper triangular matrix has nonzero entries only on the main diagonal and
+above.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisdiag">isdiag</a>, <a href="#XREFisbanded">isbanded</a>, <a href="#XREFistril">istril</a>, <a href="Rearranging-Matrices.html#XREFtriu">triu</a>, <a href="Basic-Matrix-Functions.html#XREFbandwidth">bandwidth</a>.
+</p></dd></dl>
+
+
+<span id="XREFisprime"></span><dl class="def">
+<dt id="index-isprime"><span class="category">: </span><span><em></em> <strong>isprime</strong> <em>(<var>x</var>)</em><a href='#index-isprime' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a logical array which is true where the elements of <var>x</var> are prime
+numbers and false where they are not.
+</p>
+<p>A prime number is conventionally defined as a positive integer greater than
+1 (e.g., 2, 3, &hellip;) which is divisible only by itself and 1.  Octave
+extends this definition to include both negative integers and complex
+values.  A negative integer is prime if its positive counterpart is prime.
+This is equivalent to <code>isprime (abs (x))</code>.
+</p>
+<p>If <code>class (<var>x</var>)</code> is complex, then primality is tested in the domain
+of Gaussian integers (<a href="https://en.wikipedia.org/wiki/Gaussian_integer">https://en.wikipedia.org/wiki/Gaussian_integer</a>).
+Some non-complex integers are prime in the ordinary sense, but not in the
+domain of Gaussian integers.  For example, <em class='math'>5 = (1+2i)*(1-2i)</em> shows
+that 5 is not prime because it has a factor other than itself and 1.
+Exercise caution when testing complex and real values together in the same
+matrix.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">isprime (1:6)
+  &rArr;  0  1  1  0  1  0
+</pre></div>
+
+<div class="example">
+<pre class="example">isprime ([i, 2, 3, 5])
+  &rArr;  0  0  1  0
+</pre></div>
+
+<p>Programming Note: <code>isprime</code> is suitable for all <var>x</var>
+in the range abs(<var>x</var>)
+ &lt; 2^64.
+</p>
+<p>Compatibility Note: <small>MATLAB</small> does not extend the definition of prime
+numbers and will produce an error if given negative or complex inputs.
+</p>
+<p><strong>See also:</strong> <a href="Utility-Functions.html#XREFprimes">primes</a>, <a href="Utility-Functions.html#XREFfactor">factor</a>, <a href="Utility-Functions.html#XREFgcd">gcd</a>, <a href="Utility-Functions.html#XREFlcm">lcm</a>.
+</p></dd></dl>
+
+
+<p>If instead of knowing properties of variables, you wish to know which
+variables are defined and to gather other information about the
+workspace itself, see <a href="Status-of-Variables.html">Status of Variables</a>.
+</p>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Automatic-Conversion-of-Data-Types.html">Automatic Conversion of Data Types</a>, Up: <a href="Numeric-Data-Types.html">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

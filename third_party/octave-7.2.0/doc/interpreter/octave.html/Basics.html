@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Basics (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Basics (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Basics (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Sparse-Matrices.html" rel="up" title="Sparse Matrices">
+<link href="Sparse-Linear-Algebra.html" rel="next" title="Sparse Linear Algebra">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Basics">
+<div class="header">
+<p>
+Next: <a href="Sparse-Linear-Algebra.html" accesskey="n" rel="next">Linear Algebra on Sparse Matrices</a>, Up: <a href="Sparse-Matrices.html" accesskey="u" rel="up">Sparse Matrices</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Creation-and-Manipulation-of-Sparse-Matrices"></span><h3 class="section">22.1 Creation and Manipulation of Sparse Matrices</h3>
+
+<p>The size of mathematical problems that can be treated at any particular
+time is generally limited by the available computing resources.  Both,
+the speed of the computer and its available memory place limitation on
+the problem size.
+</p>
+<p>There are many classes of mathematical problems which give rise to
+matrices, where a large number of the elements are zero.  In this case
+it makes sense to have a special matrix type to handle this class of
+problems where only the nonzero elements of the matrix are
+stored.  Not only does this reduce the amount of memory to store the
+matrix, but it also means that operations on this type of matrix can
+take advantage of the a priori knowledge of the positions of the
+nonzero elements to accelerate their calculations.
+</p>
+<p>A matrix type that stores only the nonzero elements is generally called
+sparse.  It is the purpose of this document to discuss the basics of the
+storage and creation of sparse matrices and the fundamental operations
+on them.
+</p>
+
+<ul class="section-toc">
+<li><a href="Storage-of-Sparse-Matrices.html" accesskey="1">Storage of Sparse Matrices</a></li>
+<li><a href="Creating-Sparse-Matrices.html" accesskey="2">Creating Sparse Matrices</a></li>
+<li><a href="Information.html" accesskey="3">Finding Information about Sparse Matrices</a></li>
+<li><a href="Operators-and-Functions.html" accesskey="4">Basic Operators and Functions on Sparse Matrices</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

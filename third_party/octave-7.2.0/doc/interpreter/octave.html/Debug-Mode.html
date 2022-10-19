@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Debug Mode (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Debug Mode (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Debug Mode (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Debugging.html" rel="up" title="Debugging">
+<link href="Call-Stack.html" rel="next" title="Call Stack">
+<link href="Breakpoints.html" rel="prev" title="Breakpoints">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Debug-Mode">
+<div class="header">
+<p>
+Next: <a href="Call-Stack.html" accesskey="n" rel="next">Call Stack</a>, Previous: <a href="Breakpoints.html" accesskey="p" rel="prev">Breakpoints</a>, Up: <a href="Debugging.html" accesskey="u" rel="up">Debugging</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Debug-Mode-1"></span><h3 class="section">13.4 Debug Mode</h3>
+
+<p>There are three additional support functions that allow the user to
+find out where in the execution of a script Octave entered the debug
+mode, and to print the code in the script surrounding the point where
+Octave entered debug mode.
+</p>
+<span id="XREFdbwhere"></span><dl class="def">
+<dt id="index-dbwhere"><span class="category">: </span><span><em></em> <strong>dbwhere</strong><a href='#index-dbwhere' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In debugging mode, report the current file and line number where execution
+is stopped.
+</p>
+<p><strong>See also:</strong> <a href="Call-Stack.html#XREFdbstack">dbstack</a>, <a href="#XREFdblist">dblist</a>, <a href="Breakpoints.html#XREFdbstatus">dbstatus</a>, <a href="Leaving-Debug-Mode.html#XREFdbcont">dbcont</a>, <a href="#XREFdbstep">dbstep</a>, <a href="Call-Stack.html#XREFdbup">dbup</a>, <a href="Call-Stack.html#XREFdbdown">dbdown</a>.
+</p></dd></dl>
+
+
+<span id="XREFdbtype"></span><dl class="def">
+<dt id="index-dbtype"><span class="category">: </span><span><em></em> <strong>dbtype</strong><a href='#index-dbtype' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-1"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>lineno</var></em><a href='#index-dbtype-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-2"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>startl:endl</var></em><a href='#index-dbtype-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-3"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>startl:end</var></em><a href='#index-dbtype-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-4"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>func</var></em><a href='#index-dbtype-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-5"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>func</var> <var>lineno</var></em><a href='#index-dbtype-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-6"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>func</var> <var>startl:endl</var></em><a href='#index-dbtype-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbtype-7"><span class="category">: </span><span><em></em> <strong>dbtype</strong> <em><var>func</var> <var>startl:end</var></em><a href='#index-dbtype-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Display a script file with line numbers.
+</p>
+<p>When called with no arguments in debugging mode, display the script file
+currently being debugged.
+</p>
+<p>An optional range specification can be used to list only a portion of the
+file.  The special keyword <code>&quot;end&quot;</code> is a valid line number
+specification for the last line of the file.
+</p>
+<p>When called with the name of a function, list that script file with line
+numbers.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdblist">dblist</a>, <a href="#XREFdbwhere">dbwhere</a>, <a href="Breakpoints.html#XREFdbstatus">dbstatus</a>, <a href="Breakpoints.html#XREFdbstop">dbstop</a>.
+</p></dd></dl>
+
+
+<span id="XREFdblist"></span><dl class="def">
+<dt id="index-dblist"><span class="category">: </span><span><em></em> <strong>dblist</strong><a href='#index-dblist' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dblist-1"><span class="category">: </span><span><em></em> <strong>dblist</strong> <em><var>n</var></em><a href='#index-dblist-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In debugging mode, list <var>n</var> lines of the function being debugged
+centered around the current line to be executed.
+</p>
+<p>If unspecified <var>n</var> defaults to 10 (+/- 5 lines)
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbwhere">dbwhere</a>, <a href="#XREFdbtype">dbtype</a>, <a href="Call-Stack.html#XREFdbstack">dbstack</a>.
+</p></dd></dl>
+
+
+<p>You may also use <code>isdebugmode</code> to determine whether the debugger is
+currently active.
+</p>
+<span id="XREFisdebugmode"></span><dl class="def">
+<dt id="index-isdebugmode"><span class="category">: </span><span><em></em> <strong>isdebugmode</strong> <em>()</em><a href='#index-isdebugmode' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if in debugging mode, otherwise false.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbwhere">dbwhere</a>, <a href="Call-Stack.html#XREFdbstack">dbstack</a>, <a href="Breakpoints.html#XREFdbstatus">dbstatus</a>.
+</p></dd></dl>
+
+
+<p>Debug mode also allows single line stepping through a function using
+the command <code>dbstep</code>.
+</p>
+<span id="XREFdbstep"></span><dl class="def">
+<dt id="index-dbstep"><span class="category">: </span><span><em></em> <strong>dbstep</strong><a href='#index-dbstep' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstep-1"><span class="category">: </span><span><em></em> <strong>dbstep</strong> <em><var>n</var></em><a href='#index-dbstep-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstep-2"><span class="category">: </span><span><em></em> <strong>dbstep</strong> <em>in</em><a href='#index-dbstep-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbstep-3"><span class="category">: </span><span><em></em> <strong>dbstep</strong> <em>out</em><a href='#index-dbstep-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbnext"><span class="category">: </span><span><em></em> <strong>dbnext</strong> <em>&hellip;</em><a href='#index-dbnext' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>In debugging mode, execute the next <var>n</var> lines of code.
+</p>
+<p>If <var>n</var> is omitted, execute the next single line of code.  If the next
+line of code is itself defined in terms of an m-file remain in the existing
+function.
+</p>
+<p>Using <code>dbstep in</code> will cause execution of the next line to step into
+any m-files defined on the next line.
+</p>
+<p>Using <code>dbstep out</code> will cause execution to continue until the current
+function returns.
+</p>
+<p><code>dbnext</code> is an alias for <code>dbstep</code>.
+</p>
+<p><strong>See also:</strong> <a href="Leaving-Debug-Mode.html#XREFdbcont">dbcont</a>, <a href="Leaving-Debug-Mode.html#XREFdbquit">dbquit</a>.
+</p></dd></dl>
+
+
+<p>When in debug mode the <tt class="key">RETURN</tt> key will execute the last entered command.
+This is useful, for example, after hitting a breakpoint and entering
+<code>dbstep</code> once.  After that, one can advance line by line through the code
+with only a single key stroke.  This feature may be disabled using the
+<code>auto_repeat_debug_command</code> function.
+</p>
+<span id="XREFauto_005frepeat_005fdebug_005fcommand"></span><dl class="def">
+<dt id="index-auto_005frepeat_005fdebug_005fcommand"><span class="category">: </span><span><em><var>val</var> =</em> <strong>auto_repeat_debug_command</strong> <em>()</em><a href='#index-auto_005frepeat_005fdebug_005fcommand' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-auto_005frepeat_005fdebug_005fcommand-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>auto_repeat_debug_command</strong> <em>(<var>new_val</var>)</em><a href='#index-auto_005frepeat_005fdebug_005fcommand-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-auto_005frepeat_005fdebug_005fcommand-2"><span class="category">: </span><span><em></em> <strong>auto_repeat_debug_command</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-auto_005frepeat_005fdebug_005fcommand-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable that controls whether debugging
+commands are automatically repeated when the input line is empty (typing
+just <tt class="key">RET</tt>).
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Call-Stack.html">Call Stack</a>, Previous: <a href="Breakpoints.html">Breakpoints</a>, Up: <a href="Debugging.html">Debugging</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

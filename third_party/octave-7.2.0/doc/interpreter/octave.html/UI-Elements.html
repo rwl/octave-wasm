@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>UI Elements (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="UI Elements (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="UI Elements (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="GUI-Development.html" rel="up" title="GUI Development">
+<link href="GUI-Utility-Functions.html" rel="next" title="GUI Utility Functions">
+<link href="Progress-Bar.html" rel="prev" title="Progress Bar">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="UI-Elements">
+<div class="header">
+<p>
+Next: <a href="GUI-Utility-Functions.html" accesskey="n" rel="next">GUI Utility Functions</a>, Previous: <a href="Progress-Bar.html" accesskey="p" rel="prev">Progress Bar</a>, Up: <a href="GUI-Development.html" accesskey="u" rel="up">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="UI-Elements-1"></span><h3 class="section">35.3 UI Elements</h3>
+
+<p>The ui* series of functions work best with the <code>qt</code> graphics
+toolkit, although some functionality is available with the <code>fltk</code> toolkit.
+There is no support for the <code>gnuplot</code> toolkit.
+</p>
+<span id="XREFuipanel"></span><dl class="def">
+<dt id="index-uipanel"><span class="category">: </span><span><em></em> <strong>uipanel</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uipanel' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uipanel-1"><span class="category">: </span><span><em></em> <strong>uipanel</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uipanel-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uipanel-2"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uipanel</strong> <em>(&hellip;)</em><a href='#index-uipanel-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uipanel object.
+</p>
+<p>uipanels are used as containers to group other uicontrol objects.
+</p>
+<p>If <var>parent</var> is omitted then a uipanel for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>parent</var> is given then a uipanel relative to <var>parent</var> is created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uipanel object.
+</p>
+<p>The full list of properties is documented at <a href="Uipanel-Properties.html">Uipanel Properties</a>.
+</p>
+<p>The optional return value <var>hui</var> is a graphics handle to the created
+uipanel object.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## create figure and panel on it
+f = figure;
+p = uipanel (&quot;title&quot;, &quot;Panel Title&quot;, &quot;position&quot;, [.25 .25 .5 .5]);
+
+## add two buttons to the panel
+b1 = uicontrol (&quot;parent&quot;, p, &quot;string&quot;, &quot;A Button&quot;, ...
+                &quot;position&quot;, [18 10 150 36]);
+b2 = uicontrol (&quot;parent&quot;, p, &quot;string&quot;, &quot;Another Button&quot;, ...
+                &quot;position&quot;,[18 60 150 36]);
+
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuicontrol">uicontrol</a>.
+</p></dd></dl>
+
+
+<span id="XREFuibuttongroup"></span><dl class="def">
+<dt id="index-uibuttongroup"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uibuttongroup</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uibuttongroup' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uibuttongroup-1"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uibuttongroup</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uibuttongroup-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uibuttongroup-2"><span class="category">: </span><span><em></em> <strong>uibuttongroup</strong> <em>(<var>h</var>)</em><a href='#index-uibuttongroup-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uibuttongroup object and return a handle to it.
+</p>
+<p>A uibuttongroup is used to group uicontrol objects.
+</p>
+<p>If <var>parent</var> is omitted then a uibuttongroup for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>parent</var> is given then a uibuttongroup relative to <var>parent</var> is
+created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uibuttongroup object.
+</p>
+<p>The full list of properties is documented at <a href="Uibuttongroup-Properties.html">Uibuttongroup Properties</a>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## Create figure and panel on it
+f = figure;
+## Create a button group
+gp = uibuttongroup (f, &quot;Position&quot;, [ 0 0.5 1 1])
+## Create a buttons in the group
+b1 = uicontrol (gp, &quot;style&quot;, &quot;radiobutton&quot;, ...
+                &quot;string&quot;, &quot;Choice 1&quot;, ...
+                &quot;Position&quot;, [ 10 150 100 50 ]);
+b2 = uicontrol (gp, &quot;style&quot;, &quot;radiobutton&quot;, ...
+                &quot;string&quot;, &quot;Choice 2&quot;, ...
+                &quot;Position&quot;, [ 10 50 100 30 ]);
+## Create a button not in the group
+b3 = uicontrol (f, &quot;style&quot;, &quot;radiobutton&quot;, ...
+                &quot;string&quot;, &quot;Not in the group&quot;, ...
+                &quot;Position&quot;, [ 10 50 100 50 ]);
+</pre></div>
+
+<p>When called with a single argument <var>h</var> which is a handle to an existing
+uibuttongroup object, switch the focus to the specified uibuttongroup.  This
+functionality is not currently implemented.
+</p>
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuipanel">uipanel</a>.
+</p></dd></dl>
+
+
+<span id="XREFuicontrol"></span><dl class="def">
+<dt id="index-uicontrol"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uicontrol</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uicontrol' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uicontrol-1"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uicontrol</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uicontrol-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uicontrol-2"><span class="category">: </span><span><em></em> <strong>uicontrol</strong> <em>(<var>h</var>)</em><a href='#index-uicontrol-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uicontrol object and return a handle to it.
+</p>
+<p>A uicontrol object is used to create simple interactive controls such as
+push buttons, checkboxes, edit and list controls.
+</p>
+<p>If <var>parent</var> is omitted then a uicontrol for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>parent</var> is given then a uicontrol relative to <var>parent</var> is
+created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uicontrol object.
+</p>
+<p>The full list of properties is documented at <a href="Uicontrol-Properties.html">Uicontrol Properties</a>.
+</p>
+<p>The type of uicontrol created is specified by the <var>style</var> property.  If
+no style property is provided, a push button will be created.
+</p>
+<p>Valid styles for uicontrol are:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;checkbox&quot;</code></span></dt>
+<dd><p>Create a checkbox control that allows user on/off selection.
+</p>
+</dd>
+<dt><span><code>&quot;edit&quot;</code></span></dt>
+<dd><p>Create an edit control that allows user input of single or multiple lines
+of text.
+</p>
+</dd>
+<dt><span><code>&quot;listbox&quot;</code></span></dt>
+<dd><p>Create a listbox control that displays a list of items and allows user
+selection of single or multiple items.
+</p>
+</dd>
+<dt><span><code>&quot;popupmenu&quot;</code></span></dt>
+<dd><p>Create a popupmenu control that displays a list of options that can be
+selected when the user clicks on the control.
+</p>
+</dd>
+<dt><span><code>&quot;pushbutton&quot;</code></span></dt>
+<dd><p>Create a push button control that allows user to press to cause an action.
+</p>
+</dd>
+<dt><span><code>&quot;radiobutton&quot;</code></span></dt>
+<dd><p>Create a radio button control intended to be used for mutually exclusive
+input in a group of radiobutton controls.
+</p>
+</dd>
+<dt><span><code>&quot;slider&quot;</code></span></dt>
+<dd><p>Create a slider control that allows user selection from a range of values
+by sliding knob on the control.
+</p>
+</dd>
+<dt><span><code>&quot;text&quot;</code></span></dt>
+<dd><p>Create a static text control to display single or multiple lines of text.
+</p>
+</dd>
+<dt><span><code>&quot;togglebutton&quot;</code></span></dt>
+<dd><p>Create a toggle button control that appears like a push button but allows
+the user to select between two states.
+</p>
+</dd>
+</dl>
+
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## Create figure and panel on it
+f = figure;
+## Create a button (default style)
+b1 = uicontrol (f, &quot;string&quot;, &quot;A Button&quot;, ...
+                   &quot;position&quot;, [10 10 150 40]);
+## Create an edit control
+e1 = uicontrol (f, &quot;style&quot;, &quot;edit&quot;, &quot;string&quot;, &quot;editable text&quot;, ...
+                   &quot;position&quot;, [10 60 300 40]);
+## Create a checkbox
+c1 = uicontrol (f, &quot;style&quot;, &quot;checkbox&quot;, &quot;string&quot;, &quot;a checkbox&quot;, ...
+                   &quot;position&quot;, [10 120 150 40]);
+</pre></div>
+
+<p>When called with a single argument <var>h</var> which is a handle to an existing
+uicontrol object, switch the keyboard focus to the specified
+uicontrol.  As a result, the uicontrol object will receive keyboard
+events that can be processed using the <code>&quot;keypressfcn&quot;</code> callback.
+</p>
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuipanel">uipanel</a>.
+</p></dd></dl>
+
+
+<span id="XREFuitable"></span><dl class="def">
+<dt id="index-uitable"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uitable</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitable' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uitable-1"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uitable</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitable-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a uitable object and return a handle to it.
+</p>
+<p>A uitable object is used to show tables of data in a figure window.
+</p>
+<p>If <var>parent</var> is omitted then a uitable for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>parent</var> is given then a uitable relative to <var>parent</var> is
+created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uitable object.
+</p>
+<p>The full list of properties is documented at <a href="Uitable-Properties.html">Uitable Properties</a>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## Create figure and place a table on it
+f = figure ();
+m = magic (8);
+t = uitable (f, &quot;Data&quot;, m, &quot;ColumnWidth&quot;, { 40 });
+</pre><pre class="example">
+
+</pre><pre class="example">## Create a table with labeled rows and columns
+f = figure ();
+d = reshape (1:9, [3, 3]);
+row_names = { &quot;Row1&quot;, &quot;Row2&quot;, &quot;Row3&quot; };
+col_names = { &quot;Col1&quot;, &quot;Col2&quot;, &quot;Col3&quot; };
+t = uitable (f, &quot;Data&quot;, d, ...
+             &quot;RowName&quot;, row_names, &quot;ColumnName&quot;, col_names);
+
+p = get (t, &quot;Position&quot;);
+e = get (t, &quot;Extent&quot;);
+p(3:4) = e(3:4);
+set (t, &quot;Position&quot;, p);
+</pre><pre class="example">
+
+## Long demo with callbacks
+function uitable_demo ()
+  f = figure (&quot;Name&quot;, &quot;uitable Demo&quot;, &quot;Menu&quot;, &quot;none&quot;, ...
+              &quot;Position&quot;, [10 10 1000 680]);
+
+  ## A basic example
+  d = { &quot;char&quot;   , &quot;A string&quot;;
+        &quot;double&quot; , 12.3456789;
+        &quot;complex&quot;, 1+2i;
+        &quot;bool&quot;   , true;
+        &quot;single&quot; , single (12.3456789);
+        &quot;int8&quot;   , int8 (-128);
+        &quot;uint8&quot;  , uint8 (128);
+        &quot;int16&quot;  , int16 (-32768);
+        &quot;uint16&quot; , uint16 (32768);
+        &quot;int32&quot;  , int32 (-2147483648);
+        &quot;uint32&quot; , uint32 (2147483648);
+        &quot;int64&quot;  , int64 (-2147483649);
+        &quot;uint64&quot; , uint64 (2147843649)};
+
+  popup_options = {&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;};
+
+  columnformat_options = { &quot;[]&quot;, &quot;char&quot;, &quot;pop-up&quot;, &quot;numeric&quot;, ...
+                           &quot;short&quot;, &quot;short e&quot;, &quot;short eng&quot;, ...
+                           &quot;short g&quot;, &quot;long&quot;, &quot;long e&quot;, ...
+                           &quot;long eng&quot;, &quot;long g&quot;, &quot;bank&quot;, &quot;+&quot;, ...
+                           &quot;rat&quot;, &quot;logical&quot;};
+  columnformat_values = columnformat_options;
+  columnformat_values{1} = &quot;&quot;;
+  columnformat_values{3} = popup_options;
+
+  default_data = repmat (d(:,2), 1, columns (columnformat_options));
+  b_add = uicontrol (f, &quot;Position&quot;, [285 630 600 50], ...
+            &quot;UserData&quot;, [rows(d), 1], ...
+            &quot;Style&quot;, &quot;pushbutton&quot;, ...
+            &quot;String&quot;, &quot;Set data at selected point to selected datatype&quot;);
+
+  l_type_table = uicontrol (f, &quot;Position&quot;, [ 0 603 120 25 ], ...
+      &quot;String&quot;, &quot;Datatype Table:&quot;, ...
+      &quot;Style&quot;, &quot;text&quot;);
+  t_type_table = uitable (f, &quot;Position&quot;, [ 0 530 1000 70 ], ...
+      &quot;Data&quot;, transpose (d(:, 2)), ...
+      &quot;ColumnName&quot;, transpose (d(:, 1)), ...
+      &quot;RowName&quot;, &quot;Value&quot;, ...
+      &quot;CellSelectionCallback&quot;, ...
+           @(x, y) set (b_add, &quot;UserData&quot;, y.Indices ));
+
+  l_point_table = uicontrol (f, &quot;Position&quot;, [ 0 640 60 25 ], ...
+      &quot;String&quot;, &quot;Point:&quot;, ...
+      &quot;Style&quot;, &quot;text&quot;);
+  t_point_table = uitable (f, &quot;Position&quot;, [ 80 630 160 42 ], ...
+      &quot;RowName&quot;, [], ...
+      &quot;ColumnName&quot;, {&quot;x&quot;, &quot;y&quot;}, ...
+      &quot;Data&quot;, [ 1, 1 ], ...
+      &quot;ColumnEditable&quot;, true);
+
+  l_editable_table = uicontrol (f, &quot;Position&quot;, [ 0 502 200 25 ], ...
+      &quot;Style&quot;, &quot;text&quot;, ...
+      &quot;String&quot;, &quot;Set Data Columns Editable:&quot;);
+  t_editable_table = ...
+    uitable (f, &quot;Position&quot;, [ 0 434 1000 65 ], ...
+                &quot;Data&quot;, repmat (false, 1, columns (default_data)), ...
+                &quot;ColumnEditable&quot;, true);
+
+  l_format_table = uicontrol (f, &quot;Position&quot;, [ 0 406 200 25 ], ...
+      &quot;Style&quot;, &quot;text&quot;, ...
+      &quot;String&quot;, &quot;Set Data Column Format:&quot;);
+  t_format_table = ...
+    uitable (f, &quot;Position&quot;, [ 0 338 1000 65 ], ...
+                &quot;Data&quot;, columnformat_options, ...
+                &quot;ColumnEditable&quot;, true, ...
+                &quot;ColumnFormat&quot;, arrayfun (@(x) {columnformat_options}, ...
+                                          1:columns (columnformat_options)));
+
+  l_data_table = uicontrol (f, &quot;Style&quot;, &quot;text&quot;, ...
+                               &quot;String&quot;, &quot;Data:&quot;, ...
+                               &quot;Position&quot;, [ 0 310 60 25 ]);
+  t_data_table = uitable (f, &quot;Position&quot;, [ 0 15 1000 290 ], ...
+      &quot;Data&quot;, default_data, ...
+      &quot;ColumnFormat&quot;, columnformat_values);
+
+  set (t_format_table, ...
+       &quot;CellEditCallback&quot;, ...
+       @(x, y) update_column_format (y.NewData, y.Indices, ...
+                                      t_data_table, popup_options));
+  set (t_point_table, &quot;CellEditCallback&quot;, ...
+       @(x, y) validate_point_table (x, y, t_data_table));
+  set (t_editable_table, &quot;CellEditCallback&quot;, ...
+       @(x,y) set (t_data_table, ...
+                    &quot;ColumnEditable&quot;, get (t_editable_table, &quot;Data&quot;)));
+  set (b_add, ...
+       &quot;Callback&quot;, @(x, y) update_data (b_add, t_point_table, ...
+                                         t_type_table, t_data_table));
+  set (t_data_table, &quot;CellSelectionCallback&quot;, ...
+       @(x, y) update_point_table (y.Indices, t_point_table));
+endfunction
+
+</pre><pre class="example">function validate_point_table (h, dat, t_data_table)
+  if (! (dat.NewData &gt; 0 &amp;&amp; ...
+    dat.NewData &lt; size (get (t_data_table, &quot;Data&quot;), dat.Indices(1, 1)) + 1))
+
+    d = get (h, &quot;Data&quot;);
+    d(dat.Indices) = 1;
+    set (h, &quot;Data&quot;, d);
+  endif
+endfunction
+</pre><pre class="example">
+
+</pre><pre class="example">function update_column_format (format, indices, t_data_table, ...
+                               popup_options)
+  cf = get (t_data_table, &quot;ColumnFormat&quot;);
+  if (strcmp (format, &quot;[]&quot;))
+    format = &quot;&quot;;
+  elseif (strcmp (format, &quot;pop-up&quot;))
+    format = popup_options;
+  endif
+  cf{indices(1,2)} = format;
+  set (t_data_table, &quot;ColumnFormat&quot;, cf);
+endfunction
+</pre><pre class="example">
+
+</pre><pre class="example">function update_point_table (indices, t_point_table)
+  if (isempty (indices))
+    indices = [1, 1];
+  endif
+  set (t_point_table, &quot;Data&quot;, indices(1,:));
+endfunction
+</pre><pre class="example">
+
+</pre><pre class="example">function update_data (b_add, t_point_table, t_type_table, ...
+                      t_data_table)
+  indices = get (b_add, &quot;UserData&quot;);
+  if (isempty (indices))
+    indices = [1, 1];
+  endif
+  d = get (t_data_table, &quot;Data&quot;);
+  t_type_table_data = get (t_type_table, &quot;Data&quot;);
+  p = get (t_point_table, &quot;Data&quot;);
+  d(p(1,2), p(1,1)) = t_type_table_data(indices(1,2));
+  set (t_data_table, &quot;Data&quot;, d);
+endfunction
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuicontrol">uicontrol</a>.
+</p></dd></dl>
+
+
+<span id="XREFuimenu"></span><dl class="def">
+<dt id="index-uimenu"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uimenu</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uimenu' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uimenu-1"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uimenu</strong> <em>(<var>h</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uimenu-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a uimenu object and return a handle to it.
+</p>
+<p>If <var>h</var> is omitted then a top-level menu for the current figure is
+created.  If <var>h</var> is given then a submenu relative to <var>h</var> is created.
+</p>
+<p>uimenu objects have the following specific properties:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;accelerator&quot;</code></span></dt>
+<dd><p>A string containing the key combination together with CTRL to execute this
+menu entry (e.g., <code>&quot;x&quot;</code> for CTRL+x).
+</p>
+</dd>
+<dt><span><code>&quot;callback&quot;</code></span></dt>
+<dd><p>Is the function called when this menu entry is executed.  It can be either a
+function string (e.g., <code>&quot;myfun&quot;</code>), a function handle (e.g., @myfun)
+or a cell array containing the function handle and arguments for the
+callback function (e.g., {@myfun, arg1, arg2}).
+</p>
+</dd>
+<dt><span><code>&quot;checked&quot;</code></span></dt>
+<dd><p>Can be set <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>.  Sets a mark at this menu entry.
+</p>
+</dd>
+<dt><span><code>&quot;enable&quot;</code></span></dt>
+<dd><p>Can be set <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>.  If disabled the menu entry
+cannot be selected and it is grayed out.
+</p>
+</dd>
+<dt><span><code>&quot;foregroundcolor&quot;</code></span></dt>
+<dd><p>A color value setting the text color for this menu entry.
+</p>
+</dd>
+<dt><span><code>&quot;label&quot;</code></span></dt>
+<dd><p>A string containing the label for this menu entry.  A <code>&quot;&amp;&quot;</code>-symbol
+can be used to mark the <code>&quot;accelerator&quot;</code> character (e.g.,
+<code>&quot;E&amp;xit&quot;</code>)
+</p>
+</dd>
+<dt><span><code>&quot;position&quot;</code></span></dt>
+<dd><p>An scalar value containing the relative menu position.  The entry with the
+lowest value is at the first position starting from left or top.
+</p>
+</dd>
+<dt><span><code>&quot;separator&quot;</code></span></dt>
+<dd><p>Can be set <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>.  If enabled it draws a separator
+line above the current position.  It is ignored for top level entries.
+</p>
+</dd>
+</dl>
+
+<p>The full list of properties is documented at <a href="Uimenu-Properties.html">Uimenu Properties</a>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">f = uimenu (&quot;label&quot;, &quot;&amp;File&quot;, &quot;accelerator&quot;, &quot;f&quot;);
+e = uimenu (&quot;label&quot;, &quot;&amp;Edit&quot;, &quot;accelerator&quot;, &quot;e&quot;);
+uimenu (f, &quot;label&quot;, &quot;Close&quot;, &quot;accelerator&quot;, &quot;q&quot;, ...
+           &quot;callback&quot;, &quot;close (gcf)&quot;);
+uimenu (e, &quot;label&quot;, &quot;Toggle &amp;Grid&quot;, &quot;accelerator&quot;, &quot;g&quot;, ...
+           &quot;callback&quot;, &quot;grid (gca)&quot;);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>.
+</p></dd></dl>
+
+
+<span id="XREFuicontextmenu"></span><dl class="def">
+<dt id="index-uicontextmenu"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uicontextmenu</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uicontextmenu' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uicontextmenu-1"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uicontextmenu</strong> <em>(<var>h</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uicontextmenu-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uicontextmenu object and return a handle to it.
+</p>
+<p>If <var>h</var> is omitted then a uicontextmenu for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>h</var> is given then a uicontextmenu relative to <var>h</var> is created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uicontextmenu object.
+</p>
+<p>The full list of properties is documented at <a href="Uicontextmenu-Properties.html">Uicontextmenu Properties</a>.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">## create figure and uicontextmenu
+f = figure ();
+c = uicontextmenu (f);
+
+## create menus in the context menu
+m1 = uimenu (&quot;parent&quot;, c, &quot;label&quot;, &quot;Menu item 1&quot;, ...
+             &quot;callback&quot;, &quot;disp('menu item 1')&quot;);
+m2 = uimenu (&quot;parent&quot;, c, &quot;label&quot;, &quot;Menu item 2&quot;, ...
+             &quot;callback&quot;, &quot;disp('menu item 2')&quot;);
+
+## set the context menu for the figure
+set (f, &quot;uicontextmenu&quot;, c);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuimenu">uimenu</a>.
+</p></dd></dl>
+
+
+<span id="XREFuitoolbar"></span><dl class="def">
+<dt id="index-uitoolbar"><span class="category">: </span><span><em></em> <strong>uitoolbar</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitoolbar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uitoolbar-1"><span class="category">: </span><span><em></em> <strong>uitoolbar</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitoolbar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uitoolbar-2"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uitoolbar</strong> <em>(&hellip;)</em><a href='#index-uitoolbar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uitoolbar object.  A uitoolbar displays uitoggletool and uipushtool
+buttons.
+</p>
+<p>If <var>parent</var> is omitted then a uitoolbar for the current figure is
+created.  If no figure is available, a new figure is created first.
+</p>
+<p>If <var>parent</var> is given then a uitoolbar relative to <var>parent</var> is
+created.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uitoolbar object.
+</p>
+<p>The full list of properties is documented at <a href="Uitoolbar-Properties.html">Uitoolbar Properties</a>.
+</p>
+<p>The optional return value <var>hui</var> is a graphics handle to the created
+uitoolbar object.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">% create figure without a default toolbar
+f = figure (&quot;toolbar&quot;, &quot;none&quot;);
+% create empty toolbar
+t = uitoolbar (f);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuitoggletool">uitoggletool</a>, <a href="#XREFuipushtool">uipushtool</a>.
+</p></dd></dl>
+
+
+<span id="XREFuipushtool"></span><dl class="def">
+<dt id="index-uipushtool"><span class="category">: </span><span><em></em> <strong>uipushtool</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uipushtool' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uipushtool-1"><span class="category">: </span><span><em></em> <strong>uipushtool</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uipushtool-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uipushtool-2"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uipushtool</strong> <em>(&hellip;)</em><a href='#index-uipushtool-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uipushtool object.
+</p>
+<p>uipushtools are buttons that appear on a figure toolbar.  The button is
+created with a border that is shown when the user hovers over the button.
+An image can be set using the cdata property.
+</p>
+<p>If <var>parent</var> is omitted then a uipushtool for the current figure is
+created.  If no figure is available, a new figure is created first.  If a
+figure is available, but does not contain a uitoolbar, a uitoolbar will be
+created.
+</p>
+<p>If <var>parent</var> is given then a uipushtool is created on the <var>parent</var>
+uitoolbar.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uipushtool object.
+</p>
+<p>The full list of properties is documented at <a href="Uipushtool-Properties.html">Uipushtool Properties</a>.
+</p>
+<p>The optional return value <var>hui</var> is a graphics handle to the created
+uipushtool object.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">% create figure without a default toolbar
+f = figure (&quot;toolbar&quot;, &quot;none&quot;);
+% create empty toolbar
+t = uitoolbar (f);
+% create a 19x19x3 black square
+img=zeros(19,19,3);
+% add pushtool button to toolbar
+b = uipushtool (t, &quot;cdata&quot;, img);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuitoolbar">uitoolbar</a>, <a href="#XREFuitoggletool">uitoggletool</a>.
+</p></dd></dl>
+
+
+<span id="XREFuitoggletool"></span><dl class="def">
+<dt id="index-uitoggletool"><span class="category">: </span><span><em></em> <strong>uitoggletool</strong> <em>(<var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitoggletool' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uitoggletool-1"><span class="category">: </span><span><em></em> <strong>uitoggletool</strong> <em>(<var>parent</var>, <var>property</var>, <var>value</var>, &hellip;)</em><a href='#index-uitoggletool-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-uitoggletool-2"><span class="category">: </span><span><em><var>hui</var> =</em> <strong>uitoggletool</strong> <em>(&hellip;)</em><a href='#index-uitoggletool-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create a uitoggletool object.
+</p>
+<p>uitoggletool are togglebuttons that appear on a figure toolbar.  The
+button is created with a border that is shown when the user hovers over
+the button.  An image can be set using the cdata property.
+</p>
+<p>If <var>parent</var> is omitted then a uitoggletool for the current figure is
+created.  If no figure is available, a new figure is created first.  If a
+figure is available, but does not contain a uitoolbar, a uitoolbar will be
+created.
+</p>
+<p>If <var>parent</var> is given then a uitoggletool is created on the
+<var>parent</var> uitoolbar.
+</p>
+<p>Any provided property value pairs will override the default values of the
+created uitoggletool object.
+</p>
+<p>The full list of properties is documented at <a href="Uitoggletool-Properties.html">Uitoggletool Properties</a>.
+</p>
+<p>The optional return value <var>hui</var> is a graphics handle to the created
+uitoggletool object.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">% create figure without a default toolbar
+f = figure (&quot;toolbar&quot;, &quot;none&quot;);
+% create empty toolbar
+t = uitoolbar (f);
+% create a 19x19x3 black square
+img=zeros(19,19,3);
+% add uitoggletool button to toolbar
+b = uitoggletool (t, &quot;cdata&quot;, img);
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Multiple-Plot-Windows.html#XREFfigure">figure</a>, <a href="#XREFuitoolbar">uitoolbar</a>, <a href="#XREFuipushtool">uipushtool</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="GUI-Utility-Functions.html">GUI Utility Functions</a>, Previous: <a href="Progress-Bar.html">Progress Bar</a>, Up: <a href="GUI-Development.html">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

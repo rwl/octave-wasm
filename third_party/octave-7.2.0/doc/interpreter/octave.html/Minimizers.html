@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Minimizers (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Minimizers (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Minimizers (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Nonlinear-Equations.html" rel="up" title="Nonlinear Equations">
+<link href="Solvers.html" rel="prev" title="Solvers">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Minimizers">
+<div class="header">
+<p>
+Previous: <a href="Solvers.html" accesskey="p" rel="prev">Solvers</a>, Up: <a href="Nonlinear-Equations.html" accesskey="u" rel="up">Nonlinear Equations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Minimizers-1"></span><h3 class="section">20.2 Minimizers</h3>
+<span id="index-local-minimum"></span>
+<span id="index-finding-minimums"></span>
+
+<p>Often it is useful to find the minimum value of a function rather than just
+the zeroes where it crosses the x-axis.  <code>fminbnd</code> is designed for the
+simpler, but very common, case of a univariate function where the interval
+to search is bounded.  For unbounded minimization of a function with
+potentially many variables use <code>fminunc</code> or <code>fminsearch</code>.  The two
+functions use different internal algorithms and some knowledge of the objective
+function is required.  For functions which can be differentiated,
+<code>fminunc</code> is appropriate.  For functions with discontinuities, or for
+which a gradient search would fail, use <code>fminsearch</code>.
+See <a href="Optimization.html">Optimization</a>, for minimization with the presence of constraint
+functions.  Note that searches can be made for maxima by simply inverting the
+objective function
+(<code>Fto_max = -Fto_min</code>).
+</p>
+<span id="XREFfminbnd"></span><dl class="def">
+<dt id="index-fminbnd"><span class="category">: </span><span><em><var>x</var> =</em> <strong>fminbnd</strong> <em>(<var>fun</var>, <var>a</var>, <var>b</var>)</em><a href='#index-fminbnd' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminbnd-1"><span class="category">: </span><span><em><var>x</var> =</em> <strong>fminbnd</strong> <em>(<var>fun</var>, <var>a</var>, <var>b</var>, <var>options</var>)</em><a href='#index-fminbnd-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminbnd-2"><span class="category">: </span><span><em>[<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>] =</em> <strong>fminbnd</strong> <em>(&hellip;)</em><a href='#index-fminbnd-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Find a minimum point of a univariate function.
+</p>
+<p><var>fun</var> is a function handle, inline function, or string containing the
+name of the function to evaluate.
+</p>
+<p>The starting interval is specified by <var>a</var> (left boundary) and <var>b</var>
+(right boundary).  The endpoints must be finite.
+</p>
+<p><var>options</var> is a structure specifying additional parameters which
+control the algorithm.  Currently, <code>fminbnd</code> recognizes these options:
+<code>&quot;Display&quot;</code>, <code>&quot;FunValCheck&quot;</code>, <code>&quot;MaxFunEvals&quot;</code>,
+<code>&quot;MaxIter&quot;</code>, <code>&quot;OutputFcn&quot;</code>, <code>&quot;TolX&quot;</code>.
+</p>
+<p><code>&quot;MaxFunEvals&quot;</code> proscribes the maximum number of function evaluations
+before optimization is halted.  The default value is 500.
+The value must be a positive integer.
+</p>
+<p><code>&quot;MaxIter&quot;</code> proscribes the maximum number of algorithm iterations
+before optimization is halted.  The default value is 500.
+The value must be a positive integer.
+</p>
+<p><code>&quot;TolX&quot;</code> specifies the termination tolerance for the solution <var>x</var>.
+The default is <code>1e-4</code>.
+</p>
+<p>For a description of the other options,
+see <a href="Linear-Least-Squares.html#XREFoptimset"><code>optimset</code></a>.
+To initialize an options structure with default values for <code>fminbnd</code>
+use <code>options = optimset (&quot;fminbnd&quot;)</code>.
+</p>
+<p>On exit, the function returns <var>x</var>, the approximate minimum point, and
+<var>fval</var>, the function evaluated <var>x</var>.
+</p>
+<p>The third output <var>info</var> reports whether the algorithm succeeded and may
+take one of the following values:
+</p>
+<ul>
+<li> 1
+The algorithm converged to a solution.
+
+</li><li> 0
+Iteration limit (either <code>MaxIter</code> or <code>MaxFunEvals</code>) exceeded.
+
+</li><li> -1
+The algorithm was terminated by a user <code>OutputFcn</code>.
+</li></ul>
+
+<p>Programming Notes: The search for a minimum is restricted to be in the
+finite interval bound by <var>a</var> and <var>b</var>.  If you have only one initial
+point to begin searching from then you will need to use an unconstrained
+minimization algorithm such as <code>fminunc</code> or <code>fminsearch</code>.
+<code>fminbnd</code> internally uses a Golden Section search strategy.
+</p>
+<p><strong>See also:</strong> <a href="Solvers.html#XREFfzero">fzero</a>, <a href="#XREFfminunc">fminunc</a>, <a href="#XREFfminsearch">fminsearch</a>, <a href="Linear-Least-Squares.html#XREFoptimset">optimset</a>.
+</p></dd></dl>
+
+
+<span id="XREFfminunc"></span><dl class="def">
+<dt id="index-fminunc"><span class="category">: </span><span><em></em> <strong>fminunc</strong> <em>(<var>fcn</var>, <var>x0</var>)</em><a href='#index-fminunc' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminunc-1"><span class="category">: </span><span><em></em> <strong>fminunc</strong> <em>(<var>fcn</var>, <var>x0</var>, <var>options</var>)</em><a href='#index-fminunc-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminunc-2"><span class="category">: </span><span><em>[<var>x</var>, <var>fval</var>, <var>info</var>, <var>output</var>, <var>grad</var>, <var>hess</var>] =</em> <strong>fminunc</strong> <em>(<var>fcn</var>, &hellip;)</em><a href='#index-fminunc-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Solve an unconstrained optimization problem defined by the function
+<var>fcn</var>.
+</p>
+<p><code>fminunc</code> attempts to determine a vector <var>x</var> such that
+<code><var>fcn</var> (<var>x</var>)</code> is a local minimum.
+</p>
+<p><var>fun</var> is a function handle, inline function, or string containing the
+name of the function to evaluate.  <var>fcn</var> should accept a vector (array)
+defining the unknown variables, and return the objective function value,
+optionally with gradient.
+</p>
+<p><var>x0</var> determines a starting guess.  The shape of <var>x0</var> is preserved in
+all calls to <var>fcn</var>, but otherwise is treated as a column vector.
+</p>
+<p><var>options</var> is a structure specifying additional parameters which
+control the algorithm.  Currently, <code>fminunc</code> recognizes these options:
+<code>&quot;AutoScaling&quot;</code>, <code>&quot;FinDiffType&quot;</code>, <code>&quot;FunValCheck&quot;</code>,
+<code>&quot;GradObj&quot;</code>, <code>&quot;MaxFunEvals&quot;</code>, <code>&quot;MaxIter&quot;</code>,
+<code>&quot;OutputFcn&quot;</code>, <code>&quot;TolFun&quot;</code>, <code>&quot;TolX&quot;</code>, <code>&quot;TypicalX&quot;</code>.
+</p>
+<p>If <code>&quot;AutoScaling&quot;</code> is <code>&quot;on&quot;</code>, the variables will be
+automatically scaled according to the column norms of the (estimated)
+Jacobian.  As a result, <code>&quot;TolFun&quot;</code> becomes scaling-independent.  By
+default, this option is <code>&quot;off&quot;</code> because it may sometimes deliver
+unexpected (though mathematically correct) results.
+</p>
+<p>If <code>&quot;GradObj&quot;</code> is <code>&quot;on&quot;</code>, it specifies that <var>fcn</var>&mdash;when
+called with two output arguments&mdash;also returns the Jacobian matrix of
+partial first derivatives at the requested point.
+</p>
+<p><code>&quot;MaxFunEvals&quot;</code> proscribes the maximum number of function evaluations
+before optimization is halted.  The default value is
+<code>100 * number_of_variables</code>, i.e., <code>100 * length (<var>x0</var>)</code>.
+The value must be a positive integer.
+</p>
+<p><code>&quot;MaxIter&quot;</code> proscribes the maximum number of algorithm iterations
+before optimization is halted.  The default value is 400.
+The value must be a positive integer.
+</p>
+<p><code>&quot;TolX&quot;</code> specifies the termination tolerance for the unknown variables
+<var>x</var>, while <code>&quot;TolFun&quot;</code> is a tolerance for the objective function
+value <var>fval</var>.  The default is <code>1e-6</code> for both options.
+</p>
+<p>For a description of the other options,
+see <a href="Linear-Least-Squares.html#XREFoptimset"><code>optimset</code></a>.
+</p>
+<p>On return, <var>x</var> is the location of the minimum and <var>fval</var> contains
+the value of the objective function at <var>x</var>.
+</p>
+<p><var>info</var> may be one of the following values:
+</p>
+<dl compact="compact">
+<dt><span>1</span></dt>
+<dd><p>Converged to a solution point.  Relative gradient error is less than
+specified by <code>TolFun</code>.
+</p>
+</dd>
+<dt><span>2</span></dt>
+<dd><p>Last relative step size was less than <code>TolX</code>.
+</p>
+</dd>
+<dt><span>3</span></dt>
+<dd><p>Last relative change in function value was less than <code>TolFun</code>.
+</p>
+</dd>
+<dt><span>0</span></dt>
+<dd><p>Iteration limit exceeded&mdash;either maximum number of algorithm iterations
+<code>MaxIter</code> or maximum number of function evaluations <code>MaxFunEvals</code>.
+</p>
+</dd>
+<dt><span>-1</span></dt>
+<dd><p>Algorithm terminated by <code>OutputFcn</code>.
+</p>
+</dd>
+<dt><span>-3</span></dt>
+<dd><p>The trust region radius became excessively small.
+</p></dd>
+</dl>
+
+<p>Optionally, <code>fminunc</code> can return a structure with convergence
+statistics (<var>output</var>), the output gradient (<var>grad</var>) at the
+solution <var>x</var>, and approximate Hessian (<var>hess</var>) at the solution
+<var>x</var>.
+</p>
+<p>Application Notes: If the objective function is a single nonlinear equation
+of one variable then using <code>fminbnd</code> is usually a better choice.
+</p>
+<p>The algorithm used by <code>fminunc</code> is a gradient search which depends
+on the objective function being differentiable.  If the function has
+discontinuities it may be better to use a derivative-free algorithm such as
+<code>fminsearch</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFfminbnd">fminbnd</a>, <a href="#XREFfminsearch">fminsearch</a>, <a href="Linear-Least-Squares.html#XREFoptimset">optimset</a>.
+</p></dd></dl>
+
+
+<span id="XREFfminsearch"></span><dl class="def">
+<dt id="index-fminsearch"><span class="category">: </span><span><em><var>x</var> =</em> <strong>fminsearch</strong> <em>(<var>fun</var>, <var>x0</var>)</em><a href='#index-fminsearch' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminsearch-1"><span class="category">: </span><span><em><var>x</var> =</em> <strong>fminsearch</strong> <em>(<var>fun</var>, <var>x0</var>, <var>options</var>)</em><a href='#index-fminsearch-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminsearch-2"><span class="category">: </span><span><em><var>x</var> =</em> <strong>fminsearch</strong> <em>(<var>problem</var>)</em><a href='#index-fminsearch-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-fminsearch-3"><span class="category">: </span><span><em>[<var>x</var>, <var>fval</var>, <var>exitflag</var>, <var>output</var>] =</em> <strong>fminsearch</strong> <em>(&hellip;)</em><a href='#index-fminsearch-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Find a value of <var>x</var> which minimizes the multi-variable function
+<var>fun</var>.
+</p>
+<p><var>fun</var> is a function handle, inline function, or string containing the
+name of the function to evaluate.
+</p>
+<p>The search begins at the point <var>x0</var> and iterates using the
+Nelder &amp; Mead Simplex algorithm (a derivative-free method).  This
+algorithm is better-suited to functions which have discontinuities or for
+which a gradient-based search such as <code>fminunc</code> fails.
+</p>
+<p>Options for the search are provided in the parameter <var>options</var> using the
+function <code>optimset</code>.  Currently, <code>fminsearch</code> accepts the options:
+<code>&quot;Display&quot;</code>, <code>&quot;FunValCheck&quot;</code>,<code>&quot;MaxFunEvals&quot;</code>,
+<code>&quot;MaxIter&quot;</code>, <code>&quot;OutputFcn&quot;</code>, <code>&quot;TolFun&quot;</code>, <code>&quot;TolX&quot;</code>.
+</p>
+<p><code>&quot;MaxFunEvals&quot;</code> proscribes the maximum number of function evaluations
+before optimization is halted.  The default value is
+<code>200 * number_of_variables</code>, i.e., <code>200 * length (<var>x0</var>)</code>.
+The value must be a positive integer.
+</p>
+<p><code>&quot;MaxIter&quot;</code> proscribes the maximum number of algorithm iterations
+before optimization is halted.  The default value is
+<code>200 * number_of_variables</code>, i.e., <code>200 * length (<var>x0</var>)</code>.
+The value must be a positive integer.
+</p>
+<p>For a description of the other options,
+see <a href="Linear-Least-Squares.html#XREFoptimset"><code>optimset</code></a>.  To initialize an options structure
+with default values for <code>fminsearch</code> use
+<code>options = optimset (&quot;fminsearch&quot;)</code>.
+</p>
+<p><code>fminsearch</code> may also be called with a single structure argument
+with the following fields:
+</p>
+<dl compact="compact">
+<dt><span><code>objective</code></span></dt>
+<dd><p>The objective function.
+</p>
+</dd>
+<dt><span><code>x0</code></span></dt>
+<dd><p>The initial point.
+</p>
+</dd>
+<dt><span><code>solver</code></span></dt>
+<dd><p>Must be set to <code>&quot;fminsearch&quot;</code>.
+</p>
+</dd>
+<dt><span><code>options</code></span></dt>
+<dd><p>A structure returned from <code>optimset</code> or an empty matrix to
+indicate that defaults should be used.
+</p></dd>
+</dl>
+
+<p>The field <code>options</code> is optional.  All others are required.
+</p>
+<p>On exit, the function returns <var>x</var>, the minimum point, and <var>fval</var>,
+the function value at the minimum.
+</p>
+<p>The third output <var>exitflag</var> reports whether the algorithm succeeded and
+may take one of the following values:
+</p>
+<dl compact="compact">
+<dt><span>1</span></dt>
+<dd><p>if the algorithm converged
+(size of the simplex is smaller than <code>TolX</code> <strong>AND</strong> the step in
+function value between iterations is smaller than <code>TolFun</code>).
+</p>
+</dd>
+<dt><span>0</span></dt>
+<dd><p>if the maximum number of iterations or the maximum number of function
+evaluations are exceeded.
+</p>
+</dd>
+<dt><span>-1</span></dt>
+<dd><p>if the iteration is stopped by the <code>&quot;OutputFcn&quot;</code>.
+</p></dd>
+</dl>
+
+<p>The fourth output is a structure <var>output</var> containing runtime
+about the algorithm.  Fields in the structure are <code>funcCount</code>
+containing the number of function calls to <var>fun</var>, <code>iterations</code>
+containing the number of iteration steps, <code>algorithm</code> with the name of
+the search algorithm (always:
+<code>&quot;Nelder-Mead simplex direct search&quot;</code>), and <code>message</code>
+with the exit message.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">fminsearch (@(x) (x(1)-5).^2+(x(2)-8).^4, [0;0])
+</pre></div>
+
+<p>Note: If you need to find the minimum of a single variable function it is
+probably better to use <code>fminbnd</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFfminbnd">fminbnd</a>, <a href="#XREFfminunc">fminunc</a>, <a href="Linear-Least-Squares.html#XREFoptimset">optimset</a>.
+</p></dd></dl>
+
+
+<p>The function <code>humps</code> is a useful function for testing zero and
+extrema finding functions.
+</p>
+<span id="XREFhumps"></span><dl class="def">
+<dt id="index-humps"><span class="category">: </span><span><em><var>y</var> =</em> <strong>humps</strong> <em>(<var>x</var>)</em><a href='#index-humps' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-humps-1"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>] =</em> <strong>humps</strong> <em>(<var>x</var>)</em><a href='#index-humps-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Evaluate a function with multiple minima, maxima, and zero crossings.
+</p>
+<p>The output <var>y</var> is the evaluation of the rational function:
+</p>
+
+<div class="example">
+<pre class="example">        1200*<var>x</var>^4 - 2880*<var>x</var>^3 + 2036*<var>x</var>^2 - 348*<var>x</var> - 88
+ <var>y</var> = - ---------------------------------------------
+         200*<var>x</var>^4 - 480*<var>x</var>^3 + 406*<var>x</var>^2 - 138*<var>x</var> + 17
+</pre></div>
+
+
+<p><var>x</var> may be a scalar, vector or array.  If <var>x</var> is omitted, the
+default range [0:0.05:1] is used.
+</p>
+<p>When called with two output arguments, [<var>x</var>, <var>y</var>], <var>x</var> will
+contain the input values, and <var>y</var> will contain the output from
+<code>humps</code>.
+</p>
+<p>Programming Notes: <code>humps</code> has two local maxima located near <var>x</var> =
+0.300 and 0.893, a local minimum near <var>x</var> = 0.637, and zeros near
+<var>x</var> = -0.132 and 1.300.  <code>humps</code> is a useful function for testing
+algorithms which find zeros or local minima and maxima.
+</p>
+<p>Try <code>demo humps</code> to see a plot of the <code>humps</code> function.
+</p>
+<p><strong>See also:</strong> <a href="Solvers.html#XREFfzero">fzero</a>, <a href="#XREFfminbnd">fminbnd</a>, <a href="#XREFfminunc">fminunc</a>, <a href="#XREFfminsearch">fminsearch</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Solvers.html">Solvers</a>, Up: <a href="Nonlinear-Equations.html">Nonlinear Equations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

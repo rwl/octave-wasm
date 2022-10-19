@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Automatic Conversion of Data Types (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Automatic Conversion of Data Types (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Automatic Conversion of Data Types (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Numeric-Data-Types.html" rel="up" title="Numeric Data Types">
+<link href="Predicates-for-Numeric-Objects.html" rel="next" title="Predicates for Numeric Objects">
+<link href="Logical-Values.html" rel="prev" title="Logical Values">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Automatic-Conversion-of-Data-Types">
+<div class="header">
+<p>
+Next: <a href="Predicates-for-Numeric-Objects.html" accesskey="n" rel="next">Predicates for Numeric Objects</a>, Previous: <a href="Logical-Values.html" accesskey="p" rel="prev">Logical Values</a>, Up: <a href="Numeric-Data-Types.html" accesskey="u" rel="up">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Automatic-Conversion-of-Data-Types-1"></span><h3 class="section">4.7 Automatic Conversion of Data Types</h3>
+
+<p>Many operators and functions can work with mixed data types.  For example,
+</p>
+<div class="example">
+<pre class="example">uint8 (1) + 1
+    &rArr; 2
+</pre><pre class="example">
+
+</pre><pre class="example">single (1) + 1
+    &rArr; 2
+</pre><pre class="example">
+
+</pre><pre class="example">min (single (1), 0)
+   &rArr; 0
+</pre></div>
+
+<p>where the results are respectively of types uint8, single, and single
+respectively.  This is done for Matlab compatibility.  Valid mixed operations
+are defined as follows:
+</p>
+<table>
+<thead><tr><th width="20%"></th><th width="30%">Mixed Operation</th><th width="30%">Result</th><th width="20%"></th></tr></thead>
+<tr><td width="20%"></td><td width="30%">double OP single</td><td width="30%">single</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP integer</td><td width="30%">integer</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP char</td><td width="30%">double</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">double OP logical</td><td width="30%">double</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP integer</td><td width="30%">integer</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP char</td><td width="30%">single</td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%">single OP logical</td><td width="30%">single</td><td width="20%"></td></tr>
+</table>
+
+<p>When functions expect a double but are passed other types, automatic
+conversion is function-dependent:
+</p>
+<div class="example">
+<pre class="example">a = det (int8 ([1 2; 3 4]))
+    &rArr; a = -2
+class (a)
+    &rArr; double
+</pre><pre class="example">
+
+</pre><pre class="example">a = eig (int8 ([1 2; 3 4]))
+    &rArr; error: eig: wrong type argument 'int8 matrix'
+</pre></div>
+
+<p>When two operands are both integers but of different widths, then some cases
+convert them to the wider bitwidth, and other cases throw an error:
+</p>
+<div class="example">
+<pre class="example">a = min (int8 (100), int16 (200))
+    &rArr; 100
+class (a)
+    &rArr; int16
+</pre><pre class="example">
+
+</pre><pre class="example">int8 (100) + int16 (200)
+   &rArr; error: binary operator '+' not implemented
+   for 'int8 scalar' by 'int16 scalar' operations
+</pre></div>
+
+<p>For two integer operands, they typically need to both be signed or both be
+unsigned.  Mixing signed and unsigned usually causes an error, even if they
+are of the same bitwidth.
+</p>
+<div class="example">
+<pre class="example">min (int16 (100), uint16 (200))
+   &rArr; error: min: cannot compute min (int16 scalar, uint16 scalar)
+</pre></div>
+
+<p>In the case of mixed type indexed assignments, the type is not
+changed.  For example,
+</p>
+<div class="example">
+<pre class="example">x = ones (2, 2);
+x(1, 1) = single (2)
+   &rArr; x = 2   1
+          1   1
+</pre></div>
+
+<p>where <code>x</code> remains of the double precision type.
+</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Predicates-for-Numeric-Objects.html">Predicates for Numeric Objects</a>, Previous: <a href="Logical-Values.html">Logical Values</a>, Up: <a href="Numeric-Data-Types.html">Numeric Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

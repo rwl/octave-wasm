@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The unwind_protect Statement (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="The unwind_protect Statement (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="The unwind_protect Statement (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Statements.html" rel="up" title="Statements">
+<link href="The-try-Statement.html" rel="next" title="The try Statement">
+<link href="The-continue-Statement.html" rel="prev" title="The continue Statement">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="The-unwind_005fprotect-Statement">
+<div class="header">
+<p>
+Next: <a href="The-try-Statement.html" accesskey="n" rel="next">The try Statement</a>, Previous: <a href="The-continue-Statement.html" accesskey="p" rel="prev">The continue Statement</a>, Up: <a href="Statements.html" accesskey="u" rel="up">Statements</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="The-unwind_005fprotect-Statement-1"></span><h3 class="section">10.8 The unwind_protect Statement</h3>
+<span id="index-unwind_005fprotect-statement"></span>
+<span id="index-unwind_005fprotect_005fcleanup"></span>
+<span id="index-end_005funwind_005fprotect"></span>
+
+<p>Octave supports a limited form of exception handling modeled after the
+unwind-protect form of Lisp.
+</p>
+<p>The general form of an <code>unwind_protect</code> block looks like this:
+</p>
+<div class="example">
+<pre class="example">unwind_protect
+  <var>body</var>
+unwind_protect_cleanup
+  <var>cleanup</var>
+end_unwind_protect
+</pre></div>
+
+<p>where <var>body</var> and <var>cleanup</var> are both optional and may contain any
+Octave expressions or commands.  The statements in <var>cleanup</var> are
+guaranteed to be executed regardless of how control exits <var>body</var>.
+</p>
+<p>This is useful to protect temporary changes to global variables from
+possible errors.  For example, the following code will always restore
+the original value of the global variable <code>frobnosticate</code>
+even if an error occurs in the first part of the <code>unwind_protect</code>
+block.
+</p>
+<div class="example">
+<pre class="example">save_frobnosticate = frobnosticate;
+unwind_protect
+  frobnosticate = true;
+  &hellip;
+unwind_protect_cleanup
+  frobnosticate = save_frobnosticate;
+end_unwind_protect
+</pre></div>
+
+<p>Without <code>unwind_protect</code>, the value of <var>frobnosticate</var>
+would not be restored if an error occurs while evaluating the first part
+of the <code>unwind_protect</code> block because evaluation would stop at the
+point of the error and the statement to restore the value would not be
+executed.
+</p>
+<p>In addition to unwind_protect, Octave supports another form of
+exception handling, the <code>try</code> block.
+</p>
+
+</div>
+
+
+
+</body>
+</html>

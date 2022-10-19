@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Leaving Debug Mode (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Leaving Debug Mode (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Leaving Debug Mode (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Debugging.html" rel="up" title="Debugging">
+<link href="Breakpoints.html" rel="next" title="Breakpoints">
+<link href="Entering-Debug-Mode.html" rel="prev" title="Entering Debug Mode">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Leaving-Debug-Mode">
+<div class="header">
+<p>
+Next: <a href="Breakpoints.html" accesskey="n" rel="next">Breakpoints</a>, Previous: <a href="Entering-Debug-Mode.html" accesskey="p" rel="prev">Entering Debug Mode</a>, Up: <a href="Debugging.html" accesskey="u" rel="up">Debugging</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Leaving-Debug-Mode-1"></span><h3 class="section">13.2 Leaving Debug Mode</h3>
+
+<p>Use either <code>dbcont</code> or <code>return</code> to leave the debug mode and
+continue the normal execution of the script.
+</p>
+<span id="XREFdbcont"></span><dl class="def">
+<dt id="index-dbcont"><span class="category">: </span><span><em></em> <strong>dbcont</strong><a href='#index-dbcont' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Leave command-line debugging mode and continue code execution normally.
+</p>
+<p><strong>See also:</strong> <a href="Debug-Mode.html#XREFdbstep">dbstep</a>, <a href="#XREFdbquit">dbquit</a>.
+</p></dd></dl>
+
+
+<p>To quit debug mode and return directly to the prompt without executing
+any additional code use <code>dbquit</code>.
+</p>
+<span id="XREFdbquit"></span><dl class="def">
+<dt id="index-dbquit"><span class="category">: </span><span><em></em> <strong>dbquit</strong><a href='#index-dbquit' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dbquit-1"><span class="category">: </span><span><em></em> <strong>dbquit</strong> <em>all</em><a href='#index-dbquit-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Quit debugging mode immediately without further code execution.  With no
+arguments, exit the current debugging level.  With argument <code>all</code>,
+exit all debugging levels and return to the Octave prompt.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdbcont">dbcont</a>, <a href="Debug-Mode.html#XREFdbstep">dbstep</a>.
+</p></dd></dl>
+
+
+<p>Finally, typing <code>exit</code> or <code>quit</code> at the debug prompt will
+result in Octave terminating normally.
+</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>User-Defined Preferences (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="User-Defined Preferences (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="User-Defined Preferences (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="GUI-Development.html" rel="up" title="GUI Development">
+<link href="Octave-Workspace-Windows.html" rel="next" title="Octave Workspace Windows">
+<link href="GUI-Utility-Functions.html" rel="prev" title="GUI Utility Functions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="User_002dDefined-Preferences">
+<div class="header">
+<p>
+Next: <a href="Octave-Workspace-Windows.html" accesskey="n" rel="next">Octave Workspace Windows</a>, Previous: <a href="GUI-Utility-Functions.html" accesskey="p" rel="prev">GUI Utility Functions</a>, Up: <a href="GUI-Development.html" accesskey="u" rel="up">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="User_002dDefined-Preferences-1"></span><h3 class="section">35.5 User-Defined Preferences</h3>
+
+<span id="XREFgetpref"></span><dl class="def">
+<dt id="index-getpref"><span class="category">: </span><span><em><var>val</var> =</em> <strong>getpref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;)</em><a href='#index-getpref' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getpref-1"><span class="category">: </span><span><em><var>val</var> =</em> <strong>getpref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;, <var>default</var>)</em><a href='#index-getpref-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getpref-2"><span class="category">: </span><span><em>{<var>val1</var>, <var>val2</var>, &hellip;} =</em> <strong>getpref</strong> <em>(&quot;<var>group</var>&quot;, {&quot;<var>pref1</var>&quot;, &quot;<var>pref2&quot;</var>, &hellip;})</em><a href='#index-getpref-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getpref-3"><span class="category">: </span><span><em><var>prefstruct</var> =</em> <strong>getpref</strong> <em>(&quot;<var>group</var>&quot;)</em><a href='#index-getpref-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-getpref-4"><span class="category">: </span><span><em><var>prefstruct</var> =</em> <strong>getpref</strong> <em>()</em><a href='#index-getpref-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the preference value corresponding to the named preference <var>pref</var>
+in the preference group <var>group</var>.
+</p>
+<p>The named preference group must be a string.
+</p>
+<p>If <var>pref</var> does not exist in <var>group</var> and <var>default</var> is specified,
+create the preference with value <var>default</var> and return <var>default</var>.
+</p>
+<p>The preference <var>pref</var> may be a string or cell array of strings.  If it
+is a cell array of strings then a cell array of preferences is returned.
+</p>
+<p>The corresponding default value <var>default</var> may be any Octave value,
+.e.g., double, struct, cell array, object, etc.  Or, if <var>pref</var> is a cell
+array of strings then <var>default</var> must be a cell array of values with the
+same size as <var>pref</var>.
+</p>
+<p>If neither <var>pref</var> nor <var>default</var> are specified, return a structure
+of preferences for the preference group <var>group</var>.
+</p>
+<p>If no arguments are specified, return a structure containing all groups of
+preferences and their values.
+</p>
+<p><strong>See also:</strong> <a href="#XREFaddpref">addpref</a>, <a href="#XREFsetpref">setpref</a>, <a href="#XREFispref">ispref</a>, <a href="#XREFrmpref">rmpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFsetpref"></span><dl class="def">
+<dt id="index-setpref"><span class="category">: </span><span><em></em> <strong>setpref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;, <var>val</var>)</em><a href='#index-setpref' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-setpref-1"><span class="category">: </span><span><em></em> <strong>setpref</strong> <em>(&quot;<var>group</var>&quot;, {&quot;<var>pref1</var>&quot;, &quot;<var>pref2</var>&quot;, &hellip;}, {<var>val1</var>, <var>val2</var>, &hellip;})</em><a href='#index-setpref-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set the preference <var>pref</var> to the given <var>val</var> in the named preference
+group <var>group</var>.
+</p>
+<p>The named preference group must be a string.
+</p>
+<p>The preference <var>pref</var> may be a string or a cell array of strings.
+</p>
+<p>The corresponding value <var>val</var> may be any Octave value, .e.g., double,
+struct, cell array, object, etc.  Or, if <var>pref</var> is a cell array of
+strings then <var>val</var> must be a cell array of values with the same size as
+<var>pref</var>.
+</p>
+<p>If the named preference or group does not exist, it is added.
+</p>
+<p><strong>See also:</strong> <a href="#XREFaddpref">addpref</a>, <a href="#XREFgetpref">getpref</a>, <a href="#XREFispref">ispref</a>, <a href="#XREFrmpref">rmpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFaddpref"></span><dl class="def">
+<dt id="index-addpref"><span class="category">: </span><span><em></em> <strong>addpref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;, <var>val</var>)</em><a href='#index-addpref' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-addpref-1"><span class="category">: </span><span><em></em> <strong>addpref</strong> <em>(&quot;<var>group</var>&quot;, {&quot;<var>pref1</var>&quot;, &quot;<var>pref2</var>&quot;, &hellip;}, {<var>val1</var>, <var>val2</var>, &hellip;})</em><a href='#index-addpref-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Add the preference <var>pref</var> and associated value <var>val</var> to the named
+preference group <var>group</var>.
+</p>
+<p>The named preference group must be a string.
+</p>
+<p>The preference <var>pref</var> may be a string or a cell array of strings.  An
+error will be issued if the preference already exists.
+</p>
+<p>The corresponding value <var>val</var> may be any Octave value, .e.g., double,
+struct, cell array, object, etc.  Or, if <var>pref</var> is a cell array of
+strings then <var>val</var> must be a cell array of values with the same size as
+<var>pref</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsetpref">setpref</a>, <a href="#XREFgetpref">getpref</a>, <a href="#XREFispref">ispref</a>, <a href="#XREFrmpref">rmpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFrmpref"></span><dl class="def">
+<dt id="index-rmpref"><span class="category">: </span><span><em></em> <strong>rmpref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;)</em><a href='#index-rmpref' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rmpref-1"><span class="category">: </span><span><em></em> <strong>rmpref</strong> <em>(&quot;<var>group</var>&quot;, {&quot;<var>pref1</var>&quot;, &quot;<var>pref2</var>&quot;, &hellip;})</em><a href='#index-rmpref-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rmpref-2"><span class="category">: </span><span><em></em> <strong>rmpref</strong> <em>(&quot;<var>group</var>&quot;)</em><a href='#index-rmpref-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Remove the named preference <var>pref</var> from the preference group
+<var>group</var>.
+</p>
+<p>The named preference group must be a string.
+</p>
+<p>The preference <var>pref</var> may be a string or cell array of strings.
+</p>
+<p>If <var>pref</var> is not specified, remove the preference group <var>group</var>.
+</p>
+<p>It is an error to remove a nonexistent preference or group.
+</p>
+<p><strong>See also:</strong> <a href="#XREFaddpref">addpref</a>, <a href="#XREFispref">ispref</a>, <a href="#XREFsetpref">setpref</a>, <a href="#XREFgetpref">getpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFispref"></span><dl class="def">
+<dt id="index-ispref"><span class="category">: </span><span><em></em> <strong>ispref</strong> <em>(&quot;<var>group</var>&quot;, &quot;<var>pref</var>&quot;)</em><a href='#index-ispref' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ispref-1"><span class="category">: </span><span><em></em> <strong>ispref</strong> <em>(&quot;<var>group</var>&quot;, {&quot;<var>pref1</var>&quot;, &quot;<var>pref2&quot;</var>, &hellip;})</em><a href='#index-ispref-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ispref-2"><span class="category">: </span><span><em></em> <strong>ispref</strong> <em>(&quot;<var>group</var>&quot;)</em><a href='#index-ispref-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if the named preference <var>pref</var> exists in the preference
+group <var>group</var>.
+</p>
+<p>The named preference group must be a string.
+</p>
+<p>The preference <var>pref</var> may be a string or a cell array of strings.
+</p>
+<p>If <var>pref</var> is not specified, return true if the preference group
+<var>group</var> exists.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgetpref">getpref</a>, <a href="#XREFaddpref">addpref</a>, <a href="#XREFsetpref">setpref</a>, <a href="#XREFrmpref">rmpref</a>.
+</p></dd></dl>
+
+
+<span id="XREFprefdir"></span><dl class="def">
+<dt id="index-prefdir"><span class="category">: </span><span><em></em> <strong>prefdir</strong><a href='#index-prefdir' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prefdir-1"><span class="category">: </span><span><em></em> <strong>prefdir</strong> <em>(1)</em><a href='#index-prefdir-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-prefdir-2"><span class="category">: </span><span><em><var>dir</var> =</em> <strong>prefdir</strong><a href='#index-prefdir-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the directory that holds the preferences for Octave.
+</p>
+<p>Examples:
+</p>
+<p>Display the preferences directory
+</p>
+<div class="example">
+<pre class="example">prefdir
+</pre></div>
+
+<p>Change to the preferences folder
+</p>
+<div class="example">
+<pre class="example">cd (prefdir)
+</pre></div>
+
+<p>If called with an argument, the preferences directory is created if it
+doesn&rsquo;t already exist.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgetpref">getpref</a>, <a href="#XREFsetpref">setpref</a>, <a href="#XREFaddpref">addpref</a>, <a href="#XREFrmpref">rmpref</a>, <a href="#XREFispref">ispref</a>.
+</p></dd></dl>
+
+
+<span id="XREFpreferences"></span><dl class="def">
+<dt id="index-preferences"><span class="category">: </span><span><em></em> <strong>preferences</strong><a href='#index-preferences' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Display the GUI preferences dialog window for Octave.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Octave-Workspace-Windows.html">Octave Workspace Windows</a>, Previous: <a href="GUI-Utility-Functions.html">GUI Utility Functions</a>, Up: <a href="GUI-Development.html">GUI Development</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

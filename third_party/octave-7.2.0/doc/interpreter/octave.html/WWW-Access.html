@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>WWW Access (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="WWW Access (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="WWW Access (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Networking-Utilities.html" rel="up" title="Networking Utilities">
+<link href="Base64-and-Binary-Data-Transmission.html" rel="next" title="Base64 and Binary Data Transmission">
+<link href="FTP-Objects.html" rel="prev" title="FTP Objects">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="WWW-Access">
+<div class="header">
+<p>
+Next: <a href="Base64-and-Binary-Data-Transmission.html" accesskey="n" rel="next">Base64 and Binary Data Transmission</a>, Previous: <a href="FTP-Objects.html" accesskey="p" rel="prev">FTP Objects</a>, Up: <a href="Networking-Utilities.html" accesskey="u" rel="up">Networking Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="WWW-Access-1"></span><h4 class="subsection">36.4.2 WWW Access</h4>
+
+<p>Octave can communicate with websites across the Internet.  The <code>web</code>
+function will launch an external web browser to interactively view a site.  The
+remaining functions&mdash;<code>urlread</code>, <code>urlwrite</code>, <code>webread</code>,
+<code>webwrite</code>&mdash;are internal Octave functions which can import or export
+data to/from Octave and a website identified by a URL (Uniform Resource
+Locator).
+</p>
+<span id="XREFweb"></span><dl class="def">
+<dt id="index-web"><span class="category">: </span><span><em><var>status</var> =</em> <strong>web</strong> <em>()</em><a href='#index-web' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-web-1"><span class="category">: </span><span><em><var>status</var> =</em> <strong>web</strong> <em>(<var>url</var>)</em><a href='#index-web-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-web-2"><span class="category">: </span><span><em><var>status</var> =</em> <strong>web</strong> <em>(<var>url</var>, <var>option</var>)</em><a href='#index-web-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-web-3"><span class="category">: </span><span><em><var>status</var> =</em> <strong>web</strong> <em>(<var>url</var>, <var>option_1</var>, &hellip;, <var>option_N</var>)</em><a href='#index-web-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-web-4"><span class="category">: </span><span><em>[<var>status</var>, <var>h</var>, <var>url</var>] =</em> <strong>web</strong> <em>(&hellip;)</em><a href='#index-web-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Open <var>url</var> in the default system web browser.
+</p>
+<p>With no arguments given, the address <a href="https://www.octave.org">https://www.octave.org</a> is
+opened.
+</p>
+<p>Additional options can be passed for <small>MATLAB</small> compatibility, but are
+ignored.
+</p>
+<ul>
+<li> &lsquo;<samp>-browser</samp>&rsquo; Open <var>url</var> in the default system browser.
+
+</li><li> &lsquo;<samp>-new</samp>&rsquo; No effect on the system browser.
+
+</li><li> &lsquo;<samp>-noaddressbox</samp>&rsquo; No effect on the system browser.
+
+</li><li> &lsquo;<samp>-notoolbar</samp>&rsquo; No effect on the system browser.
+
+</li></ul>
+
+<p>The return value <var>status</var> has one of the values:
+</p>
+<ul>
+<li> &lsquo;<samp>0</samp>&rsquo; Found and opened system browser successfully.
+
+</li><li> &lsquo;<samp>1</samp>&rsquo; Cannot find the system browser.
+
+</li><li> &lsquo;<samp>2</samp>&rsquo; System browser found, but an error occurred.
+
+</li></ul>
+
+<p>The return values <var>handle</var> and <var>url</var> are currently unimplemented
+but given for compatibility.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFweboptions">weboptions</a>, <a href="#XREFwebread">webread</a>, <a href="#XREFwebwrite">webwrite</a>, <a href="#XREFurlread">urlread</a>, <a href="#XREFurlwrite">urlwrite</a>.
+</p></dd></dl>
+
+
+<span id="XREFurlread"></span><dl class="def">
+<dt id="index-urlread"><span class="category">: </span><span><em><var>s</var> =</em> <strong>urlread</strong> <em>(<var>url</var>)</em><a href='#index-urlread' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlread-1"><span class="category">: </span><span><em>[<var>s</var>, <var>success</var>] =</em> <strong>urlread</strong> <em>(<var>url</var>)</em><a href='#index-urlread-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlread-2"><span class="category">: </span><span><em>[<var>s</var>, <var>success</var>, <var>message</var>] =</em> <strong>urlread</strong> <em>(<var>url</var>)</em><a href='#index-urlread-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlread-3"><span class="category">: </span><span><em>[&hellip;] =</em> <strong>urlread</strong> <em>(<var>url</var>, <var>method</var>, <var>param</var>)</em><a href='#index-urlread-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Download a remote file specified by its <var>url</var> and return its content
+in string <var>s</var>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">s = urlread (&quot;ftp://ftp.octave.org/pub/README&quot;);
+</pre></div>
+
+<p>The variable <var>success</var> is 1 if the download was successful,
+otherwise it is 0 in which case <var>message</var> contains an error
+message.
+</p>
+<p>If no output argument is specified and an error occurs, then the error is
+signaled through Octave&rsquo;s error handling mechanism.
+</p>
+<p>This function uses libcurl.  Curl supports, among others, the HTTP, FTP, and
+FILE protocols.  Username and password may be specified in the URL.  For
+example:
+</p>
+<div class="example">
+<pre class="example">s = urlread (&quot;http://user:password@example.com/file.txt&quot;);
+</pre></div>
+
+<p>GET and POST requests can be specified by <var>method</var> and <var>param</var>.
+The parameter <var>method</var> is either &lsquo;<samp>get</samp>&rsquo; or &lsquo;<samp>post</samp>&rsquo; and
+<var>param</var> is a cell array of parameter and value pairs.
+For example:
+</p>
+<div class="example">
+<pre class="example">s = urlread (&quot;http://www.google.com/search&quot;, &quot;get&quot;,
+            {&quot;query&quot;, &quot;octave&quot;});
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFurlwrite">urlwrite</a>.
+</p></dd></dl>
+
+
+<span id="XREFurlwrite"></span><dl class="def">
+<dt id="index-urlwrite"><span class="category">: </span><span><em></em> <strong>urlwrite</strong> <em>(<var>url</var>, <var>localfile</var>)</em><a href='#index-urlwrite' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlwrite-1"><span class="category">: </span><span><em><var>f</var> =</em> <strong>urlwrite</strong> <em>(<var>url</var>, <var>localfile</var>)</em><a href='#index-urlwrite-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlwrite-2"><span class="category">: </span><span><em>[<var>f</var>, <var>success</var>] =</em> <strong>urlwrite</strong> <em>(<var>url</var>, <var>localfile</var>)</em><a href='#index-urlwrite-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-urlwrite-3"><span class="category">: </span><span><em>[<var>f</var>, <var>success</var>, <var>message</var>] =</em> <strong>urlwrite</strong> <em>(<var>url</var>, <var>localfile</var>)</em><a href='#index-urlwrite-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Download a remote file specified by its <var>url</var> and save it as
+<var>localfile</var>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">urlwrite (&quot;ftp://ftp.octave.org/pub/README&quot;,
+          &quot;README.txt&quot;);
+</pre></div>
+
+<p>The full path of the downloaded file is returned in <var>f</var>.
+</p>
+<p>The variable <var>success</var> is 1 if the download was successful,
+otherwise it is 0 in which case <var>message</var> contains an error message.
+</p>
+<p>If no output argument is specified and an error occurs, then the error is
+signaled through Octave&rsquo;s error handling mechanism.
+</p>
+<p>This function uses libcurl.  Curl supports, among others, the HTTP, FTP, and
+FILE protocols.  Username and password may be specified in the URL, for
+example:
+</p>
+<div class="example">
+<pre class="example">urlwrite (&quot;http://username:password@example.com/file.txt&quot;,
+          &quot;file.txt&quot;);
+</pre></div>
+
+<p>GET and POST requests can be specified by <var>method</var> and <var>param</var>.
+The parameter <var>method</var> is either &lsquo;<samp>get</samp>&rsquo; or &lsquo;<samp>post</samp>&rsquo; and
+<var>param</var> is a cell array of parameter and value pairs.
+For example:
+</p>
+<div class="example">
+<pre class="example">urlwrite (&quot;http://www.google.com/search&quot;, &quot;search.html&quot;,
+          &quot;get&quot;, {&quot;query&quot;, &quot;octave&quot;});
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFurlread">urlread</a>.
+</p></dd></dl>
+
+
+<span id="XREFwebread"></span><dl class="def">
+<dt id="index-webread"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webread</strong> <em>(<var>url</var>)</em><a href='#index-webread' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-webread-1"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webread</strong> <em>(<var>url</var>, <var>name1</var>, <var>value1</var>, &hellip;)</em><a href='#index-webread-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-webread-2"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webread</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-webread-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Read content from RESTful web service.
+</p>
+<p>Read content from the web service specified by <var>url</var> and return the
+content in <var>response</var>.
+</p>
+<p>All key-value pairs given (<var>name1</var>, <var>value1</var>, &hellip;) are appended
+as query parameters to <var>url</var>.  To place a query in the body of the
+message, use <code>webwrite</code>.  The web service defines the acceptable query
+parameters.
+</p>
+<p><var>options</var> is a <code>weboptions</code> object that may be used to add other
+HTTP request options.  This argument can be used with either calling form.
+See <code>help weboptions</code> for a complete list of supported HTTP options.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFweboptions">weboptions</a>, <a href="#XREFwebwrite">webwrite</a>.
+</p></dd></dl>
+
+
+<span id="XREFwebwrite"></span><dl class="def">
+<dt id="index-webwrite"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webwrite</strong> <em>(<var>url</var>, <var>name1</var>, <var>value1</var>, &hellip;)</em><a href='#index-webwrite' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-webwrite-1"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webwrite</strong> <em>(<var>url</var>, <var>data</var>)</em><a href='#index-webwrite-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-webwrite-2"><span class="category">: </span><span><em><var>response</var> =</em> <strong>webwrite</strong> <em>(&hellip;, <var>options</var>)</em><a href='#index-webwrite-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Write data to RESTful web services.
+</p>
+<p>Write content to the web service specified by <var>url</var> and return the
+response in <var>response</var>.
+</p>
+<p>All key-value pairs given (<var>name1</var>, <var>value1</var>, &hellip;) are added
+as pairs of query parameters to the body of request method (<code>get</code>,
+<code>post</code>, <code>put</code>, etc.).
+</p>
+<p><var>options</var> is a <code>weboptions</code> object that may be used to add other
+HTTP request options.  This argument can be used with either calling form.
+See <code>help weboptions</code> for a complete list of supported HTTP options.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFweboptions">weboptions</a>, <a href="#XREFwebread">webread</a>.
+</p></dd></dl>
+
+
+<span id="XREFweboptions"></span><dl class="def">
+<dt id="index-weboptions"><span class="category">: </span><span><em><var>output</var> =</em> <strong>weboptions</strong> <em>()</em><a href='#index-weboptions' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-weboptions-1"><span class="category">: </span><span><em><var>output</var> =</em> <strong>weboptions</strong> <em>(<var>name1</var>, <var>value1</var>, &hellip;)</em><a href='#index-weboptions-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Specify parameters for RESTful web services.
+</p>
+<p><code>weboptions</code> with no inputs returns a default <code>weboptions</code>
+object to specify parameters for a request to a web service.  A
+<code>weboptions</code> object can be an optional input argument to the
+<code>webread</code> and <code>webwrite</code> functions.
+</p>
+<p>Multiple name and value pair arguments may be specified in any order as
+<var>name1</var>, <var>value1</var>, <var>name2</var>, <var>value2</var>, etc.
+</p>
+<p>The option names must match <strong>exactly</strong> one of those specified in the
+table below.
+</p>
+<p>The following options are available:
+</p>
+<ul>
+<li> &lsquo;<samp>CharacterEncoding</samp>&rsquo; &mdash; Specify the character encoding of the data:
+
+<p>&lsquo;<samp>auto</samp>&rsquo; (default), &lsquo;<samp>UTF-8</samp>&rsquo;, &lsquo;<samp>US-ASCII</samp>&rsquo;
+&lsquo;<samp>auto</samp>&rsquo; chooses an encoding based on the content-type of the data.
+</p>
+</li><li> &lsquo;<samp>UserAgent</samp>&rsquo; &mdash; Specify the User Agent for the connection.
+
+<p>Default value is &lsquo;<samp>GNU Octave/version</samp>&rsquo;, where &lsquo;<samp>version</samp>&rsquo; is the
+current version of Octave as returned by <code>version</code>.
+</p>
+</li><li> &lsquo;<samp>Timeout</samp>&rsquo; &mdash; Specify the timeout value for the connection in
+seconds.
+
+<p>Default is 10 seconds.  &lsquo;<samp>Inf</samp>&rsquo; is not currently supported.
+</p>
+</li><li> &lsquo;<samp>Username</samp>&rsquo; &mdash; User identifier for a basic HTTP connection.
+
+<p>Default is NULL.  It must be a string.
+</p>
+</li><li> &lsquo;<samp>Password</samp>&rsquo; &mdash; User authentication password for HTTP connection.
+
+<p>Default is NULL.  It must be a string or character vector.
+Programming Note: If you display a <code>weboption</code> object with the
+Password property set, the value is displayed as a string containing
+<code>'*'</code>.  However, the object stores the value of the Password
+property as plain text.
+</p>
+</li><li> &lsquo;<samp>KeyName</samp>&rsquo; &mdash; Specify the name of an additional key to be added to
+the HTTP request header.  It should be coupled with &lsquo;<samp>KeyValue</samp>&rsquo;.  It
+must be a string or character vector.
+
+</li><li> &lsquo;<samp>KeyValue</samp>&rsquo; &mdash; Specify the value of the key &lsquo;<samp>KeyName</samp>&rsquo;.
+
+<p>&lsquo;<samp>KeyName</samp>&rsquo; must be present in order to assign to this field.
+</p>
+</li><li> &lsquo;<samp>HeaderFields</samp>&rsquo; &mdash; Specify the header fields for the
+connection.
+
+<p>Names and values of header fields, specified as an m-by-2 array of strings
+or cell array of character vectors to add to the HTTP request header.
+HeaderFields{i,1} is the name of a field and
+HeaderFields{i,2} is its value.
+</p>
+<div class="example">
+<pre class="example">weboptions (&quot;HeaderFields&quot;, {&quot;Content-Length&quot; &quot;78&quot;;&quot;Content-Type&quot; &quot;application/json&quot;})
+Creates a weboptions object that contains two header fields:
+Content-Length with value 78 and Content-Type with value application/json.
+</pre></div>
+
+</li><li> &lsquo;<samp>ContentType</samp>&rsquo; &mdash; Specify the content type of the data.
+
+<p>The following values are available:
+&lsquo;<samp>auto</samp>&rsquo;, &lsquo;<samp>text</samp>&rsquo;, &lsquo;<samp>json</samp>&rsquo;
+</p>
+<p>Default is &lsquo;<samp>auto</samp>&rsquo;.  It automatically determines the content type.
+All other formats like &lsquo;<samp>audio</samp>&rsquo;, &lsquo;<samp>binary</samp>&rsquo;, etc. available in
+<small>MATLAB</small> are not currently supported.
+</p>
+</li><li> &lsquo;<samp>ContentReader</samp>&rsquo; &mdash; Not yet implemented.  Only for <small>MATLAB</small>
+compatibility.
+
+</li><li> &lsquo;<samp>MediaType</samp>&rsquo; &mdash; Not yet implemented.  Only for <small>MATLAB</small>
+compatibility.
+
+</li><li> &lsquo;<samp>RequestMethod</samp>&rsquo; &mdash; Specifies the type of request to be made.
+
+<p>The following methods are available:
+&lsquo;<samp>get</samp>&rsquo;, &lsquo;<samp>put</samp>&rsquo;, &lsquo;<samp>post</samp>&rsquo;, &lsquo;<samp>delete</samp>&rsquo;, &lsquo;<samp>patch</samp>&rsquo;
+</p>
+<p><code>webread</code> uses the HTTP GET method.  <code>webwrite</code> uses the HTTP
+POST method as default.
+</p>
+</li><li> &lsquo;<samp>ArrayFormat</samp>&rsquo; &ndash; Not yet implemented.  Only for <small>MATLAB</small>
+compatibility.
+
+</li><li> &lsquo;<samp>CertificateFilename</samp>&rsquo; &mdash; Not yet implemented.  Only for <small>MATLAB</small>
+compatibility.
+</li></ul>
+
+
+<p><strong>See also:</strong> <a href="#XREFwebread">webread</a>, <a href="#XREFwebwrite">webwrite</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Base64-and-Binary-Data-Transmission.html">Base64 and Binary Data Transmission</a>, Previous: <a href="FTP-Objects.html">FTP Objects</a>, Up: <a href="Networking-Utilities.html">Networking Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

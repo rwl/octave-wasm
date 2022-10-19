@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Interpolation on Scattered Data (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Interpolation on Scattered Data (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Interpolation on Scattered Data (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Geometry.html" rel="up" title="Geometry">
+<link href="Vector-Rotation-Matrices.html" rel="next" title="Vector Rotation Matrices">
+<link href="Convex-Hull.html" rel="prev" title="Convex Hull">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Interpolation-on-Scattered-Data">
+<div class="header">
+<p>
+Next: <a href="Vector-Rotation-Matrices.html" accesskey="n" rel="next">Vector Rotation Matrices</a>, Previous: <a href="Convex-Hull.html" accesskey="p" rel="prev">Convex Hull</a>, Up: <a href="Geometry.html" accesskey="u" rel="up">Geometry</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Interpolation-on-Scattered-Data-1"></span><h3 class="section">30.4 Interpolation on Scattered Data</h3>
+
+<p>An important use of the Delaunay tessellation is that it can be used to
+interpolate from scattered data to an arbitrary set of points.  To do
+this the N-simplex of the known set of points is calculated with
+<code>delaunay</code> or <code>delaunayn</code>.  Then the simplices in to which the
+desired points are found are identified.  Finally the vertices of the simplices
+are used to interpolate to the desired points.  The functions that perform this
+interpolation are <code>griddata</code>, <code>griddata3</code> and <code>griddatan</code>.
+</p>
+<span id="XREFgriddata"></span><dl class="def">
+<dt id="index-griddata"><span class="category">: </span><span><em><var>zi</var> =</em> <strong>griddata</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>xi</var>, <var>yi</var>)</em><a href='#index-griddata' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata-1"><span class="category">: </span><span><em><var>zi</var> =</em> <strong>griddata</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>xi</var>, <var>yi</var>, <var>method</var>)</em><a href='#index-griddata-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata-2"><span class="category">: </span><span><em>[<var>xi</var>, <var>yi</var>, <var>zi</var>] =</em> <strong>griddata</strong> <em>(&hellip;)</em><a href='#index-griddata-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata-3"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>)</em><a href='#index-griddata-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata-4"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>, <var>method</var>)</em><a href='#index-griddata-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata-5"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>, <var>method</var>, <var>options</var>)</em><a href='#index-griddata-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Interpolate irregular 2-D and 3-D source data at specified points.
+</p>
+<p>For 2-D interpolation, the inputs <var>x</var> and <var>y</var> define the points
+where the function <code><var>z</var> = f (<var>x</var>, <var>y</var>)</code> is evaluated.
+The inputs <var>x</var>, <var>y</var>, <var>z</var> are either vectors of the same length,
+or the unequal vectors <var>x</var>, <var>y</var> are expanded to a 2-D grid with
+<code>meshgrid</code> and <var>z</var> is a 2-D matrix matching the resulting size of
+the X-Y grid.
+</p>
+<p>The interpolation points are (<var>xi</var>, <var>yi</var>).  If, and only if,
+<var>xi</var> is a row vector and <var>yi</var> is a column vector, then
+<code>meshgrid</code> will be used to create a mesh of interpolation points.
+</p>
+<p>For 3-D interpolation, the inputs <var>x</var>, <var>y</var>, and <var>z</var> define the
+points where the function <code><var>v</var> = f (<var>x</var>, <var>y</var>, <var>z</var>)</code>
+is evaluated.  The inputs <var>x</var>, <var>y</var>, <var>z</var> are either vectors of
+the same length, or if they are of unequal length, then they are expanded to
+a 3-D grid with <code>meshgrid</code>.  The size of the input <var>v</var> must match
+the size of the original data, either as a vector or a matrix.
+</p>
+<p>The optional input interpolation <var>method</var> can be <code>&quot;nearest&quot;</code>,
+<code>&quot;linear&quot;</code>, or for 2-D data <code>&quot;v4&quot;</code>.  When the method is
+<code>&quot;nearest&quot;</code>, the output <var>vi</var> will be the closest point in the
+original data (<var>x</var>, <var>y</var>, <var>z</var>) to the query point (<var>xi</var>,
+<var>yi</var>, <var>zi</var>).  When the method is <code>&quot;linear&quot;</code>, the output
+<var>vi</var> will be a linear interpolation between the two closest points in
+the original source data in each dimension.  For 2-D cases only, the
+<code>&quot;v4&quot;</code> method is also available which implements a biharmonic spline
+interpolation.  If <var>method</var> is omitted or empty, it defaults to
+<code>&quot;linear&quot;</code>.
+</p>
+<p>For 3-D interpolation, the optional argument <var>options</var> is passed
+directly to Qhull when computing the Delaunay triangulation used for
+interpolation.  For more information on the defaults and how to pass
+different values, see <a href="Delaunay-Triangulation.html#XREFdelaunayn"><code>delaunayn</code></a>.
+</p>
+<p>Programming Notes: If the input is complex the real and imaginary parts
+are interpolated separately.  Interpolation is normally based on a
+Delaunay triangulation.  Any query values outside the convex hull of the
+input points will return <code>NaN</code>.  However, the <code>&quot;v4&quot;</code> method does
+not use the triangulation and will return values outside the original data
+(extrapolation).
+</p>
+<p><strong>See also:</strong> <a href="#XREFgriddata3">griddata3</a>, <a href="#XREFgriddatan">griddatan</a>, <a href="Delaunay-Triangulation.html#XREFdelaunay">delaunay</a>.
+</p></dd></dl>
+
+
+<span id="XREFgriddata3"></span><dl class="def">
+<dt id="index-griddata3"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>)</em><a href='#index-griddata3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata3-1"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>, <var>method</var>)</em><a href='#index-griddata3-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddata3-2"><span class="category">: </span><span><em><var>vi</var> =</em> <strong>griddata3</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>, <var>v</var>, <var>xi</var>, <var>yi</var>, <var>zi</var>, <var>method</var>, <var>options</var>)</em><a href='#index-griddata3-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Interpolate irregular 3-D source data at specified points.
+</p>
+<p>The inputs <var>x</var>, <var>y</var>, and <var>z</var> define the points where the
+function <code><var>v</var> = f (<var>x</var>, <var>y</var>, <var>z</var>)</code> is evaluated.  The
+inputs <var>x</var>, <var>y</var>, <var>z</var> are either vectors of the same length, or
+if they are of unequal length, then they are expanded to a 3-D grid with
+<code>meshgrid</code>.  The size of the input <var>v</var> must match the size of the
+original data, either as a vector or a matrix.
+</p>
+<p>The interpolation points are specified by <var>xi</var>, <var>yi</var>, <var>zi</var>.
+</p>
+<p>The optional input interpolation <var>method</var> can be <code>&quot;nearest&quot;</code> or
+<code>&quot;linear&quot;</code>.  When the method is <code>&quot;nearest&quot;</code>, the output <var>vi</var>
+will be the closest point in the original data (<var>x</var>, <var>y</var>, <var>z</var>)
+to the query point (<var>xi</var>, <var>yi</var>, <var>zi</var>).  When the method is
+<code>&quot;linear&quot;</code>, the output <var>vi</var> will be a linear interpolation between
+the two closest points in the original source data in each dimension.
+If <var>method</var> is omitted or empty, it defaults to <code>&quot;linear&quot;</code>.
+</p>
+<p>The optional argument <var>options</var> is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+<code>delaunayn</code> for information on the defaults and how to pass different
+values.
+</p>
+<p>Programming Notes: If the input is complex the real and imaginary parts
+are interpolated separately.  Interpolation is based on a Delaunay
+triangulation and any query values outside the convex hull of the input
+points will return <code>NaN</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgriddata">griddata</a>, <a href="#XREFgriddatan">griddatan</a>, <a href="Delaunay-Triangulation.html#XREFdelaunayn">delaunayn</a>.
+</p></dd></dl>
+
+
+<span id="XREFgriddatan"></span><dl class="def">
+<dt id="index-griddatan"><span class="category">: </span><span><em><var>yi</var> =</em> <strong>griddatan</strong> <em>(<var>x</var>, <var>y</var>, <var>xi</var>)</em><a href='#index-griddatan' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddatan-1"><span class="category">: </span><span><em><var>yi</var> =</em> <strong>griddatan</strong> <em>(<var>x</var>, <var>y</var>, <var>xi</var>, <var>method</var>)</em><a href='#index-griddatan-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-griddatan-2"><span class="category">: </span><span><em><var>yi</var> =</em> <strong>griddatan</strong> <em>(<var>x</var>, <var>y</var>, <var>xi</var>, <var>method</var>, <var>options</var>)</em><a href='#index-griddatan-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Interpolate irregular source data <var>x</var>, <var>y</var> at points specified by
+<var>xi</var>.
+</p>
+<p>The input <var>x</var> is an MxN matrix representing M points in an N-dimensional
+space.  The input <var>y</var> is a single-valued column vector (Mx1)
+representing a function evaluated at the points <var>x</var>, i.e.,
+<code><var>y</var> = fcn (<var>x</var>)</code>.  The input <var>xi</var> is a list of points
+for which the function output <var>yi</var> should be approximated through
+interpolation.  <var>xi</var> must have the same number of columns (<var>N</var>)
+as <var>x</var> so that the dimensionality matches.
+</p>
+<p>The optional input interpolation <var>method</var> can be <code>&quot;nearest&quot;</code> or
+<code>&quot;linear&quot;</code>.  When the method is <code>&quot;nearest&quot;</code>, the output <var>yi</var>
+will be the closest point in the original data <var>x</var> to the query point
+<var>xi</var>.  When the method is <code>&quot;linear&quot;</code>, the output <var>yi</var> will
+be a linear interpolation between the two closest points in the original
+source data.  If <var>method</var> is omitted or empty, it defaults to
+<code>&quot;linear&quot;</code>.
+</p>
+<p>The optional argument <var>options</var> is passed directly to Qhull when
+computing the Delaunay triangulation used for interpolation.  See
+<code>delaunayn</code> for information on the defaults and how to pass different
+values.
+</p>
+<p>Example
+</p>
+<div class="example">
+<pre class="example">## Evaluate sombrero() function at irregular data points
+x = 16*gallery (&quot;uniformdata&quot;, [200,1], 1) - 8;
+y = 16*gallery (&quot;uniformdata&quot;, [200,1], 11) - 8;
+z = sin (sqrt (x.^2 + y.^2)) ./ sqrt (x.^2 + y.^2);
+## Create a regular grid and interpolate data
+[xi, yi] = ndgrid (linspace (-8, 8, 50));
+zi = griddatan ([x, y], z, [xi(:), yi(:)]);
+zi = reshape (zi, size (xi));
+## Plot results
+clf ();
+plot3 (x, y, z, &quot;or&quot;);
+hold on
+surf (xi, yi, zi);
+legend (&quot;Original Data&quot;, &quot;Interpolated Data&quot;);
+</pre></div>
+
+<p>Programming Notes: If the input is complex the real and imaginary parts
+are interpolated separately.  Interpolation is based on a Delaunay
+triangulation and any query values outside the convex hull of the input
+points will return <code>NaN</code>.  For 2-D and 3-D data additional
+interpolation methods are available by using the <code>griddata</code> function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFgriddata">griddata</a>, <a href="#XREFgriddata3">griddata3</a>, <a href="Delaunay-Triangulation.html#XREFdelaunayn">delaunayn</a>.
+</p></dd></dl>
+
+
+<p>An example of the use of the <code>griddata</code> function is
+</p>
+<div class="example">
+<pre class="example">rand (&quot;state&quot;, 1);
+x = 2*rand (1000,1) - 1;
+y = 2*rand (size (x)) - 1;
+z = sin (2*(x.^2+y.^2));
+[xx,yy] = meshgrid (linspace (-1,1,32));
+zz = griddata (x, y, z, xx, yy);
+mesh (xx, yy, zz);
+</pre></div>
+
+<p>that interpolates from a random scattering of points, to a uniform grid.
+The output of the above can be seen in <a href="#fig_003agriddata">Figure 30.6</a>.
+</p>
+<div class="float"><span id="fig_003agriddata"></span>
+<div align="center"><img src="griddata.png" alt="griddata">
+</div>
+<div class="float-caption"><p><strong>Figure 30.6: </strong>Interpolation from a scattered data to a regular grid</p></div></div>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Vector-Rotation-Matrices.html">Vector Rotation Matrices</a>, Previous: <a href="Convex-Hull.html">Convex Hull</a>, Up: <a href="Geometry.html">Geometry</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Base64 and Binary Data Transmission (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Base64 and Binary Data Transmission (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Base64 and Binary Data Transmission (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Networking-Utilities.html" rel="up" title="Networking Utilities">
+<link href="WWW-Access.html" rel="prev" title="WWW Access">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Base64-and-Binary-Data-Transmission">
+<div class="header">
+<p>
+Previous: <a href="WWW-Access.html" accesskey="p" rel="prev">WWW Access</a>, Up: <a href="Networking-Utilities.html" accesskey="u" rel="up">Networking Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Base64-and-Binary-Data-Transmission-1"></span><h4 class="subsection">36.4.3 Base64 and Binary Data Transmission</h4>
+
+<p>Some transmission channels can not accept binary data.  It is customary to
+encode binary data in Base64 for transmission and to decode the data upon
+reception.
+</p>
+<span id="XREFbase64_005fencode"></span><dl class="def">
+<dt id="index-base64_005fencode"><span class="category">: </span><span><em><var>s</var> =</em> <strong>base64_encode</strong> <em>(<var>x</var>)</em><a href='#index-base64_005fencode' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Encode a double matrix or array <var>x</var> into the base64 format string
+<var>s</var>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFbase64_005fdecode">base64_decode</a>, <a href="#XREFmatlab_005fnet_005fbase64decode">matlab.net.base64decode</a>, <a href="#XREFmatlab_005fnet_005fbase64encode">matlab.net.base64encode</a>.
+</p></dd></dl>
+
+
+<span id="XREFbase64_005fdecode"></span><dl class="def">
+<dt id="index-base64_005fdecode"><span class="category">: </span><span><em><var>x</var> =</em> <strong>base64_decode</strong> <em>(<var>s</var>)</em><a href='#index-base64_005fdecode' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-base64_005fdecode-1"><span class="category">: </span><span><em><var>x</var> =</em> <strong>base64_decode</strong> <em>(<var>s</var>, <var>dims</var>)</em><a href='#index-base64_005fdecode-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Decode the double matrix or array <var>x</var> from the base64 encoded string
+<var>s</var>.
+</p>
+<p>The optional input parameter <var>dims</var> should be a vector containing the
+dimensions of the decoded array.
+</p>
+<p><strong>See also:</strong> <a href="#XREFbase64_005fencode">base64_encode</a>, <a href="#XREFmatlab_005fnet_005fbase64decode">matlab.net.base64decode</a>, <a href="#XREFmatlab_005fnet_005fbase64encode">matlab.net.base64encode</a>.
+</p></dd></dl>
+
+
+<span id="XREFmatlab_005fnet_005fbase64encode"></span><dl class="def">
+<dt id="index-matlab_002enet_002ebase64encode"><span class="category">: </span><span><em><var>b64_str</var> =</em> <strong>matlab.net.base64encode</strong> <em>(<var>in</var>)</em><a href='#index-matlab_002enet_002ebase64encode' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Convert <var>in</var> to a base64 encoded string <var>b64_str</var>.
+</p>
+<p>The input <var>in</var> can be a string or numeric vector.
+The output <var>b64_str</var> will be encoded according to RFC 4648.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmatlab_005fnet_005fbase64decode">matlab.net.base64decode</a>, <a href="#XREFbase64_005fdecode">base64_decode</a>, <a href="#XREFbase64_005fencode">base64_encode</a>, <a href="String-encoding.html#XREFunicode2native">unicode2native</a>.
+</p></dd></dl>
+
+
+<span id="XREFmatlab_005fnet_005fbase64decode"></span><dl class="def">
+<dt id="index-matlab_002enet_002ebase64decode"><span class="category">: </span><span><em><var>out_vec</var> =</em> <strong>matlab.net.base64decode</strong> <em>(<var>b64_str</var>)</em><a href='#index-matlab_002enet_002ebase64decode' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Convert base64 encoded <var>b64_str</var> to uint8 vector <var>out_vec</var>.
+</p>
+<p>The input <var>b64_str</var> must be a string vector.
+The output <var>out_vec</var> will be a uint8 vector that is decoded
+according to RFC 4648.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmatlab_005fnet_005fbase64encode">matlab.net.base64encode</a>, <a href="#XREFbase64_005fdecode">base64_decode</a>, <a href="#XREFbase64_005fencode">base64_encode</a>, <a href="String-encoding.html#XREFnative2unicode">native2unicode</a>.
+</p></dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

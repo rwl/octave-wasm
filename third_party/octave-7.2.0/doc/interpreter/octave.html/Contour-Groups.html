@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Contour Groups (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Contour Groups (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Contour Groups (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Object-Groups.html" rel="up" title="Object Groups">
+<link href="Error-Bar-Series.html" rel="next" title="Error Bar Series">
+<link href="Bar-Series.html" rel="prev" title="Bar Series">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Contour-Groups">
+<div class="header">
+<p>
+Next: <a href="Error-Bar-Series.html" accesskey="n" rel="next">Error Bar Series</a>, Previous: <a href="Bar-Series.html" accesskey="p" rel="prev">Bar Series</a>, Up: <a href="Object-Groups.html" accesskey="u" rel="up">Object Groups</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Contour-Groups-1"></span><h4 class="subsubsection">15.4.6.4 Contour Groups</h4>
+<span id="index-series-objects-2"></span>
+<span id="index-contour-series"></span>
+
+<p>Contour group objects are created by the <code>contour</code>, <code>contourf</code>, and
+<code>contour3</code> functions.  They are also one of the handles returned by the
+<code>surfc</code> and <code>meshc</code> functions.  The properties of the contour group
+are
+</p>
+<dl compact="compact">
+<dt><span><code>contourmatrix</code></span></dt>
+<dd><p>A read only property that contains the data return by <code>contourc</code> used to
+create the contours of the plot.
+</p>
+</dd>
+<dt><span><code>fill</code></span></dt>
+<dd><p>A radio property that can have the values <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code> that
+flags whether the contours to plot are to be filled.
+</p>
+</dd>
+<dt><span><code>zlevelmode</code></span></dt>
+<dt><span><code>zlevel</code></span></dt>
+<dd><p>The radio property <code>zlevelmode</code> can have the values <code>&quot;none&quot;</code>,
+<code>&quot;auto&quot;</code>, or <code>&quot;manual&quot;</code>.  When its value is <code>&quot;none&quot;</code> there is
+no z component to the plotted contours.  When its value is <code>&quot;auto&quot;</code> the z
+value of the plotted contours is at the same value as the contour itself.  If
+the value is <code>&quot;manual&quot;</code>, then the z value at which to plot the contour is
+determined by the <code>zlevel</code> property.
+</p>
+</dd>
+<dt><span><code>levellistmode</code></span></dt>
+<dt><span><code>levellist</code></span></dt>
+<dt><span><code>levelstepmode</code></span></dt>
+<dt><span><code>levelstep</code></span></dt>
+<dd><p>If <code>levellistmode</code> is <code>&quot;manual&quot;</code>, then the levels at which to plot
+the contours is determined by <code>levellist</code>.  If <code>levellistmode</code> is set
+to <code>&quot;auto&quot;</code>, then the distance between contours is determined by
+<code>levelstep</code>.  If both <code>levellistmode</code> and <code>levelstepmode</code> are
+set to <code>&quot;auto&quot;</code>, then there are assumed to be 10 equal spaced contours.
+</p>
+</dd>
+<dt><span><code>textlistmode</code></span></dt>
+<dt><span><code>textlist</code></span></dt>
+<dt><span><code>textstepmode</code></span></dt>
+<dt><span><code>textstep</code></span></dt>
+<dd><p>If <code>textlistmode</code> is <code>&quot;manual&quot;</code>, then the labeled contours
+is determined by <code>textlist</code>.  If <code>textlistmode</code> is set to
+<code>&quot;auto&quot;</code>, then the distance between labeled contours is determined by
+<code>textstep</code>.  If both <code>textlistmode</code> and <code>textstepmode</code>
+are set to <code>&quot;auto&quot;</code>, then there are assumed to be 10 equal spaced
+labeled contours.
+</p>
+</dd>
+<dt><span><code>showtext</code></span></dt>
+<dd><p>Flag whether the contour labels are shown or not.
+</p>
+</dd>
+<dt><span><code>labelspacing</code></span></dt>
+<dd><p>The distance between labels on a single contour in points.
+</p>
+</dd>
+<dt><span><code>linewidth</code></span></dt>
+<dt><span><code>linestyle</code></span></dt>
+<dt><span><code>linecolor</code></span></dt>
+<dd><p>The properties of the contour lines.  The properties <code>linewidth</code> and
+<code>linestyle</code> are similar to the corresponding properties for lines.  The
+property <code>linecolor</code> is a color property (see <a href="Colors.html">Colors</a>), that can also
+have the values of <code>&quot;none&quot;</code> or <code>&quot;auto&quot;</code>.  If <code>linecolor</code> is
+<code>&quot;none&quot;</code>, then no contour line is drawn.  If <code>linecolor</code> is
+<code>&quot;auto&quot;</code> then the line color is determined by the colormap.
+</p>
+</dd>
+<dt><span><code>xdata</code></span></dt>
+<dt><span><code>ydata</code></span></dt>
+<dt><span><code>zdata</code></span></dt>
+<dd><p>The original x, y, and z data of the contour lines.
+</p>
+</dd>
+<dt><span><code>xdatasource</code></span></dt>
+<dt><span><code>ydatasource</code></span></dt>
+<dt><span><code>zdatasource</code></span></dt>
+<dd><p>Data source variables.
+</p></dd>
+</dl>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Error-Bar-Series.html">Error Bar Series</a>, Previous: <a href="Bar-Series.html">Bar Series</a>, Up: <a href="Object-Groups.html">Object Groups</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

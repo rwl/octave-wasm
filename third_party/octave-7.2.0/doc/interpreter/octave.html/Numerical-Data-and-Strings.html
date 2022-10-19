@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Numerical Data and Strings (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Numerical Data and Strings (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Numerical Data and Strings (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Converting-Strings.html" rel="up" title="Converting Strings">
+<link href="JSON-data-encoding_002fdecoding.html" rel="next" title="JSON data encoding/decoding">
+<link href="String-encoding.html" rel="prev" title="String encoding">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Numerical-Data-and-Strings">
+<div class="header">
+<p>
+Next: <a href="JSON-data-encoding_002fdecoding.html" accesskey="n" rel="next">JSON data encoding/decoding</a>, Previous: <a href="String-encoding.html" accesskey="p" rel="prev">String encoding</a>, Up: <a href="Converting-Strings.html" accesskey="u" rel="up">Converting Strings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Numerical-Data-and-Strings-1"></span><h4 class="subsection">5.4.2 Numerical Data and Strings</h4>
+
+<p>Apart from the string concatenation functions (see <a href="Concatenating-Strings.html">Concatenating Strings</a>)
+which cast numerical data to the corresponding UTF-8 encoded characters, there
+are several functions that format numerical data as strings.  <code>mat2str</code>
+and <code>num2str</code> convert real or complex matrices, while <code>int2str</code>
+converts integer matrices.  <code>int2str</code> takes the real part of complex
+values and round fractional values to integer.  A more flexible way to format
+numerical data as strings is the <code>sprintf</code> function
+(see <a href="Formatted-Output.html">Formatted Output</a>, <a href="Formatted-Output.html#XREFsprintf">sprintf</a>).
+</p>
+<span id="XREFmat2str"></span><dl class="def">
+<dt id="index-mat2str"><span class="category">: </span><span><em><var>s</var> =</em> <strong>mat2str</strong> <em>(<var>x</var>, <var>n</var>)</em><a href='#index-mat2str' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-mat2str-1"><span class="category">: </span><span><em><var>s</var> =</em> <strong>mat2str</strong> <em>(<var>x</var>, <var>n</var>, &quot;class&quot;)</em><a href='#index-mat2str-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Format real, complex, and logical matrices as strings.
+</p>
+<p>The returned string may be used to reconstruct the original matrix by using
+the <code>eval</code> function.
+</p>
+<p>The precision of the values is given by <var>n</var>.  If <var>n</var> is a scalar
+then both real and imaginary parts of the matrix are printed to the same
+precision.  Otherwise <code><var>n</var>(1)</code> defines the precision of the real
+part and <code><var>n</var>(2)</code> defines the precision of the imaginary part.
+The default for <var>n</var> is 15.
+</p>
+<p>If the argument <code>&quot;class&quot;</code> is given then the class of <var>x</var> is
+included in the string in such a way that <code>eval</code> will result in the
+construction of a matrix of the same class.
+</p>
+<div class="example">
+<pre class="example">mat2str ([ -1/3 + i/7; 1/3 - i/7 ], [4 2])
+     &rArr; &quot;[-0.3333+0.14i;0.3333-0.14i]&quot;
+
+mat2str ([ -1/3 +i/7; 1/3 -i/7 ], [4 2])
+     &rArr; &quot;[-0.3333+0i 0+0.14i;0.3333+0i -0-0.14i]&quot;
+
+mat2str (int16 ([1 -1]), &quot;class&quot;)
+     &rArr; &quot;int16([1 -1])&quot;
+
+mat2str (logical (eye (2)))
+     &rArr; &quot;[true false;false true]&quot;
+
+isequal (x, eval (mat2str (x)))
+     &rArr; 1
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Formatted-Output.html#XREFsprintf">sprintf</a>, <a href="#XREFnum2str">num2str</a>, <a href="#XREFint2str">int2str</a>.
+</p></dd></dl>
+
+
+<span id="XREFnum2str"></span><dl class="def">
+<dt id="index-num2str"><span class="category">: </span><span><em></em> <strong>num2str</strong> <em>(<var>x</var>)</em><a href='#index-num2str' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-num2str-1"><span class="category">: </span><span><em></em> <strong>num2str</strong> <em>(<var>x</var>, <var>precision</var>)</em><a href='#index-num2str-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-num2str-2"><span class="category">: </span><span><em></em> <strong>num2str</strong> <em>(<var>x</var>, <var>format</var>)</em><a href='#index-num2str-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert a number (or array) to a string (or a character array).
+</p>
+<p>The optional second argument may either give the number of significant
+digits (<var>precision</var>) to be used in the output or a format template
+string (<var>format</var>) as in <code>sprintf</code> (see <a href="Formatted-Output.html">Formatted Output</a>).
+<code>num2str</code> can also process complex numbers.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">num2str (123.456)
+  &rArr; 123.456
+
+num2str (123.456, 4)
+  &rArr; 123.5
+
+s = num2str ([1, 1.34; 3, 3.56], &quot;%5.1f&quot;)
+  &rArr; s =
+       1.0  1.3
+       3.0  3.6
+whos s
+  &rArr; Variables in the current scope:
+        Attr Name        Size                     Bytes  Class
+        ==== ====        ====                     =====  =====
+             s           2x8                         16  char
+     Total is 16 elements using 16 bytes
+
+num2str (1.234 + 27.3i)
+  &rArr; 1.234+27.3i
+</pre></div>
+
+<p>The <code>num2str</code> function is not very flexible.  For better control
+over the results, use <code>sprintf</code> (see <a href="Formatted-Output.html">Formatted Output</a>).
+</p>
+<p>Programming Notes:
+</p>
+<p>For <small>MATLAB</small> compatibility, leading spaces are stripped before returning
+the string.
+</p>
+<p>Integers larger than <code>flintmax</code> may not be displayed correctly.
+</p>
+<p>For complex <var>x</var>, the format string may only contain one output
+conversion specification and nothing else.  Otherwise, results will be
+unpredictable.
+</p>
+<p>Any optional <var>format</var> specified by the programmer is used without
+modification.  This is in contrast to <small>MATLAB</small> which tampers with the
+<var>format</var> based on internal heuristics.
+</p>
+<p><strong>See also:</strong> <a href="Formatted-Output.html#XREFsprintf">sprintf</a>, <a href="#XREFint2str">int2str</a>, <a href="#XREFmat2str">mat2str</a>.
+</p></dd></dl>
+
+
+<span id="XREFint2str"></span><dl class="def">
+<dt id="index-int2str"><span class="category">: </span><span><em></em> <strong>int2str</strong> <em>(<var>n</var>)</em><a href='#index-int2str' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert an integer (or array of integers) to a string (or a character
+array).
+</p>
+<div class="example">
+<pre class="example">int2str (123)
+  &rArr; 123
+
+s = int2str ([1, 2, 3; 4, 5, 6])
+  &rArr; s =
+        1  2  3
+        4  5  6
+
+whos s
+  &rArr; Variables in the current scope:
+        Attr Name        Size                     Bytes  Class
+        ==== ====        ====                     =====  =====
+             s           2x7                         14  char
+     Total is 14 elements using 14 bytes
+</pre></div>
+
+<p>This function is not very flexible.  For better control over the
+results, use <code>sprintf</code> (see <a href="Formatted-Output.html">Formatted Output</a>).
+</p>
+<p>Programming Notes:
+</p>
+<p>Non-integers are rounded to integers before display.  Only the real part
+of complex numbers is displayed.
+</p>
+
+<p><strong>See also:</strong> <a href="Formatted-Output.html#XREFsprintf">sprintf</a>, <a href="#XREFnum2str">num2str</a>, <a href="#XREFmat2str">mat2str</a>.
+</p></dd></dl>
+
+
+<span id="XREFstr2double"></span><dl class="def">
+<dt id="index-str2double"><span class="category">: </span><span><em></em> <strong>str2double</strong> <em>(<var>s</var>)</em><a href='#index-str2double' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert a string to a real or complex number.
+</p>
+<p>The string must be in one of the following formats where a and b are real
+numbers and the complex unit is <code>'i'</code> or <code>'j'</code>:
+</p>
+<ul>
+<li> a + bi
+
+</li><li> a + b*i
+
+</li><li> a + i*b
+
+</li><li> bi + a
+
+</li><li> b*i + a
+
+</li><li> i*b + a
+</li></ul>
+
+<p>If present, a and/or b are of the form [+-]d[,.]d[[eE][+-]d] where
+the brackets indicate optional arguments and <code>'d'</code> indicates zero or
+more digits.  The special input values <code>Inf</code>, <code>NaN</code>, and <code>NA</code>
+are also accepted.
+</p>
+<p><var>s</var> may be a character string, character matrix, or cell array.  For
+character arrays the conversion is repeated for every row, and a double or
+complex array is returned.  Empty rows in <var>s</var> are deleted and not
+returned in the numeric array.  For cell arrays each character string
+element is processed and a double or complex array of the same dimensions as
+<var>s</var> is returned.
+</p>
+<p>For unconvertible scalar or character string input <code>str2double</code> returns
+a NaN.  Similarly, for character array input <code>str2double</code> returns a
+NaN for any row of <var>s</var> that could not be converted.  For a cell array,
+<code>str2double</code> returns a NaN for any element of <var>s</var> for which
+conversion fails.  Note that numeric elements in a mixed string/numeric
+cell array are not strings and the conversion will fail for these elements
+and return NaN.
+</p>
+<p><code>str2double</code> can replace <code>str2num</code>, and it avoids the security
+risk of using <code>eval</code> on unknown data.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstr2num">str2num</a>.
+</p></dd></dl>
+
+
+<span id="XREFstr2num"></span><dl class="def">
+<dt id="index-str2num"><span class="category">: </span><span><em><var>x</var> =</em> <strong>str2num</strong> <em>(<var>s</var>)</em><a href='#index-str2num' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-str2num-1"><span class="category">: </span><span><em>[<var>x</var>, <var>state</var>] =</em> <strong>str2num</strong> <em>(<var>s</var>)</em><a href='#index-str2num-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert the string (or character array) <var>s</var> to a number (or an array).
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">str2num (&quot;3.141596&quot;)
+      &rArr; 3.141596
+
+str2num ([&quot;1, 2, 3&quot;; &quot;4, 5, 6&quot;])
+      &rArr; 1  2  3
+         4  5  6
+</pre></div>
+
+<p>The optional second output, <var>state</var>, is logically true when the
+conversion is successful.  If the conversion fails the numeric output,
+<var>x</var>, is empty and <var>state</var> is false.
+</p>
+<p><strong>Caution:</strong> As <code>str2num</code> uses the <code>eval</code> function to do the
+conversion, <code>str2num</code> will execute any code contained in the string
+<var>s</var>.  Use <code>str2double</code> for a safer and faster conversion.
+</p>
+<p>For cell array of strings use <code>str2double</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstr2double">str2double</a>, <a href="Evaluation.html#XREFeval">eval</a>.
+</p></dd></dl>
+
+
+<span id="XREFbin2dec"></span><dl class="def">
+<dt id="index-bin2dec"><span class="category">: </span><span><em></em> <strong>bin2dec</strong> <em>(<var>s</var>)</em><a href='#index-bin2dec' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the decimal number corresponding to the binary number represented
+by the string <var>s</var>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">bin2dec (&quot;1110&quot;)
+     &rArr; 14
+</pre></div>
+
+<p>Spaces are ignored during conversion and may be used to make the binary
+number more readable.
+</p>
+<div class="example">
+<pre class="example">bin2dec (&quot;1000 0001&quot;)
+     &rArr; 129
+</pre></div>
+
+<p>If <var>s</var> is a string matrix, return a column vector with one converted
+number per row of <var>s</var>; Invalid rows evaluate to NaN.
+</p>
+<p>If <var>s</var> is a cell array of strings, return a column vector with one
+converted number per cell element in <var>s</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdec2bin">dec2bin</a>, <a href="#XREFbase2dec">base2dec</a>, <a href="#XREFhex2dec">hex2dec</a>.
+</p></dd></dl>
+
+
+<span id="XREFdec2bin"></span><dl class="def">
+<dt id="index-dec2bin"><span class="category">: </span><span><em></em> <strong>dec2bin</strong> <em>(<var>d</var>)</em><a href='#index-dec2bin' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dec2bin-1"><span class="category">: </span><span><em></em> <strong>dec2bin</strong> <em>(<var>d</var>, <var>len</var>)</em><a href='#index-dec2bin-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a string of ones and zeros representing the conversion of the integer
+<var>d</var> to a binary number.
+</p>
+<p>If <var>d</var> is negative, return the two&rsquo;s complement binary value of <var>d</var>.
+If <var>d</var> is a matrix or cell array, return a string matrix with one row
+for each element in <var>d</var>, padded with leading zeros to the width of the
+largest value.
+</p>
+<p>The optional second argument, <var>len</var>, specifies the minimum number of
+digits in the result.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">dec2bin (14)
+     &rArr; &quot;1110&quot;
+
+dec2bin (-14)
+     &rArr; &quot;11110010&quot;
+</pre></div>
+
+<p>Programming Notes: The largest negative value that can be converted into
+two&rsquo;s complement is <code>- (flintmax () / 2)</code>.
+</p>
+<p>Known <small>MATLAB</small> Incompatibility: <small>MATLAB</small>&rsquo;s <code>dec2bin</code> allows
+non-integer values for <var>d</var>, truncating the value using the equivalent
+of <code>fix (<var>d</var>)</code> for positive values, but, as of R2020b and in
+conflict with published documentation, appears to use
+<code>round (<var>d</var>)</code> for negative values.  To be consistent with
+<code>dec2hex</code> and <code>dec2base</code>, Octave produces an error for non-integer
+valued inputs for <var>d</var>.  Users wanting compatible code for non-integer
+valued inputs should make use of <code>fix</code> or <code>round</code> as appropriate.
+</p>
+<p><strong>See also:</strong> <a href="#XREFbin2dec">bin2dec</a>, <a href="#XREFdec2base">dec2base</a>, <a href="#XREFdec2hex">dec2hex</a>.
+</p></dd></dl>
+
+
+<span id="XREFdec2hex"></span><dl class="def">
+<dt id="index-dec2hex"><span class="category">: </span><span><em></em> <strong>dec2hex</strong> <em>(<var>d</var>)</em><a href='#index-dec2hex' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dec2hex-1"><span class="category">: </span><span><em></em> <strong>dec2hex</strong> <em>(<var>d</var>, <var>len</var>)</em><a href='#index-dec2hex-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a string representing the conversion of the integer <var>d</var> to a
+hexadecimal (base16) number.
+</p>
+<p>If <var>d</var> is negative, return the hexadecimal equivalent of the two&rsquo;s
+complement binary value of <var>d</var>.
+If <var>d</var> is a matrix or cell array, return a string matrix with one row
+for each element in <var>d</var>, padded with leading zeros to the width of the
+largest value.
+</p>
+<p>The optional second argument, <var>len</var>, specifies the minimum number of
+digits in the result.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">dec2hex (2748)
+     &rArr; &quot;ABC&quot;
+
+dec2hex (-2)
+     &rArr; &quot;FE&quot;
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFhex2dec">hex2dec</a>, <a href="#XREFdec2base">dec2base</a>, <a href="#XREFdec2bin">dec2bin</a>.
+</p></dd></dl>
+
+
+<span id="XREFhex2dec"></span><dl class="def">
+<dt id="index-hex2dec"><span class="category">: </span><span><em></em> <strong>hex2dec</strong> <em>(<var>s</var>)</em><a href='#index-hex2dec' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the integer corresponding to the hexadecimal number represented by
+the string <var>s</var>.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">hex2dec (&quot;12B&quot;)
+      &rArr; 299
+hex2dec (&quot;12b&quot;)
+      &rArr; 299
+</pre></div>
+
+<p>If <var>s</var> is a string matrix, return a column vector with one converted
+number per row of <var>s</var>; Invalid rows evaluate to NaN.
+</p>
+<p>If <var>s</var> is a cell array of strings, return a column vector with one
+converted number per cell element in <var>s</var>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFdec2hex">dec2hex</a>, <a href="#XREFbase2dec">base2dec</a>, <a href="#XREFbin2dec">bin2dec</a>.
+</p></dd></dl>
+
+
+<span id="XREFdec2base"></span><dl class="def">
+<dt id="index-dec2base"><span class="category">: </span><span><em></em> <strong>dec2base</strong> <em>(<var>d</var>, <var>base</var>)</em><a href='#index-dec2base' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-dec2base-1"><span class="category">: </span><span><em></em> <strong>dec2base</strong> <em>(<var>d</var>, <var>base</var>, <var>len</var>)</em><a href='#index-dec2base-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a string of symbols in base <var>base</var> corresponding to the
+non-negative integer <var>d</var>.
+</p>
+<div class="example">
+<pre class="example">dec2base (123, 3)
+   &rArr; &quot;11120&quot;
+</pre></div>
+
+<p>If <var>d</var> is a matrix or cell array, return a string matrix with one row
+per element in <var>d</var>, padded with leading zeros to the width of the
+largest value.
+</p>
+<p>If <var>base</var> is a string then the characters of <var>base</var> are used as
+the symbols for the digits of <var>d</var>.  Whitespace (spaces, tabs, newlines,
+, etc.) may not be used as a symbol.
+</p>
+<div class="example">
+<pre class="example">dec2base (123, &quot;aei&quot;)
+   &rArr; &quot;eeeia&quot;
+</pre></div>
+
+<p>The optional third argument, <var>len</var>, specifies the minimum number of
+digits in the result.
+</p>
+<p><strong>See also:</strong> <a href="#XREFbase2dec">base2dec</a>, <a href="#XREFdec2bin">dec2bin</a>, <a href="#XREFdec2hex">dec2hex</a>.
+</p></dd></dl>
+
+
+<span id="XREFbase2dec"></span><dl class="def">
+<dt id="index-base2dec"><span class="category">: </span><span><em></em> <strong>base2dec</strong> <em>(<var>s</var>, <var>base</var>)</em><a href='#index-base2dec' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert <var>s</var> from a string of digits in base <var>base</var> to a decimal
+integer (base 10).
+</p>
+<div class="example">
+<pre class="example">base2dec (&quot;11120&quot;, 3)
+   &rArr; 123
+</pre></div>
+
+<p>If <var>s</var> is a string matrix, return a column vector with one value per
+row of <var>s</var>.  If a row contains invalid symbols then the corresponding
+value will be NaN.
+</p>
+<p>If <var>s</var> is a cell array of strings, return a column vector with one
+value per cell element in <var>s</var>.
+</p>
+<p>If <var>base</var> is a string, the characters of <var>base</var> are used as the
+symbols for the digits of <var>s</var>.  Space (&rsquo; &rsquo;) may not be used as a symbol.
+</p>
+<div class="example">
+<pre class="example">base2dec (&quot;yyyzx&quot;, &quot;xyz&quot;)
+   &rArr; 123
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFdec2base">dec2base</a>, <a href="#XREFbin2dec">bin2dec</a>, <a href="#XREFhex2dec">hex2dec</a>.
+</p></dd></dl>
+
+
+<span id="XREFnum2hex"></span><dl class="def">
+<dt id="index-num2hex"><span class="category">: </span><span><em><var>s</var> =</em> <strong>num2hex</strong> <em>(<var>n</var>)</em><a href='#index-num2hex' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-num2hex-1"><span class="category">: </span><span><em><var>s</var> =</em> <strong>num2hex</strong> <em>(<var>n</var>, &quot;cell&quot;)</em><a href='#index-num2hex-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert a numeric array to an array of hexadecimal strings.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">num2hex ([-1, 1, e, Inf])
+&rArr; &quot;bff0000000000000
+    3ff0000000000000
+    4005bf0a8b145769
+    7ff0000000000000&quot;
+</pre></div>
+
+<p>If the argument <var>n</var> is a single precision number or vector, the returned
+string has a length of 8.  For example:
+</p>
+<div class="example">
+<pre class="example">num2hex (single ([-1, 1, e, Inf]))
+&rArr; &quot;bf800000
+    3f800000
+    402df854
+    7f800000&quot;
+</pre></div>
+
+<p>With the optional second argument <code>&quot;cell&quot;</code>, return a cell array of
+strings instead of a character array.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhex2num">hex2num</a>, <a href="#XREFhex2dec">hex2dec</a>, <a href="#XREFdec2hex">dec2hex</a>.
+</p></dd></dl>
+
+
+<span id="XREFhex2num"></span><dl class="def">
+<dt id="index-hex2num"><span class="category">: </span><span><em><var>n</var> =</em> <strong>hex2num</strong> <em>(<var>s</var>)</em><a href='#index-hex2num' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hex2num-1"><span class="category">: </span><span><em><var>n</var> =</em> <strong>hex2num</strong> <em>(<var>s</var>, <var>class</var>)</em><a href='#index-hex2num-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Typecast a hexadecimal character array or cell array of strings to an
+array of numbers.
+</p>
+<p>By default, the input array is interpreted as a hexadecimal number
+representing a double precision value.  If fewer than 16 characters are
+given the strings are right padded with <code>'0'</code> characters.
+</p>
+<p>Given a string matrix, <code>hex2num</code> treats each row as a separate number.
+</p>
+<div class="example">
+<pre class="example">hex2num ([&quot;4005bf0a8b145769&quot;; &quot;4024000000000000&quot;])
+   &rArr; [2.7183; 10.000]
+</pre></div>
+
+<p>The optional second argument <var>class</var> may be used to cause the input
+array to be interpreted as a different value type.  Possible values are
+</p>
+<table>
+<thead><tr><th>Option</th><th>Characters</th></tr></thead>
+<tr><td><code>&quot;int8&quot;</code></td><td>2</td></tr>
+<tr><td><code>&quot;uint8&quot;</code></td><td>2</td></tr>
+<tr><td><code>&quot;int16&quot;</code></td><td>4</td></tr>
+<tr><td><code>&quot;uint16&quot;</code></td><td>4</td></tr>
+<tr><td><code>&quot;int32&quot;</code></td><td>8</td></tr>
+<tr><td><code>&quot;uint32&quot;</code></td><td>8</td></tr>
+<tr><td><code>&quot;int64&quot;</code></td><td>16</td></tr>
+<tr><td><code>&quot;uint64&quot;</code></td><td>16</td></tr>
+<tr><td><code>&quot;char&quot;</code></td><td>2</td></tr>
+<tr><td><code>&quot;single&quot;</code></td><td>8</td></tr>
+<tr><td><code>&quot;double&quot;</code></td><td>16</td></tr>
+</table>
+
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">hex2num ([&quot;402df854&quot;; &quot;41200000&quot;], &quot;single&quot;)
+   &rArr; [2.7183; 10.000]
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFnum2hex">num2hex</a>, <a href="#XREFhex2dec">hex2dec</a>, <a href="#XREFdec2hex">dec2hex</a>.
+</p></dd></dl>
+
+
+<span id="XREFstrread"></span><dl class="def">
+<dt id="index-strread"><span class="category">: </span><span><em>[<var>a</var>, &hellip;] =</em> <strong>strread</strong> <em>(<var>str</var>)</em><a href='#index-strread' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strread-1"><span class="category">: </span><span><em>[<var>a</var>, &hellip;] =</em> <strong>strread</strong> <em>(<var>str</var>, <var>format</var>)</em><a href='#index-strread-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strread-2"><span class="category">: </span><span><em>[<var>a</var>, &hellip;] =</em> <strong>strread</strong> <em>(<var>str</var>, <var>format</var>, <var>format_repeat</var>)</em><a href='#index-strread-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strread-3"><span class="category">: </span><span><em>[<var>a</var>, &hellip;] =</em> <strong>strread</strong> <em>(<var>str</var>, <var>format</var>, <var>prop1</var>, <var>value1</var>, &hellip;)</em><a href='#index-strread-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strread-4"><span class="category">: </span><span><em>[<var>a</var>, &hellip;] =</em> <strong>strread</strong> <em>(<var>str</var>, <var>format</var>, <var>format_repeat</var>, <var>prop1</var>, <var>value1</var>, &hellip;)</em><a href='#index-strread-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>This function is obsolete.  Use <code>textscan</code> instead.
+</p>
+<p>Read data from a string.
+</p>
+<p>The string <var>str</var> is split into words that are repeatedly matched to the
+specifiers in <var>format</var>.  The first word is matched to the first
+specifier, the second to the second specifier and so forth.  If there are
+more words than specifiers, the process is repeated until all words have
+been processed.
+</p>
+<p>The string <var>format</var> describes how the words in <var>str</var> should be
+parsed.  It may contain any combination of the following specifiers:
+</p>
+<dl compact="compact">
+<dt><span><code>%s</code></span></dt>
+<dd><p>The word is parsed as a string.
+</p>
+</dd>
+<dt><span><code>%f</code></span></dt>
+<dt><span><code>%n</code></span></dt>
+<dd><p>The word is parsed as a number and converted to double.
+</p>
+</dd>
+<dt><span><code>%d</code></span></dt>
+<dt><span><code>%u</code></span></dt>
+<dd><p>The word is parsed as a number and converted to int32.
+</p>
+</dd>
+<dt><span><code>%*</code></span></dt>
+<dt><span><code>%*f</code></span></dt>
+<dt><span><code>%*s</code></span></dt>
+<dd><p>The word is skipped.
+</p>
+<p>For %s and %d, %f, %n, %u and the associated %*s &hellip; specifiers an
+optional width can be specified as %Ns, etc. where N is an integer &gt; 1.
+For %f, format specifiers like %N.Mf are allowed.
+</p>
+</dd>
+<dt><span><code>literals</code></span></dt>
+<dd><p>In addition the format may contain literal character strings; these will be
+skipped during reading.
+</p></dd>
+</dl>
+
+<p>Parsed word corresponding to the first specifier are returned in the first
+output argument and likewise for the rest of the specifiers.
+</p>
+<p>By default, <var>format</var> is <tt>&quot;%f&quot;</tt>, meaning that numbers are read from
+<var>str</var>.  This will do if <var>str</var> contains only numeric fields.
+</p>
+<p>For example, the string
+</p>
+<div class="example">
+<pre class="example"><var>str</var> = &quot;\
+Bunny Bugs   5.5\n\
+Duck Daffy  -7.5e-5\n\
+Penguin Tux   6&quot;
+</pre></div>
+
+<p>can be read using
+</p>
+<div class="example">
+<pre class="example">[<var>a</var>, <var>b</var>, <var>c</var>] = strread (<var>str</var>, &quot;%s %s %f&quot;);
+</pre></div>
+
+<p>Optional numeric argument <var>format_repeat</var> can be used for limiting the
+number of items read:
+</p>
+<dl compact="compact">
+<dt><span>-1</span></dt>
+<dd><p>(default) read all of the string until the end.
+</p>
+</dd>
+<dt><span>N</span></dt>
+<dd><p>Read N times <var>nargout</var> items.  0 (zero) is an acceptable value for
+<var>format_repeat</var>.
+</p></dd>
+</dl>
+
+<p>The behavior of <code>strread</code> can be changed via property-value pairs.  The
+following properties are recognized:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;commentstyle&quot;</code></span></dt>
+<dd><p>Parts of <var>str</var> are considered comments and will be skipped.
+<var>value</var> is the comment style and can be any of the following.
+</p>
+<ul>
+<li> <code>&quot;shell&quot;</code>
+Everything from <code>#</code> characters to the nearest end-of-line is skipped.
+
+</li><li> <code>&quot;c&quot;</code>
+Everything between <code>/*</code> and <code>*/</code> is skipped.
+
+</li><li> <code>&quot;c++&quot;</code>
+Everything from <code>//</code> characters to the nearest end-of-line is skipped.
+
+</li><li> <code>&quot;matlab&quot;</code>
+Everything from <code>%</code> characters to the nearest end-of-line is skipped.
+
+</li><li> user-supplied.  Two options:
+(1) One string, or 1x1 cell string: Skip everything to the right of it;
+(2) 2x1 cell string array: Everything between the left and right strings
+is skipped.
+</li></ul>
+
+</dd>
+<dt><span><code>&quot;delimiter&quot;</code></span></dt>
+<dd><p>Any character in <var>value</var> will be used to split <var>str</var> into words
+(default value = any whitespace).  Note that whitespace is implicitly added
+to the set of delimiter characters unless a <code>&quot;%s&quot;</code> format conversion
+specifier is supplied; see <code>&quot;whitespace&quot;</code> parameter below.  The set
+of delimiter characters cannot be empty; if needed Octave substitutes a
+space as delimiter.
+</p>
+</dd>
+<dt><span><code>&quot;emptyvalue&quot;</code></span></dt>
+<dd><p>Value to return for empty numeric values in non-whitespace delimited data.
+The default is NaN.  When the data type does not support NaN (int32 for
+example), then default is zero.
+</p>
+</dd>
+<dt><span><code>&quot;multipledelimsasone&quot;</code></span></dt>
+<dd><p>Treat a series of consecutive delimiters, without whitespace in between,
+as a single delimiter.  Consecutive delimiter series need not be vertically
+<code>&quot;aligned&quot;</code>.
+</p>
+</dd>
+<dt><span><code>&quot;treatasempty&quot;</code></span></dt>
+<dd><p>Treat single occurrences (surrounded by delimiters or whitespace) of the
+string(s) in <var>value</var> as missing values.
+</p>
+</dd>
+<dt><span><code>&quot;returnonerror&quot;</code></span></dt>
+<dd><p>If <var>value</var> true (1, default), ignore read errors and return normally.
+If false (0), return an error.
+</p>
+</dd>
+<dt><span><code>&quot;whitespace&quot;</code></span></dt>
+<dd><p>Any character in <var>value</var> will be interpreted as whitespace and trimmed;
+the string defining whitespace must be enclosed in double quotes for proper
+processing of special characters like <code>&quot;\t&quot;</code>.  In
+each data field, multiple consecutive whitespace characters are collapsed
+into one space and leading and trailing whitespace is removed.  The default
+value for whitespace is
+<code>&quot;
+\b\r\n\t&quot;</code>
+(note the space).  Whitespace is always added to the set of delimiter
+characters unless at least one <code>&quot;%s&quot;</code> format conversion specifier is
+supplied; in that case only whitespace explicitly specified in
+<code>&quot;delimiter&quot;</code> is retained as delimiter and removed from the set of
+whitespace characters.  If whitespace characters are to be kept as-is (in
+e.g., strings), specify an empty value (i.e., <code>&quot;&quot;</code>) for
+<code>&quot;whitespace&quot;</code>; obviously, whitespace cannot be a delimiter then.
+</p>
+</dd>
+</dl>
+
+<p>When the number of words in <var>str</var> doesn&rsquo;t match an exact multiple of
+the number of format conversion specifiers, strread&rsquo;s behavior depends on
+the last character of <var>str</var>:
+</p>
+<dl compact="compact">
+<dt><span>last character = <code>&quot;\n&quot;</code></span></dt>
+<dd><p>Data columns are padded with empty fields or NaN so that all columns have
+equal length
+</p>
+</dd>
+<dt><span>last character is not <code>&quot;\n&quot;</code></span></dt>
+<dd><p>Data columns are not padded; strread returns columns of unequal length
+</p>
+</dd>
+</dl>
+
+
+<p><strong>See also:</strong> <a href="Simple-File-I_002fO.html#XREFtextscan">textscan</a>, <a href="Formatted-Input.html#XREFsscanf">sscanf</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="JSON-data-encoding_002fdecoding.html">JSON data encoding/decoding</a>, Previous: <a href="String-encoding.html">String encoding</a>, Up: <a href="Converting-Strings.html">Converting Strings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

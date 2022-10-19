@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Operator Precedence (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Operator Precedence (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Operator Precedence (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Expressions.html" rel="up" title="Expressions">
+<link href="Increment-Ops.html" rel="prev" title="Increment Ops">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Operator-Precedence">
+<div class="header">
+<p>
+Previous: <a href="Increment-Ops.html" accesskey="p" rel="prev">Increment Operators</a>, Up: <a href="Expressions.html" accesskey="u" rel="up">Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Operator-Precedence-1"></span><h3 class="section">8.8 Operator Precedence</h3>
+<span id="index-operator-precedence"></span>
+
+<p><em>Operator precedence</em> determines how operators are grouped, when
+different operators appear close by in one expression.  For example,
+&lsquo;<samp>*</samp>&rsquo; has higher precedence than &lsquo;<samp>+</samp>&rsquo;.  Thus, the expression
+<code>a + b * c</code> means to multiply <code>b</code> and <code>c</code>, and then add
+<code>a</code> to the product (i.e., <code>a + (b * c)</code>).
+</p>
+<p>You can overrule the precedence of the operators by using parentheses.
+You can think of the precedence rules as saying where the parentheses
+are assumed if you do not write parentheses yourself.  In fact, it is
+wise to use parentheses whenever you have an unusual combination of
+operators, because other people who read the program may not remember
+what the precedence is in this case.  You might forget as well, and then
+you too could make a mistake.  Explicit parentheses will help prevent
+any such mistake.
+</p>
+<p>When operators of equal precedence are used together, the leftmost
+operator groups first, except for the assignment operators, which group
+in the opposite order.  Thus, the expression <code>a - b + c</code> groups as
+<code>(a - b) + c</code>, but the expression <code>a = b = c</code> groups as
+<code>a = (b = c)</code>.
+</p>
+<p>The precedence of prefix unary operators is important when another
+operator follows the operand.  For example, <code>-x^2</code> means
+<code>-(x^2)</code>, because &lsquo;<samp>-</samp>&rsquo; has lower precedence than &lsquo;<samp>^</samp>&rsquo;.
+</p>
+<p>Here is a table of the operators in Octave, in order of decreasing
+precedence.  Unless noted, all operators group left to right.
+</p>
+<dl compact="compact">
+<dt><span><code>function call and array indexing, cell array indexing, and structure element indexing</code></span></dt>
+<dd><p>&lsquo;<samp>()</samp>&rsquo;  &lsquo;<samp>{}</samp>&rsquo; &lsquo;<samp>.</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>postfix increment, and postfix decrement</code></span></dt>
+<dd><p>&lsquo;<samp>++</samp>&rsquo;  &lsquo;<samp>--</samp>&rsquo;
+</p>
+<p>These operators group right to left.
+</p>
+</dd>
+<dt><span><code>transpose and exponentiation</code></span></dt>
+<dd><p>&lsquo;<samp>'</samp>&rsquo; &lsquo;<samp>.'</samp>&rsquo; &lsquo;<samp>^</samp>&rsquo; &lsquo;<samp>.^</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>unary plus, unary minus, prefix increment, prefix decrement, and logical &quot;not&quot;</code></span></dt>
+<dd><p>&lsquo;<samp>+</samp>&rsquo; &lsquo;<samp>-</samp>&rsquo; &lsquo;<samp>++</samp>&rsquo;  &lsquo;<samp>--</samp>&rsquo; &lsquo;<samp>~</samp>&rsquo; &lsquo;<samp>!</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>multiply and divide</code></span></dt>
+<dd><p>&lsquo;<samp>*</samp>&rsquo; &lsquo;<samp>/</samp>&rsquo; &lsquo;<samp>\</samp>&rsquo; &lsquo;<samp>.\</samp>&rsquo; &lsquo;<samp>.*</samp>&rsquo; &lsquo;<samp>./</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>add, subtract</code></span></dt>
+<dd><p>&lsquo;<samp>+</samp>&rsquo; &lsquo;<samp>-</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>colon</code></span></dt>
+<dd><p>&lsquo;<samp>:</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>relational</code></span></dt>
+<dd><p>&lsquo;<samp>&lt;</samp>&rsquo; &lsquo;<samp>&lt;=</samp>&rsquo; &lsquo;<samp>==</samp>&rsquo; &lsquo;<samp>&gt;=</samp>&rsquo; &lsquo;<samp>&gt;</samp>&rsquo; &lsquo;<samp>!=</samp>&rsquo; &lsquo;<samp>~=</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>element-wise &quot;and&quot;</code></span></dt>
+<dd><p>&lsquo;<samp>&amp;</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>element-wise &quot;or&quot;</code></span></dt>
+<dd><p>&lsquo;<samp>|</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>logical &quot;and&quot;</code></span></dt>
+<dd><p>&lsquo;<samp>&amp;&amp;</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>logical &quot;or&quot;</code></span></dt>
+<dd><p>&lsquo;<samp>||</samp>&rsquo;
+</p>
+</dd>
+<dt><span><code>assignment</code></span></dt>
+<dd><p>&lsquo;<samp>=</samp>&rsquo; &lsquo;<samp>+=</samp>&rsquo; &lsquo;<samp>-=</samp>&rsquo; &lsquo;<samp>*=</samp>&rsquo; &lsquo;<samp>/=</samp>&rsquo; &lsquo;<samp>\=</samp>&rsquo;
+&lsquo;<samp>^=</samp>&rsquo; &lsquo;<samp>.*=</samp>&rsquo; &lsquo;<samp>./=</samp>&rsquo; &lsquo;<samp>.\=</samp>&rsquo; &lsquo;<samp>.^=</samp>&rsquo; &lsquo;<samp>|=</samp>&rsquo;
+&lsquo;<samp>&amp;=</samp>&rsquo;
+</p>
+<p>These operators group right to left.
+</p></dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Increment-Ops.html">Increment Operators</a>, Up: <a href="Expressions.html">Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

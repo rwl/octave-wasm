@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Table of Input Conversions (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Table of Input Conversions (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Table of Input Conversions (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="C_002dStyle-I_002fO-Functions.html" rel="up" title="C-Style I/O Functions">
+<link href="Numeric-Input-Conversions.html" rel="next" title="Numeric Input Conversions">
+<link href="Input-Conversion-Syntax.html" rel="prev" title="Input Conversion Syntax">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Table-of-Input-Conversions">
+<div class="header">
+<p>
+Next: <a href="Numeric-Input-Conversions.html" accesskey="n" rel="next">Numeric Input Conversions</a>, Previous: <a href="Input-Conversion-Syntax.html" accesskey="p" rel="prev">Input Conversion Syntax</a>, Up: <a href="C_002dStyle-I_002fO-Functions.html" accesskey="u" rel="up">C-Style I/O Functions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Table-of-Input-Conversions-1"></span><h4 class="subsection">14.2.13 Table of Input Conversions</h4>
+<span id="index-input-conversions_002c-for-scanf"></span>
+
+<p>Here is a table that summarizes the various conversion specifications:
+</p>
+<dl compact="compact">
+<dt><span>&lsquo;<samp>%d</samp>&rsquo;</span></dt>
+<dd><p>Matches an optionally signed integer written in decimal.  See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%i</samp>&rsquo;</span></dt>
+<dd><p>Matches an optionally signed integer in any of the formats that the C
+language defines for specifying an integer constant.  See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%o</samp>&rsquo;</span></dt>
+<dd><p>Matches an unsigned integer written in octal radix.
+See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%u</samp>&rsquo;</span></dt>
+<dd><p>Matches an unsigned integer written in decimal radix.
+See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%x</samp>&rsquo;, &lsquo;<samp>%X</samp>&rsquo;</span></dt>
+<dd><p>Matches an unsigned integer written in hexadecimal radix.
+See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%e</samp>&rsquo;, &lsquo;<samp>%f</samp>&rsquo;, &lsquo;<samp>%g</samp>&rsquo;, &lsquo;<samp>%E</samp>&rsquo;, &lsquo;<samp>%G</samp>&rsquo;</span></dt>
+<dd><p>Matches an optionally signed floating-point number.  See <a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%s</samp>&rsquo;</span></dt>
+<dd><p>Matches a string containing only non-whitespace characters.
+See <a href="String-Input-Conversions.html">String Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%c</samp>&rsquo;</span></dt>
+<dd><p>Matches a string of one or more characters; the number of characters
+read is controlled by the maximum field width given for the conversion.
+See <a href="String-Input-Conversions.html">String Input Conversions</a>.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>%%</samp>&rsquo;</span></dt>
+<dd><p>This matches a literal &lsquo;<samp>%</samp>&rsquo; character in the input stream.  No
+corresponding argument is used.
+</p></dd>
+</dl>
+
+<p>If the syntax of a conversion specification is invalid, the behavior is
+undefined.  If there aren&rsquo;t enough function arguments provided to supply
+addresses for all the conversion specifications in the template strings
+that perform assignments, or if the arguments are not of the correct
+types, the behavior is also undefined.  On the other hand, extra
+arguments are simply ignored.
+</p>
+</div>
+
+
+
+</body>
+</html>

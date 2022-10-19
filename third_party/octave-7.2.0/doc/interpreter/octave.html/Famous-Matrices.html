@@ -1,0 +1,739 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Famous Matrices (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Famous Matrices (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Famous Matrices (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Matrix-Manipulation.html" rel="up" title="Matrix Manipulation">
+<link href="Special-Utility-Matrices.html" rel="prev" title="Special Utility Matrices">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Famous-Matrices">
+<div class="header">
+<p>
+Previous: <a href="Special-Utility-Matrices.html" accesskey="p" rel="prev">Special Utility Matrices</a>, Up: <a href="Matrix-Manipulation.html" accesskey="u" rel="up">Matrix Manipulation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Famous-Matrices-1"></span><h3 class="section">16.4 Famous Matrices</h3>
+
+<p>The following functions return famous matrix forms.
+</p>
+<span id="XREFgallery"></span><dl class="def">
+<dt id="index-gallery"><span class="category">: </span><span><em></em> <strong>gallery</strong> <em>(<var>name</var>)</em><a href='#index-gallery' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-1"><span class="category">: </span><span><em></em> <strong>gallery</strong> <em>(<var>name</var>, <var>args</var>)</em><a href='#index-gallery-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create interesting matrices for testing.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-2"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;cauchy&quot;, <var>x</var>)</em><a href='#index-gallery-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-3"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;cauchy&quot;, <var>x</var>, <var>y</var>)</em><a href='#index-gallery-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Cauchy matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-4"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;chebspec&quot;, <var>n</var>)</em><a href='#index-gallery-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-5"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;chebspec&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Chebyshev spectral differentiation matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-6"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;chebvand&quot;, <var>p</var>)</em><a href='#index-gallery-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-7"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;chebvand&quot;, <var>m</var>, <var>p</var>)</em><a href='#index-gallery-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Vandermonde-like matrix for the Chebyshev polynomials.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-8"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;chow&quot;, <var>n</var>)</em><a href='#index-gallery-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-9"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;chow&quot;, <var>n</var>, <var>alpha</var>)</em><a href='#index-gallery-9' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-10"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;chow&quot;, <var>n</var>, <var>alpha</var>, <var>delta</var>)</em><a href='#index-gallery-10' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Chow matrix &ndash; a singular Toeplitz lower Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-11"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;circul&quot;, <var>v</var>)</em><a href='#index-gallery-11' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a circulant matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-12"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;clement&quot;, <var>n</var>)</em><a href='#index-gallery-12' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-13"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;clement&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-13' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix with zero diagonal entries.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-14"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;compar&quot;, <var>a</var>)</em><a href='#index-gallery-14' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-15"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;compar&quot;, <var>a</var>, <var>k</var>)</em><a href='#index-gallery-15' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a comparison matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-16"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;condex&quot;, <var>n</var>)</em><a href='#index-gallery-16' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-17"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;condex&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-17' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-18"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;condex&quot;, <var>n</var>, <var>k</var>, <var>theta</var>)</em><a href='#index-gallery-18' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a &quot;counterexample&quot; matrix to a condition estimator.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-19"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;cycol&quot;, [<var>m</var> <var>n</var>])</em><a href='#index-gallery-19' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-20"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;cycol&quot;, <var>n</var>)</em><a href='#index-gallery-20' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-21"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&hellip;, <var>k</var>)</em><a href='#index-gallery-21' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix whose columns repeat cyclically.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-22"><span class="category">: </span><span><em>[<var>c</var>, <var>d</var>, <var>e</var>] =</em> <strong>gallery</strong> <em>(&quot;dorr&quot;, <var>n</var>)</em><a href='#index-gallery-22' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-23"><span class="category">: </span><span><em>[<var>c</var>, <var>d</var>, <var>e</var>] =</em> <strong>gallery</strong> <em>(&quot;dorr&quot;, <var>n</var>, <var>theta</var>)</em><a href='#index-gallery-23' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-24"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;dorr&quot;, &hellip;)</em><a href='#index-gallery-24' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a diagonally dominant, ill-conditioned, tridiagonal matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-25"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;dramadah&quot;, <var>n</var>)</em><a href='#index-gallery-25' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-26"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;dramadah&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-26' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a (0, 1) matrix whose inverse has large integer entries.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-27"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;fiedler&quot;, <var>c</var>)</em><a href='#index-gallery-27' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a symmetric Fiedler matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-28"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;forsythe&quot;, <var>n</var>)</em><a href='#index-gallery-28' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-29"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;forsythe&quot;, <var>n</var>, <var>alpha</var>)</em><a href='#index-gallery-29' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-30"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;forsythe&quot;, <var>n</var>, <var>alpha</var>, <var>lambda</var>)</em><a href='#index-gallery-30' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Forsythe matrix (a perturbed Jordan block).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-31"><span class="category">: </span><span><em><var>f</var> =</em> <strong>gallery</strong> <em>(&quot;frank&quot;, <var>n</var>)</em><a href='#index-gallery-31' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-32"><span class="category">: </span><span><em><var>f</var> =</em> <strong>gallery</strong> <em>(&quot;frank&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-32' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Frank matrix (ill-conditioned eigenvalues).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-33"><span class="category">: </span><span><em><var>c</var> =</em> <strong>gallery</strong> <em>(&quot;gcdmat&quot;, <var>n</var>)</em><a href='#index-gallery-33' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a greatest common divisor matrix.
+</p>
+<p><var>c</var> is an <var>n</var>-by-<var>n</var> matrix whose values correspond to the
+greatest common divisor of its coordinate values, i.e., <var>c</var>(i,j)
+correspond <code>gcd (i, j)</code>.
+</p></dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-34"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;gearmat&quot;, <var>n</var>)</em><a href='#index-gallery-34' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-35"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;gearmat&quot;, <var>n</var>, <var>i</var>)</em><a href='#index-gallery-35' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-36"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;gearmat&quot;, <var>n</var>, <var>i</var>, <var>j</var>)</em><a href='#index-gallery-36' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Gear matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-37"><span class="category">: </span><span><em><var>g</var> =</em> <strong>gallery</strong> <em>(&quot;grcar&quot;, <var>n</var>)</em><a href='#index-gallery-37' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-38"><span class="category">: </span><span><em><var>g</var> =</em> <strong>gallery</strong> <em>(&quot;grcar&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-38' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Toeplitz matrix with sensitive eigenvalues.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-39"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;hanowa&quot;, <var>n</var>)</em><a href='#index-gallery-39' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-40"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;hanowa&quot;, <var>n</var>, <var>d</var>)</em><a href='#index-gallery-40' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix whose eigenvalues lie on a vertical line in the complex
+plane.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-41"><span class="category">: </span><span><em><var>v</var> =</em> <strong>gallery</strong> <em>(&quot;house&quot;, <var>x</var>)</em><a href='#index-gallery-41' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-42"><span class="category">: </span><span><em>[<var>v</var>, <var>beta</var>] =</em> <strong>gallery</strong> <em>(&quot;house&quot;, <var>x</var>)</em><a href='#index-gallery-42' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a householder matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-43"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;integerdata&quot;, <var>imax</var>, [<var>M</var> <var>N</var> &hellip;], <var>j</var>)</em><a href='#index-gallery-43' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-44"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;integerdata&quot;, <var>imax</var>, <var>M</var>, <var>N</var>, &hellip;, <var>j</var>)</em><a href='#index-gallery-44' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-45"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;integerdata&quot;, [<var>imin</var>, <var>imax</var>], [<var>M</var> <var>N</var> &hellip;], <var>j</var>)</em><a href='#index-gallery-45' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-46"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;integerdata&quot;, [<var>imin</var>, <var>imax</var>], <var>M</var>, <var>N</var>, &hellip;, <var>j</var>)</em><a href='#index-gallery-46' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-47"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;integerdata&quot;, &hellip;, &quot;<var>class</var>&quot;)</em><a href='#index-gallery-47' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix with random integers in the range [1, <var>imax</var>].
+If <var>imin</var> is given then the integers are in the range
+[<var>imin</var>, <var>imax</var>].
+</p>
+<p>The second input is a matrix of dimensions describing the size of the
+output.  The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var>j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var>j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var>class</var>: <code>&quot;uint8&quot;</code>, <code>&quot;uint16&quot;</code>,
+<code>&quot;uint32&quot;</code>, <code>&quot;int8&quot;</code>, <code>&quot;int16&quot;</code>, int32&quot;, <code>&quot;single&quot;</code>,
+<code>&quot;double&quot;</code>.  The default is <code>&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-48"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;invhess&quot;, <var>x</var>)</em><a href='#index-gallery-48' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-49"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;invhess&quot;, <var>x</var>, <var>y</var>)</em><a href='#index-gallery-49' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create the inverse of an upper Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-50"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;invol&quot;, <var>n</var>)</em><a href='#index-gallery-50' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create an involutory matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-51"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;ipjfact&quot;, <var>n</var>)</em><a href='#index-gallery-51' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-52"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;ipjfact&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-52' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Hankel matrix with factorial elements.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-53"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;jordbloc&quot;, <var>n</var>)</em><a href='#index-gallery-53' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-54"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;jordbloc&quot;, <var>n</var>, <var>lambda</var>)</em><a href='#index-gallery-54' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Jordan block.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-55"><span class="category">: </span><span><em><var>u</var> =</em> <strong>gallery</strong> <em>(&quot;kahan&quot;, <var>n</var>)</em><a href='#index-gallery-55' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-56"><span class="category">: </span><span><em><var>u</var> =</em> <strong>gallery</strong> <em>(&quot;kahan&quot;, <var>n</var>, <var>theta</var>)</em><a href='#index-gallery-56' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-57"><span class="category">: </span><span><em><var>u</var> =</em> <strong>gallery</strong> <em>(&quot;kahan&quot;, <var>n</var>, <var>theta</var>, <var>pert</var>)</em><a href='#index-gallery-57' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Kahan matrix (upper trapezoidal).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-58"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;kms&quot;, <var>n</var>)</em><a href='#index-gallery-58' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-59"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;kms&quot;, <var>n</var>, <var>rho</var>)</em><a href='#index-gallery-59' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Kac-Murdock-Szego Toeplitz matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-60"><span class="category">: </span><span><em><var>b</var> =</em> <strong>gallery</strong> <em>(&quot;krylov&quot;, <var>a</var>)</em><a href='#index-gallery-60' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-61"><span class="category">: </span><span><em><var>b</var> =</em> <strong>gallery</strong> <em>(&quot;krylov&quot;, <var>a</var>, <var>x</var>)</em><a href='#index-gallery-61' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-62"><span class="category">: </span><span><em><var>b</var> =</em> <strong>gallery</strong> <em>(&quot;krylov&quot;, <var>a</var>, <var>x</var>, <var>j</var>)</em><a href='#index-gallery-62' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Krylov matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-63"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;lauchli&quot;, <var>n</var>)</em><a href='#index-gallery-63' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-64"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;lauchli&quot;, <var>n</var>, <var>mu</var>)</em><a href='#index-gallery-64' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Lauchli matrix (rectangular).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-65"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;lehmer&quot;, <var>n</var>)</em><a href='#index-gallery-65' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Lehmer matrix (symmetric positive definite).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-66"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;lesp&quot;, <var>n</var>)</em><a href='#index-gallery-66' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix with real, sensitive eigenvalues.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-67"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;lotkin&quot;, <var>n</var>)</em><a href='#index-gallery-67' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Lotkin matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-68"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;minij&quot;, <var>n</var>)</em><a href='#index-gallery-68' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a symmetric positive definite matrix MIN(i,j).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-69"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;moler&quot;, <var>n</var>)</em><a href='#index-gallery-69' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-70"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;moler&quot;, <var>n</var>, <var>alpha</var>)</em><a href='#index-gallery-70' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Moler matrix (symmetric positive definite).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-71"><span class="category">: </span><span><em>[<var>a</var>, <var>t</var>] =</em> <strong>gallery</strong> <em>(&quot;neumann&quot;, <var>n</var>)</em><a href='#index-gallery-71' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a singular matrix from the discrete Neumann problem
+(sparse).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-72"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;normaldata&quot;, [<var>M</var> <var>N</var> &hellip;], <var>j</var>)</em><a href='#index-gallery-72' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-73"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;normaldata&quot;, <var>M</var>, <var>N</var>, &hellip;, <var>j</var>)</em><a href='#index-gallery-73' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-74"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;normaldata&quot;, &hellip;, &quot;<var>class</var>&quot;)</em><a href='#index-gallery-74' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix with random samples from the standard normal distribution
+(mean = 0, std = 1).
+</p>
+<p>The first input is a matrix of dimensions describing the size of the output.
+The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var>j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var>j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var>class</var>: <code>&quot;single&quot;</code>, <code>&quot;double&quot;</code>.
+The default is <code>&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-75"><span class="category">: </span><span><em><var>q</var> =</em> <strong>gallery</strong> <em>(&quot;orthog&quot;, <var>n</var>)</em><a href='#index-gallery-75' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-76"><span class="category">: </span><span><em><var>q</var> =</em> <strong>gallery</strong> <em>(&quot;orthog&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-76' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create orthogonal and nearly orthogonal matrices.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-77"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;parter&quot;, <var>n</var>)</em><a href='#index-gallery-77' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Parter matrix (a Toeplitz matrix with singular values
+near pi).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-78"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;pei&quot;, <var>n</var>)</em><a href='#index-gallery-78' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-79"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;pei&quot;, <var>n</var>, <var>alpha</var>)</em><a href='#index-gallery-79' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a Pei matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-80"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;poisson&quot;, <var>n</var>)</em><a href='#index-gallery-80' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a block tridiagonal matrix from Poisson&rsquo;s equation (sparse).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-81"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;prolate&quot;, <var>n</var>)</em><a href='#index-gallery-81' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-82"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;prolate&quot;, <var>n</var>, <var>w</var>)</em><a href='#index-gallery-82' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a prolate matrix (symmetric, ill-conditioned Toeplitz matrix).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-83"><span class="category">: </span><span><em><var>h</var> =</em> <strong>gallery</strong> <em>(&quot;randhess&quot;, <var>x</var>)</em><a href='#index-gallery-83' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a random, orthogonal upper Hessenberg matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-84"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;rando&quot;, <var>n</var>)</em><a href='#index-gallery-84' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-85"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;rando&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-85' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a random matrix with elements -1, 0 or 1.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-86"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;randsvd&quot;, <var>n</var>)</em><a href='#index-gallery-86' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-87"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;randsvd&quot;, <var>n</var>, <var>kappa</var>)</em><a href='#index-gallery-87' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-88"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;randsvd&quot;, <var>n</var>, <var>kappa</var>, <var>mode</var>)</em><a href='#index-gallery-88' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-89"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;randsvd&quot;, <var>n</var>, <var>kappa</var>, <var>mode</var>, <var>kl</var>)</em><a href='#index-gallery-89' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-90"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;randsvd&quot;, <var>n</var>, <var>kappa</var>, <var>mode</var>, <var>kl</var>, <var>ku</var>)</em><a href='#index-gallery-90' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a random matrix with pre-assigned singular values.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-91"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;redheff&quot;, <var>n</var>)</em><a href='#index-gallery-91' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a zero and ones matrix of Redheffer associated with the
+Riemann hypothesis.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-92"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;riemann&quot;, <var>n</var>)</em><a href='#index-gallery-92' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix associated with the Riemann hypothesis.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-93"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;ris&quot;, <var>n</var>)</em><a href='#index-gallery-93' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a symmetric Hankel matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-94"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;smoke&quot;, <var>n</var>)</em><a href='#index-gallery-94' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-95"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;smoke&quot;, <var>n</var>, <var>k</var>)</em><a href='#index-gallery-95' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a complex matrix, with a &quot;smoke ring&quot; pseudospectrum.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-96"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;toeppd&quot;, <var>n</var>)</em><a href='#index-gallery-96' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-97"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;toeppd&quot;, <var>n</var>, <var>m</var>)</em><a href='#index-gallery-97' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-98"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;toeppd&quot;, <var>n</var>, <var>m</var>, <var>w</var>)</em><a href='#index-gallery-98' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-99"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;toeppd&quot;, <var>n</var>, <var>m</var>, <var>w</var>, <var>theta</var>)</em><a href='#index-gallery-99' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a symmetric positive definite Toeplitz matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-100"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>)</em><a href='#index-gallery-100' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-101"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>, <var>a</var>)</em><a href='#index-gallery-101' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-102"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>, <var>a</var>, <var>b</var>)</em><a href='#index-gallery-102' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-103"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>, <var>a</var>, <var>b</var>, <var>c</var>)</em><a href='#index-gallery-103' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-104"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>, <var>a</var>, <var>b</var>, <var>c</var>, <var>d</var>)</em><a href='#index-gallery-104' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-105"><span class="category">: </span><span><em><var>p</var> =</em> <strong>gallery</strong> <em>(&quot;toeppen&quot;, <var>n</var>, <var>a</var>, <var>b</var>, <var>c</var>, <var>d</var>, <var>e</var>)</em><a href='#index-gallery-105' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a pentadiagonal Toeplitz matrix (sparse).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-106"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;tridiag&quot;, <var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-gallery-106' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-107"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;tridiag&quot;, <var>n</var>)</em><a href='#index-gallery-107' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-108"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;tridiag&quot;, <var>n</var>, <var>c</var>, <var>d</var>, <var>e</var>)</em><a href='#index-gallery-108' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a tridiagonal matrix (sparse).
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-109"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;triw&quot;, <var>n</var>)</em><a href='#index-gallery-109' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-110"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;triw&quot;, <var>n</var>, <var>alpha</var>)</em><a href='#index-gallery-110' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-111"><span class="category">: </span><span><em><var>t</var> =</em> <strong>gallery</strong> <em>(&quot;triw&quot;, <var>n</var>, <var>alpha</var>, <var>k</var>)</em><a href='#index-gallery-111' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create an upper triangular matrix discussed by
+Kahan, Golub, and Wilkinson.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-112"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;uniformdata&quot;, [<var>M</var> <var>N</var> &hellip;], <var>j</var>)</em><a href='#index-gallery-112' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-113"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;uniformdata&quot;, <var>M</var>, <var>N</var>, &hellip;, <var>j</var>)</em><a href='#index-gallery-113' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-114"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;uniformdata&quot;, &hellip;, &quot;<var>class</var>&quot;)</em><a href='#index-gallery-114' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create a matrix with random samples from the standard uniform distribution
+(range [0,1]).
+</p>
+<p>The first input is a matrix of dimensions describing the size of the output.
+The dimensions can also be input as comma-separated arguments.
+</p>
+<p>The input <var>j</var> is an integer index in the range [0, 2^32-1].  The values
+of the output matrix are always exactly the same (reproducibility) for a
+given size input and <var>j</var> index.
+</p>
+<p>The final optional argument determines the class of the resulting matrix.
+Possible values for <var>class</var>: <code>&quot;single&quot;</code>, <code>&quot;double&quot;</code>.
+The default is <code>&quot;double&quot;</code>.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-115"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;wathen&quot;, <var>nx</var>, <var>ny</var>)</em><a href='#index-gallery-115' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-gallery-116"><span class="category">: </span><span><em><var>a</var> =</em> <strong>gallery</strong> <em>(&quot;wathen&quot;, <var>nx</var>, <var>ny</var>, <var>k</var>)</em><a href='#index-gallery-116' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create the Wathen matrix.
+</p>
+</dd></dl>
+
+<dl class="def">
+<dt id="index-gallery-117"><span class="category">: </span><span><em>[<var>a</var>, <var>b</var>] =</em> <strong>gallery</strong> <em>(&quot;wilk&quot;, <var>n</var>)</em><a href='#index-gallery-117' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create various specific matrices devised/discussed by Wilkinson.
+</p>
+</dd></dl>
+
+
+<span id="XREFhadamard"></span><dl class="def">
+<dt id="index-hadamard"><span class="category">: </span><span><em></em> <strong>hadamard</strong> <em>(<var>n</var>)</em><a href='#index-hadamard' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Construct a Hadamard matrix (Hn) of size <var>n</var>-by-<var>n</var>.
+</p>
+<p>The size <var>n</var> must be of the form <em class='math'>2^k * p</em> in which p is one of
+1, 12, 20 or 28.  The returned matrix is normalized, meaning
+<code>Hn(:,1)&nbsp;==&nbsp;1</code><!-- /@w --> and <code>Hn(1,:)&nbsp;==&nbsp;1</code><!-- /@w -->.
+</p>
+<p>Some of the properties of Hadamard matrices are:
+</p>
+<ul>
+<li> <code>kron (Hm, Hn)</code> is a Hadamard matrix of size <var>m</var>-by-<var>n</var>.
+
+</li><li> <code>Hn * Hn' = <var>n</var> * eye (<var>n</var>)</code>.
+
+</li><li> The rows of Hn are orthogonal.
+
+</li><li> <code>det (<var>A</var>) &lt;= abs (det (Hn))</code> for all <var>A</var> with
+<code>abs&nbsp;(<var>A</var>(i,&nbsp;j))&nbsp;&lt;=&nbsp;1</code><!-- /@w -->.
+
+</li><li> Multiplying any row or column by -1 and the matrix will remain a Hadamard
+matrix.
+</li></ul>
+
+<p><strong>See also:</strong> <a href="Finding-Roots.html#XREFcompan">compan</a>, <a href="#XREFhankel">hankel</a>, <a href="#XREFtoeplitz">toeplitz</a>.
+</p></dd></dl>
+
+
+<span id="XREFhankel"></span><dl class="def">
+<dt id="index-hankel"><span class="category">: </span><span><em></em> <strong>hankel</strong> <em>(<var>c</var>)</em><a href='#index-hankel' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-hankel-1"><span class="category">: </span><span><em></em> <strong>hankel</strong> <em>(<var>c</var>, <var>r</var>)</em><a href='#index-hankel-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Hankel matrix constructed from the first column <var>c</var>, and
+(optionally) the last row <var>r</var>.
+</p>
+<p>If the last element of <var>c</var> is not the same as the first element of
+<var>r</var>, the last element of <var>c</var> is used.  If the second argument is
+omitted, it is assumed to be a vector of zeros with the same size as
+<var>c</var>.
+</p>
+<p>A Hankel matrix formed from an m-vector <var>c</var>, and an n-vector <var>r</var>,
+has the elements
+</p>
+<div class="example">
+<pre class="example">H(i,j) = c(i+j-1),  i+j-1 &lt;= m;
+H(i,j) = r(i+j-m),  otherwise
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFhadamard">hadamard</a>, <a href="#XREFtoeplitz">toeplitz</a>.
+</p></dd></dl>
+
+
+<span id="XREFhilb"></span><dl class="def">
+<dt id="index-hilb"><span class="category">: </span><span><em></em> <strong>hilb</strong> <em>(<var>n</var>)</em><a href='#index-hilb' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Hilbert matrix of order <var>n</var>.
+</p>
+<p>The <em class='math'>i,j</em> element of a Hilbert matrix is defined as
+</p>
+<div class="example">
+<pre class="example">H(i, j) = 1 / (i + j - 1)
+</pre></div>
+
+
+<p>Hilbert matrices are close to being singular which make them difficult to
+invert with numerical routines.  Comparing the condition number of a random
+matrix 5x5 matrix with that of a Hilbert matrix of order 5 reveals just how
+difficult the problem is.
+</p>
+<div class="example">
+<pre class="example">cond (rand (5))
+   &rArr; 14.392
+cond (hilb (5))
+   &rArr; 4.7661e+05
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFinvhilb">invhilb</a>.
+</p></dd></dl>
+
+
+<span id="XREFinvhilb"></span><dl class="def">
+<dt id="index-invhilb"><span class="category">: </span><span><em></em> <strong>invhilb</strong> <em>(<var>n</var>)</em><a href='#index-invhilb' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the inverse of the Hilbert matrix of order <var>n</var>.
+</p>
+<p>This can be computed exactly using
+</p>
+<div class="example">
+<pre class="example">
+
+           (i+j)         /n+i-1\  /n+j-1\   /i+j-2\ 2
+A(i,j) = -1      (i+j-1)(       )(       ) (       )
+                         \ n-j /  \ n-i /   \ i-2 /
+
+       = p(i) p(j) / (i+j-1)
+
+</pre></div>
+
+<p>where
+</p>
+<div class="example">
+<pre class="example">         k  /k+n-1\   /n\
+p(k) = -1  (       ) (   )
+            \ k-1 /   \k/
+</pre></div>
+
+<p>The validity of this formula can easily be checked by expanding the binomial
+coefficients in both formulas as factorials.  It can be derived more
+directly via the theory of Cauchy matrices.  See J. W. Demmel,
+<cite>Applied Numerical Linear Algebra</cite>, p. 92.
+</p>
+<p>Compare this with the numerical calculation of <code>inv (hilb (n))</code>,
+which suffers from the ill-conditioning of the Hilbert matrix, and the
+finite precision of your computer&rsquo;s floating point arithmetic.
+</p>
+<p><strong>See also:</strong> <a href="#XREFhilb">hilb</a>.
+</p></dd></dl>
+
+
+<span id="XREFmagic"></span><dl class="def">
+<dt id="index-magic"><span class="category">: </span><span><em></em> <strong>magic</strong> <em>(<var>n</var>)</em><a href='#index-magic' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Create an <var>n</var>-by-<var>n</var> magic square.
+</p>
+<p>A magic square is an arrangement of the integers <code>1:n^2</code> such that the
+row sums, column sums, and diagonal sums are all equal to the same value.
+</p>
+<p>Note: <var>n</var> must be a scalar greater than or equal to 3.  If you supply
+<var>n</var> less than 3, magic returns either a nonmagic square, or else the
+degenerate magic squares 1 and [].
+</p></dd></dl>
+
+
+<span id="XREFpascal"></span><dl class="def">
+<dt id="index-pascal"><span class="category">: </span><span><em></em> <strong>pascal</strong> <em>(<var>n</var>)</em><a href='#index-pascal' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pascal-1"><span class="category">: </span><span><em></em> <strong>pascal</strong> <em>(<var>n</var>, <var>t</var>)</em><a href='#index-pascal-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Pascal matrix of order <var>n</var> if <code><var>t</var> = 0</code>.
+</p>
+<p>The default value of <var>t</var> is 0.
+</p>
+<p>When <code><var>t</var> = 1</code>, return the pseudo-lower triangular
+Cholesky&nbsp;factor of the Pascal matrix (The sign of some columns may be
+negative).  This matrix is its own inverse, that is
+<code>pascal (<var>n</var>, 1) ^ 2 == eye (<var>n</var>)</code>.
+</p>
+<p>If <code><var>t</var> = -1</code>, return the true Cholesky&nbsp;factor with strictly
+positive values on the diagonal.
+</p>
+<p>If <code><var>t</var> = 2</code>, return a transposed and permuted version of
+<code>pascal (<var>n</var>, 1)</code>, which is the cube root of the identity matrix.
+That is, <code>pascal (<var>n</var>, 2) ^ 3 == eye (<var>n</var>)</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="Matrix-Factorizations.html#XREFchol">chol</a>.
+</p></dd></dl>
+
+
+<span id="XREFrosser"></span><dl class="def">
+<dt id="index-rosser"><span class="category">: </span><span><em></em> <strong>rosser</strong> <em>()</em><a href='#index-rosser' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Rosser matrix.
+</p>
+<p>This is a difficult test case used to evaluate eigenvalue algorithms.
+</p>
+<p><strong>See also:</strong> <a href="#XREFwilkinson">wilkinson</a>, <a href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+<span id="XREFtoeplitz"></span><dl class="def">
+<dt id="index-toeplitz"><span class="category">: </span><span><em></em> <strong>toeplitz</strong> <em>(<var>c</var>)</em><a href='#index-toeplitz' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-toeplitz-1"><span class="category">: </span><span><em></em> <strong>toeplitz</strong> <em>(<var>c</var>, <var>r</var>)</em><a href='#index-toeplitz-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Toeplitz matrix constructed from the first column <var>c</var>,
+and optionally the first row <var>r</var>.
+</p>
+<p>If the second argument is omitted, the first row is taken to be the
+same as the first column.  If the first element of <var>r</var> is not the same
+as the first element of <var>c</var>, the first element of <var>c</var> is used.
+</p>
+<p>A Toeplitz, or diagonal-constant, matrix has the same value along each
+diagonal.  Although it need not be square, it often is.  An MxN
+Toeplitz matrix has the form:
+</p>
+<div class="example">
+<pre class="example">c(1)  r(2)   r(3)  &hellip;  r(n)
+c(2)  c(1)   r(2)  &hellip; r(n-1)
+c(3)  c(2)   c(1)  &hellip; r(n-2)
+ .     .      .   .      .
+ .     .      .     .    .
+ .     .      .       .  .
+c(m) c(m-1) c(m-2) &hellip; c(m-n+1)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFhankel">hankel</a>.
+</p></dd></dl>
+
+
+<span id="XREFvander"></span><dl class="def">
+<dt id="index-vander"><span class="category">: </span><span><em></em> <strong>vander</strong> <em>(<var>c</var>)</em><a href='#index-vander' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-vander-1"><span class="category">: </span><span><em></em> <strong>vander</strong> <em>(<var>c</var>, <var>n</var>)</em><a href='#index-vander-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Vandermonde matrix whose next to last column is
+<var>c</var>.
+</p>
+<p>If <var>n</var> is specified, it determines the number of columns; otherwise,
+<var>n</var> is taken to be equal to the length of <var>c</var>.
+</p>
+<p>A Vandermonde matrix has the form:
+</p>
+<div class="example">
+<pre class="example">c(1)^(n-1) &hellip; c(1)^2  c(1)  1
+c(2)^(n-1) &hellip; c(2)^2  c(2)  1
+    .     .      .      .    .
+    .       .    .      .    .
+    .         .  .      .    .
+c(n)^(n-1) &hellip; c(n)^2  c(n)  1
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Polynomial-Interpolation.html#XREFpolyfit">polyfit</a>.
+</p></dd></dl>
+
+
+<span id="XREFwilkinson"></span><dl class="def">
+<dt id="index-wilkinson"><span class="category">: </span><span><em></em> <strong>wilkinson</strong> <em>(<var>n</var>)</em><a href='#index-wilkinson' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the Wilkinson matrix of order <var>n</var>.
+</p>
+<p>Wilkinson matrices are symmetric and tridiagonal with pairs of nearly, but
+not exactly, equal eigenvalues.  They are useful in testing the behavior and
+performance of eigenvalue solvers.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFrosser">rosser</a>, <a href="Basic-Matrix-Functions.html#XREFeig">eig</a>.
+</p></dd></dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Special-Utility-Matrices.html">Special Utility Matrices</a>, Up: <a href="Matrix-Manipulation.html">Matrix Manipulation</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

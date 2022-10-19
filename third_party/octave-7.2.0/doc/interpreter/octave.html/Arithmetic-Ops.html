@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Arithmetic Ops (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Arithmetic Ops (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Arithmetic Ops (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Expressions.html" rel="up" title="Expressions">
+<link href="Comparison-Ops.html" rel="next" title="Comparison Ops">
+<link href="Calling-Functions.html" rel="prev" title="Calling Functions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Arithmetic-Ops">
+<div class="header">
+<p>
+Next: <a href="Comparison-Ops.html" accesskey="n" rel="next">Comparison Operators</a>, Previous: <a href="Calling-Functions.html" accesskey="p" rel="prev">Calling Functions</a>, Up: <a href="Expressions.html" accesskey="u" rel="up">Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Arithmetic-Operators"></span><h3 class="section">8.3 Arithmetic Operators</h3>
+<span id="index-arithmetic-operators"></span>
+<span id="index-operators_002c-arithmetic"></span>
+<span id="index-addition"></span>
+<span id="index-subtraction"></span>
+<span id="index-multiplication"></span>
+<span id="index-matrix-multiplication"></span>
+<span id="index-division"></span>
+<span id="index-quotient"></span>
+<span id="index-negation"></span>
+<span id="index-unary-minus"></span>
+<span id="index-exponentiation"></span>
+<span id="index-transpose"></span>
+<span id="index-Hermitian-operator"></span>
+<span id="index-transpose_002c-complex_002dconjugate"></span>
+<span id="index-complex_002dconjugate-transpose"></span>
+
+<p>The following arithmetic operators are available, and work on scalars
+and matrices.  The element-by-element operators and functions broadcast
+(see <a href="Broadcasting.html">Broadcasting</a>).
+</p>
+<dl compact="compact">
+<dt id='index-_002b'><span><var>x</var> + <var>y</var><a href='#index-_002b' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Addition (always works element by element).  If both operands are
+matrices, the number of rows and columns must both agree, or they must
+be broadcastable to the same shape.
+</p>
+</dd>
+<dt id='index-_002d'><span><var>x</var> - <var>y</var><a href='#index-_002d' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Subtraction (always works element by element).  If both operands are
+matrices, the number of rows and columns of both must agree, or they
+must be broadcastable to the same shape.
+</p>
+</dd>
+<dt id='index-_002a'><span><var>x</var> * <var>y</var><a href='#index-_002a' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Matrix multiplication.  The number of columns of <var>x</var> must agree with
+the number of rows of <var>y</var>.
+</p>
+</dd>
+<dt id='index-_002e_002a'><span><var>x</var> .* <var>y</var><a href='#index-_002e_002a' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Element-by-element multiplication.  If both operands are matrices, the
+number of rows and columns must both agree, or they must be
+broadcastable to the same shape.
+</p>
+</dd>
+<dt id='index-_002f'><span><var>x</var> / <var>y</var><a href='#index-_002f' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Right division.  This is conceptually equivalent to the expression
+</p>
+<div class="example">
+<pre class="example">(inv (y') * x')'
+</pre></div>
+
+<p>but it is computed without forming the inverse of <var>y&rsquo;</var>.
+</p>
+<p>If the system is not square, or if the coefficient matrix is singular,
+a minimum norm solution is computed.
+</p>
+</dd>
+<dt id='index-_002e_002f'><span><var>x</var> ./ <var>y</var><a href='#index-_002e_002f' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Element-by-element right division.
+</p>
+</dd>
+<dt id='index-_005c'><span><var>x</var> \ <var>y</var><a href='#index-_005c' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Left division.  This is conceptually equivalent to the expression
+</p>
+<div class="example">
+<pre class="example">inv (x) * y
+</pre></div>
+
+<p>but it is computed without forming the inverse of <var>x</var>.
+</p>
+<p>If the system is not square, or if the coefficient matrix is singular,
+a minimum norm solution is computed.
+</p>
+</dd>
+<dt id='index-_002e_005c'><span><var>x</var> .\ <var>y</var><a href='#index-_002e_005c' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Element-by-element left division.  Each element of <var>y</var> is divided
+by each corresponding element of <var>x</var>.
+</p>
+</dd>
+<dt id='index-_005e'><span><var>x</var> ^ <var>y</var><a href='#index-_005e' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Power operator.  If <var>x</var> and <var>y</var> are both scalars, this operator
+returns <var>x</var> raised to the power <var>y</var>.  If <var>x</var> is a scalar and
+<var>y</var> is a square matrix, the result is computed using an eigenvalue
+expansion.  If <var>x</var> is a square matrix, the result is computed by
+repeated multiplication if <var>y</var> is an integer, and by an eigenvalue
+expansion if <var>y</var> is not an integer.  An error results if both
+<var>x</var> and <var>y</var> are matrices.
+</p>
+<p>The implementation of this operator needs to be improved.
+</p>
+</dd>
+<dt id='index-_002e_005e'><span><var>x</var> .^ <var>y</var><a href='#index-_002e_005e' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Element-by-element power operator.  If both operands are matrices, the
+number of rows and columns must both agree, or they must be
+broadcastable to the same shape.  If several complex results are
+possible, the one with smallest non-negative argument (angle) is taken.
+This rule may return a complex root even when a real root is also possible.
+Use <code>realpow</code>, <code>realsqrt</code>, <code>cbrt</code>, or <code>nthroot</code> if a
+real result is preferred.
+</p>
+</dd>
+<dt id='index-_002d-1'><span>-<var>x</var><a href='#index-_002d-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Negation.
+</p>
+</dd>
+<dt id='index-_002b-1'><span>+<var>x</var><a href='#index-_002b-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Unary plus.  This operator has no effect on the operand.
+</p>
+</dd>
+<dt id='index-_0027-2'><span><var>x</var>&rsquo;<a href='#index-_0027-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Complex conjugate transpose.  For real arguments, this operator is the
+same as the transpose operator.  For complex arguments, this operator is
+equivalent to the expression
+</p>
+<div class="example">
+<pre class="example">conj (x.')
+</pre></div>
+
+</dd>
+<dt id='index-_002e_0027'><span><var>x</var>.&rsquo;<a href='#index-_002e_0027' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Transpose.
+</p></dd>
+</dl>
+
+<p>Note that because Octave&rsquo;s element-by-element operators begin with a
+&lsquo;<samp>.</samp>&rsquo;, there is a possible ambiguity for statements like
+</p>
+<div class="example">
+<pre class="example">1./m
+</pre></div>
+
+<p>because the period could be interpreted either as part of the constant
+or as part of the operator.  To resolve this conflict, Octave treats the
+expression as if you had typed
+</p>
+<div class="example">
+<pre class="example">(1) ./ m
+</pre></div>
+
+<p>and not
+</p>
+<div class="example">
+<pre class="example">(1.) / m
+</pre></div>
+
+<p>Although this is inconsistent with the normal behavior of Octave&rsquo;s
+lexer, which usually prefers to break the input into tokens by
+preferring the longest possible match at any given point, it is more
+useful in this case.
+</p>
+<span id="index-_0027-3"></span>
+<span id="XREFctranspose"></span><dl class="def">
+<dt id="index-ctranspose"><span class="category">: </span><span><em></em> <strong>ctranspose</strong> <em>(<var>x</var>)</em><a href='#index-ctranspose' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the complex conjugate transpose of <var>x</var>.
+</p>
+<p>This function and <code><var>x</var>'</code> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtranspose">transpose</a>.
+</p></dd></dl>
+
+
+<span id="index-_002e_005c-1"></span>
+<span id="XREFldivide"></span><dl class="def">
+<dt id="index-ldivide"><span class="category">: </span><span><em></em> <strong>ldivide</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-ldivide' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the element-by-element left division of <var>x</var> and <var>y</var>.
+</p>
+<p>This function and <code><var>x</var>&nbsp;.\&nbsp;<var>y</var></code><!-- /@w --> are
+equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFrdivide">rdivide</a>, <a href="#XREFmldivide">mldivide</a>, <a href="#XREFtimes">times</a>, <a href="#XREFplus">plus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002d-2"></span>
+<span id="XREFminus"></span><dl class="def">
+<dt id="index-minus"><span class="category">: </span><span><em></em> <strong>minus</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-minus' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This function and <code><var>x</var>&nbsp;<span class="nolinebreak">-</span>&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFplus">plus</a>, <a href="#XREFuminus">uminus</a>.
+</p></dd></dl>
+
+
+<span id="index-_005c-1"></span>
+<span id="XREFmldivide"></span><dl class="def">
+<dt id="index-mldivide"><span class="category">: </span><span><em></em> <strong>mldivide</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-mldivide' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the matrix left division of <var>x</var> and <var>y</var>.
+</p>
+<p>This function and <code><var>x</var>&nbsp;\&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p>If the system is not square, or if the coefficient matrix is singular, a
+minimum norm solution is computed.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmrdivide">mrdivide</a>, <a href="#XREFldivide">ldivide</a>, <a href="#XREFrdivide">rdivide</a>, <a href="Basic-Matrix-Functions.html#XREFlinsolve">linsolve</a>.
+</p></dd></dl>
+
+
+<span id="index-_005e-1"></span>
+<span id="XREFmpower"></span><dl class="def">
+<dt id="index-mpower"><span class="category">: </span><span><em></em> <strong>mpower</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-mpower' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the matrix power operation of <var>x</var> raised to the <var>y</var> power.
+</p>
+<p>This function and <code><var>x</var>&nbsp;^&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpower">power</a>, <a href="#XREFmtimes">mtimes</a>, <a href="#XREFplus">plus</a>, <a href="#XREFminus">minus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002f-1"></span>
+<span id="XREFmrdivide"></span><dl class="def">
+<dt id="index-mrdivide"><span class="category">: </span><span><em></em> <strong>mrdivide</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-mrdivide' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the matrix right division of <var>x</var> and <var>y</var>.
+</p>
+<p>This function and <code><var>x</var>&nbsp;/&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p>If the system is not square, or if the coefficient matrix is singular, a
+minimum norm solution is computed.
+</p>
+<p><strong>See also:</strong> <a href="#XREFmldivide">mldivide</a>, <a href="#XREFrdivide">rdivide</a>, <a href="#XREFplus">plus</a>, <a href="#XREFminus">minus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002a-1"></span>
+<span id="XREFmtimes"></span><dl class="def">
+<dt id="index-mtimes"><span class="category">: </span><span><em></em> <strong>mtimes</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-mtimes' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-mtimes-1"><span class="category">: </span><span><em></em> <strong>mtimes</strong> <em>(<var>x1</var>, <var>x2</var>, &hellip;)</em><a href='#index-mtimes-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the matrix multiplication product of inputs.
+</p>
+<p>This function and <code><var>x</var>&nbsp;*&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+If more arguments are given, the multiplication is applied
+cumulatively from left to right:
+</p>
+<div class="example">
+<pre class="example">(&hellip;((<var>x1</var> * <var>x2</var>) * <var>x3</var>) * &hellip;)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFtimes">times</a>, <a href="#XREFplus">plus</a>, <a href="#XREFminus">minus</a>, <a href="#XREFrdivide">rdivide</a>, <a href="#XREFmrdivide">mrdivide</a>, <a href="#XREFmldivide">mldivide</a>, <a href="#XREFmpower">mpower</a>.
+</p></dd></dl>
+
+
+<span id="index-_002b-2"></span>
+<span id="XREFplus"></span><dl class="def">
+<dt id="index-plus"><span class="category">: </span><span><em></em> <strong>plus</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-plus' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-plus-1"><span class="category">: </span><span><em></em> <strong>plus</strong> <em>(<var>x1</var>, <var>x2</var>, &hellip;)</em><a href='#index-plus-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This function and <code><var>x</var>&nbsp;+&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p>If more arguments are given, the summation is applied
+cumulatively from left to right:
+</p>
+<div class="example">
+<pre class="example">(&hellip;((<var>x1</var> + <var>x2</var>) + <var>x3</var>) + &hellip;)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFminus">minus</a>, <a href="#XREFuplus">uplus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002e_005e-1"></span>
+<span id="XREFpower"></span><dl class="def">
+<dt id="index-power"><span class="category">: </span><span><em></em> <strong>power</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-power' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the element-by-element operation of <var>x</var> raised to the
+<var>y</var> power.
+</p>
+<p>This function and <code><var>x</var>&nbsp;.^&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p>If several complex results are possible, returns the one with smallest
+non-negative argument (angle).  Use <code>realpow</code>, <code>realsqrt</code>,
+<code>cbrt</code>, or <code>nthroot</code> if a real result is preferred.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFmpower">mpower</a>, <a href="Exponents-and-Logarithms.html#XREFrealpow">realpow</a>, <a href="Exponents-and-Logarithms.html#XREFrealsqrt">realsqrt</a>, <a href="Exponents-and-Logarithms.html#XREFcbrt">cbrt</a>, <a href="Exponents-and-Logarithms.html#XREFnthroot">nthroot</a>.
+</p></dd></dl>
+
+
+<span id="index-_002e_002f-1"></span>
+<span id="XREFrdivide"></span><dl class="def">
+<dt id="index-rdivide"><span class="category">: </span><span><em></em> <strong>rdivide</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-rdivide' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the element-by-element right division of <var>x</var> and <var>y</var>.
+</p>
+<p>This function and <code><var>x</var>&nbsp;./&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFldivide">ldivide</a>, <a href="#XREFmrdivide">mrdivide</a>, <a href="#XREFtimes">times</a>, <a href="#XREFplus">plus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002e_002a-1"></span>
+<span id="XREFtimes"></span><dl class="def">
+<dt id="index-times"><span class="category">: </span><span><em></em> <strong>times</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-times' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-times-1"><span class="category">: </span><span><em></em> <strong>times</strong> <em>(<var>x1</var>, <var>x2</var>, &hellip;)</em><a href='#index-times-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the element-by-element multiplication product of inputs.
+</p>
+<p>This function and <code><var>x</var>&nbsp;.*&nbsp;<var>y</var></code><!-- /@w --> are equivalent.
+If more arguments are given, the multiplication is applied
+cumulatively from left to right:
+</p>
+<div class="example">
+<pre class="example">(&hellip;((<var>x1</var> .* <var>x2</var>) .* <var>x3</var>) .* &hellip;)
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFmtimes">mtimes</a>, <a href="#XREFrdivide">rdivide</a>.
+</p></dd></dl>
+
+
+<span id="index-_002e_0027-1"></span>
+<span id="XREFtranspose"></span><dl class="def">
+<dt id="index-transpose-2"><span class="category">: </span><span><em></em> <strong>transpose</strong> <em>(<var>x</var>)</em><a href='#index-transpose-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the transpose of <var>x</var>.
+</p>
+<p>This function and <code><var>x</var>.'</code> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFctranspose">ctranspose</a>.
+</p></dd></dl>
+
+
+<span id="index-_002d-3"></span>
+<span id="XREFuminus"></span><dl class="def">
+<dt id="index-uminus"><span class="category">: </span><span><em></em> <strong>uminus</strong> <em>(<var>x</var>)</em><a href='#index-uminus' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This function and <code><span class="nolinebreak">-</span>&nbsp;<var>x</var></code><!-- /@w --> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuplus">uplus</a>, <a href="#XREFminus">minus</a>.
+</p></dd></dl>
+
+
+<span id="index-_002b-3"></span>
+<span id="XREFuplus"></span><dl class="def">
+<dt id="index-uplus"><span class="category">: </span><span><em></em> <strong>uplus</strong> <em>(<var>x</var>)</em><a href='#index-uplus' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>This function and <code>+&nbsp;<var>x</var></code><!-- /@w --> are equivalent.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuminus">uminus</a>, <a href="#XREFplus">plus</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Comparison-Ops.html">Comparison Operators</a>, Previous: <a href="Calling-Functions.html">Calling Functions</a>, Up: <a href="Expressions.html">Expressions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

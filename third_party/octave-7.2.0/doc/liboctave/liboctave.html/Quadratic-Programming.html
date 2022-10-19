@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Quadratic Programming (Octave C++ Classes)</title>
+
+<meta name="description" content="Quadratic Programming (Octave C++ Classes)">
+<meta name="keywords" content="Quadratic Programming (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Optimization.html" rel="up" title="Optimization">
+<link href="Nonlinear-Programming.html" rel="next" title="Nonlinear Programming">
+<link href="Nonlinear-Constraints.html" rel="prev" title="Nonlinear Constraints">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Quadratic-Programming">
+<div class="header">
+<p>
+Next: <a href="Nonlinear-Programming.html" accesskey="n" rel="next">Nonlinear Programming</a>, Previous: <a href="Nonlinear-Constraints.html" accesskey="p" rel="prev">Nonlinear Constraints</a>, Up: <a href="Optimization.html" accesskey="u" rel="up">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Quadratic-Programming-1"></span><h3 class="section">9.5 Quadratic Programming</h3>
+<span id="index-QP"></span>
+<span id="index-quadratic-programming"></span>
+
+<dl class="def">
+<dt id="index-QP-1"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(void)</em><a href='#index-QP-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-2"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>)</em><a href='#index-QP-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-3"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const ColumnVector &amp;<var>c</var>)</em><a href='#index-QP-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-4"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const Bounds &amp;<var>b</var>)</em><a href='#index-QP-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-5"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const LinConst &amp;<var>lc</var>)</em><a href='#index-QP-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-6"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const ColumnVector &amp;<var>c</var>, const Bounds &amp;<var>b</var>)</em><a href='#index-QP-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-7"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const ColumnVector &amp;<var>c</var>, const LinConst &amp;<var>lc</var>)</em><a href='#index-QP-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-8"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const Bounds &amp;<var>b</var>, const LinConst &amp;<var>lc</var>)</em><a href='#index-QP-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-QP-9"><span class="category">: </span><span><em></em> <strong>QP</strong> <em>(const ColumnVector &amp;<var>x</var>, const Matrix &amp;<var>H</var>, const ColumnVector &amp;<var>c</var>, const Bounds &amp;<var>b</var>, const LinConst &amp;<var>lc</var>)</em><a href='#index-QP-9' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-minimize"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(void)</em><a href='#index-minimize' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-1"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(double &amp;<var>objf</var>)</em><a href='#index-minimize-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-2"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(double &amp;<var>objf</var>, int &amp;<var>inform</var>)</em><a href='#index-minimize-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-3"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(double &amp;<var>objf</var>, int &amp;<var>inform</var>, ColumnVector &amp;<var>lambda</var>) = 0;</em><a href='#index-minimize-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-minimize-4"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(const ColumnVector &amp;<var>x</var>)</em><a href='#index-minimize-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-5"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(const ColumnVector &amp;<var>x</var>, double &amp;<var>objf</var>)</em><a href='#index-minimize-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-6"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(const ColumnVector &amp;<var>x</var>, double &amp;<var>objf</var>, int &amp;<var>inform</var>)</em><a href='#index-minimize-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-minimize-7"><span class="category">: </span><span><em>virtual ColumnVector</em> <strong>minimize</strong> <em>(const ColumnVector &amp;<var>x</var>, double &amp;<var>objf</var>, int &amp;<var>inform</var>, ColumnVector &amp;<var>lambda</var>)</em><a href='#index-minimize-7' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-minimize-8"><span class="category">: </span><span><em>ColumnVector</em> <strong>minimize</strong> <em>(double &amp;<var>objf</var>, int &amp;<var>inform</var>, ColumnVector &amp;<var>lambda</var>)</em><a href='#index-minimize-8' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Nonlinear-Programming.html">Nonlinear Programming</a>, Previous: <a href="Nonlinear-Constraints.html">Nonlinear Constraints</a>, Up: <a href="Optimization.html">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

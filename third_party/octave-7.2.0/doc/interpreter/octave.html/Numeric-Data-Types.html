@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Numeric Data Types (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Numeric Data Types (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Numeric Data Types (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Strings.html" rel="next" title="Strings">
+<link href="Data-Types.html" rel="prev" title="Data Types">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Numeric-Data-Types">
+<div class="header">
+<p>
+Next: <a href="Strings.html" accesskey="n" rel="next">Strings</a>, Previous: <a href="Data-Types.html" accesskey="p" rel="prev">Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Numeric-Data-Types-1"></span><h2 class="chapter">4 Numeric Data Types</h2>
+<span id="index-numeric-constant-1"></span>
+<span id="index-numeric-value-1"></span>
+
+<p>A <em>numeric constant</em> may be a scalar, a vector, or a matrix, and it may
+contain complex values.
+</p>
+<p>The simplest form of a numeric constant, a scalar, is a single number.  Note
+that by default numeric constants are represented within Octave by IEEE 754
+double precision (binary64) floating-point format (complex constants are
+stored as pairs of binary64 values).  It is, however, possible to represent
+real integers as described in <a href="Integer-Data-Types.html">Integer Data Types</a>.
+</p>
+<p>If the numeric constant is a real integer, it can be defined in decimal,
+hexadecimal, or binary notation.  Hexadecimal notation starts with &lsquo;<samp>0x</samp>&rsquo; or
+&lsquo;<samp>0X</samp>&rsquo;, binary notation starts with &lsquo;<samp>0b</samp>&rsquo; or &lsquo;<samp>0B</samp>&rsquo;, otherwise
+decimal notation is assumed.  As a consequence, &lsquo;<samp>0b</samp>&rsquo; is not a hexadecimal
+number, in fact, it is not a valid number at all.
+</p>
+<p>For better readability, digits may be partitioned by the underscore separator
+&lsquo;<samp>_</samp>&rsquo;, which is ignored by the Octave interpreter.  Here are some examples
+of real-valued integer constants, which all represent the same value and are
+internally stored as binary64:
+</p>
+<div class="example">
+<pre class="example">42            # decimal notation
+0x2A          # hexadecimal notation
+0b101010      # binary notation
+0b10_1010     # underscore notation
+round (42.1)  # also binary64
+</pre></div>
+
+<p>In decimal notation, the numeric constant may be denoted as decimal fraction
+or even in scientific (exponential) notation.  Note that this is not possible
+for hexadecimal or binary notation.  Again, in the following example all
+numeric constants represent the same value:
+</p>
+<div class="example">
+<pre class="example">.105
+1.05e-1
+.00105e+2
+</pre></div>
+
+<p>Unlike most programming languages, complex numeric constants are denoted as
+the sum of real and imaginary parts.  The imaginary part is denoted by a
+real-valued numeric constant followed immediately by a complex value indicator
+(&lsquo;<samp>i</samp>&rsquo;, &lsquo;<samp>j</samp>&rsquo;, &lsquo;<samp>I</samp>&rsquo;, or &lsquo;<samp>J</samp>&rsquo; which represents
+  <code>sqrt (-1)</code>).
+No spaces are allowed between the numeric constant and the complex value
+indicator.  Some examples of complex numeric constants that all represent the
+same value:
+</p>
+<div class="example">
+<pre class="example">3 + 42i
+3 + 42j
+3 + 42I
+3 + 42J
+3.0 + 42.0i
+3.0 + 0x2Ai
+3.0 + 0b10_1010i
+0.3e1 + 420e-1i
+</pre></div>
+
+<span id="XREFdouble"></span><dl class="def">
+<dt id="index-double"><span class="category">: </span><span><em></em> <strong>double</strong> <em>(<var>x</var>)</em><a href='#index-double' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert <var>x</var> to double precision type.
+</p>
+<p><strong>See also:</strong> <a href="Single-Precision-Data-Types.html#XREFsingle">single</a>.
+</p></dd></dl>
+
+
+<span id="XREFcomplex"></span><dl class="def">
+<dt id="index-complex"><span class="category">: </span><span><em></em> <strong>complex</strong> <em>(<var>x</var>)</em><a href='#index-complex' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-complex-1"><span class="category">: </span><span><em></em> <strong>complex</strong> <em>(<var>re</var>, <var>im</var>)</em><a href='#index-complex-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a complex value from real arguments.
+</p>
+<p>With 1 real argument <var>x</var>, return the complex result
+<code><var>x</var>&nbsp;+&nbsp;0i</code><!-- /@w -->.
+</p>
+<p>With 2 real arguments, return the complex result
+<code><var>re</var>&nbsp;+&nbsp;<var>im</var>i</code><!-- /@w -->.
+<code>complex</code> can often be more convenient than expressions such as
+<code>a&nbsp;+&nbsp;b*i</code><!-- /@w -->.
+For example:
+</p>
+<div class="example">
+<pre class="example">complex ([1, 2], [3, 4])
+  &rArr; [ 1 + 3i   2 + 4i ]
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Complex-Arithmetic.html#XREFreal">real</a>, <a href="Complex-Arithmetic.html#XREFimag">imag</a>, <a href="Predicates-for-Numeric-Objects.html#XREFiscomplex">iscomplex</a>, <a href="Complex-Arithmetic.html#XREFabs">abs</a>, <a href="Complex-Arithmetic.html#XREFarg">arg</a>.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Matrices.html" accesskey="1">Matrices</a></li>
+<li><a href="Ranges.html" accesskey="2">Ranges</a></li>
+<li><a href="Single-Precision-Data-Types.html" accesskey="3">Single Precision Data Types</a></li>
+<li><a href="Integer-Data-Types.html" accesskey="4">Integer Data Types</a></li>
+<li><a href="Bit-Manipulations.html" accesskey="5">Bit Manipulations</a></li>
+<li><a href="Logical-Values.html" accesskey="6">Logical Values</a></li>
+<li><a href="Automatic-Conversion-of-Data-Types.html" accesskey="7">Automatic Conversion of Data Types</a></li>
+<li><a href="Predicates-for-Numeric-Objects.html" accesskey="8">Predicates for Numeric Objects</a></li>
+</ul>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Strings.html">Strings</a>, Previous: <a href="Data-Types.html">Data Types</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

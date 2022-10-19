@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Common String Operations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Common String Operations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Common String Operations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="String-Operations.html" rel="up" title="String Operations">
+<link href="Concatenating-Strings.html" rel="next" title="Concatenating Strings">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Common-String-Operations">
+<div class="header">
+<p>
+Next: <a href="Concatenating-Strings.html" accesskey="n" rel="next">Concatenating Strings</a>, Up: <a href="String-Operations.html" accesskey="u" rel="up">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Common-String-Operations-1"></span><h4 class="subsection">5.3.1 Common String Operations</h4>
+
+<p>The following functions are useful to perform common String operations.
+</p>
+<span id="XREFtolower"></span><dl class="def">
+<dt id="index-tolower"><span class="category">: </span><span><em></em> <strong>tolower</strong> <em>(<var>s</var>)</em><a href='#index-tolower' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-lower"><span class="category">: </span><span><em></em> <strong>lower</strong> <em>(<var>s</var>)</em><a href='#index-lower' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a copy of the string or cell string <var>s</var>, with each uppercase
+character replaced by the corresponding lowercase one; non-alphabetic
+characters are left unchanged.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">tolower (&quot;MiXeD cAsE 123&quot;)
+      &rArr; &quot;mixed case 123&quot;
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFtoupper">toupper</a>.
+</p></dd></dl>
+
+
+<span id="XREFtoupper"></span><dl class="def">
+<dt id="index-toupper"><span class="category">: </span><span><em></em> <strong>toupper</strong> <em>(<var>s</var>)</em><a href='#index-toupper' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-upper"><span class="category">: </span><span><em></em> <strong>upper</strong> <em>(<var>s</var>)</em><a href='#index-upper' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a copy of the string or cell string <var>s</var>, with each lowercase
+character replaced by the corresponding uppercase one; non-alphabetic
+characters are left unchanged.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">toupper (&quot;MiXeD cAsE 123&quot;)
+      &rArr; &quot;MIXED CASE 123&quot;
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFtolower">tolower</a>.
+</p></dd></dl>
+
+
+<span id="XREFdeblank"></span><dl class="def">
+<dt id="index-deblank"><span class="category">: </span><span><em></em> <strong>deblank</strong> <em>(<var>s</var>)</em><a href='#index-deblank' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Remove trailing whitespace and nulls from <var>s</var>.
+</p>
+<p>If <var>s</var> is a matrix, <var>deblank</var> trims each row to the length of
+longest string.  If <var>s</var> is a cell array of strings, operate
+recursively on each string element.
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">deblank (&quot;    abc  &quot;)
+     &rArr;  &quot;    abc&quot;
+
+deblank ([&quot; abc   &quot;; &quot;   def   &quot;])
+     &rArr;  [&quot; abc  &quot; ; &quot;   def&quot;]
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFstrtrim">strtrim</a>.
+</p></dd></dl>
+
+
+<span id="XREFstrtrim"></span><dl class="def">
+<dt id="index-strtrim"><span class="category">: </span><span><em></em> <strong>strtrim</strong> <em>(<var>s</var>)</em><a href='#index-strtrim' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Remove leading and trailing whitespace from <var>s</var>.
+</p>
+<p>If <var>s</var> is a matrix, <var>strtrim</var> trims each row to the length of
+longest string.  If <var>s</var> is a cell array of strings, operate recursively
+on each string element.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">strtrim (&quot;    abc  &quot;)
+     &rArr;  &quot;abc&quot;
+
+strtrim ([&quot; abc   &quot;; &quot;   def   &quot;])
+     &rArr;  [&quot;abc  &quot;  ; &quot;  def&quot;]
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFdeblank">deblank</a>.
+</p></dd></dl>
+
+
+<span id="XREFstrtrunc"></span><dl class="def">
+<dt id="index-strtrunc"><span class="category">: </span><span><em></em> <strong>strtrunc</strong> <em>(<var>s</var>, <var>n</var>)</em><a href='#index-strtrunc' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Truncate the character string <var>s</var> to length <var>n</var>.
+</p>
+<p>If <var>s</var> is a character matrix, then the number of columns is adjusted.
+</p>
+<p>If <var>s</var> is a cell array of strings, then the operation is performed
+on each cell element and the new cell array is returned.
+</p></dd></dl>
+
+
+<span id="XREFuntabify"></span><dl class="def">
+<dt id="index-untabify"><span class="category">: </span><span><em></em> <strong>untabify</strong> <em>(<var>t</var>)</em><a href='#index-untabify' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-untabify-1"><span class="category">: </span><span><em></em> <strong>untabify</strong> <em>(<var>t</var>, <var>tw</var>)</em><a href='#index-untabify-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-untabify-2"><span class="category">: </span><span><em></em> <strong>untabify</strong> <em>(<var>t</var>, <var>tw</var>, <var>deblank</var>)</em><a href='#index-untabify-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Replace TAB characters in <var>t</var> with spaces.
+</p>
+<p>The input, <var>t</var>, may be either a 2-D character array, or a cell array of
+character strings.  The output is the same class as the input.
+</p>
+<p>The tab width is specified by <var>tw</var>, and defaults to eight.
+</p>
+<p>If the optional argument <var>deblank</var> is true, then the spaces will be
+removed from the end of the character data.
+</p>
+<p>The following example reads a file and writes an untabified version of the
+same file with trailing spaces stripped.
+</p>
+<div class="example">
+<pre class="example">fid = fopen (&quot;tabbed_script.m&quot;);
+text = char (fread (fid, &quot;uchar&quot;)');
+fclose (fid);
+fid = fopen (&quot;untabified_script.m&quot;, &quot;w&quot;);
+text = untabify (strsplit (text, &quot;\n&quot;), 8, true);
+fprintf (fid, &quot;%s\n&quot;, text{:});
+fclose (fid);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Character-Arrays.html#XREFstrjust">strjust</a>, <a href="Splitting-and-Joining-Strings.html#XREFstrsplit">strsplit</a>, <a href="#XREFdeblank">deblank</a>.
+</p></dd></dl>
+
+
+<span id="XREFdo_005fstring_005fescapes"></span><dl class="def">
+<dt id="index-do_005fstring_005fescapes"><span class="category">: </span><span><em></em> <strong>do_string_escapes</strong> <em>(<var>string</var>)</em><a href='#index-do_005fstring_005fescapes' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert escape sequences in <var>string</var> to the characters they represent.
+</p>
+<p>Escape sequences begin with a leading backslash
+(<code>'\'</code>) followed by 1&ndash;3 characters
+(.e.g., <code>&quot;\n&quot;</code> =&gt; newline).
+</p>
+<p><strong>See also:</strong> <a href="#XREFundo_005fstring_005fescapes">undo_string_escapes</a>.
+</p></dd></dl>
+
+
+<span id="XREFundo_005fstring_005fescapes"></span><dl class="def">
+<dt id="index-undo_005fstring_005fescapes"><span class="category">: </span><span><em></em> <strong>undo_string_escapes</strong> <em>(<var>s</var>)</em><a href='#index-undo_005fstring_005fescapes' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Convert special characters in strings back to their escaped forms.
+</p>
+<p>For example, the expression
+</p>
+<div class="example">
+<pre class="example">bell = &quot;\a&quot;;
+</pre></div>
+
+<p>assigns the value of the alert character (control-g, ASCII code 7) to the
+string variable <code>bell</code>.  If this string is printed, the system will
+ring the terminal bell (if it is possible).  This is normally the desired
+outcome.  However, sometimes it is useful to be able to print the original
+representation of the string, with the special characters replaced by their
+escape sequences.  For example,
+</p>
+<div class="example">
+<pre class="example">octave:13&gt; undo_string_escapes (bell)
+ans = \a
+</pre></div>
+
+<p>replaces the unprintable alert character with its printable representation.
+</p>
+<p><strong>See also:</strong> <a href="#XREFdo_005fstring_005fescapes">do_string_escapes</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Concatenating-Strings.html">Concatenating Strings</a>, Up: <a href="String-Operations.html">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

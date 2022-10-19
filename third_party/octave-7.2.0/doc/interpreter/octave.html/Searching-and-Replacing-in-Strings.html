@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Searching and Replacing in Strings (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Searching and Replacing in Strings (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Searching and Replacing in Strings (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="String-Operations.html" rel="up" title="String Operations">
+<link href="Searching-in-Strings.html" rel="prev" title="Searching in Strings">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Searching-and-Replacing-in-Strings">
+<div class="header">
+<p>
+Previous: <a href="Searching-in-Strings.html" accesskey="p" rel="prev">Searching in Strings</a>, Up: <a href="String-Operations.html" accesskey="u" rel="up">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Searching-and-Replacing-in-Strings-1"></span><h4 class="subsection">5.3.5 Searching and Replacing in Strings</h4>
+
+<span id="XREFstrrep"></span><dl class="def">
+<dt id="index-strrep"><span class="category">: </span><span><em><var>newstr</var> =</em> <strong>strrep</strong> <em>(<var>str</var>, <var>ptn</var>, <var>rep</var>)</em><a href='#index-strrep' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strrep-1"><span class="category">: </span><span><em><var>newstr</var> =</em> <strong>strrep</strong> <em>(<var>cellstr</var>, <var>ptn</var>, <var>rep</var>)</em><a href='#index-strrep-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strrep-2"><span class="category">: </span><span><em><var>newstr</var> =</em> <strong>strrep</strong> <em>(&hellip;, &quot;overlaps&quot;, <var>val</var>)</em><a href='#index-strrep-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Replace all occurrences of the pattern <var>ptn</var> in the string <var>str</var>
+with the string <var>rep</var> and return the result.
+</p>
+<p>The optional argument <code>&quot;overlaps&quot;</code> determines whether the pattern
+can match at every position in <var>str</var> (true), or only for unique
+occurrences of the complete pattern (false).  The default is true.
+</p>
+<p><var>s</var> may also be a cell array of strings, in which case the replacement
+is done for each element and a cell array is returned.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">strrep (&quot;This is a test string&quot;, &quot;is&quot;, &quot;&amp;%$&quot;)
+    &rArr;  &quot;Th&amp;%$ &amp;%$ a test string&quot;
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFregexprep">regexprep</a>, <a href="Searching-in-Strings.html#XREFstrfind">strfind</a>.
+</p></dd></dl>
+
+
+<span id="XREFerase"></span><dl class="def">
+<dt id="index-erase"><span class="category">: </span><span><em><var>newstr</var> =</em> <strong>erase</strong> <em>(<var>str</var>, <var>ptn</var>)</em><a href='#index-erase' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Delete all occurrences of <var>ptn</var> within <var>str</var>.
+</p>
+<p><var>str</var> and <var>ptn</var> can be ordinary strings, cell array of strings, or
+character arrays.
+</p>
+<p>Examples
+</p>
+<div class="example">
+<pre class="example">## string, single pattern
+erase (&quot;Hello World!&quot;, &quot; World&quot;)
+    &rArr; &quot;Hello!&quot;
+
+## cellstr, single pattern
+erase ({&quot;Hello&quot;, &quot;World!&quot;}, &quot;World&quot;)
+    &rArr; {&quot;Hello&quot;, &quot;!&quot;}
+
+## string, multiple patterns
+erase (&quot;The Octave interpreter is fabulous&quot;, ...
+       {&quot;interpreter &quot;, &quot;The &quot;})
+    &rArr; &quot;Octave is fabulous&quot;
+
+## cellstr, multiple patterns
+erase ({&quot;The &quot;, &quot;Octave interpreter &quot;, &quot;is fabulous&quot;}, ...
+       {&quot;interpreter &quot;, &quot;The &quot;})
+    &rArr; {&quot;&quot;, &quot;Octave &quot;, &quot;is fabulous&quot;}
+</pre></div>
+
+<p>Programming Note: <code>erase</code> deletes the first instance of a pattern in a
+string when there are overlapping occurrences.  For example:
+</p>
+<div class="example">
+<pre class="example">erase (&quot;abababa&quot;, &quot;aba&quot;)
+    &rArr; &quot;b&quot;
+</pre></div>
+
+<p>For processing overlaps, see <a href="#XREFstrrep"><code>strrep</code></a>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFstrrep">strrep</a>, <a href="#XREFregexprep">regexprep</a>.
+</p></dd></dl>
+
+
+<span id="XREFregexp"></span><dl class="def">
+<dt id="index-regexp"><span class="category">: </span><span><em>[<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] =</em> <strong>regexp</strong> <em>(<var>str</var>, <var>pat</var>)</em><a href='#index-regexp' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-regexp-1"><span class="category">: </span><span><em>[&hellip;] =</em> <strong>regexp</strong> <em>(<var>str</var>, <var>pat</var>, &quot;<var>opt1</var>&quot;, &hellip;)</em><a href='#index-regexp-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Regular expression string matching.
+</p>
+<p>Search for <var>pat</var> in UTF-8 encoded <var>str</var> and return the positions and
+substrings of any matches, or empty values if there are none.
+</p>
+<p>The matched pattern <var>pat</var> can include any of the standard regex
+operators, including:
+</p>
+<dl compact="compact">
+<dt><span><code>.</code></span></dt>
+<dd><p>Match any character
+</p>
+</dd>
+<dt><span><code>* + ? {}</code></span></dt>
+<dd><p>Repetition operators, representing
+</p>
+<dl compact="compact">
+<dt><span><code>*</code></span></dt>
+<dd><p>Match zero or more times
+</p>
+</dd>
+<dt><span><code>+</code></span></dt>
+<dd><p>Match one or more times
+</p>
+</dd>
+<dt><span><code>?</code></span></dt>
+<dd><p>Match zero or one times
+</p>
+</dd>
+<dt><span><code>{<var>n</var>}</code></span></dt>
+<dd><p>Match exactly <var>n</var> times
+</p>
+</dd>
+<dt><span><code>{<var>n</var>,}</code></span></dt>
+<dd><p>Match <var>n</var> or more times
+</p>
+</dd>
+<dt><span><code>{<var>m</var>,<var>n</var>}</code></span></dt>
+<dd><p>Match between <var>m</var> and <var>n</var> times
+</p></dd>
+</dl>
+
+</dd>
+<dt><span><code>[&hellip;] [^&hellip;]</code></span></dt>
+<dd>
+<p>List operators.  The pattern will match any character listed between
+<code>&quot;[&quot;</code> and <code>&quot;]&quot;</code>.  If the first character is <code>&quot;^&quot;</code> then the
+pattern is inverted and any character except those listed between brackets
+will match.
+</p>
+<p>Escape sequences defined below can also be used inside list operators.  For
+example, a template for a floating point number might be <code>[-+.\d]+</code>.
+</p>
+</dd>
+<dt><span><code>() (?:)</code></span></dt>
+<dd><p>Grouping operator.  The first form, parentheses only, also creates a token.
+</p>
+</dd>
+<dt><span><code>|</code></span></dt>
+<dd><p>Alternation operator.  Match one of a choice of regular expressions.  The
+alternatives must be delimited by the grouping operator <code>()</code> above.
+</p>
+</dd>
+<dt><span><code>^ $</code></span></dt>
+<dd><p>Anchoring operators.  Requires pattern to occur at the start (<code>^</code>) or
+end (<code>$</code>) of the string.
+</p></dd>
+</dl>
+
+<p>In addition, the following escaped characters have special meaning.
+</p>
+<dl compact="compact">
+<dt><span><code>\d</code></span></dt>
+<dd><p>Match any digit
+</p>
+</dd>
+<dt><span><code>\D</code></span></dt>
+<dd><p>Match any non-digit
+</p>
+</dd>
+<dt><span><code>\s</code></span></dt>
+<dd><p>Match any whitespace character
+</p>
+</dd>
+<dt><span><code>\S</code></span></dt>
+<dd><p>Match any non-whitespace character
+</p>
+</dd>
+<dt><span><code>\w</code></span></dt>
+<dd><p>Match any word character
+</p>
+</dd>
+<dt><span><code>\W</code></span></dt>
+<dd><p>Match any non-word character
+</p>
+</dd>
+<dt><span><code>\&lt;</code></span></dt>
+<dd><p>Match the beginning of a word
+</p>
+</dd>
+<dt><span><code>\&gt;</code></span></dt>
+<dd><p>Match the end of a word
+</p>
+</dd>
+<dt><span><code>\B</code></span></dt>
+<dd><p>Match within a word
+</p></dd>
+</dl>
+
+<p>Implementation Note: For compatibility with <small>MATLAB</small>, escape sequences
+in <var>pat</var> (e.g., <code>&quot;\n&quot;</code> =&gt; newline) are expanded
+even when <var>pat</var> has been defined with single quotes.  To disable
+expansion use a second backslash before the escape sequence (e.g.,
+&quot;\\n&quot;) or use the <code>regexptranslate</code>
+function.
+</p>
+<p>The outputs of <code>regexp</code> default to the order given below
+</p>
+<dl compact="compact">
+<dt><span><var>s</var></span></dt>
+<dd><p>The start indices of each matching substring
+</p>
+</dd>
+<dt><span><var>e</var></span></dt>
+<dd><p>The end indices of each matching substring
+</p>
+</dd>
+<dt><span><var>te</var></span></dt>
+<dd><p>The extents of each matched token surrounded by <code>(&hellip;)</code> in
+<var>pat</var>
+</p>
+</dd>
+<dt><span><var>m</var></span></dt>
+<dd><p>A cell array of the text of each match
+</p>
+</dd>
+<dt><span><var>t</var></span></dt>
+<dd><p>A cell array of the text of each token matched
+</p>
+</dd>
+<dt><span><var>nm</var></span></dt>
+<dd><p>A structure containing the text of each matched named token, with the name
+being used as the fieldname.  A named token is denoted by
+<code>(?&lt;name&gt;&hellip;)</code>.
+</p>
+</dd>
+<dt><span><var>sp</var></span></dt>
+<dd><p>A cell array of the text not returned by match, i.e., what remains if you
+split the string based on <var>pat</var>.
+</p></dd>
+</dl>
+
+<p>Particular output arguments, or the order of the output arguments, can be
+selected by additional <var>opt</var> arguments.  These are strings and the
+correspondence between the output arguments and the optional argument
+are
+</p>
+<table>
+<tr><td width="20%"></td><td width="30%"><code>'start'</code></td><td width="30%"><var>s</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'end'</code></td><td width="30%"><var>e</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'tokenExtents'</code></td><td width="30%"><var>te</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'match'</code></td><td width="30%"><var>m</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'tokens'</code></td><td width="30%"><var>t</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'names'</code></td><td width="30%"><var>nm</var></td><td width="20%"></td></tr>
+<tr><td width="20%"></td><td width="30%"><code>'split'</code></td><td width="30%"><var>sp</var></td><td width="20%"></td></tr>
+</table>
+
+<p>Additional arguments are summarized below.
+</p>
+<dl compact="compact">
+<dt><span>&lsquo;<samp>once</samp>&rsquo;</span></dt>
+<dd><p>Return only the first occurrence of the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>matchcase</samp>&rsquo;</span></dt>
+<dd><p>Make the matching case sensitive.  (default)
+</p>
+<p>Alternatively, use (?-i) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>ignorecase</samp>&rsquo;</span></dt>
+<dd><p>Ignore case when matching the pattern to the string.
+</p>
+<p>Alternatively, use (?i) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>stringanchors</samp>&rsquo;</span></dt>
+<dd><p>Match the anchor characters at the beginning and end of the string.
+(default)
+</p>
+<p>Alternatively, use (?-m) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>lineanchors</samp>&rsquo;</span></dt>
+<dd><p>Match the anchor characters at the beginning and end of the line.
+</p>
+<p>Alternatively, use (?m) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>dotall</samp>&rsquo;</span></dt>
+<dd><p>The pattern <code>.</code> matches all characters including the newline character.
+ (default)
+</p>
+<p>Alternatively, use (?s) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>dotexceptnewline</samp>&rsquo;</span></dt>
+<dd><p>The pattern <code>.</code> matches all characters except the newline character.
+</p>
+<p>Alternatively, use (?-s) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>literalspacing</samp>&rsquo;</span></dt>
+<dd><p>All characters in the pattern, including whitespace, are significant and are
+used in pattern matching.  (default)
+</p>
+<p>Alternatively, use (?-x) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>freespacing</samp>&rsquo;</span></dt>
+<dd><p>The pattern may include arbitrary whitespace and also comments beginning
+with the character &lsquo;<samp>#</samp>&rsquo;.
+</p>
+<p>Alternatively, use (?x) in the pattern.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>noemptymatch</samp>&rsquo;</span></dt>
+<dd><p>Zero-length matches are not returned.  (default)
+</p>
+</dd>
+<dt><span>&lsquo;<samp>emptymatch</samp>&rsquo;</span></dt>
+<dd><p>Return zero-length matches.
+</p>
+<p><code>regexp ('a', 'b*', 'emptymatch')</code> returns <code>[1 2]</code> because there
+are zero or more <code>'b'</code> characters at positions 1 and end-of-string.
+</p>
+</dd>
+</dl>
+
+<p>Stack Limitation Note: Pattern searches are done with a recursive function
+which can overflow the program stack when there are a high number of matches.
+For example,
+</p>
+<div class="example">
+<pre class="example"><code>regexp (repmat ('a', 1, 1e5), '(a)+')</code>
+</pre></div>
+
+<p>may lead to a segfault.  As an alternative, consider constructing pattern
+searches that reduce the number of matches (e.g., by creatively using set
+complement), and then further processing the return variables (now reduced in
+size) with successive <code>regexp</code> searches.
+</p>
+<p><strong>See also:</strong> <a href="#XREFregexpi">regexpi</a>, <a href="Searching-in-Strings.html#XREFstrfind">strfind</a>, <a href="#XREFregexprep">regexprep</a>.
+</p></dd></dl>
+
+
+<span id="XREFregexpi"></span><dl class="def">
+<dt id="index-regexpi"><span class="category">: </span><span><em>[<var>s</var>, <var>e</var>, <var>te</var>, <var>m</var>, <var>t</var>, <var>nm</var>, <var>sp</var>] =</em> <strong>regexpi</strong> <em>(<var>str</var>, <var>pat</var>)</em><a href='#index-regexpi' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-regexpi-1"><span class="category">: </span><span><em>[&hellip;] =</em> <strong>regexpi</strong> <em>(<var>str</var>, <var>pat</var>, &quot;<var>opt1</var>&quot;, &hellip;)</em><a href='#index-regexpi-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Case insensitive regular expression string matching.
+</p>
+<p>Search for <var>pat</var> in UTF-8 encoded <var>str</var> and return the positions and
+substrings of any matches, or empty values if there are none.
+See <a href="#XREFregexp"><code>regexp</code></a>, for details on the syntax of the search
+pattern.
+</p>
+<p><strong>See also:</strong> <a href="#XREFregexp">regexp</a>.
+</p></dd></dl>
+
+
+<span id="XREFregexprep"></span><dl class="def">
+<dt id="index-regexprep"><span class="category">: </span><span><em><var>outstr</var> =</em> <strong>regexprep</strong> <em>(<var>string</var>, <var>pat</var>, <var>repstr</var>)</em><a href='#index-regexprep' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-regexprep-1"><span class="category">: </span><span><em><var>outstr</var> =</em> <strong>regexprep</strong> <em>(<var>string</var>, <var>pat</var>, <var>repstr</var>, &quot;<var>opt1</var>&quot;, &hellip;)</em><a href='#index-regexprep-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Replace occurrences of pattern <var>pat</var> in <var>string</var> with <var>repstr</var>.
+</p>
+<p>The pattern is a regular expression as documented for <code>regexp</code>.
+See <a href="#XREFregexp"><code>regexp</code></a>.
+</p>
+<p>All strings must be UTF-8 encoded.
+</p>
+<p>The replacement string may contain <code>$i</code>, which substitutes for the ith
+set of parentheses in the match string.  For example,
+</p>
+<div class="example">
+<pre class="example">regexprep (&quot;Bill Dunn&quot;, '(\w+) (\w+)', '$2, $1')
+</pre></div>
+
+<p>returns <code>&quot;Dunn, Bill&quot;</code>
+</p>
+<p>Options in addition to those of <code>regexp</code> are
+</p>
+<dl compact="compact">
+<dt><span>&lsquo;<samp>once</samp>&rsquo;</span></dt>
+<dd><p>Replace only the first occurrence of <var>pat</var> in the result.
+</p>
+</dd>
+<dt><span>&lsquo;<samp>warnings</samp>&rsquo;</span></dt>
+<dd><p>This option is present for compatibility but is ignored.
+</p>
+</dd>
+</dl>
+
+<p>Implementation Note: For compatibility with <small>MATLAB</small>, escape sequences
+in <var>pat</var> (e.g., <code>&quot;\n&quot;</code> =&gt; newline) are expanded
+even when <var>pat</var> has been defined with single quotes.  To disable
+expansion use a second backslash before the escape sequence (e.g.,
+&quot;\\n&quot;) or use the <code>regexptranslate</code>
+function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFregexp">regexp</a>, <a href="#XREFregexpi">regexpi</a>, <a href="#XREFstrrep">strrep</a>.
+</p></dd></dl>
+
+
+<span id="XREFregexptranslate"></span><dl class="def">
+<dt id="index-regexptranslate"><span class="category">: </span><span><em></em> <strong>regexptranslate</strong> <em>(<var>op</var>, <var>s</var>)</em><a href='#index-regexptranslate' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Translate a string for use in a regular expression.
+</p>
+<p>This may include either wildcard replacement or special character escaping.
+</p>
+<p>The behavior is controlled by <var>op</var> which can take the following
+values
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;wildcard&quot;</code></span></dt>
+<dd><p>The wildcard characters <code>.</code>, <code>*</code>, and <code>?</code> are replaced with
+wildcards that are appropriate for a regular expression.  For example:
+</p>
+<div class="example">
+<pre class="example">regexptranslate (&quot;wildcard&quot;, &quot;*.m&quot;)
+     &rArr; '.*\.m'
+</pre></div>
+
+</dd>
+<dt><span><code>&quot;escape&quot;</code></span></dt>
+<dd><p>The characters <code>$.?[]</code>, that have special meaning for regular
+expressions are escaped so that they are treated literally.  For example:
+</p>
+<div class="example">
+<pre class="example">regexptranslate (&quot;escape&quot;, &quot;12.5&quot;)
+     &rArr; '12\.5'
+</pre></div>
+
+</dd>
+</dl>
+
+<p><strong>See also:</strong> <a href="#XREFregexp">regexp</a>, <a href="#XREFregexpi">regexpi</a>, <a href="#XREFregexprep">regexprep</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Searching-in-Strings.html">Searching in Strings</a>, Up: <a href="String-Operations.html">String Operations</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

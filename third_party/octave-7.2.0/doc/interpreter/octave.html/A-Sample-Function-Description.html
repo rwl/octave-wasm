@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>A Sample Function Description (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="A Sample Function Description (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="A Sample Function Description (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Format-of-Descriptions.html" rel="up" title="Format of Descriptions">
+<link href="A-Sample-Command-Description.html" rel="next" title="A Sample Command Description">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="A-Sample-Function-Description">
+<div class="header">
+<p>
+Next: <a href="A-Sample-Command-Description.html" accesskey="n" rel="next">A Sample Command Description</a>, Up: <a href="Format-of-Descriptions.html" accesskey="u" rel="up">Format of Descriptions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="A-Sample-Function-Description-1"></span><h4 class="subsubsection">1.3.5.1 A Sample Function Description</h4>
+<span id="index-function-descriptions"></span>
+
+<p>In a function description, the name of the function being described
+appears first.  It is followed on the same line by a list of parameters.
+The names used for the parameters are also used in the body of the
+description.
+</p>
+<p>After all of the calling forms have been enumerated, the next line is a
+concise one-sentence summary of the function.
+</p>
+<p>After the summary there may be documentation on the inputs and outputs,
+examples of function usage, notes about the algorithm used, and references
+to related functions.
+</p>
+<p>Here is a description of an imaginary function <code>foo</code>:
+</p>
+<dl class="def">
+<dt id="index-foo"><span class="category">: </span><span><em></em> <strong>foo</strong> <em>(<var>x</var>)</em><a href='#index-foo' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-foo-1"><span class="category">: </span><span><em></em> <strong>foo</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-foo-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-foo-2"><span class="category">: </span><span><em></em> <strong>foo</strong> <em>(<var>x</var>, <var>y</var>, &hellip;)</em><a href='#index-foo-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Subtract <var>x</var> from <var>y</var>, then add any remaining arguments to the
+result.
+</p>
+<p>The input <var>x</var> must be a numeric scalar, vector, or array.
+</p>
+<p>The optional input <var>y</var> defaults to 19 if it is not supplied.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">foo (1, [3, 5], 3, 9)
+     &rArr; [ 14, 16 ]
+foo (5)
+     &rArr; 14
+</pre></div>
+
+<p>More generally,
+</p>
+<div class="example">
+<pre class="example">foo (<var>w</var>, <var>x</var>, <var>y</var>, &hellip;)
+&equiv;
+<var>x</var> - <var>w</var> + <var>y</var> + &hellip;
+</pre></div>
+
+<p><b>See also:</b> bar
+</p></dd></dl>
+
+<p>Any parameter whose name contains the name of a type (e.g.,
+<var>integer</var> or <var>matrix</var>) is expected to be of that
+type.  Parameters named <var>object</var> may be of any type.  Parameters
+with other sorts of names (e.g., <var>new_file</var>) are discussed
+specifically in the description of the function.  In some sections,
+features common to parameters of several functions are described at the
+beginning.
+</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="A-Sample-Command-Description.html">A Sample Command Description</a>, Up: <a href="Format-of-Descriptions.html">Format of Descriptions</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

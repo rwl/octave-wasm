@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Two-dimensional Geometric Shapes (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Two-dimensional Geometric Shapes (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Two-dimensional Geometric Shapes (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Two_002dDimensional-Plots.html" rel="up" title="Two-Dimensional Plots">
+<link href="Two_002ddimensional-Function-Plotting.html" rel="prev" title="Two-dimensional Function Plotting">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Two_002ddimensional-Geometric-Shapes">
+<div class="header">
+<p>
+Previous: <a href="Two_002ddimensional-Function-Plotting.html" accesskey="p" rel="prev">Two-dimensional Function Plotting</a>, Up: <a href="Two_002dDimensional-Plots.html" accesskey="u" rel="up">Two-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Two_002ddimensional-Geometric-Shapes-1"></span><h4 class="subsubsection">15.2.1.3 Two-dimensional Geometric Shapes</h4>
+
+<span id="XREFrectangle"></span><dl class="def">
+<dt id="index-rectangle"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>()</em><a href='#index-rectangle' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-1"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>(&hellip;, &quot;Position&quot;, <var>pos</var>)</em><a href='#index-rectangle-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-2"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>(&hellip;, &quot;Curvature&quot;, <var>curv</var>)</em><a href='#index-rectangle-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-3"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>(&hellip;, &quot;EdgeColor&quot;, <var>ec</var>)</em><a href='#index-rectangle-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-4"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>(&hellip;, &quot;FaceColor&quot;, <var>fc</var>)</em><a href='#index-rectangle-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-5"><span class="category">: </span><span><em></em> <strong>rectangle</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-rectangle-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rectangle-6"><span class="category">: </span><span><em><var>h</var> =</em> <strong>rectangle</strong> <em>(&hellip;)</em><a href='#index-rectangle-6' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Draw a rectangular patch defined by <var>pos</var> and <var>curv</var>.
+</p>
+<p>The variable <code><var>pos</var>(1:2)</code> defines the lower left-hand corner of
+the patch and <code><var>pos</var>(3:4)</code> defines its width and height.  By
+default, the value of <var>pos</var> is <code>[0, 0, 1, 1]</code>.
+</p>
+<p>The variable <var>curv</var> defines the curvature of the sides of the rectangle
+and may be a scalar or two-element vector with values between 0 and 1.
+A value of 0 represents no curvature of the side, whereas a value of 1
+means that the side is entirely curved into the arc of a circle.
+If <var>curv</var> is a two-element vector, then the first element is the
+curvature along the x-axis of the patch and the second along y-axis.
+</p>
+<p>If <var>curv</var> is a scalar, it represents the curvature of the shorter of the
+two sides of the rectangle and the curvature of the other side is defined
+by
+</p>
+<div class="example">
+<pre class="example">min (pos(1:2)) / max (pos(1:2)) * curv
+</pre></div>
+
+<p>Additional property/value pairs are passed to the underlying patch command.
+The full list of properties is documented at <a href="Patch-Properties.html">Patch Properties</a>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then plot into this axes,
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>The optional return value <var>h</var> is a graphics handle to the created
+rectangle object.
+</p>
+<p><strong>See also:</strong> <a href="Graphics-Objects.html#XREFpatch">patch</a>, <a href="Graphics-Objects.html#XREFline">line</a>, <a href="Three_002ddimensional-Geometric-Shapes.html#XREFcylinder">cylinder</a>, <a href="Three_002ddimensional-Geometric-Shapes.html#XREFellipsoid">ellipsoid</a>, <a href="Three_002ddimensional-Geometric-Shapes.html#XREFsphere">sphere</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Two_002ddimensional-Function-Plotting.html">Two-dimensional Function Plotting</a>, Up: <a href="Two_002dDimensional-Plots.html">Two-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

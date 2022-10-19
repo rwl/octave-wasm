@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Manipulation of Plot Objects (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Manipulation of Plot Objects (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Manipulation of Plot Objects (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="High_002dLevel-Plotting.html" rel="up" title="High-Level Plotting">
+<link href="Manipulation-of-Plot-Windows.html" rel="next" title="Manipulation of Plot Windows">
+<link href="Multiple-Plot-Windows.html" rel="prev" title="Multiple Plot Windows">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Manipulation-of-Plot-Objects">
+<div class="header">
+<p>
+Next: <a href="Manipulation-of-Plot-Windows.html" accesskey="n" rel="next">Manipulation of Plot Windows</a>, Previous: <a href="Multiple-Plot-Windows.html" accesskey="p" rel="prev">Multiple Plot Windows</a>, Up: <a href="High_002dLevel-Plotting.html" accesskey="u" rel="up">High-Level Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Manipulation-of-Plot-Objects-1"></span><h4 class="subsection">15.2.6 Manipulation of Plot Objects</h4>
+<span id="index-plotting_002c-object-manipulation"></span>
+
+<span id="XREFpan"></span><dl class="def">
+<dt id="index-pan"><span class="category">: </span><span><em></em> <strong>pan</strong><a href='#index-pan' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pan-1"><span class="category">: </span><span><em></em> <strong>pan</strong> <em>on</em><a href='#index-pan-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pan-2"><span class="category">: </span><span><em></em> <strong>pan</strong> <em>off</em><a href='#index-pan-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pan-3"><span class="category">: </span><span><em></em> <strong>pan</strong> <em>xon</em><a href='#index-pan-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pan-4"><span class="category">: </span><span><em></em> <strong>pan</strong> <em>yon</em><a href='#index-pan-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pan-5"><span class="category">: </span><span><em></em> <strong>pan</strong> <em>(<var>hfig</var>, <var>option</var>)</em><a href='#index-pan-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Control the interactive panning mode of a figure in the GUI.
+</p>
+<p>Given the option <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>, set the interactive
+pan mode on or off.
+</p>
+<p>With no arguments, toggle the current pan mode on or off.
+</p>
+<p>Given the option <code>&quot;xon&quot;</code> or <code>&quot;yon&quot;</code>, enable pan mode
+for the x or y axis only.
+</p>
+<p>If the first argument <var>hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code>gcf</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFrotate3d">rotate3d</a>, <a href="#XREFzoom">zoom</a>.
+</p></dd></dl>
+
+
+<span id="XREFrotate"></span><dl class="def">
+<dt id="index-rotate"><span class="category">: </span><span><em></em> <strong>rotate</strong> <em>(<var>h</var>, <var>direction</var>, <var>alpha</var>)</em><a href='#index-rotate' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rotate-1"><span class="category">: </span><span><em></em> <strong>rotate</strong> <em>(&hellip;, <var>origin</var>)</em><a href='#index-rotate-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Rotate the plot object <var>h</var> through <var>alpha</var> degrees around the line
+with direction <var>direction</var> and origin <var>origin</var>.
+</p>
+<p>The default value of <var>origin</var> is the center of the axes object that is
+the parent of <var>h</var>.
+</p>
+<p>If <var>h</var> is a vector of handles, they must all have the same parent axes
+object.
+</p>
+<p>Graphics objects that may be rotated are lines, surfaces, patches, and
+images.
+</p></dd></dl>
+
+
+<span id="XREFrotate3d"></span><dl class="def">
+<dt id="index-rotate3d"><span class="category">: </span><span><em></em> <strong>rotate3d</strong><a href='#index-rotate3d' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rotate3d-1"><span class="category">: </span><span><em></em> <strong>rotate3d</strong> <em>on</em><a href='#index-rotate3d-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rotate3d-2"><span class="category">: </span><span><em></em> <strong>rotate3d</strong> <em>off</em><a href='#index-rotate3d-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-rotate3d-3"><span class="category">: </span><span><em></em> <strong>rotate3d</strong> <em>(<var>hfig</var>, <var>option</var>)</em><a href='#index-rotate3d-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Control the interactive 3-D rotation mode of a figure in the GUI.
+</p>
+<p>Given the option <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>, set the interactive
+rotate mode on or off.
+</p>
+<p>With no arguments, toggle the current rotate mode on or off.
+</p>
+<p>If the first argument <var>hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code>gcf</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpan">pan</a>, <a href="#XREFzoom">zoom</a>.
+</p></dd></dl>
+
+
+<span id="XREFzoom"></span><dl class="def">
+<dt id="index-zoom"><span class="category">: </span><span><em></em> <strong>zoom</strong><a href='#index-zoom' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-1"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>(<var>factor</var>)</em><a href='#index-zoom-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-2"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>on</em><a href='#index-zoom-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-3"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>off</em><a href='#index-zoom-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-4"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>xon</em><a href='#index-zoom-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-5"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>yon</em><a href='#index-zoom-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-6"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>out</em><a href='#index-zoom-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-7"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>reset</em><a href='#index-zoom-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-zoom-8"><span class="category">: </span><span><em></em> <strong>zoom</strong> <em>(<var>hfig</var>, <var>option</var>)</em><a href='#index-zoom-8' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Zoom the current axes object or control the interactive zoom mode of a
+figure in the GUI.
+</p>
+<p>Given a numeric argument greater than zero, zoom by the given factor.  If
+the zoom factor is greater than one, zoom in on the plot.  If the factor
+is less than one, zoom out.  If the zoom factor is a two- or three-element
+vector, then the elements specify the zoom factors for the x, y, and z
+axes respectively.
+</p>
+<p>Given the option <code>&quot;on&quot;</code> or <code>&quot;off&quot;</code>, set the interactive zoom
+mode on or off.
+</p>
+<p>With no arguments, toggle the current zoom mode on or off.
+</p>
+<p>Given the option <code>&quot;xon&quot;</code> or <code>&quot;yon&quot;</code>, enable zoom mode for the
+x or y-axis only.
+</p>
+<p>Given the option <code>&quot;out&quot;</code>, zoom to the initial zoom setting.
+</p>
+<p>Given the option <code>&quot;reset&quot;</code>, store the current zoom setting so that
+<code>zoom out</code> will return to this zoom level.
+</p>
+<p>If the first argument <var>hfig</var> is a figure, then operate on the given
+figure rather than the current figure as returned by <code>gcf</code>.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFpan">pan</a>, <a href="#XREFrotate3d">rotate3d</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Manipulation-of-Plot-Windows.html">Manipulation of Plot Windows</a>, Previous: <a href="Multiple-Plot-Windows.html">Multiple Plot Windows</a>, Up: <a href="High_002dLevel-Plotting.html">High-Level Plotting</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

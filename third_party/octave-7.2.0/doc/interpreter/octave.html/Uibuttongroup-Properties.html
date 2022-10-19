@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Uibuttongroup Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Uibuttongroup Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Uibuttongroup Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Uicontextmenu-Properties.html" rel="next" title="Uicontextmenu Properties">
+<link href="Uimenu-Properties.html" rel="prev" title="Uimenu Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Uibuttongroup-Properties">
+<div class="header">
+<p>
+Next: <a href="Uicontextmenu-Properties.html" accesskey="n" rel="next">Uicontextmenu Properties</a>, Previous: <a href="Uimenu-Properties.html" accesskey="p" rel="prev">Uimenu Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Uibuttongroup-Properties-1"></span><h4 class="subsubsection">15.3.3.13 Uibuttongroup Properties</h4>
+<span id="index--Uibuttongroup-PropertiesUibuttongroup-Properties"></span>
+
+
+
+<p>Properties of <code>uibuttongroup</code> objects (see <a href="UI-Elements.html#XREFuibuttongroup">uibuttongroup</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFuibuttongroupbackgroundcolor"></span><span id="index-uibuttongroup-backgroundcolor"></span>
+</dd>
+<dt><span><code>backgroundcolor</code>: def. <code>[0.9400   0.9400   0.9400]</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupbeingdeleted"></span><span id="index-uibuttongroup-beingdeleted"></span>
+</dd>
+<dt><span><code>beingdeleted</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupbordertype"></span><span id="index-uibuttongroup-bordertype"></span>
+</dd>
+<dt><span><code>bordertype</code>: <code>&quot;beveledin&quot;</code> | <code>&quot;beveledout&quot;</code> | {<code>&quot;etchedin&quot;</code>} | <code>&quot;etchedout&quot;</code> | <code>&quot;line&quot;</code> | <code>&quot;none&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupborderwidth"></span><span id="index-uibuttongroup-borderwidth"></span>
+</dd>
+<dt><span><code>borderwidth</code>: def. <code>1</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupbusyaction"></span><span id="index-uibuttongroup-busyaction"></span>
+</dd>
+<dt><span><code>busyaction</code>: <code>&quot;cancel&quot;</code> | {<code>&quot;queue&quot;</code>}</span></dt>
+<dd><p>Define how Octave handles the execution of this object&rsquo;s callback properties when it is unable to interrupt another object&rsquo;s executing callback.  This is only relevant when the currently executing callback object has its <code>interruptible</code> property set to <code>&quot;off&quot;</code>.  The <code>busyaction</code> property of the interrupting callback object indicates whether the interrupting callback is queued (<code>&quot;queue&quot;</code> (default)) or discarded (<code>&quot;cancel&quot;</code>).
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupbuttondownfcn"></span><span id="index-uibuttongroup-buttondownfcn"></span>
+</dd>
+<dt><span><code>buttondownfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupchildren"></span><span id="index-uibuttongroup-children"></span>
+</dd>
+<dt><span><code>children</code> (read-only): vector of graphics handles, def. <code>[](0x1)</code></span></dt>
+<dd><p>Graphics handles of the uibuttongroup&rsquo;s children.
+</p>
+
+<span id="XREFuibuttongroupclipping"></span><span id="index-uibuttongroup-clipping"></span>
+</dd>
+<dt><span><code>clipping</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>clipping</code> is <code>&quot;on&quot;</code>, the uibuttongroup is clipped in its parent axes limits.
+</p>
+
+<span id="XREFuibuttongroupcontextmenu"></span><span id="index-uibuttongroup-contextmenu"></span>
+</dd>
+<dt><span><code>contextmenu</code>: graphics handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Graphics handle of the uicontextmenu object that is currently associated to this uibuttongroup object.
+</p>
+
+<span id="XREFuibuttongroupcreatefcn"></span><span id="index-uibuttongroup-createfcn"></span>
+</dd>
+<dt><span><code>createfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately after uibuttongroup has been created.  Function is set by using default property on root object, e.g., <code>set (groot, &quot;defaultuibuttongroupcreatefcn&quot;, 'disp (&quot;uibuttongroup created!&quot;)')</code>.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupdeletefcn"></span><span id="index-uibuttongroup-deletefcn"></span>
+</dd>
+<dt><span><code>deletefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback function executed immediately before uibuttongroup is deleted.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupfontangle"></span><span id="index-uibuttongroup-fontangle"></span>
+</dd>
+<dt><span><code>fontangle</code>: <code>&quot;italic&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<span id="XREFuibuttongroupfontname"></span><span id="index-uibuttongroup-fontname"></span>
+</dd>
+<dt><span><code>fontname</code>: string, def. <code>&quot;*&quot;</code></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code>&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code>system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<span id="XREFuibuttongroupfontsize"></span><span id="index-uibuttongroup-fontsize"></span>
+</dd>
+<dt><span><code>fontsize</code>: scalar, def. <code>10</code></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a href="#XREFuibuttongroupfontunits">fontunits property</a>.
+</p>
+
+<span id="XREFuibuttongroupfontunits"></span><span id="index-uibuttongroup-fontunits"></span>
+</dd>
+<dt><span><code>fontunits</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;inches&quot;</code> | <code>&quot;normalized&quot;</code> | <code>&quot;pixels&quot;</code> | {<code>&quot;points&quot;</code>}</span></dt>
+<dd><p>Units used to interpret the <code>&quot;fontsize&quot;</code> property.
+</p>
+
+<span id="XREFuibuttongroupfontweight"></span><span id="index-uibuttongroup-fontweight"></span>
+</dd>
+<dt><span><code>fontweight</code>: <code>&quot;bold&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<span id="XREFuibuttongroupforegroundcolor"></span><span id="index-uibuttongroup-foregroundcolor"></span>
+</dd>
+<dt><span><code>foregroundcolor</code>: def. <code>[0   0   0]</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongrouphandlevisibility"></span><span id="index-uibuttongroup-handlevisibility"></span>
+</dd>
+<dt><span><code>handlevisibility</code>: <code>&quot;callback&quot;</code> | <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>handlevisibility</code> is <code>&quot;off&quot;</code>, the uibuttongroup&rsquo;s handle is not visible in its parent&rsquo;s &quot;children&quot; property.
+</p>
+
+<span id="XREFuibuttongrouphighlightcolor"></span><span id="index-uibuttongroup-highlightcolor"></span>
+</dd>
+<dt><span><code>highlightcolor</code>: def. <code>[1   1   1]</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongrouphittest"></span><span id="index-uibuttongroup-hittest"></span>
+</dd>
+<dt><span><code>hittest</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether uibuttongroup processes mouse events or passes them to ancestors of the object.  When enabled, the object may respond to mouse clicks by evaluating the <code>&quot;buttondownfcn&quot;</code>, showing the uicontextmenu, and eventually becoming the root <code>&quot;currentobject&quot;</code>.  This property is only relevant when the object can accept mouse clicks which is determined by the <code>&quot;pickableparts&quot;</code> property.  See <a href="#XREFuibuttongrouppickableparts">pickableparts&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupinterruptible"></span><span id="index-uibuttongroup-interruptible"></span>
+</dd>
+<dt><span><code>interruptible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Specify whether this object&rsquo;s callback functions may be interrupted by other callbacks.  By default <code>interruptible</code> is <code>&quot;on&quot;</code> and callbacks that make use of <code>drawnow</code>, <code>figure</code>, <code>waitfor</code>, <code>getframe</code> or <code>pause</code> functions are eventually interrupted.
+See <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupparent"></span><span id="index-uibuttongroup-parent"></span>
+</dd>
+<dt><span><code>parent</code>: graphics handle</span></dt>
+<dd><p>Handle of the parent graphics object.
+</p>
+
+<span id="XREFuibuttongrouppickableparts"></span><span id="index-uibuttongroup-pickableparts"></span>
+</dd>
+<dt><span><code>pickableparts</code>: <code>&quot;all&quot;</code> | <code>&quot;none&quot;</code> | {<code>&quot;visible&quot;</code>}</span></dt>
+<dd><p>Specify whether uibuttongroup will accept mouse clicks.  By default, <code>pickableparts</code> is <code>&quot;visible&quot;</code> and only visible parts of the uibuttongroup or its children may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;all&quot;</code> both visible and invisible parts (or children) may react to mouse clicks.  When <code>pickableparts</code> is <code>&quot;none&quot;</code> mouse clicks on the object are ignored and transmitted to any objects underneath this one.  When an object is configured to accept mouse clicks the <code>&quot;hittest&quot;</code> property will determine how they are processed.  See <a href="#XREFuibuttongrouphittest">hittest&nbsp;property<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongroupposition"></span><span id="index-uibuttongroup-position"></span>
+</dd>
+<dt><span><code>position</code>: def. <code>[0   0   1   1]</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupresizefcn"></span><span id="index-uibuttongroup-resizefcn"></span>
+</dd>
+<dt><span><code>resizefcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p><code>resizefcn</code> is deprecated.  Use <code>sizechangedfcn</code> instead.
+</p>
+
+<span id="XREFuibuttongroupselected"></span><span id="index-uibuttongroup-selected"></span>
+</dd>
+<dt><span><code>selected</code>: {<code>&quot;off&quot;</code>} | <code>&quot;on&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupselectedobject"></span><span id="index-uibuttongroup-selectedobject"></span>
+</dd>
+<dt><span><code>selectedobject</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupselectionchangedfcn"></span><span id="index-uibuttongroup-selectionchangedfcn"></span>
+</dd>
+<dt><span><code>selectionchangedfcn</code>: def. <code>[](0x0)</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupselectionhighlight"></span><span id="index-uibuttongroup-selectionhighlight"></span>
+</dd>
+<dt><span><code>selectionhighlight</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupshadowcolor"></span><span id="index-uibuttongroup-shadowcolor"></span>
+</dd>
+<dt><span><code>shadowcolor</code>: def. <code>[0.7000   0.7000   0.7000]</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupsizechangedfcn"></span><span id="index-uibuttongroup-sizechangedfcn"></span>
+</dd>
+<dt><span><code>sizechangedfcn</code>: string | function handle, def. <code>[](0x0)</code></span></dt>
+<dd><p>Callback triggered when the uibuttongroup size is changed.
+</p>
+<p>For information on how to write graphics listener functions see <a href="Callbacks.html">Callbacks&nbsp;section<!-- /@w --></a>.
+</p>
+
+<span id="XREFuibuttongrouptag"></span><span id="index-uibuttongroup-tag"></span>
+</dd>
+<dt><span><code>tag</code>: string, def. <code>&quot;&quot;</code></span></dt>
+<dd><p>A user-defined string to label the graphics object.
+</p>
+
+<span id="XREFuibuttongrouptitle"></span><span id="index-uibuttongroup-title"></span>
+</dd>
+<dt><span><code>title</code>: def. <code>&quot;&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongrouptitleposition"></span><span id="index-uibuttongroup-titleposition"></span>
+</dd>
+<dt><span><code>titleposition</code>: <code>&quot;centerbottom&quot;</code> | <code>&quot;centertop&quot;</code> | <code>&quot;leftbottom&quot;</code> | {<code>&quot;lefttop&quot;</code>} | <code>&quot;rightbottom&quot;</code> | <code>&quot;righttop&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongrouptype"></span><span id="index-uibuttongroup-type"></span>
+</dd>
+<dt><span><code>type</code> (read-only): string</span></dt>
+<dd><p>Class name of the graphics object.  <code>type</code> is always <code>&quot;uibuttongroup&quot;</code>
+</p>
+
+<span id="XREFuibuttongroupunits"></span><span id="index-uibuttongroup-units"></span>
+</dd>
+<dt><span><code>units</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;characters&quot;</code> | <code>&quot;inches&quot;</code> | {<code>&quot;normalized&quot;</code>} | <code>&quot;pixels&quot;</code> | <code>&quot;points&quot;</code></span></dt>
+<dd>
+
+
+<span id="XREFuibuttongroupuserdata"></span><span id="index-uibuttongroup-userdata"></span>
+</dd>
+<dt><span><code>userdata</code>: Any Octave data, def. <code>[](0x0)</code></span></dt>
+<dd><p>User-defined data to associate with the graphics object.
+</p>
+
+<span id="XREFuibuttongroupvisible"></span><span id="index-uibuttongroup-visible"></span>
+</dd>
+<dt><span><code>visible</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>If <code>visible</code> is <code>&quot;off&quot;</code>, the uibuttongroup is not rendered on screen.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Uicontextmenu-Properties.html">Uicontextmenu Properties</a>, Previous: <a href="Uimenu-Properties.html">Uimenu Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

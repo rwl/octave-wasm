@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Using Publishing Markup in Script Files (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Using Publishing Markup in Script Files (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Using Publishing Markup in Script Files (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Publishing-Markup.html" rel="up" title="Publishing Markup">
+<link href="Text-Formatting.html" rel="next" title="Text Formatting">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Using-Publishing-Markup-in-Script-Files">
+<div class="header">
+<p>
+Next: <a href="Text-Formatting.html" accesskey="n" rel="next">Text Formatting</a>, Up: <a href="Publishing-Markup.html" accesskey="u" rel="up">Publishing Markup</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Using-Publishing-Markup-in-Script-Files-1"></span><h4 class="subsubsection">11.11.2.1 Using Publishing Markup in Script Files</h4>
+
+<p>To use Publishing Markup, start by typing &lsquo;<samp>##</samp>&rsquo; or &lsquo;<samp>%%</samp>&rsquo; at the
+beginning of a new line.  For <small>MATLAB</small> compatibility &lsquo;<samp>%%%</samp>&rsquo; is treated
+the same way as &lsquo;<samp>%%</samp>&rsquo;.
+</p>
+<p>The lines following &lsquo;<samp>##</samp>&rsquo; or &lsquo;<samp>%%</samp>&rsquo; start with one of either
+&lsquo;<samp>#</samp>&rsquo; or &lsquo;<samp>%</samp>&rsquo; followed by at least one space.  These lines are
+interpreted as section.  A section ends at the first line not starting
+with &lsquo;<samp>#</samp>&rsquo; or &lsquo;<samp>%</samp>&rsquo;, or when the end of the document is reached.
+</p>
+<p>A section starting in the first line of the document, followed by another
+start of a section that might be empty, is interpreted as a document
+title and introduction text.
+</p>
+<p>See the example below for clarity:
+</p>
+<div class="example">
+<pre class="example">%% Headline title
+%
+% Some *bold*, _italic_, or |monospaced| Text with
+% a &lt;https://www.octave.org link to GNU Octave&gt;.
+%%
+
+# &quot;Real&quot; Octave commands to be evaluated
+sombrero ()
+
+## Octave comment style supported as well
+#
+# * Bulleted list item 1
+# * Bulleted list item 2
+#
+# # Numbered list item 1
+# # Numbered list item 2
+</pre></div>
+
+</div>
+
+
+
+</body>
+</html>

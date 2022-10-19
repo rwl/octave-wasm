@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>C-Style I/O Functions (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="C-Style I/O Functions (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="C-Style I/O Functions (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Input-and-Output.html" rel="up" title="Input and Output">
+<link href="Basic-Input-and-Output.html" rel="prev" title="Basic Input and Output">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="C_002dStyle-I_002fO-Functions">
+<div class="header">
+<p>
+Previous: <a href="Basic-Input-and-Output.html" accesskey="p" rel="prev">Basic Input and Output</a>, Up: <a href="Input-and-Output.html" accesskey="u" rel="up">Input and Output</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="C_002dStyle-I_002fO-Functions-1"></span><h3 class="section">14.2 C-Style I/O Functions</h3>
+
+<p>Octave&rsquo;s C-style input and output functions provide most of the
+functionality of the C programming language&rsquo;s standard I/O library.  The
+argument lists for some of the input functions are slightly different,
+however, because Octave has no way of passing arguments by reference.
+</p>
+<p>In the following, <var>file</var> refers to a filename and <code>fid</code> refers
+to an integer file number, as returned by <code>fopen</code>.
+</p>
+<p>There are three files that are always available.  Although these files
+can be accessed using their corresponding numeric file ids, you should
+always use the symbolic names given in the table below, since it will
+make your programs easier to understand.
+</p>
+<span id="XREFstdin"></span><dl class="def">
+<dt id="index-stdin"><span class="category">: </span><span><em></em> <strong>stdin</strong> <em>()</em><a href='#index-stdin' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the numeric value corresponding to the standard input stream.
+</p>
+<p>When Octave is used interactively, stdin is filtered through the command
+line editing functions.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstdout">stdout</a>, <a href="#XREFstderr">stderr</a>.
+</p></dd></dl>
+
+
+<span id="XREFstdout"></span><dl class="def">
+<dt id="index-stdout"><span class="category">: </span><span><em></em> <strong>stdout</strong> <em>()</em><a href='#index-stdout' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the numeric value corresponding to the standard output stream.
+</p>
+<p>Data written to the standard output may be filtered through the pager.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstdin">stdin</a>, <a href="#XREFstderr">stderr</a>, <a href="Paging-Screen-Output.html#XREFpage_005fscreen_005foutput">page_screen_output</a>.
+</p></dd></dl>
+
+
+<span id="XREFstderr"></span><dl class="def">
+<dt id="index-stderr"><span class="category">: </span><span><em></em> <strong>stderr</strong> <em>()</em><a href='#index-stderr' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the numeric value corresponding to the standard error stream.
+</p>
+<p>Even if paging is turned on, the standard error is not sent to the pager.
+It is useful for error messages and prompts.
+</p>
+<p><strong>See also:</strong> <a href="#XREFstdin">stdin</a>, <a href="#XREFstdout">stdout</a>.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Opening-and-Closing-Files.html" accesskey="1">Opening and Closing Files</a></li>
+<li><a href="Simple-Output.html" accesskey="2">Simple Output</a></li>
+<li><a href="Line_002dOriented-Input.html" accesskey="3">Line-Oriented Input</a></li>
+<li><a href="Formatted-Output.html" accesskey="4">Formatted Output</a></li>
+<li><a href="Output-Conversion-for-Matrices.html" accesskey="5">Output Conversion for Matrices</a></li>
+<li><a href="Output-Conversion-Syntax.html" accesskey="6">Output Conversion Syntax</a></li>
+<li><a href="Table-of-Output-Conversions.html" accesskey="7">Table of Output Conversions</a></li>
+<li><a href="Integer-Conversions.html" accesskey="8">Integer Conversions</a></li>
+<li><a href="Floating_002dPoint-Conversions.html" accesskey="9">Floating-Point Conversions</a></li>
+<li><a href="Other-Output-Conversions.html">Other Output Conversions</a></li>
+<li><a href="Formatted-Input.html">Formatted Input</a></li>
+<li><a href="Input-Conversion-Syntax.html">Input Conversion Syntax</a></li>
+<li><a href="Table-of-Input-Conversions.html">Table of Input Conversions</a></li>
+<li><a href="Numeric-Input-Conversions.html">Numeric Input Conversions</a></li>
+<li><a href="String-Input-Conversions.html">String Input Conversions</a></li>
+<li><a href="Binary-I_002fO.html">Binary I/O</a></li>
+<li><a href="Temporary-Files.html">Temporary Files</a></li>
+<li><a href="EOF-and-Errors.html">End of File and Errors</a></li>
+<li><a href="File-Positioning.html">File Positioning</a></li>
+</ul>
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Basic-Input-and-Output.html">Basic Input and Output</a>, Up: <a href="Input-and-Output.html">Input and Output</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

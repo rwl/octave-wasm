@@ -1,0 +1,38 @@
+########################################################################
+## This file configures the behavior of line-input editing for all
+## Octave users when Octave is configured to use GNU Readline library
+## for input-line editing.
+##
+## This file is NOT an Octave script.
+##
+## Do not make changes to this file unless you understand how
+## GNU Readline configuration works.
+########################################################################
+
+## history-search-backward:
+##
+##   Search backward through the history for the string of characters
+##   between the start of the current line and the point.  This is a
+##   non-incremental search.  Bound to "\e[A", the ANSI escape
+##   sequence for the UP arrow.
+
+"\e[A": history-search-backward
+
+## history-search-forward:
+##
+##   Search forward through the history for the string of characters
+##   between the start of the current line and the point.  This is a
+##   non-incremental search.  Bound to "\e[B", the ANSI escape
+##   sequence for the DOWN arrow.
+
+"\e[B": history-search-forward
+
+## Disable Ctrl+v so the usual paste shortcut will work on Windows.
+## \C-q should still be available for quoted insert.
+
+"\C-v": ""
+
+## On Windows, disable audible bell which is enabled by default.
+$if term=cygwin
+   set bell-style none
+$endif

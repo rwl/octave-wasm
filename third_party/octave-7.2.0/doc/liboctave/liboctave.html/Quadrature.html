@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Quadrature (Octave C++ Classes)</title>
+
+<meta name="description" content="Quadrature (Octave C++ Classes)">
+<meta name="keywords" content="Quadrature (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Ordinary-Differential-Equations.html" rel="next" title="Ordinary Differential Equations">
+<link href="Optimization.html" rel="prev" title="Optimization">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Quadrature">
+<div class="header">
+<p>
+Next: <a href="Ordinary-Differential-Equations.html" accesskey="n" rel="next">Ordinary Differential Equations</a>, Previous: <a href="Optimization.html" accesskey="p" rel="prev">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Quadrature-1"></span><h2 class="chapter">10 Quadrature</h2>
+<span id="index-quadrature"></span>
+<span id="index-numerical-integration"></span>
+<span id="index-integration"></span>
+
+<dl class="def">
+<dt id="index-Quad"><span class="category">: </span><span><em></em> <strong>Quad</strong> <em>(integrand_fcn <var>fcn</var>)</em><a href='#index-Quad' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Quad-1"><span class="category">: </span><span><em></em> <strong>Quad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-Quad-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-integrate"><span class="category">: </span><span><em>virtual double</em> <strong>integrate</strong> <em>(void)</em><a href='#index-integrate' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-integrate-1"><span class="category">: </span><span><em>virtual double</em> <strong>integrate</strong> <em>(int &amp;<var>ier</var>)</em><a href='#index-integrate-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-integrate-2"><span class="category">: </span><span><em>virtual double</em> <strong>integrate</strong> <em>(int &amp;<var>ier</var>, int &amp;<var>neval</var>)</em><a href='#index-integrate-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-integrate-3"><span class="category">: </span><span><em>virtual double</em> <strong>integrate</strong> <em>(int &amp;<var>ier</var>, int &amp;<var>neval</var>, double &amp;<var>abserr</var>) = 0</em><a href='#index-integrate-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-Quad_005foptions"><span class="category">: </span><span><em></em> <strong>Quad_options</strong> <em>(void)</em><a href='#index-Quad_005foptions' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-Quad_005foptions-1"><span class="category">: </span><span><em></em> <strong>Quad_options</strong> <em>(const Quad_options &amp;<var>opt</var>)</em><a href='#index-Quad_005foptions-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-34"><span class="category">: </span><span><em>Quad_options&amp;</em> <strong>operator =</strong> <em>(const Quad_options &amp;<var>opt</var>)</em><a href='#index-operator-_003d-34' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-init-1"><span class="category">: </span><span><em>void</em> <strong>init</strong> <em>(void)</em><a href='#index-init-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-copy-1"><span class="category">: </span><span><em>void</em> <strong>copy</strong> <em>(const Quad_options &amp;<var>opt</var>)</em><a href='#index-copy-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fdefault_005foptions-1"><span class="category">: </span><span><em>void</em> <strong>set_default_options</strong> <em>(void)</em><a href='#index-set_005fdefault_005foptions-1' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fabsolute_005ftolerance"><span class="category">: </span><span><em>void</em> <strong>set_absolute_tolerance</strong> <em>(double <var>val</var>)</em><a href='#index-set_005fabsolute_005ftolerance' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005frelative_005ftolerance"><span class="category">: </span><span><em>void</em> <strong>set_relative_tolerance</strong> <em>(double <var>val</var>)</em><a href='#index-set_005frelative_005ftolerance' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-absolute_005ftolerance"><span class="category">: </span><span><em>double</em> <strong>absolute_tolerance</strong> <em>(void)</em><a href='#index-absolute_005ftolerance' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-relative_005ftolerance"><span class="category">: </span><span><em>double</em> <strong>relative_tolerance</strong> <em>(void)</em><a href='#index-relative_005ftolerance' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-DefQuad"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>)</em><a href='#index-DefQuad' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-1"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>ll</var>, double <var>ul</var>)</em><a href='#index-DefQuad-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-2"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>ll</var>, double <var>ul</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-DefQuad-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-3"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>ll</var>, double <var>ul</var>, const ColumnVector &amp;<var>sing</var>)</em><a href='#index-DefQuad-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-4"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, const ColumnVector &amp;<var>sing</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-DefQuad-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-5"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, const ColumnVector &amp;<var>sing</var>)</em><a href='#index-DefQuad-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-DefQuad-6"><span class="category">: </span><span><em></em> <strong>DefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>ll</var>, double <var>ul</var>, const ColumnVector &amp;<var>sing</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-DefQuad-6' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-IndefQuad"><span class="category">: </span><span><em></em> <strong>IndefQuad</strong> <em>(integrand_fcn <var>fcn</var>)</em><a href='#index-IndefQuad' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-IndefQuad-1"><span class="category">: </span><span><em></em> <strong>IndefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>b</var>, IntegralType <var>t</var>)</em><a href='#index-IndefQuad-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-IndefQuad-2"><span class="category">: </span><span><em></em> <strong>IndefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>b</var>, IntegralType <var>t</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-IndefQuad-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-IndefQuad-3"><span class="category">: </span><span><em></em> <strong>IndefQuad</strong> <em>(integrand_fcn <var>fcn</var>, double <var>abs</var>, double <var>rel</var>)</em><a href='#index-IndefQuad-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+
+<ul class="section-toc">
+<li><a href="Collocation-Weights.html" accesskey="1">Collocation Weights</a></li>
+</ul>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Ordinary-Differential-Equations.html">Ordinary Differential Equations</a>, Previous: <a href="Optimization.html">Optimization</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

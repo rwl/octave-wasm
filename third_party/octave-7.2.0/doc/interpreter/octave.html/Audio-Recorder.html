@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Audio Recorder (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Audio Recorder (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Audio Recorder (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Audio-Processing.html" rel="up" title="Audio Processing">
+<link href="Audio-Data-Processing.html" rel="next" title="Audio Data Processing">
+<link href="Audio-Player.html" rel="prev" title="Audio Player">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Audio-Recorder">
+<div class="header">
+<p>
+Next: <a href="Audio-Data-Processing.html" accesskey="n" rel="next">Audio Data Processing</a>, Previous: <a href="Audio-Player.html" accesskey="p" rel="prev">Audio Player</a>, Up: <a href="Audio-Processing.html" accesskey="u" rel="up">Audio Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Audio-Recorder-1"></span><h3 class="section">33.4 Audio Recorder</h3>
+
+<p>The following methods are used to create and use audiorecorder
+objects.  These objects can be used to record audio data from various
+devices available to the system.  You can use convenient methods to
+retrieve that data or audioplayer objects created from that
+data.  Methods for blocking and non-blocking recording, pausing and
+resuming recording and much more is available.
+</p>
+<span id="XREF_0040audiorecorder_002faudiorecorder"></span><dl class="def">
+<dt id="index-audiorecorder"><span class="category">: </span><span><em><var>recorder</var> =</em> <strong>audiorecorder</strong> <em>()</em><a href='#index-audiorecorder' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-audiorecorder-1"><span class="category">: </span><span><em><var>recorder</var> =</em> <strong>audiorecorder</strong> <em>(<var>fs</var>, <var>nbits</var>, <var>channels</var>)</em><a href='#index-audiorecorder-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-audiorecorder-2"><span class="category">: </span><span><em><var>recorder</var> =</em> <strong>audiorecorder</strong> <em>(<var>fs</var>, <var>nbits</var>, <var>channels</var>, <var>id</var>)</em><a href='#index-audiorecorder-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Create an audiorecorder object recording 8 bit mono audio at 8000 Hz
+sample rate.
+</p>
+<p>The optional arguments <var>fs</var>, <var>nbits</var>, <var>channels</var>, and <var>id</var>
+specify the sample rate, bit depth, number of channels and recording
+device id, respectively.  Device IDs may be found using the audiodevinfo
+function.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Recording.html" accesskey="1">Recording</a></li>
+<li><a href="Data-Retrieval.html" accesskey="2">Data Retrieval</a></li>
+<li><a href="Recorder-Properties.html" accesskey="3">Properties</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

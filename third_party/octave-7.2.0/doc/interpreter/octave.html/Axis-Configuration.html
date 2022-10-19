@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Axis Configuration (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Axis Configuration (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Axis Configuration (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Two_002dDimensional-Plots.html" rel="up" title="Two-Dimensional Plots">
+<link href="Two_002ddimensional-Function-Plotting.html" rel="next" title="Two-dimensional Function Plotting">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Axis-Configuration">
+<div class="header">
+<p>
+Next: <a href="Two_002ddimensional-Function-Plotting.html" accesskey="n" rel="next">Two-dimensional Function Plotting</a>, Up: <a href="Two_002dDimensional-Plots.html" accesskey="u" rel="up">Two-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Axis-Configuration-1"></span><h4 class="subsubsection">15.2.1.1 Axis Configuration</h4>
+
+<p>The axis function may be used to change the axis limits of an existing
+plot and various other axis properties, such as the aspect ratio and the
+appearance of tic marks.  By default, high level plotting functions such as
+<code>plot</code> reset axes properties.  Any customization of properties, for
+example by calling <code>axis</code>, <code>xlim</code>, etc., should happen after the plot
+is done or, alternatively, after calling the <a href="Manipulation-of-Plot-Windows.html#XREFhold">hold function</a>.
+</p>
+<span id="XREFaxis"></span><dl class="def">
+<dt id="index-axis"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>()</em><a href='#index-axis' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-1"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>([<var>x_lo</var> <var>x_hi</var>])</em><a href='#index-axis-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-2"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>([<var>x_lo</var> <var>x_hi</var> <var>y_lo</var> <var>y_hi</var>])</em><a href='#index-axis-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-3"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>([<var>x_lo</var> <var>x_hi</var> <var>y_lo</var> <var>y_hi</var> <var>z_lo</var> <var>z_hi</var>])</em><a href='#index-axis-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-4"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>([<var>x_lo</var> <var>x_hi</var> <var>y_lo</var> <var>y_hi</var> <var>z_lo</var> <var>z_hi</var> <var>c_lo</var> <var>c_hi</var>])</em><a href='#index-axis-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-5"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>(<var>option</var>)</em><a href='#index-axis-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-6"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>(<var>option1</var>, <var>option2</var>, &hellip;)</em><a href='#index-axis-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-7"><span class="category">: </span><span><em></em> <strong>axis</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-axis-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-axis-8"><span class="category">: </span><span><em><var>limits</var> =</em> <strong>axis</strong> <em>()</em><a href='#index-axis-8' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Set axis limits and appearance.
+</p>
+<p>The argument <var>limits</var> should be a 2-, 4-, 6-, or 8-element vector.  The
+first and second elements specify the lower and upper limits for the
+x-axis.  The third and fourth specify the limits for the y-axis, the fifth
+and sixth specify the limits for the z-axis, and the seventh and eighth
+specify the limits for the color axis.  The special values <code>-Inf</code> and
+<code>Inf</code> may be used to indicate that the limit should be automatically
+computed based on the data in the axes.
+</p>
+<p>Without any arguments, <code>axis</code> turns autoscaling on.
+</p>
+<p>With one output argument, <code><var>limits</var> = axis</code> returns the current
+axis limits.
+</p>
+<p>The vector argument specifying limits is optional, and additional string
+arguments may be used to specify various axis properties.
+</p>
+<p>The following options control the aspect ratio of the axes.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;equal&quot;</code></span></dt>
+<dd><p>Force x-axis unit distance to equal y-axis (and z-axis) unit distance.
+</p>
+</dd>
+<dt><span><code>&quot;square&quot;</code></span></dt>
+<dd><p>Force a square axis aspect ratio.
+</p>
+</dd>
+<dt><span><code>&quot;vis3d&quot;</code></span></dt>
+<dd><p>Set aspect ratio modes (<code>&quot;DataAspectRatio&quot;</code>,
+<code>&quot;PlotBoxAspectRatio&quot;</code>) to <code>&quot;manual&quot;</code> for rotation without
+stretching.
+</p>
+</dd>
+<dt><span><code>&quot;normal&quot;</code></span></dt>
+<dt><span><code>&quot;fill&quot;</code></span></dt>
+<dd><p>Restore default automatically computed aspect ratios.
+</p></dd>
+</dl>
+
+<p>The following options control the way axis limits are interpreted.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;auto&quot;</code></span></dt>
+<dt><span><code>&quot;auto[xyz]&quot;</code></span></dt>
+<dt><span><code>&quot;auto [xyz]&quot;</code></span></dt>
+<dd><p>Set nice auto-computed limits around the data for all axes, or only
+the specified axes.
+</p>
+</dd>
+<dt><span><code>&quot;manual&quot;</code></span></dt>
+<dd><p>Fix the current axes limits.
+</p>
+</dd>
+<dt><span><code>&quot;tight&quot;</code></span></dt>
+<dd><p>Fix axes to the limits of the data.
+</p>
+</dd>
+<dt><span><code>&quot;image&quot;</code></span></dt>
+<dd><p>Equivalent to <code>&quot;tight&quot;</code> and <code>&quot;equal&quot;</code>.
+</p>
+</dd>
+</dl>
+
+<p>The following options affect the appearance of tick marks.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;tic&quot;</code></span></dt>
+<dt><span><code>&quot;tic[xyz]&quot;</code></span></dt>
+<dt><span><code>&quot;tic [xyz]&quot;</code></span></dt>
+<dd><p>Turn tick marks on for all axes, or turn them on for the specified axes and
+off for the remainder.
+</p>
+</dd>
+<dt><span><code>&quot;label&quot;</code></span></dt>
+<dt><span><code>&quot;label[xyz]&quot;</code></span></dt>
+<dt><span><code>&quot;label [xyz]&quot;</code></span></dt>
+<dd><p>Turn tick labels on for all axes, or turn them on for the specified axes
+and off for the remainder.
+</p>
+</dd>
+<dt><span><code>&quot;nolabel&quot;</code></span></dt>
+<dd><p>Turn tick labels off for all axes.
+</p></dd>
+</dl>
+
+<p>Note: If there are no tick marks for an axes then there can be no labels.
+</p>
+<p>The following options affect the direction of increasing values on the axes.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;xy&quot;</code></span></dt>
+<dd><p>Default y-axis, larger values are near the top.
+</p>
+</dd>
+<dt><span><code>&quot;ij&quot;</code></span></dt>
+<dd><p>Reverse y-axis, smaller values are near the top.
+</p></dd>
+</dl>
+
+<p>The following options affects the visibility of the axes.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;on&quot;</code></span></dt>
+<dd><p>Make the axes visible.
+</p>
+</dd>
+<dt><span><code>&quot;off&quot;</code></span></dt>
+<dd><p>Hide the axes.
+</p></dd>
+</dl>
+
+<p>If the first argument <var>hax</var> is an axes handle, then operate on this
+axes rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Example 1: set X/Y limits and force a square aspect ratio
+</p>
+<div class="example">
+<pre class="example">axis ([1, 2, 3, 4], &quot;square&quot;);
+</pre></div>
+
+<p>Example 2: enable tick marks on all axes,
+           enable tick mark labels only on the y-axis
+</p>
+<div class="example">
+<pre class="example">axis (&quot;tic&quot;, &quot;labely&quot;);
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFxlim">xlim</a>, <a href="#XREFylim">ylim</a>, <a href="#XREFzlim">zlim</a>, <a href="#XREFcaxis">caxis</a>, <a href="Aspect-Ratio.html#XREFdaspect">daspect</a>, <a href="Aspect-Ratio.html#XREFpbaspect">pbaspect</a>, <a href="Plot-Annotations.html#XREFbox">box</a>, <a href="Plot-Annotations.html#XREFgrid">grid</a>.
+</p></dd></dl>
+
+
+<p>Similarly the axis limits of the colormap can be changed with the caxis
+function.
+</p>
+<span id="XREFcaxis"></span><dl class="def">
+<dt id="index-caxis"><span class="category">: </span><span><em></em> <strong>caxis</strong> <em>([cmin cmax])</em><a href='#index-caxis' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-caxis-1"><span class="category">: </span><span><em></em> <strong>caxis</strong> <em>(&quot;auto&quot;)</em><a href='#index-caxis-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-caxis-2"><span class="category">: </span><span><em></em> <strong>caxis</strong> <em>(&quot;manual&quot;)</em><a href='#index-caxis-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-caxis-3"><span class="category">: </span><span><em></em> <strong>caxis</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-caxis-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-caxis-4"><span class="category">: </span><span><em><var>limits</var> =</em> <strong>caxis</strong> <em>()</em><a href='#index-caxis-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set color axis limits for plots.
+</p>
+<p>The limits argument should be a 2-element vector specifying the lower and
+upper limits to assign to the first and last value in the colormap.  Data
+values outside this range are clamped to the first and last colormap
+entries.
+</p>
+<p>If the <code>&quot;auto&quot;</code> option is given then automatic colormap limits are
+applied.  The automatic algorithm sets <var>cmin</var> to the minimum data value
+and <var>cmax</var> to the maximum data value.  If <code>&quot;manual&quot;</code> is specified
+then the <code>&quot;climmode&quot;</code> property is set to <code>&quot;manual&quot;</code> and the
+numeric values in the <code>&quot;clim&quot;</code> property are used for limits.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Called without arguments the current color axis limits are returned.
+</p>
+<p>Programming Note: The color axis affects the display of image, patch, and
+surface graphics objects, but <strong>only</strong> if the <code>&quot;cdata&quot;</code> property
+has indexed data and the <code>&quot;cdatamapping&quot;</code> property is set to
+<code>&quot;scaled&quot;</code>.  Graphic objects with true color <code>cdata</code>, or
+<code>&quot;direct&quot;</code> <code>cdatamapping</code> are not affected.
+</p>
+<p><strong>See also:</strong> <a href="Representing-Images.html#XREFcolormap">colormap</a>, <a href="#XREFaxis">axis</a>.
+</p></dd></dl>
+
+
+<p>The <code>xlim</code>, <code>ylim</code>, and <code>zlim</code> functions may be used to
+get or set individual axis limits.  Each has the same form.
+</p>
+<span id="XREFylim"></span><span id="XREFzlim"></span><span id="index-ylim"></span>
+<span id="index-zlim"></span>
+<span id="XREFxlim"></span><dl class="def">
+<dt id="index-xlim"><span class="category">: </span><span><em><var>xlimits</var> =</em> <strong>xlim</strong> <em>()</em><a href='#index-xlim' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xlim-1"><span class="category">: </span><span><em><var>xmode</var> =</em> <strong>xlim</strong> <em>(&quot;mode&quot;)</em><a href='#index-xlim-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xlim-2"><span class="category">: </span><span><em></em> <strong>xlim</strong> <em>([<var>x_lo</var> <var>x_hi</var>])</em><a href='#index-xlim-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xlim-3"><span class="category">: </span><span><em></em> <strong>xlim</strong> <em>(&quot;auto&quot;)</em><a href='#index-xlim-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xlim-4"><span class="category">: </span><span><em></em> <strong>xlim</strong> <em>(&quot;manual&quot;)</em><a href='#index-xlim-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xlim-5"><span class="category">: </span><span><em></em> <strong>xlim</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-xlim-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the limits of the x-axis for the current plot.
+</p>
+<p>Called without arguments <code>xlim</code> returns the x-axis limits of the
+current plot.
+</p>
+<p>With the input query <code>&quot;mode&quot;</code>, return the current x-limit calculation
+mode which is either <code>&quot;auto&quot;</code> or <code>&quot;manual&quot;</code>.
+</p>
+<p>If passed a 2-element vector [<var>x_lo</var> <var>x_hi</var>], the limits of the
+x-axis are set to these values and the mode is set to <code>&quot;manual&quot;</code>.
+The special values -Inf and Inf can be used to indicate that either
+the lower axis limit or upper axis limit should be automatically calculated.
+</p>
+<p>The current plotting mode can be changed by using either <code>&quot;auto&quot;</code>
+or <code>&quot;manual&quot;</code> as the argument.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then operate on
+this axes rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Programming Note: The <code>xlim</code> function operates by modifying the
+<code>&quot;xlim&quot;</code> and <code>&quot;xlimmode&quot;</code> properties of an axes object.  These
+properties can be directly inspected and altered with <code>get</code>/<code>set</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFylim">ylim</a>, <a href="#XREFzlim">zlim</a>, <a href="#XREFaxis">axis</a>, <a href="Graphics-Objects.html#XREFset">set</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFgca">gca</a>.
+</p></dd></dl>
+
+
+<p>The <code>xticks</code>, <code>yticks</code>, <code>zticks</code>, <code>rticks</code>, and
+<code>thetaticks</code> functions may be used to get or set the tick mark locations
+and modes on the respective axis.  Each has the same form, although mode
+options are not currently available for <code>rticks</code>, and <code>thetaticks</code>.
+</p>
+<span id="XREFyticks"></span><span id="XREFzticks"></span><span id="XREFrticks"></span><span id="XREFthetaticks"></span><span id="index-yticks"></span>
+<span id="index-zticks"></span>
+<span id="index-rticks"></span>
+<span id="index-thetaticks"></span>
+<span id="XREFxticks"></span><dl class="def">
+<dt id="index-xticks"><span class="category">: </span><span><em><var>tickval</var> =</em> <strong>xticks</strong><a href='#index-xticks' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticks-1"><span class="category">: </span><span><em><var>mode</var> =</em> <strong>xticks</strong> <em>(&quot;mode&quot;)</em><a href='#index-xticks-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticks-2"><span class="category">: </span><span><em></em> <strong>xticks</strong> <em>(<var>tickval</var>)</em><a href='#index-xticks-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticks-3"><span class="category">: </span><span><em></em> <strong>xticks</strong> <em>(&quot;auto&quot;)</em><a href='#index-xticks-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticks-4"><span class="category">: </span><span><em></em> <strong>xticks</strong> <em>(&quot;manual&quot;)</em><a href='#index-xticks-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticks-5"><span class="category">: </span><span><em>&hellip; =</em> <strong>xticks</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-xticks-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the tick values on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return the current tick locations as
+specified in the <code>&quot;xtick&quot;</code> axes property.  These locations can be
+changed by calling <code>xticks</code> with a vector of tick values.  Note:
+ascending order is not required.
+</p>
+<p>When called with argument <code>&quot;mode&quot;</code>, <code>xticks</code> returns the current
+value of the axes property <code>&quot;xtickmode&quot;</code>.  This property can be
+changed by calling <code>xticks</code> with either <code>&quot;auto&quot;</code> (algorithm
+determines tick positions) or <code>&quot;manual&quot;</code> (tick values remain fixed
+regardless of axes resizing or rotation).  Note: Specifying xtick values
+will also set the property <code>&quot;xtickmode&quot;</code> to <code>&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Requesting a return value when calling <code>xticks</code> to set a property value
+will result in an error.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFxticklabels">xticklabels</a>, <a href="#XREFyticks">yticks</a>, <a href="#XREFzticks">zticks</a>, <a href="#XREFrticks">rticks</a>, <a href="#XREFthetaticks">thetaticks</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The <code>xticklabels</code>, <code>yticklabels</code>, and <code>zticklabels</code> functions
+may be used to get or set the label assigned to each tick location and the
+labeling mode on the respective axis.  Each has the same form.
+</p>
+<span id="XREFyticklabels"></span><span id="XREFzticklabels"></span><span id="index-yticklabels"></span>
+<span id="index-zticklabels"></span>
+<span id="XREFxticklabels"></span><dl class="def">
+<dt id="index-xticklabels"><span class="category">: </span><span><em><var>tickval</var> =</em> <strong>xticklabels</strong><a href='#index-xticklabels' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticklabels-1"><span class="category">: </span><span><em><var>mode</var> =</em> <strong>xticklabels</strong> <em>(&quot;mode&quot;)</em><a href='#index-xticklabels-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticklabels-2"><span class="category">: </span><span><em></em> <strong>xticklabels</strong> <em>(<var>tickval</var>)</em><a href='#index-xticklabels-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticklabels-3"><span class="category">: </span><span><em></em> <strong>xticklabels</strong> <em>(&quot;auto&quot;)</em><a href='#index-xticklabels-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticklabels-4"><span class="category">: </span><span><em></em> <strong>xticklabels</strong> <em>(&quot;manual&quot;)</em><a href='#index-xticklabels-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xticklabels-5"><span class="category">: </span><span><em>&hellip; =</em> <strong>xticklabels</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-xticklabels-5' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the tick labels on the x-axis of the current axis.
+</p>
+<p>When called without an argument, return a cell array of strings of the
+current tick labels as specified in the <code>&quot;xticklabel&quot;</code> axes property.
+These labels can be changed by calling <code>xticklabels</code> with a cell array
+of strings.  Note: a vector of numbers will be mapped to a cell array of
+strings.  If fewer labels are specified than the current number of ticks,
+blank labels will be appended to the array.
+</p>
+<p>When called with argument <code>&quot;mode&quot;</code>, <code>xticklabels</code> returns the
+current value of the axes property <code>&quot;xticklabelmode&quot;</code>.  This property
+can be changed by calling <code>xticklabels</code> with either <code>&quot;auto&quot;</code>
+(algorithm determines tick labels) or <code>&quot;manual&quot;</code> (tick labels remain
+fixed).  Note: Specifying xticklabel values will also set the
+<code>&quot;xticklabelmode&quot;</code> and <code>&quot;xticks&quot;</code> properties to
+<code>&quot;manual&quot;</code>.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then operate on
+this axis rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Requesting a return value when calling <code>xticklabels</code> to set a property
+value will result in an error.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFxticks">xticks</a>, <a href="#XREFyticklabels">yticklabels</a>, <a href="#XREFzticklabels">zticklabels</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+<p>The <code>xtickangle</code>, <code>ytickangle</code>, and <code>ztickangle</code> functions
+may be used to get or set the rotation angle of labels for the respective axis.
+Each has the same form.
+</p>
+<span id="XREFytickangle"></span><span id="XREFztickangle"></span><span id="index-ytickangle"></span>
+<span id="index-ztickangle"></span>
+<span id="XREFxtickangle"></span><dl class="def">
+<dt id="index-xtickangle"><span class="category">: </span><span><em><var>angle</var> =</em> <strong>xtickangle</strong> <em>()</em><a href='#index-xtickangle' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xtickangle-1"><span class="category">: </span><span><em><var>angle</var> =</em> <strong>xtickangle</strong> <em>(<var>hax</var>)</em><a href='#index-xtickangle-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xtickangle-2"><span class="category">: </span><span><em></em> <strong>xtickangle</strong> <em>(<var>angle</var>)</em><a href='#index-xtickangle-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-xtickangle-3"><span class="category">: </span><span><em></em> <strong>xtickangle</strong> <em>(<var>hax</var>, <var>angle</var>)</em><a href='#index-xtickangle-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the rotation angle of the tick labels on the x-axis of the
+current axes.
+</p>
+<p>When called without an argument, return the rotation angle in degrees of the
+tick labels as specified in the axes property <code>&quot;XTickLabelRotation&quot;</code>.
+When called with a numeric scalar <var>angle</var>, rotate the tick labels
+counterclockwise to <var>angle</var> degrees.
+</p>
+<p>If the first argument <var>hax</var> is an axes handle, then operate on this axes
+rather than the current axes returned by <code>gca</code>.
+</p>
+<p>Programming Note: Requesting a return value while also setting a specified
+rotation will result in an error.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFytickangle">ytickangle</a>, <a href="#XREFztickangle">ztickangle</a>, <a href="Graphics-Objects.html#XREFget">get</a>, <a href="Graphics-Objects.html#XREFset">set</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Two_002ddimensional-Function-Plotting.html">Two-dimensional Function Plotting</a>, Up: <a href="Two_002dDimensional-Plots.html">Two-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

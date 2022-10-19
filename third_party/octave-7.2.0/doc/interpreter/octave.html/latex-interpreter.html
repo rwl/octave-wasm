@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>latex interpreter (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="latex interpreter (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="latex interpreter (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Use-of-the-interpreter-Property.html" rel="up" title="Use of the interpreter Property">
+<link href="tex-interpreter.html" rel="prev" title="tex interpreter">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="latex-interpreter">
+<div class="header">
+<p>
+Previous: <a href="tex-interpreter.html" accesskey="p" rel="prev"><code>tex</code> interpreter</a>, Up: <a href="Use-of-the-interpreter-Property.html" accesskey="u" rel="up">Use of the <code>interpreter</code> Property</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="latex-interpreter-1"></span><h4 class="subsubsection">15.2.8.3 <code>latex</code> interpreter</h4>
+<span id="XREFlatexinterpreter"></span><p>The <code>&quot;latex&quot;</code> interpreter only works if an external LaTeX tool chain
+is present.  Three binaries are needed: <code>latex</code>, <code>dvipng</code>, and
+<code>dvisvgm</code>.  If those binaries are installed but not on the path, one can
+still provide their respective path using the following environment variables:
+<code><span class="nolinebreak">OCTAVE_LATEX_BINARY</span></code><!-- /@w -->, <code><span class="nolinebreak">OCTAVE_DVIPNG_BINARY</span></code><!-- /@w -->, and
+<code><span class="nolinebreak">OCTAVE_DVISVG_BINARY</span></code><!-- /@w -->.
+</p>
+<p>Note that Octave does not parse or validate the text strings when in
+<code>&quot;latex&quot;</code> mode&mdash;it is the responsibility of the programmer to generate
+valid strings which may include wrapping sections that should appear in Math
+mode with <code>'$'</code> characters.
+See, for example, <a href="https://www.latex-project.org/help/documentation/">https://www.latex-project.org/help/documentation/</a> for
+documentation about LaTeX typesetting.
+</p>
+<p>For debugging purpose, a convenience environment variable,
+<code><span class="nolinebreak">OCTAVE_LATEX_DEBUG_FLAG</span></code><!-- /@w -->, can be set to trigger more verbose output
+when Octave fails to have a given text compiled by an external LaTeX engine.
+For example, <code>&quot;x^2&quot;</code> is not a valid LaTeX string and the following
+example should fail
+</p>
+<div class="example">
+<pre class="example">setenv (&quot;OCTAVE_LATEX_DEBUG_FLAG&quot;, &quot;1&quot;)
+x = 1:10;
+plot (x, x.^2)
+title (&quot;x^2&quot;, &quot;interpreter&quot;, &quot;latex&quot;)
+</pre></div>
+
+<p>Searching the terminal output you should find some helpful info about the
+origin of the failure:
+</p>
+<div class="example">
+<pre class="example">...
+No file default.aux.
+! Missing $ inserted.
+&lt;inserted text&gt;
+                $
+l.6 x^
+      2
+! Missing $ inserted.
+...
+</pre></div>
+
+<p>If no usable LaTeX tool chain is found at the first text rendering, using
+the <code>&quot;latex&quot;</code> interpreter is equivalent to <code>&quot;none&quot;</code>.
+</p>
+</div>
+
+
+
+</body>
+</html>

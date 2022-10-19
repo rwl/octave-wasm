@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Bug Criteria (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Bug Criteria (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Bug Criteria (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Reporting-Bugs.html" rel="up" title="Reporting Bugs">
+<link href="Bug-Tracker.html" rel="next" title="Bug Tracker">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="appendixsubsec" id="Bug-Criteria">
+<div class="header">
+<p>
+Next: <a href="Bug-Tracker.html" accesskey="n" rel="next">Where to Report Bugs</a>, Up: <a href="Reporting-Bugs.html" accesskey="u" rel="up">Reporting Bugs</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Have-You-Found-a-Bug_003f"></span><h4 class="appendixsubsec">D.2.1 Have You Found a Bug?</h4>
+<span id="index-bug-criteria"></span>
+
+<p>If you are not sure whether you have found a bug, here are some guidelines:
+</p>
+<ul>
+<li> <span id="index-fatal-signal"></span>
+<span id="index-core-dump"></span>
+If Octave gets a fatal signal, for any input whatever, that is
+a bug.  Reliable interpreters never crash.
+
+</li><li> <span id="index-incorrect-output"></span>
+<span id="index-incorrect-results"></span>
+<span id="index-results_002c-incorrect"></span>
+<span id="index-answers_002c-incorrect"></span>
+<span id="index-erroneous-results"></span>
+<span id="index-wrong-answers"></span>
+If Octave produces incorrect results, for any input whatever,
+that is a bug.
+
+</li><li> <span id="index-undefined-behavior"></span>
+<span id="index-undefined-function-value"></span>
+Some output may appear to be incorrect when it is in fact due to a
+program whose behavior is undefined, which happened by chance to give
+the desired results on another system.  For example, the range operator
+may produce different results because of differences in the way floating
+point arithmetic is handled on various systems.
+
+</li><li> <span id="index-erroneous-messages"></span>
+<span id="index-incorrect-error-messages"></span>
+<span id="index-error-messages_002c-incorrect"></span>
+If Octave produces an error message for valid input, that is a bug.
+
+</li><li> <span id="index-invalid-input"></span>
+If Octave does not produce an error message for invalid input, that is
+a bug.  However, you should note that your idea of &ldquo;invalid input&rdquo;
+might be my idea of &ldquo;an extension&rdquo; or &ldquo;support for traditional
+practice&rdquo;.
+
+</li><li> <span id="index-improving-Octave"></span>
+<span id="index-suggestions"></span>
+If you are an experienced user of programs like Octave, your suggestions
+for improvement are welcome in any case.
+</li></ul>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Accessing Global Variables in Oct-Files (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Accessing Global Variables in Oct-Files (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Accessing Global Variables in Oct-Files (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Oct_002dFiles.html" rel="up" title="Oct-Files">
+<link href="Calling-Octave-Functions-from-Oct_002dFiles.html" rel="next" title="Calling Octave Functions from Oct-Files">
+<link href="Sparse-Matrices-in-Oct_002dFiles.html" rel="prev" title="Sparse Matrices in Oct-Files">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Accessing-Global-Variables-in-Oct_002dFiles">
+<div class="header">
+<p>
+Next: <a href="Calling-Octave-Functions-from-Oct_002dFiles.html" accesskey="n" rel="next">Calling Octave Functions from Oct-Files</a>, Previous: <a href="Sparse-Matrices-in-Oct_002dFiles.html" accesskey="p" rel="prev">Sparse Matrices in Oct-Files</a>, Up: <a href="Oct_002dFiles.html" accesskey="u" rel="up">Oct-Files</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Accessing-Global-Variables-in-Oct_002dFiles-1"></span><h4 class="subsection">A.1.7 Accessing Global Variables in Oct-Files</h4>
+
+<p>Global variables allow variables in the global scope to be accessed.  Global
+variables can be accessed within oct-files by using the support functions
+<code><span class="nolinebreak">global_varval</span></code><!-- /@w --> and <code><span class="nolinebreak">global_assign</span></code><!-- /@w --> from the current
+interpreter&rsquo;s symbol table.  Both functions take as first argument a string
+representing the variable name to be obtained or assigned.  The second
+argument of <code><span class="nolinebreak">global_assign</span></code><!-- /@w --> is the value to be assigned.  An
+example of the use of these two functions is
+</p>
+<div class="example">
+<pre class="verbatim">#include &lt;octave/oct.h&gt;
+#include &lt;octave/interpreter.h&gt;
+
+DEFMETHOD_DLD (globaldemo, interp, args, , &quot;Global Demo&quot;)
+{
+  if (args.length () != 1)
+    print_usage ();
+
+  octave_value retval;
+
+  std::string s = args(0).string_value ();
+
+  octave::symbol_table&amp; symtab = interp.get_symbol_table ();
+
+  octave_value tmp = symtab.global_varval (s);
+
+  if (tmp.is_defined ())
+    retval = tmp;
+  else
+    retval = &quot;Global variable not found&quot;;
+
+  symtab.global_assign (&quot;a&quot;, 42.0);
+
+  return retval;
+}
+</pre></div>
+
+<p>An example of its use is
+</p>
+<div class="example">
+<pre class="example">global a b
+b = 10;
+globaldemo (&quot;b&quot;)
+&rArr; 10
+globaldemo (&quot;c&quot;)
+&rArr; &quot;Global variable not found&quot;
+num2str (a)
+&rArr; 42
+</pre></div>
+
+</div>
+
+
+
+</body>
+</html>

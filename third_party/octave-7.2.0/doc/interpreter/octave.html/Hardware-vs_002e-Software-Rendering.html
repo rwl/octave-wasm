@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Hardware vs. Software Rendering (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Hardware vs. Software Rendering (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Hardware vs. Software Rendering (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Toolkits.html" rel="up" title="Graphics Toolkits">
+<link href="Precision-issues.html" rel="next" title="Precision issues">
+<link href="Customizing-Toolkit-Behavior.html" rel="prev" title="Customizing Toolkit Behavior">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Hardware-vs_002e-Software-Rendering">
+<div class="header">
+<p>
+Next: <a href="Precision-issues.html" accesskey="n" rel="next">Precision issues</a>, Previous: <a href="Customizing-Toolkit-Behavior.html" accesskey="p" rel="prev">Customizing Toolkit Behavior</a>, Up: <a href="Graphics-Toolkits.html" accesskey="u" rel="up">Graphics Toolkits</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Hardware-vs_002e-Software-Rendering-1"></span><h4 class="subsubsection">15.4.8.2 Hardware vs. Software Rendering</h4>
+<span id="index-opengl-rendering-slow-windows"></span>
+
+<p>On Windows platforms, Octave uses software rendering for the OpenGL graphics
+toolkits (<code>&quot;qt&quot;</code> and <code>&quot;fltk&quot;</code>) by default.  This is done to avoid
+rendering and printing issues due to imperfect OpenGL driver implementations
+for diverse graphic cards from different vendors.  As a down-side, software
+rendering might be considerably slower than hardware accelerated rendering.
+To permanently switch back to hardware accelerated rendering with your graphic
+card drivers, rename the following file while Octave is closed:
+</p>
+<p><samp><var>octave-home</var>\bin\opengl32.dll</samp>
+<br>where <var>octave-home</var> is the directory in which Octave is installed (the
+default is <samp>C:\Octave\Octave-<var>version</var></samp>).
+</p>
+</div>
+
+
+
+</body>
+</html>

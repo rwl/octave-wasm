@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Dual-Purpose Executable Scripts and Octave Functions (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Dual-Purpose Executable Scripts and Octave Functions (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Dual-Purpose Executable Scripts and Octave Functions (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Executable-Octave-Programs.html" rel="up" title="Executable Octave Programs">
+<link href="Passing-Arguments-to-Executable-Scripts.html" rel="prev" title="Passing Arguments to Executable Scripts">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Dual_002dPurpose-Executable-Scripts-and-Octave-Functions">
+<div class="header">
+<p>
+Previous: <a href="Passing-Arguments-to-Executable-Scripts.html" accesskey="p" rel="prev">Passing Arguments to Executable Scripts</a>, Up: <a href="Executable-Octave-Programs.html" accesskey="u" rel="up">Executable Octave Programs</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Dual_002dPurpose-Executable-Scripts-and-Octave-Functions-1"></span><h4 class="subsection">2.6.2 Dual-Purpose Executable Scripts and Octave Functions</h4>
+
+<p>To write m-files that can act as executable programs when called from the shell
+or as normal functions when called from within Octave, use default input
+arguments initialized with the <code>argv</code> function.
+</p>
+<p>If a function is called from the shell Octave will not pass any input
+parameters to the function and therefore the default argument is used.  But
+when a function is called from the interpreter any arguments <em>are</em> passed
+to the function and these override the default.
+</p>
+<p>Additionally, the file must end with the extension <samp>.m</samp> so that the
+interpreter will recognize it as an Octave function.  Finally, the output from
+<code>argv</code> is a cell array of strings.  It may be necessary to convert this
+to a numeric value with <code>str2double</code> or <code>str2num</code> before processing.
+</p>
+<p>As a complete example, consider the following code located in the file
+<samp>mysin.m</samp>.
+</p>
+<div class="example">
+<pre class="example">#! /bin/octave -qf
+function retval = mysin (x = str2double (argv(){end}))
+  retval = sin (x)
+endfunction
+</pre></div>
+
+<p>This can be called from the shell with
+</p>
+<div class="example">
+<pre class="example">mysin.m 1.5
+</pre></div>
+
+<p>or from Octave with
+</p>
+<div class="example">
+<pre class="example">mysin (1.5)
+</pre></div>
+
+</div>
+
+
+
+</body>
+</html>

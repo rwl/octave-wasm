@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Coordinate Transformations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Coordinate Transformations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Coordinate Transformations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Mathematical-Constants.html" rel="next" title="Mathematical Constants">
+<link href="Rational-Approximations.html" rel="prev" title="Rational Approximations">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Coordinate-Transformations">
+<div class="header">
+<p>
+Next: <a href="Mathematical-Constants.html" accesskey="n" rel="next">Mathematical Constants</a>, Previous: <a href="Rational-Approximations.html" accesskey="p" rel="prev">Rational Approximations</a>, Up: <a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Coordinate-Transformations-1"></span><h3 class="section">17.8 Coordinate Transformations</h3>
+
+<span id="XREFcart2pol"></span><dl class="def">
+<dt id="index-cart2pol"><span class="category">: </span><span><em>[<var>theta</var>, <var>r</var>] =</em> <strong>cart2pol</strong> <em>(<var>x</var>, <var>y</var>)</em><a href='#index-cart2pol' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cart2pol-1"><span class="category">: </span><span><em>[<var>theta</var>, <var>r</var>, <var>z</var>] =</em> <strong>cart2pol</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-cart2pol-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cart2pol-2"><span class="category">: </span><span><em>[<var>theta</var>, <var>r</var>] =</em> <strong>cart2pol</strong> <em>(<var>C</var>)</em><a href='#index-cart2pol-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cart2pol-3"><span class="category">: </span><span><em>[<var>theta</var>, <var>r</var>, <var>z</var>] =</em> <strong>cart2pol</strong> <em>(<var>C</var>)</em><a href='#index-cart2pol-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Transform Cartesian coordinates to polar or cylindrical coordinates.
+</p>
+<p>The inputs <var>x</var>, <var>y</var> (, and <var>z</var>) must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var>C</var>
+represents the Cartesian coordinate pair (<var>x</var>, <var>y</var>) or triplet
+(<var>x</var>, <var>y</var>, <var>z</var>).
+</p>
+<p>The outputs <var>theta</var>, <var>r</var> (, and <var>z</var>) match the shape of the
+inputs.  For a matrix input <var>C</var> the outputs will be column vectors with
+rows corresponding to the rows of the input matrix.
+</p>
+<p><var>theta</var> describes the angle relative to the positive x-axis measured in
+the xy-plane.
+</p>
+<p><var>r</var> is the distance to the z-axis (0,&nbsp;0,&nbsp;z)<!-- /@w -->.
+</p>
+<p><var>z</var>, if present, is unchanged by the transformation.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+
+<div class="example">
+<pre class="example"><var>theta</var> = arctan (<var>y</var> / <var>x</var>)
+<var>r</var> = sqrt (<var>x</var>^2 + <var>y</var>^2)
+<var>z</var> = <var>z</var>
+</pre></div>
+
+
+<p>Note: For <small>MATLAB</small> compatibility, this function no longer returns a full
+coordinate matrix when called with a single return argument.
+</p>
+<p><strong>See also:</strong> <a href="#XREFpol2cart">pol2cart</a>, <a href="#XREFcart2sph">cart2sph</a>, <a href="#XREFsph2cart">sph2cart</a>.
+</p></dd></dl>
+
+
+<span id="XREFpol2cart"></span><dl class="def">
+<dt id="index-pol2cart"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>] =</em> <strong>pol2cart</strong> <em>(<var>theta</var>, <var>r</var>)</em><a href='#index-pol2cart' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pol2cart-1"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>, <var>z</var>] =</em> <strong>pol2cart</strong> <em>(<var>theta</var>, <var>r</var>, <var>z</var>)</em><a href='#index-pol2cart-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pol2cart-2"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>] =</em> <strong>pol2cart</strong> <em>(<var>P</var>)</em><a href='#index-pol2cart-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pol2cart-3"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>, <var>z</var>] =</em> <strong>pol2cart</strong> <em>(<var>P</var>)</em><a href='#index-pol2cart-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Transform polar or cylindrical coordinates to Cartesian coordinates.
+</p>
+<p>The inputs <var>theta</var>, <var>r</var>, (and <var>z</var>) must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var>P</var>
+represents the polar coordinate pair (<var>theta</var>, <var>r</var>) or the
+cylindrical triplet (<var>theta</var>, <var>r</var>, <var>z</var>).
+</p>
+<p>The outputs <var>x</var>, <var>y</var> (, and <var>z</var>) match the shape of the inputs.
+For a matrix input <var>P</var> the outputs will be column vectors with rows
+corresponding to the rows of the input matrix.
+</p>
+<p><var>theta</var> describes the angle relative to the positive x-axis measured in
+the xy-plane.
+</p>
+<p><var>r</var> is the distance to the z-axis (0,&nbsp;0,&nbsp;z)<!-- /@w -->.
+</p>
+<p><var>z</var>, if present, is unchanged by the transformation.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+
+<div class="example">
+<pre class="example"><var>x</var> = <var>r</var> * cos (<var>theta</var>)
+<var>y</var> = <var>r</var> * sin (<var>theta</var>)
+<var>z</var> = <var>z</var>
+</pre></div>
+
+<p>Note: For <small>MATLAB</small> compatibility, this function no longer returns a full
+coordinate matrix when called with a single return argument.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcart2pol">cart2pol</a>, <a href="#XREFsph2cart">sph2cart</a>, <a href="#XREFcart2sph">cart2sph</a>.
+</p></dd></dl>
+
+
+<span id="XREFcart2sph"></span><dl class="def">
+<dt id="index-cart2sph"><span class="category">: </span><span><em>[<var>theta</var>, <var>phi</var>, <var>r</var>] =</em> <strong>cart2sph</strong> <em>(<var>x</var>, <var>y</var>, <var>z</var>)</em><a href='#index-cart2sph' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-cart2sph-1"><span class="category">: </span><span><em>[<var>theta</var>, <var>phi</var>, <var>r</var>] =</em> <strong>cart2sph</strong> <em>(<var>C</var>)</em><a href='#index-cart2sph-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Transform Cartesian coordinates to spherical coordinates.
+</p>
+<p>The inputs <var>x</var>, <var>y</var>, and <var>z</var> must be the same shape, or scalar.
+If called with a single matrix argument then each row of <var>C</var> must
+represent a Cartesian coordinate triplet (<var>x</var>, <var>y</var>, <var>z</var>).
+</p>
+<p>The outputs <var>theta</var>, <var>phi</var>, <var>r</var> match the shape of the inputs.
+For a matrix input <var>C</var> the outputs will be column vectors with rows
+corresponding to the rows of the input matrix.
+</p>
+<p><var>theta</var> describes the azimuth angle relative to the positive x-axis
+measured in the xy-plane.
+</p>
+<p><var>phi</var> is the elevation angle measured relative to the xy-plane.
+</p>
+<p><var>r</var> is the distance to the origin (0,&nbsp;0,&nbsp;0)<!-- /@w -->.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+
+<div class="example">
+<pre class="example"><var>theta</var> = arctan (<var>y</var> / <var>x</var>)
+<var>phi</var> = arctan (<var>z</var> / sqrt (<var>x</var>^2 + <var>y</var>^2))
+<var>r</var> = sqrt (<var>x</var>^2 + <var>y</var>^2 + <var>z</var>^2)
+</pre></div>
+
+
+<p>Note: For <small>MATLAB</small> compatibility, this function no longer returns a full
+coordinate matrix when called with a single return argument.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsph2cart">sph2cart</a>, <a href="#XREFcart2pol">cart2pol</a>, <a href="#XREFpol2cart">pol2cart</a>.
+</p></dd></dl>
+
+
+<span id="XREFsph2cart"></span><dl class="def">
+<dt id="index-sph2cart"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>, <var>z</var>] =</em> <strong>sph2cart</strong> <em>(<var>theta</var>, <var>phi</var>, <var>r</var>)</em><a href='#index-sph2cart' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-sph2cart-1"><span class="category">: </span><span><em>[<var>x</var>, <var>y</var>, <var>z</var>] =</em> <strong>sph2cart</strong> <em>(<var>S</var>)</em><a href='#index-sph2cart-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Transform spherical coordinates to Cartesian coordinates.
+</p>
+<p>The inputs <var>theta</var>, <var>phi</var>, and <var>r</var> must be the same shape, or
+scalar.  If called with a single matrix argument then each row of <var>S</var>
+must represent a spherical coordinate triplet (<var>theta</var>, <var>phi</var>,
+<var>r</var>).
+</p>
+<p>The outputs <var>x</var>, <var>y</var>, <var>z</var> match the shape of the inputs.  For a
+matrix input <var>S</var> the outputs are column vectors with rows corresponding
+to the rows of the input matrix.
+</p>
+<p><var>theta</var> describes the azimuth angle relative to the positive x-axis
+measured in the xy-plane.
+</p>
+<p><var>phi</var> is the elevation angle measured relative to the xy-plane.
+</p>
+<p><var>r</var> is the distance to the origin (0,&nbsp;0,&nbsp;0)<!-- /@w -->.
+</p>
+<p>The coordinate transformation is computed using:
+</p>
+
+<div class="example">
+<pre class="example"><var>x</var> = r * cos (<var>phi</var>) * cos (<var>theta</var>)
+<var>y</var> = r * cos (<var>phi</var>) * sin (<var>theta</var>)
+<var>z</var> = r * sin (<var>phi</var>)
+</pre></div>
+
+<p>Note: For <small>MATLAB</small> compatibility, this function no longer returns a full
+coordinate matrix when called with a single return argument.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcart2sph">cart2sph</a>, <a href="#XREFpol2cart">pol2cart</a>, <a href="#XREFcart2pol">cart2pol</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Mathematical-Constants.html">Mathematical Constants</a>, Previous: <a href="Rational-Approximations.html">Rational Approximations</a>, Up: <a href="Arithmetic.html">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

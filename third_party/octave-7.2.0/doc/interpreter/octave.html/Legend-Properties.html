@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Legend Properties (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Legend Properties (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Legend Properties (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Graphics-Object-Properties.html" rel="up" title="Graphics Object Properties">
+<link href="Line-Properties.html" rel="next" title="Line Properties">
+<link href="Axes-Properties.html" rel="prev" title="Axes Properties">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Legend-Properties">
+<div class="header">
+<p>
+Next: <a href="Line-Properties.html" accesskey="n" rel="next">Line Properties</a>, Previous: <a href="Axes-Properties.html" accesskey="p" rel="prev">Axes Properties</a>, Up: <a href="Graphics-Object-Properties.html" accesskey="u" rel="up">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Legend-Properties-1"></span><h4 class="subsubsection">15.3.3.4 Legend Properties</h4>
+<span id="index--Legend-PropertiesLegend-Properties"></span>
+
+
+
+<p>Properties of <code>legend</code> objects (see <a href="Plot-Annotations.html#XREFlegend">legend</a>):
+</p>
+<dl compact="compact">
+<dd>
+<span id="XREFlegendautoupdate"></span><span id="index-legend-autoupdate"></span>
+</dd>
+<dt><span><code>autoupdate</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Control whether the number of legend items is updated automatically when objects are added to (or deleted from) the peer axes.
+For example:
+</p><div class="example">
+<pre class="example">## Create a single plot with its legend.
+figure ();
+plot (1:10);
+legend (&quot;Slope 1&quot;);
+## Add another plot and specify its displayname so that
+## the legend is correctly updated.
+hold on;
+plot ((1:10) * 2, &quot;displayname&quot;, &quot;Slope 2&quot;);
+## Stop automatic updates for further plots.
+legend (&quot;autoupdate&quot;, &quot;off&quot;);
+plot ((1:10) * 3);
+</pre></div>
+
+
+<span id="XREFlegendbox"></span><span id="index-legend-box"></span>
+</dd>
+<dt><span><code>box</code>: <code>&quot;off&quot;</code> | {<code>&quot;on&quot;</code>}</span></dt>
+<dd><p>Control whether the legend has a surrounding box.
+</p>
+
+<span id="XREFlegendcolor"></span><span id="index-legend-color"></span>
+</dd>
+<dt><span><code>color</code>: colorspec, def. <code>[1   1   1]</code></span></dt>
+<dd><p>Color of the legend background.  See <a href="Colors.html">colorspec</a>.
+</p>
+
+<span id="XREFlegendedgecolor"></span><span id="index-legend-edgecolor"></span>
+</dd>
+<dt><span><code>edgecolor</code>: colorspec, def. <code>[0.1500   0.1500   0.1500]</code></span></dt>
+<dd><p>Control the color of the legend outline.
+</p>
+
+<span id="XREFlegendfontangle"></span><span id="index-legend-fontangle"></span>
+</dd>
+<dt><span><code>fontangle</code>: <code>&quot;italic&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control whether the font is italic or normal.
+</p>
+
+<span id="XREFlegendfontname"></span><span id="index-legend-fontname"></span>
+</dd>
+<dt><span><code>fontname</code>: string, def. <code>&quot;*&quot;</code></span></dt>
+<dd><p>Name of font used for text rendering.  When setting this property, the text rendering engine will search for a matching font in your system.  If none is found then text is rendered using a default sans serif font (same as the default <code>&quot;*&quot;</code> value).
+</p>
+<p>Programming Note: On systems that don’t use FontConfig natively (all but Linux), the font cache is built when Octave is installed.  You will need to run <code>system (&quot;fc-cache -fv&quot;)</code> manually after installing new fonts.
+</p>
+
+<span id="XREFlegendfontsize"></span><span id="index-legend-fontsize"></span>
+</dd>
+<dt><span><code>fontsize</code>: scalar, def. <code>9</code></span></dt>
+<dd><p>Size of the font used for text rendering.  See <a href="#XREFlegendfontunits">fontunits property</a>.
+</p>
+
+<span id="XREFlegendfontunits"></span><span id="index-legend-fontunits"></span>
+</dd>
+<dt><span><code>fontunits</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;inches&quot;</code> | <code>&quot;normalized&quot;</code> | <code>&quot;pixels&quot;</code> | {<code>&quot;points&quot;</code>}</span></dt>
+<dd><p>Units used to interpret the <code>&quot;fontsize&quot;</code> property.
+</p>
+
+<span id="XREFlegendfontweight"></span><span id="index-legend-fontweight"></span>
+</dd>
+<dt><span><code>fontweight</code>: <code>&quot;bold&quot;</code> | {<code>&quot;normal&quot;</code>}</span></dt>
+<dd><p>Control the variant of the base font used for text rendering.
+</p>
+
+<span id="XREFlegendlocation"></span><span id="index-legend-location"></span>
+</dd>
+<dt><span><code>location</code>: <code>&quot;best&quot;</code> | <code>&quot;bestoutside&quot;</code> | <code>&quot;east&quot;</code> | <code>&quot;eastoutside&quot;</code> | <code>&quot;none&quot;</code> | <code>&quot;north&quot;</code> | {<code>&quot;northeast&quot;</code>} | <code>&quot;northeastoutside&quot;</code> | <code>&quot;northoutside&quot;</code> | <code>&quot;northwest&quot;</code> | <code>&quot;northwestoutside&quot;</code> | <code>&quot;south&quot;</code> | <code>&quot;southeast&quot;</code> | <code>&quot;southeastoutside&quot;</code> | <code>&quot;southoutside&quot;</code> | <code>&quot;southwest&quot;</code> | <code>&quot;southwestoutside&quot;</code> | <code>&quot;west&quot;</code> | <code>&quot;westoutside&quot;</code></span></dt>
+<dd><p>Control the location of the legend.
+</p>
+
+<span id="XREFlegendnumcolumns"></span><span id="index-legend-numcolumns"></span>
+</dd>
+<dt><span><code>numcolumns</code>: scalar interger, def. <code>1</code></span></dt>
+<dd><p>Control the number of columns used in the layout of the legend items.  For example:
+</p><div class="example">
+<pre class="example">figure ();
+plot (rand (30));
+legend (&quot;numcolumns&quot;, 3);
+</pre></div>
+<p>Setting <code>numcolumns</code> also forces the <code>numcolumnsmode</code> property to be set to <code>&quot;manual&quot;</code>.
+</p>
+
+<span id="XREFlegendorientation"></span><span id="index-legend-orientation"></span>
+</dd>
+<dt><span><code>orientation</code>: <code>&quot;horizontal&quot;</code> | {<code>&quot;vertical&quot;</code>}</span></dt>
+<dd><p>Control whether the legend items are arranged vertically (column-wise) or horizontally (row-wise).
+</p>
+
+<span id="XREFlegendposition"></span><span id="index-legend-position"></span>
+</dd>
+<dt><span><code>position</code>: four-element vector</span></dt>
+<dd><p>Specify the position of the legend excluding its title. The four elements of the vector are the coordinates of the lower left corner and width and height of the legend.  Changing this property also switches the <code>&quot;location&quot;</code> to <code>&quot;none&quot;</code>.
+</p>
+
+<span id="XREFlegendstring"></span><span id="index-legend-string"></span>
+</dd>
+<dt><span><code>string</code>: string | cell array of strings</span></dt>
+<dd><p>List of labels for the legend items.  For example:
+</p><div class="example">
+<pre class="example">figure ();
+plot (rand (20));
+## Let legend choose names automatically
+hl = legend ();
+## Selectively change some names
+str = get (hl, &quot;string&quot;);
+str(1:5:end) = &quot;Garbage&quot;;
+set (hl, &quot;string&quot;, str);
+</pre></div>
+
+
+<span id="XREFlegendtextcolor"></span><span id="index-legend-textcolor"></span>
+</dd>
+<dt><span><code>textcolor</code>: colorspec, def. <code>[0   0   0]</code></span></dt>
+<dd><p>Control the color of the text strings for legend items.
+</p>
+
+<span id="XREFlegendtitle"></span><span id="index-legend-title"></span>
+</dd>
+<dt><span><code>title</code>: graphics handle</span></dt>
+<dd><p>Graphics handle of the title text object.
+</p>
+
+<span id="XREFlegendunits"></span><span id="index-legend-units"></span>
+</dd>
+<dt><span><code>units</code>: <code>&quot;centimeters&quot;</code> | <code>&quot;characters&quot;</code> | <code>&quot;inches&quot;</code> | {<code>&quot;normalized&quot;</code>} | <code>&quot;pixels&quot;</code> | <code>&quot;points&quot;</code></span></dt>
+<dd><p>Units used to interpret the <code>&quot;position&quot;</code>,  property.
+</p>
+</dd>
+</dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Line-Properties.html">Line Properties</a>, Previous: <a href="Axes-Properties.html">Axes Properties</a>, Up: <a href="Graphics-Object-Properties.html">Graphics Object Properties</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Character Arrays (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Character Arrays (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Character Arrays (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Strings.html" rel="up" title="Strings">
+<link href="String-Operations.html" rel="next" title="String Operations">
+<link href="Escape-Sequences-in-String-Constants.html" rel="prev" title="Escape Sequences in String Constants">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Character-Arrays">
+<div class="header">
+<p>
+Next: <a href="String-Operations.html" accesskey="n" rel="next">String Operations</a>, Previous: <a href="Escape-Sequences-in-String-Constants.html" accesskey="p" rel="prev">Escape Sequences in String Constants</a>, Up: <a href="Strings.html" accesskey="u" rel="up">Strings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Character-Arrays-1"></span><h3 class="section">5.2 Character Arrays</h3>
+
+<p>The string representation used by Octave is an array of characters, so
+internally the string <code>&quot;dddddddddd&quot;</code> is actually a row vector
+of length 10 containing the value 100 in all places (100 is the ASCII code of
+<code>&quot;d&quot;</code>).  This lends itself to the obvious generalization to character
+matrices.  Using a matrix of characters, it is possible to represent a
+collection of same-length strings in one variable.  The convention used in
+Octave is that each row in a character matrix is a separate string, but letting
+each column represent a string is equally possible.
+</p>
+<p>The easiest way to create a character matrix is to put several strings
+together into a matrix.
+</p>
+<div class="example">
+<pre class="example">collection = [ &quot;String #1&quot;; &quot;String #2&quot; ];
+</pre></div>
+
+<p>This creates a 2-by-9 character matrix.
+</p>
+<p>The function <code>ischar</code> can be used to test if an object is a character
+matrix.
+</p>
+<span id="XREFischar"></span><dl class="def">
+<dt id="index-ischar"><span class="category">: </span><span><em></em> <strong>ischar</strong> <em>(<var>x</var>)</em><a href='#index-ischar' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>x</var> is a character array.
+</p>
+<p><strong>See also:</strong> <a href="Predicates-for-Numeric-Objects.html#XREFisfloat">isfloat</a>, <a href="Integer-Data-Types.html#XREFisinteger">isinteger</a>, <a href="Predicates-for-Numeric-Objects.html#XREFislogical">islogical</a>, <a href="Predicates-for-Numeric-Objects.html#XREFisnumeric">isnumeric</a>, <a href="#XREFisstring">isstring</a>, <a href="Cell-Arrays-of-Strings.html#XREFiscellstr">iscellstr</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<span id="XREFisstring"></span><dl class="def">
+<dt id="index-isstring"><span class="category">: </span><span><em></em> <strong>isstring</strong> <em>(<var>s</var>)</em><a href='#index-isstring' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if <var>s</var> is a string array.
+</p>
+<p>A string array is a data type that stores strings (row vectors of
+characters) at each element in the array.  It is distinct from character
+arrays which are N-dimensional arrays where each element is a single 1x1
+character.  It is also distinct from cell arrays of strings which store
+strings at each element, but use cell indexing &lsquo;<samp>{}</samp>&rsquo; to access
+elements rather than string arrays which use ordinary array indexing
+&lsquo;<samp>()</samp>&rsquo;.
+</p>
+<p>Programming Note: Octave does not yet implement string arrays so this
+function will always return false.
+</p>
+<p><strong>See also:</strong> <a href="#XREFischar">ischar</a>, <a href="Cell-Arrays-of-Strings.html#XREFiscellstr">iscellstr</a>, <a href="Predicates-for-Numeric-Objects.html#XREFisfloat">isfloat</a>, <a href="Integer-Data-Types.html#XREFisinteger">isinteger</a>, <a href="Predicates-for-Numeric-Objects.html#XREFislogical">islogical</a>, <a href="Predicates-for-Numeric-Objects.html#XREFisnumeric">isnumeric</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+<p>To test if an object is a string (i.e., a 1xN row vector of
+characters and not a character matrix) you can use the <code>ischar</code> function
+in combination with the <code>isrow</code> function as in the following example:
+</p>
+<div class="example">
+<pre class="example">ischar (collection)
+     &rArr; 1
+
+ischar (collection) &amp;&amp; isrow (collection)
+     &rArr; 0
+
+ischar (&quot;my string&quot;) &amp;&amp; isrow (&quot;my string&quot;)
+     &rArr; 1
+</pre></div>
+
+<p>One relevant question is, what happens when a character matrix is
+created from strings of different length.  The answer is that Octave
+puts blank characters at the end of strings shorter than the longest
+string.  It is possible to use a different character than the
+blank character using the <code>string_fill_char</code> function.
+</p>
+<span id="XREFstring_005ffill_005fchar"></span><dl class="def">
+<dt id="index-string_005ffill_005fchar"><span class="category">: </span><span><em><var>val</var> =</em> <strong>string_fill_char</strong> <em>()</em><a href='#index-string_005ffill_005fchar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-string_005ffill_005fchar-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>string_fill_char</strong> <em>(<var>new_val</var>)</em><a href='#index-string_005ffill_005fchar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-string_005ffill_005fchar-2"><span class="category">: </span><span><em></em> <strong>string_fill_char</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-string_005ffill_005fchar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal variable used to pad all rows of a character
+matrix to the same length.
+</p>
+<p>The value must be a single character and the default is <code>&quot; &quot;</code> (a
+single space).  For example:
+</p>
+<div class="example">
+<pre class="example">string_fill_char (&quot;X&quot;);
+[ &quot;these&quot;; &quot;are&quot;; &quot;strings&quot; ]
+      &rArr;  &quot;theseXX&quot;
+          &quot;areXXXX&quot;
+          &quot;strings&quot;
+</pre></div>
+
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<p>Another useful function to control the text justification in this case is
+the <code>strjust</code> function.
+</p>
+<span id="XREFstrjust"></span><dl class="def">
+<dt id="index-strjust"><span class="category">: </span><span><em></em> <strong>strjust</strong> <em>(<var>s</var>)</em><a href='#index-strjust' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-strjust-1"><span class="category">: </span><span><em></em> <strong>strjust</strong> <em>(<var>s</var>, <var>pos</var>)</em><a href='#index-strjust-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the text, <var>s</var>, justified according to <var>pos</var>, which may
+be <code>&quot;left&quot;</code>, <code>&quot;center&quot;</code>, or <code>&quot;right&quot;</code>.
+</p>
+<p>If <var>pos</var> is omitted it defaults to <code>&quot;right&quot;</code>.
+</p>
+<p>Null characters are replaced by spaces.  All other character data are
+treated as non-white space.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">strjust ([&quot;a&quot;; &quot;ab&quot;; &quot;abc&quot;; &quot;abcd&quot;])
+     &rArr;
+        &quot;   a&quot;
+        &quot;  ab&quot;
+        &quot; abc&quot;
+        &quot;abcd&quot;
+</pre></div>
+
+<p><strong>See also:</strong> <a href="Common-String-Operations.html#XREFdeblank">deblank</a>, <a href="Searching-and-Replacing-in-Strings.html#XREFstrrep">strrep</a>, <a href="Common-String-Operations.html#XREFstrtrim">strtrim</a>, <a href="Common-String-Operations.html#XREFuntabify">untabify</a>.
+</p></dd></dl>
+
+
+<p>This shows a problem with character matrices.  It simply isn&rsquo;t possible to
+represent strings of different lengths.  The solution is to use a cell array of
+strings, which is described in <a href="Cell-Arrays-of-Strings.html">Cell Arrays of Strings</a>.
+</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="String-Operations.html">String Operations</a>, Previous: <a href="Escape-Sequences-in-String-Constants.html">Escape Sequences in String Constants</a>, Up: <a href="Strings.html">Strings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

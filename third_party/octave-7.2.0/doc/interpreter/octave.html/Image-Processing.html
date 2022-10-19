@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Image Processing (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Image Processing (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Image Processing (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Audio-Processing.html" rel="next" title="Audio Processing">
+<link href="Signal-Processing.html" rel="prev" title="Signal Processing">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Image-Processing">
+<div class="header">
+<p>
+Next: <a href="Audio-Processing.html" accesskey="n" rel="next">Audio Processing</a>, Previous: <a href="Signal-Processing.html" accesskey="p" rel="prev">Signal Processing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Image-Processing-1"></span><h2 class="chapter">32 Image Processing</h2>
+
+<p>Since an image is basically a matrix, Octave is a very powerful
+environment for processing and analyzing images.  To illustrate
+how easy it is to do image processing in Octave, the following
+example will load an image, smooth it by a 5-by-5 averaging filter,
+and compute the gradient of the smoothed image.
+</p>
+<div class="example">
+<pre class="example">I = imread (&quot;myimage.jpg&quot;);
+S = conv2 (I, ones (5, 5) / 25, &quot;same&quot;);
+[Dx, Dy] = gradient (S);
+</pre></div>
+
+<p>In this example <code>S</code> contains the smoothed image, and <code>Dx</code>
+and <code>Dy</code> contains the partial spatial derivatives of the image.
+</p>
+
+<ul class="section-toc">
+<li><a href="Loading-and-Saving-Images.html" accesskey="1">Loading and Saving Images</a></li>
+<li><a href="Displaying-Images.html" accesskey="2">Displaying Images</a></li>
+<li><a href="Representing-Images.html" accesskey="3">Representing Images</a></li>
+<li><a href="Plotting-on-top-of-Images.html" accesskey="4">Plotting on top of Images</a></li>
+<li><a href="Color-Conversion.html" accesskey="5">Color Conversion</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Aspect Ratio (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Aspect Ratio (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Aspect Ratio (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Three_002dDimensional-Plots.html" rel="up" title="Three-Dimensional Plots">
+<link href="Three_002ddimensional-Function-Plotting.html" rel="next" title="Three-dimensional Function Plotting">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsubsection" id="Aspect-Ratio">
+<div class="header">
+<p>
+Next: <a href="Three_002ddimensional-Function-Plotting.html" accesskey="n" rel="next">Three-dimensional Function Plotting</a>, Up: <a href="Three_002dDimensional-Plots.html" accesskey="u" rel="up">Three-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Aspect-Ratio-1"></span><h4 class="subsubsection">15.2.2.1 Aspect Ratio</h4>
+
+<p>For three-dimensional plots the aspect ratio can be set for data with
+<code>daspect</code> and for the plot box with <code>pbaspect</code>.
+See <a href="Axis-Configuration.html">Axis Configuration</a>, for controlling the x-, y-, and z-limits for
+plotting.
+</p>
+<span id="XREFdaspect"></span><dl class="def">
+<dt id="index-daspect"><span class="category">: </span><span><em><var>data_aspect_ratio</var> =</em> <strong>daspect</strong> <em>()</em><a href='#index-daspect' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-daspect-1"><span class="category">: </span><span><em></em> <strong>daspect</strong> <em>(<var>data_aspect_ratio</var>)</em><a href='#index-daspect-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-daspect-2"><span class="category">: </span><span><em></em> <strong>daspect</strong> <em>(<var>mode</var>)</em><a href='#index-daspect-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-daspect-3"><span class="category">: </span><span><em><var>data_aspect_ratio_mode</var> =</em> <strong>daspect</strong> <em>(&quot;mode&quot;)</em><a href='#index-daspect-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-daspect-4"><span class="category">: </span><span><em></em> <strong>daspect</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-daspect-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the data aspect ratio of the current axes.
+</p>
+<p>The aspect ratio is a normalized 3-element vector representing the span of
+the x, y, and z-axis limits.
+</p>
+<p><code>daspect (<var>mode</var>)</code>
+</p>
+<p>Set the data aspect ratio mode of the current axes.  <var>mode</var> is
+either <code>&quot;auto&quot;</code> or <code>&quot;manual&quot;</code>.
+</p>
+<p><code>daspect (<code>&quot;mode&quot;</code>)</code>
+</p>
+<p>Return the data aspect ratio mode of the current axes.
+</p>
+<p><code>daspect (<var>hax</var>, &hellip;)</code>
+</p>
+<p>Operate on the axes in handle <var>hax</var> instead of the current axes.
+</p>
+
+<p><strong>See also:</strong> <a href="Axis-Configuration.html#XREFaxis">axis</a>, <a href="#XREFpbaspect">pbaspect</a>, <a href="Axis-Configuration.html#XREFxlim">xlim</a>, <a href="Axis-Configuration.html#XREFylim">ylim</a>, <a href="Axis-Configuration.html#XREFzlim">zlim</a>.
+</p></dd></dl>
+
+
+<span id="XREFpbaspect"></span><dl class="def">
+<dt id="index-pbaspect"><span class="category">: </span><span><em><var>plot_box_aspect_ratio</var> =</em> <strong>pbaspect</strong> <em>( )</em><a href='#index-pbaspect' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pbaspect-1"><span class="category">: </span><span><em></em> <strong>pbaspect</strong> <em>(<var>plot_box_aspect_ratio</var>)</em><a href='#index-pbaspect-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pbaspect-2"><span class="category">: </span><span><em></em> <strong>pbaspect</strong> <em>(<var>mode</var>)</em><a href='#index-pbaspect-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pbaspect-3"><span class="category">: </span><span><em><var>plot_box_aspect_ratio_mode</var> =</em> <strong>pbaspect</strong> <em>(&quot;mode&quot;)</em><a href='#index-pbaspect-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-pbaspect-4"><span class="category">: </span><span><em></em> <strong>pbaspect</strong> <em>(<var>hax</var>, &hellip;)</em><a href='#index-pbaspect-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Query or set the plot box aspect ratio of the current axes.
+</p>
+<p>The aspect ratio is a normalized 3-element vector representing the rendered
+lengths of the x, y, and z axes.
+</p>
+<p><code>pbaspect(<var>mode</var>)</code>
+</p>
+<p>Set the plot box aspect ratio mode of the current axes.  <var>mode</var> is
+either <code>&quot;auto&quot;</code> or <code>&quot;manual&quot;</code>.
+</p>
+<p><code>pbaspect (&quot;mode&quot;)</code>
+</p>
+<p>Return the plot box aspect ratio mode of the current axes.
+</p>
+<p><code>pbaspect (<var>hax</var>, &hellip;)</code>
+</p>
+<p>Operate on the axes in handle <var>hax</var> instead of the current axes.
+</p>
+
+<p><strong>See also:</strong> <a href="Axis-Configuration.html#XREFaxis">axis</a>, <a href="#XREFdaspect">daspect</a>, <a href="Axis-Configuration.html#XREFxlim">xlim</a>, <a href="Axis-Configuration.html#XREFylim">ylim</a>, <a href="Axis-Configuration.html#XREFzlim">zlim</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Three_002ddimensional-Function-Plotting.html">Three-dimensional Function Plotting</a>, Up: <a href="Three_002dDimensional-Plots.html">Three-Dimensional Plots</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

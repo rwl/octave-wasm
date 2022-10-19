@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Command Line Options (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Command Line Options (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Command Line Options (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Invoking-Octave-from-the-Command-Line.html" rel="up" title="Invoking Octave from the Command Line">
+<link href="Startup-Files.html" rel="next" title="Startup Files">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Command-Line-Options">
+<div class="header">
+<p>
+Next: <a href="Startup-Files.html" accesskey="n" rel="next">Startup Files</a>, Up: <a href="Invoking-Octave-from-the-Command-Line.html" accesskey="u" rel="up">Invoking Octave from the Command Line</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Command-Line-Options-1"></span><h4 class="subsection">2.1.1 Command Line Options</h4>
+<span id="index-Octave-command-options"></span>
+<span id="index-command-options"></span>
+<span id="index-options_002c-Octave-command"></span>
+
+<p>Here is a complete list of the command line options that Octave
+accepts.
+</p>
+
+<dl compact="compact">
+<dt id='index-options_002c-Octave-command-_002d_002dbuilt_002din_002ddocstrings_002dfile--_002d_002dbuilt_002din_002ddocstrings_002dfile-filename'><span><code>--built-in-docstrings-file <var>filename</var></code><a href='#index-options_002c-Octave-command-_002d_002dbuilt_002din_002ddocstrings_002dfile--_002d_002dbuilt_002din_002ddocstrings_002dfile-filename' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the name of the file containing documentation strings for the
+built-in functions of Octave.  This value is normally correct and should
+only need to specified in extraordinary situations.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002ddebug--_002d_002ddebug'><span><code>--debug</code><a href='#index-options_002c-Octave-command-_002d_002ddebug--_002d_002ddebug' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-d</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dd--_002dd"></span>
+<p>Enter parser debugging mode.  Using this option will cause Octave&rsquo;s
+parser to print a lot of information about the commands it reads, and is
+probably only useful if you are actually trying to debug the parser.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002ddoc_002dcache_002dfile--_002d_002ddoc_002dcache_002dfile-filename'><span><code>--doc-cache-file <var>filename</var></code><a href='#index-options_002c-Octave-command-_002d_002ddoc_002dcache_002dfile--_002d_002ddoc_002dcache_002dfile-filename' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the name of the doc cache file to use.  The value of <var>filename</var>
+specified on the command line will override any value of
+<code><span class="nolinebreak">OCTAVE_DOC_CACHE_FILE</span></code><!-- /@w --> found in the environment, but not any commands
+in the system or user startup files that use the <code>doc_cache_file</code>
+function.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002decho_002dcommands--_002d_002decho_002dcommands'><span><code>--echo-commands</code><a href='#index-options_002c-Octave-command-_002d_002decho_002dcommands--_002d_002decho_002dcommands' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-x</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dx--_002dx"></span>
+<p>Echo commands as they are executed.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002deval--_002d_002deval-code'><span><code>--eval <var>code</var></code><a href='#index-options_002c-Octave-command-_002d_002deval--_002d_002deval-code' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Evaluate <var>code</var> and exit when finished unless <samp>--persist</samp> is also
+specified.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dexec_002dpath--_002d_002dexec_002dpath-path'><span><code>--exec-path <var>path</var></code><a href='#index-options_002c-Octave-command-_002d_002dexec_002dpath--_002d_002dexec_002dpath-path' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the path to search for programs to run.  The value of <var>path</var>
+specified on the command line will override any value of
+<code><span class="nolinebreak">OCTAVE_EXEC_PATH</span></code><!-- /@w --> found in the environment, but not any commands
+in the system or user startup files that call the
+<code><span class="nolinebreak">EXEC_PATH</span></code><!-- /@w --> function.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dgui--_002d_002dgui'><span><code>--gui</code><a href='#index-options_002c-Octave-command-_002d_002dgui--_002d_002dgui' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Start the graphical user interface (GUI).
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dhelp--_002d_002dhelp'><span><code>--help</code><a href='#index-options_002c-Octave-command-_002d_002dhelp--_002d_002dhelp' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-h</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dh--_002dh"></span>
+<p>Print short help message and exit.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dimage_002dpath--_002d_002dimage_002dpath-path'><span><code>--image-path <var>path</var></code><a href='#index-options_002c-Octave-command-_002d_002dimage_002dpath--_002d_002dimage_002dpath-path' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Add path to the head of the search path for images.  The value of
+<var>path</var> specified on the command line will override any value of
+<code><span class="nolinebreak">OCTAVE_IMAGE_PATH</span></code><!-- /@w --> found in the environment, but not any commands
+in the system or user startup files that call the <code><span class="nolinebreak">IMAGE_PATH</span></code><!-- /@w -->
+function.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dinfo_002dfile--_002d_002dinfo_002dfile-filename'><span><code>--info-file <var>filename</var></code><a href='#index-options_002c-Octave-command-_002d_002dinfo_002dfile--_002d_002dinfo_002dfile-filename' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the name of the info file to use.  The value of <var>filename</var>
+specified on the command line will override any value of
+<code><span class="nolinebreak">OCTAVE_INFO_FILE</span></code><!-- /@w --> found in the environment, but not any commands
+in the system or user startup files that use the <code>info_file</code>
+function.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dinfo_002dprogram--_002d_002dinfo_002dprogram-program'><span><code>--info-program <var>program</var></code><a href='#index-options_002c-Octave-command-_002d_002dinfo_002dprogram--_002d_002dinfo_002dprogram-program' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the name of the info program to use.  The value of <var>program</var>
+specified on the command line will override any value of
+<code><span class="nolinebreak">OCTAVE_INFO_PROGRAM</span></code><!-- /@w --> found in the environment, but not any
+commands in the system or user startup files that use the
+<code>info_program</code> function.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dinteractive--_002d_002dinteractive'><span><code>--interactive</code><a href='#index-options_002c-Octave-command-_002d_002dinteractive--_002d_002dinteractive' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-i</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002di--_002di"></span>
+<p>Force interactive behavior.  This can be useful for running Octave via a
+remote shell command or inside an Emacs shell buffer.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dline_002dediting--_002d_002dline_002dediting'><span><code>--line-editing</code><a href='#index-options_002c-Octave-command-_002d_002dline_002dediting--_002d_002dline_002dediting' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Force readline use for command-line editing.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dgui--_002d_002dno_002dgui'><span><code>--no-gui</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dgui--_002d_002dno_002dgui' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Disable the graphical user interface (GUI) and use the command line
+interface (CLI) instead.  This is the default behavior, but this option
+may be useful to override a previous <samp>--gui</samp>.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dhistory--_002d_002dno_002dhistory'><span><code>--no-history</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dhistory--_002d_002dno_002dhistory' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-H</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dH--_002dH"></span>
+<p>Disable recording of command-line history.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dinit_002dfile--_002d_002dno_002dinit_002dfile'><span><code>--no-init-file</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dinit_002dfile--_002d_002dno_002dinit_002dfile' class='copiable-anchor'> &para;</a></span></dt>
+<dd><span id="index-octaverc-_007e_002f_002eoctaverc_007e_002f_002eoctaverc"></span>
+<span id="index-octaverc-_002eoctaverc_002eoctaverc"></span>
+<p>Don&rsquo;t read the initialization files <samp>~/.octaverc</samp> and <samp>.octaverc</samp>.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dinit_002dpath--_002d_002dno_002dinit_002dpath'><span><code>--no-init-path</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dinit_002dpath--_002d_002dno_002dinit_002dpath' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Don&rsquo;t initialize the search path for function files to include default
+locations.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dline_002dediting--_002d_002dno_002dline_002dediting'><span><code>--no-line-editing</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dline_002dediting--_002d_002dno_002dline_002dediting' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Disable command-line editing.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dsite_002dfile--_002d_002dno_002dsite_002dfile'><span><code>--no-site-file</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dsite_002dfile--_002d_002dno_002dsite_002dfile' class='copiable-anchor'> &para;</a></span></dt>
+<dd><span id="index-site-startup-file"></span>
+<p>Don&rsquo;t read the site-wide <samp>octaverc</samp> initialization files.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dno_002dwindow_002dsystem--_002d_002dno_002dwindow_002dsystem'><span><code>--no-window-system</code><a href='#index-options_002c-Octave-command-_002d_002dno_002dwindow_002dsystem--_002d_002dno_002dwindow_002dsystem' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-W</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dW--_002dW"></span>
+<p>Disable use of a windowing system including graphics.  This forces a
+strictly terminal-only environment.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dnorc--_002d_002dnorc'><span><code>--norc</code><a href='#index-options_002c-Octave-command-_002d_002dnorc--_002d_002dnorc' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-f</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002df--_002df"></span>
+<p>Don&rsquo;t read any of the system or user initialization files at startup.
+This is equivalent to using both of the options <samp>--no-init-file</samp>
+and <samp>--no-site-file</samp>.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dpath--_002d_002dpath-path'><span><code>--path <var>path</var></code><a href='#index-options_002c-Octave-command-_002d_002dpath--_002d_002dpath-path' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-p <var>path</var></code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dp--_002dp-path"></span>
+<p>Add path to the head of the search path for function files.  The
+value of <var>path</var> specified on the command line will override any value
+of <code><span class="nolinebreak">OCTAVE_PATH</span></code><!-- /@w --> found in the environment, but not any commands in the
+system or user startup files that set the internal load path through one
+of the path functions.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dpersist--_002d_002dpersist'><span><code>--persist</code><a href='#index-options_002c-Octave-command-_002d_002dpersist--_002d_002dpersist' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Go to interactive mode after <samp>--eval</samp> or reading from a file
+named on the command line.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dsilent--_002d_002dsilent'><span><code>--silent</code><a href='#index-options_002c-Octave-command-_002d_002dsilent--_002d_002dsilent' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>--quiet</code></span></dt>
+<dt><span><code>-q</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002d_002dquiet--_002d_002dquiet"></span>
+<span id="index-options_002c-Octave-command-_002dq--_002dq"></span>
+<p>Don&rsquo;t print the usual greeting and version message at startup.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dtexi_002dmacros_002dfile--_002d_002dtexi_002dmacros_002dfile-filename'><span><code>--texi-macros-file <var>filename</var></code><a href='#index-options_002c-Octave-command-_002d_002dtexi_002dmacros_002dfile--_002d_002dtexi_002dmacros_002dfile-filename' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Specify the name of the file containing Texinfo macros for use by makeinfo.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dtraditional--_002d_002dtraditional'><span><code>--traditional</code><a href='#index-options_002c-Octave-command-_002d_002dtraditional--_002d_002dtraditional' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>--braindead</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002d_002dbraindead--_002d_002dbraindead"></span>
+<p>For compatibility with <small>MATLAB</small>, set initial values for
+user preferences to the following values
+</p>
+<div class="example">
+<pre class="example">PS1                             = &quot;&gt;&gt; &quot;
+PS2                             = &quot;&quot;
+beep_on_error                   = true
+confirm_recursive_rmdir         = false
+crash_dumps_octave_core         = false
+optimize_diagonal_matrix        = false
+optimize_permutation_matrix     = false
+optimize_range                  = false
+fixed_point_format              = true
+history_timestamp_format_string = &quot;%%-- %D %I:%M %p --%%&quot;
+print_empty_dimensions          = false
+print_struct_array_contents     = true
+save_default_options            = &quot;-mat-binary&quot;
+struct_levels_to_print          = 0
+</pre></div>
+
+<p>and disable the following warnings
+</p>
+<div class="example">
+<pre class="example">Octave:abbreviated-property-match
+Octave:colon-nonscalar-argument
+Octave:data-file-in-path
+Octave:empty-index
+Octave:function-name-clash
+Octave:possible-matlab-short-circuit-operator
+</pre></div>
+
+<p>Note that this does not enable the <code>Octave:language-extension</code>
+warning, which you might want if you want to be told about writing code
+that works in Octave but not <small>MATLAB</small> (see <a href="Issuing-Warnings.html#XREFwarning">warning</a>,
+<a href="Issuing-Warnings.html#XREFwarning_005fids">warning_ids</a>).
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dverbose--_002d_002dverbose'><span><code>--verbose</code><a href='#index-options_002c-Octave-command-_002d_002dverbose--_002d_002dverbose' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-V</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dV--_002dV"></span>
+<p>Turn on verbose output.
+</p>
+</dd>
+<dt id='index-options_002c-Octave-command-_002d_002dversion--_002d_002dversion'><span><code>--version</code><a href='#index-options_002c-Octave-command-_002d_002dversion--_002d_002dversion' class='copiable-anchor'> &para;</a></span></dt>
+<dt><span><code>-v</code></span></dt>
+<dd><span id="index-options_002c-Octave-command-_002dv--_002dv"></span>
+<p>Print the program version number and exit.
+</p>
+</dd>
+<dt><span><code><var>file</var></code></span></dt>
+<dd><p>Execute commands from <var>file</var>.  Exit when done unless
+<samp>--persist</samp> is also specified.
+</p></dd>
+</dl>
+
+<p>Octave also includes several functions which return information
+about the command line, including the number of arguments and all of the
+options.
+</p>
+<span id="XREFargv"></span><dl class="def">
+<dt id="index-argv"><span class="category">: </span><span><em></em> <strong>argv</strong> <em>()</em><a href='#index-argv' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the command line arguments passed to Octave.
+</p>
+<p>For example, if you invoked Octave using the command
+</p>
+<div class="example">
+<pre class="example">octave --no-line-editing --silent
+</pre></div>
+
+<p><code>argv</code> would return a cell array of strings with the elements
+<samp>--no-line-editing</samp> and <samp>--silent</samp>.
+</p>
+<p>If you write an executable Octave script, <code>argv</code> will return the list
+of arguments passed to the script.  See <a href="Executable-Octave-Programs.html">Executable Octave Programs</a>, for
+an example of how to create an executable Octave script.
+</p></dd></dl>
+
+
+<span id="XREFprogram_005fname"></span><dl class="def">
+<dt id="index-program_005fname"><span class="category">: </span><span><em></em> <strong>program_name</strong> <em>()</em><a href='#index-program_005fname' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the last component of the value returned by
+<code>program_invocation_name</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFprogram_005finvocation_005fname">program_invocation_name</a>.
+</p></dd></dl>
+
+
+<span id="XREFprogram_005finvocation_005fname"></span><dl class="def">
+<dt id="index-program_005finvocation_005fname"><span class="category">: </span><span><em></em> <strong>program_invocation_name</strong> <em>()</em><a href='#index-program_005finvocation_005fname' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the name that was typed at the shell prompt to run Octave.
+</p>
+<p>If executing a script from the command line (e.g., <code>octave foo.m</code>)
+or using an executable Octave script, the program name is set to the
+name of the script.  See <a href="Executable-Octave-Programs.html">Executable Octave Programs</a>, for an example of
+how to create an executable Octave script.
+</p>
+<p><strong>See also:</strong> <a href="#XREFprogram_005fname">program_name</a>.
+</p></dd></dl>
+
+
+<p>Here is an example of using these functions to reproduce the command
+line which invoked Octave.
+</p>
+<div class="example">
+<pre class="example">printf (&quot;%s&quot;, program_name ());
+arg_list = argv ();
+for i = 1:nargin
+  printf (&quot; %s&quot;, arg_list{i});
+endfor
+printf (&quot;\n&quot;);
+</pre></div>
+
+<p>See <a href="Indexing-Cell-Arrays.html">Indexing Cell Arrays</a>, for an explanation of how to retrieve objects
+from cell arrays, and <a href="Defining-Functions.html">Defining Functions</a>, for information about the
+variable <code>nargin</code>.
+</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Startup-Files.html">Startup Files</a>, Up: <a href="Invoking-Octave-from-the-Command-Line.html">Invoking Octave from the Command Line</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

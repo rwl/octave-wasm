@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Multiple Return Values (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Multiple Return Values (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Multiple Return Values (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Functions-and-Scripts.html" rel="up" title="Functions and Scripts">
+<link href="Variable_002dlength-Return-Lists.html" rel="next" title="Variable-length Return Lists">
+<link href="Returning-from-a-Function.html" rel="prev" title="Returning from a Function">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Multiple-Return-Values">
+<div class="header">
+<p>
+Next: <a href="Variable_002dlength-Return-Lists.html" accesskey="n" rel="next">Variable-length Return Lists</a>, Previous: <a href="Returning-from-a-Function.html" accesskey="p" rel="prev">Returning from a Function</a>, Up: <a href="Functions-and-Scripts.html" accesskey="u" rel="up">Functions and Scripts</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Multiple-Return-Values-1"></span><h3 class="section">11.4 Multiple Return Values</h3>
+
+<p>Unlike many other computer languages, Octave allows you to define
+functions that return more than one value.  The syntax for defining
+functions that return multiple values is
+</p>
+<div class="example">
+<pre class="example">function [<var>ret-list</var>] = <var>name</var> (<var>arg-list</var>)
+  <var>body</var>
+endfunction
+</pre></div>
+
+<p>where <var>name</var>, <var>arg-list</var>, and <var>body</var> have the same meaning
+as before, and <var>ret-list</var> is a comma-separated list of variable
+names that will hold the values returned from the function.  The list of
+return values must have at least one element.  If <var>ret-list</var> has
+only one element, this form of the <code>function</code> statement is
+equivalent to the form described in the previous section.
+</p>
+<p>Here is an example of a function that returns two values, the maximum
+element of a vector and the index of its first occurrence in the vector.
+</p>
+<div class="example">
+<pre class="example">function [max, idx] = vmax (v)
+  idx = 1;
+  max = v (idx);
+  for i = 2:length (v)
+    if (v (i) &gt; max)
+      max = v (i);
+      idx = i;
+    endif
+  endfor
+endfunction
+</pre></div>
+
+<p>In this particular case, the two values could have been returned as
+elements of a single array, but that is not always possible or
+convenient.  The values to be returned may not have compatible
+dimensions, and it is often desirable to give the individual return
+values distinct names.
+</p>
+<p>It is possible to use the <code>nthargout</code> function to obtain only some
+of the return values or several at once in a cell array.
+See <a href="Cell-Array-Objects.html">Cell Array Objects</a>.
+</p>
+<span id="XREFnthargout"></span><dl class="def">
+<dt id="index-nthargout"><span class="category">: </span><span><em></em> <strong>nthargout</strong> <em>(<var>n</var>, <var>func</var>, &hellip;)</em><a href='#index-nthargout' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-nthargout-1"><span class="category">: </span><span><em></em> <strong>nthargout</strong> <em>(<var>n</var>, <var>ntot</var>, <var>func</var>, &hellip;)</em><a href='#index-nthargout-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the <var>n</var>th output argument of the function specified by the
+function handle or string <var>func</var>.
+</p>
+<p>Any additional arguments are passed directly to <var>func</var>.  The total
+number of arguments to call <var>func</var> with can be passed in <var>ntot</var>; by
+default <var>ntot</var> is <var>n</var>.  The input <var>n</var> can also be a vector of
+indices of the output, in which case the output will be a cell array of the
+requested output arguments.
+</p>
+<p>The intended use <code>nthargout</code> is to avoid intermediate variables.  For
+example, when finding the indices of the maximum entry of a matrix, the
+following two compositions of nthargout
+</p>
+<div class="example">
+<pre class="example"><var>m</var> = magic (5);
+cell2mat (nthargout ([1, 2], @ind2sub, size (<var>m</var>),
+                     nthargout (2, @max, <var>m</var>(:))))
+&rArr; 5   3
+</pre></div>
+
+<p>are completely equivalent to the following lines:
+</p>
+<div class="example">
+<pre class="example"><var>m</var> = magic (5);
+[~, idx] = max (<var>M</var>(:));
+[i, j] = ind2sub (size (<var>m</var>), idx);
+[i, j]
+&rArr; 5   3
+</pre></div>
+
+<p>It can also be helpful to have all output arguments in a single cell in the
+following manner:
+</p>
+<div class="example">
+<pre class="example"><var>USV</var> = nthargout ([1:3], @svd, hilb (5));
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="Defining-Functions.html#XREFnargin">nargin</a>, <a href="#XREFnargout">nargout</a>, <a href="Variable_002dlength-Argument-Lists.html#XREFvarargin">varargin</a>, <a href="Variable_002dlength-Return-Lists.html#XREFvarargout">varargout</a>, <a href="Ignoring-Arguments.html#XREFisargout">isargout</a>.
+</p></dd></dl>
+
+
+<p>In addition to setting <code>nargin</code> each time a function is called,
+Octave also automatically initializes <code>nargout</code> to the number of
+values that are expected to be returned.  This allows you to write
+functions that behave differently depending on the number of values that
+the user of the function has requested.  The implicit assignment to the
+built-in variable <code>ans</code> does not figure in the count of output
+arguments, so the value of <code>nargout</code> may be zero.
+</p>
+<p>The <code>svd</code> and <code>lu</code> functions are examples of built-in
+functions that behave differently depending on the value of
+<code>nargout</code>.
+</p>
+<p>It is possible to write functions that only set some return values.  For
+example, calling the function
+</p>
+<div class="example">
+<pre class="example">function [x, y, z] = f ()
+  x = 1;
+  z = 2;
+endfunction
+</pre></div>
+
+<p>as
+</p>
+<div class="example">
+<pre class="example">[a, b, c] = f ()
+</pre></div>
+
+<p>produces:
+</p>
+<div class="example">
+<pre class="example">a = 1
+
+b = [](0x0)
+
+c = 2
+</pre></div>
+
+<p>along with a warning.
+</p>
+<span id="XREFnargout"></span><dl class="def">
+<dt id="index-nargout"><span class="category">: </span><span><em></em> <strong>nargout</strong> <em>()</em><a href='#index-nargout' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-nargout-1"><span class="category">: </span><span><em></em> <strong>nargout</strong> <em>(<var>fcn</var>)</em><a href='#index-nargout-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Report the number of output arguments from a function.
+</p>
+<p>Called from within a function, return the number of values the caller
+expects to receive.  At the top level, <code>nargout</code> with no argument is
+undefined and will produce an error.
+</p>
+<p>If called with the optional argument <var>fcn</var>&mdash;a function name or
+handle&mdash;return the number of declared output values that the function can
+produce.
+</p>
+<p>If the final output argument is <var>varargout</var> the returned value is
+negative.
+</p>
+<p>For example,
+</p>
+<div class="example">
+<pre class="example">f ()
+</pre></div>
+
+<p>will cause <code>nargout</code> to return 0 inside the function <code>f</code> and
+</p>
+<div class="example">
+<pre class="example">[s, t] = f ()
+</pre></div>
+
+<p>will cause <code>nargout</code> to return 2 inside the function <code>f</code>.
+</p>
+<p>In the second usage,
+</p>
+<div class="example">
+<pre class="example">nargout (@histc)   # or nargout (&quot;histc&quot;) using a string input
+</pre></div>
+
+<p>will return 2, because <code>histc</code> has two outputs, whereas
+</p>
+<div class="example">
+<pre class="example">nargout (@imread)
+</pre></div>
+
+<p>will return -2, because <code>imread</code> has two outputs and the second is
+<var>varargout</var>.
+</p>
+<p>Programming Note.  <code>nargout</code> does not work for built-in functions and
+returns -1 for all anonymous functions.
+</p>
+<p><strong>See also:</strong> <a href="Defining-Functions.html#XREFnargin">nargin</a>, <a href="Variable_002dlength-Return-Lists.html#XREFvarargout">varargout</a>, <a href="Ignoring-Arguments.html#XREFisargout">isargout</a>, <a href="#XREFnthargout">nthargout</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Variable_002dlength-Return-Lists.html">Variable-length Return Lists</a>, Previous: <a href="Returning-from-a-Function.html">Returning from a Function</a>, Up: <a href="Functions-and-Scripts.html">Functions and Scripts</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

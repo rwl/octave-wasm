@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Trigonometry (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Trigonometry (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Trigonometry (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Arithmetic.html" rel="up" title="Arithmetic">
+<link href="Sums-and-Products.html" rel="next" title="Sums and Products">
+<link href="Complex-Arithmetic.html" rel="prev" title="Complex Arithmetic">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Trigonometry">
+<div class="header">
+<p>
+Next: <a href="Sums-and-Products.html" accesskey="n" rel="next">Sums and Products</a>, Previous: <a href="Complex-Arithmetic.html" accesskey="p" rel="prev">Complex Arithmetic</a>, Up: <a href="Arithmetic.html" accesskey="u" rel="up">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Trigonometry-1"></span><h3 class="section">17.3 Trigonometry</h3>
+
+<p>Octave provides the following trigonometric functions where angles are
+specified in radians.  To convert from degrees to radians multiply by
+<code>pi/180</code>
+or use the <code>deg2rad</code> function.  For example, <code>sin (30 * pi/180)</code>
+returns the sine of 30 degrees.  As an alternative, Octave provides a number of
+trigonometric functions which work directly on an argument specified in
+degrees.  These functions are named after the base trigonometric function with
+a &lsquo;<samp>d</samp>&rsquo; suffix.  As an example, <code>sin</code> expects an angle in radians while
+<code>sind</code> expects an angle in degrees.
+</p>
+<p>Octave uses the C library trigonometric functions.  It is expected that these
+functions are defined by the ISO/IEC 9899 Standard.  This Standard is available
+at: <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf">http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf</a>.
+Section F.9.1 deals with the trigonometric functions.  The behavior of most of
+the functions is relatively straightforward.  However, there are some
+exceptions to the standard behavior.  Many of the exceptions involve the
+behavior for -0.  The most complex case is atan2.  Octave exactly implements
+the behavior given in the Standard.  Including
+<code>atan2(+- 0, 0)</code> returns <code>+- pi</code>.
+</p>
+<p>It should be noted that <small>MATLAB</small> uses different definitions which apparently
+do not distinguish -0.
+</p>
+<span id="XREFdeg2rad"></span><dl class="def">
+<dt id="index-deg2rad"><span class="category">: </span><span><em><var>rad</var> =</em> <strong>deg2rad</strong> <em>(<var>deg</var>)</em><a href='#index-deg2rad' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Convert degrees to radians.
+</p>
+<p>The input <var>deg</var> must be a scalar, vector, or N-dimensional array of
+double or single floating point values.  <var>deg</var> may be complex in which
+case the real and imaginary components are converted separately.
+</p>
+<p>The output <var>rad</var> is the same size and shape as <var>deg</var> with degrees
+converted to radians using the conversion constant <code>pi/180</code>.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">deg2rad ([0, 90, 180, 270, 360])
+  &rArr;  0.00000   1.57080   3.14159   4.71239   6.28319
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFrad2deg">rad2deg</a>.
+</p></dd></dl>
+
+<span id="XREFrad2deg"></span><dl class="def">
+<dt id="index-rad2deg"><span class="category">: </span><span><em><var>deg</var> =</em> <strong>rad2deg</strong> <em>(<var>rad</var>)</em><a href='#index-rad2deg' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Convert radians to degrees.
+</p>
+<p>The input <var>rad</var> must be a scalar, vector, or N-dimensional array of
+double or single floating point values.  <var>rad</var> may be complex in which
+case the real and imaginary components are converted separately.
+</p>
+<p>The output <var>deg</var> is the same size and shape as <var>rad</var> with radians
+converted to degrees using the conversion constant <code>180/pi</code>.
+</p>
+<p>Example:
+</p>
+<div class="example">
+<pre class="example">rad2deg ([0, pi/2, pi, 3/2*pi, 2*pi])
+  &rArr;  0    90   180   270   360
+</pre></div>
+
+<p><strong>See also:</strong> <a href="#XREFdeg2rad">deg2rad</a>.
+</p></dd></dl>
+
+
+<span id="XREFsin"></span><dl class="def">
+<dt id="index-sin"><span class="category">: </span><span><em></em> <strong>sin</strong> <em>(<var>x</var>)</em><a href='#index-sin' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the sine for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasin">asin</a>, <a href="#XREFsind">sind</a>, <a href="#XREFsinh">sinh</a>.
+</p></dd></dl>
+
+<span id="XREFcos"></span><dl class="def">
+<dt id="index-cos"><span class="category">: </span><span><em></em> <strong>cos</strong> <em>(<var>x</var>)</em><a href='#index-cos' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cosine for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacos">acos</a>, <a href="#XREFcosd">cosd</a>, <a href="#XREFcosh">cosh</a>.
+</p></dd></dl>
+
+<span id="XREFtan"></span><dl class="def">
+<dt id="index-tan"><span class="category">: </span><span><em></em> <strong>tan</strong> <em>(<var>z</var>)</em><a href='#index-tan' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the tangent for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFatan">atan</a>, <a href="#XREFtand">tand</a>, <a href="#XREFtanh">tanh</a>.
+</p></dd></dl>
+
+<span id="XREFsec"></span><dl class="def">
+<dt id="index-sec"><span class="category">: </span><span><em></em> <strong>sec</strong> <em>(<var>x</var>)</em><a href='#index-sec' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the secant for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasec">asec</a>, <a href="#XREFsecd">secd</a>, <a href="#XREFsech">sech</a>.
+</p></dd></dl>
+
+<span id="XREFcsc"></span><dl class="def">
+<dt id="index-csc"><span class="category">: </span><span><em></em> <strong>csc</strong> <em>(<var>x</var>)</em><a href='#index-csc' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cosecant for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacsc">acsc</a>, <a href="#XREFcscd">cscd</a>, <a href="#XREFcsch">csch</a>.
+</p></dd></dl>
+
+<span id="XREFcot"></span><dl class="def">
+<dt id="index-cot"><span class="category">: </span><span><em></em> <strong>cot</strong> <em>(<var>x</var>)</em><a href='#index-cot' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cotangent for each element of <var>x</var> in radians.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacot">acot</a>, <a href="#XREFcotd">cotd</a>, <a href="#XREFcoth">coth</a>.
+</p></dd></dl>
+
+
+<span id="XREFasin"></span><dl class="def">
+<dt id="index-asin"><span class="category">: </span><span><em></em> <strong>asin</strong> <em>(<var>x</var>)</em><a href='#index-asin' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse sine in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsin">sin</a>, <a href="#XREFasind">asind</a>.
+</p></dd></dl>
+
+<span id="XREFacos"></span><dl class="def">
+<dt id="index-acos"><span class="category">: </span><span><em></em> <strong>acos</strong> <em>(<var>x</var>)</em><a href='#index-acos' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cosine in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcos">cos</a>, <a href="#XREFacosd">acosd</a>.
+</p></dd></dl>
+
+<span id="XREFatan"></span><dl class="def">
+<dt id="index-atan"><span class="category">: </span><span><em></em> <strong>atan</strong> <em>(<var>x</var>)</em><a href='#index-atan' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse tangent in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtan">tan</a>, <a href="#XREFatand">atand</a>.
+</p></dd></dl>
+
+<span id="XREFasec"></span><dl class="def">
+<dt id="index-asec"><span class="category">: </span><span><em></em> <strong>asec</strong> <em>(<var>x</var>)</em><a href='#index-asec' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse secant in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsec">sec</a>, <a href="#XREFasecd">asecd</a>.
+</p></dd></dl>
+
+<span id="XREFacsc"></span><dl class="def">
+<dt id="index-acsc"><span class="category">: </span><span><em></em> <strong>acsc</strong> <em>(<var>x</var>)</em><a href='#index-acsc' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cosecant in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcsc">csc</a>, <a href="#XREFacscd">acscd</a>.
+</p></dd></dl>
+
+<span id="XREFacot"></span><dl class="def">
+<dt id="index-acot"><span class="category">: </span><span><em></em> <strong>acot</strong> <em>(<var>x</var>)</em><a href='#index-acot' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cotangent in radians for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcot">cot</a>, <a href="#XREFacotd">acotd</a>.
+</p></dd></dl>
+
+
+<span id="XREFsinh"></span><dl class="def">
+<dt id="index-sinh"><span class="category">: </span><span><em></em> <strong>sinh</strong> <em>(<var>x</var>)</em><a href='#index-sinh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the hyperbolic sine for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasinh">asinh</a>, <a href="#XREFcosh">cosh</a>, <a href="#XREFtanh">tanh</a>.
+</p></dd></dl>
+
+<span id="XREFcosh"></span><dl class="def">
+<dt id="index-cosh"><span class="category">: </span><span><em></em> <strong>cosh</strong> <em>(<var>x</var>)</em><a href='#index-cosh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the hyperbolic cosine for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacosh">acosh</a>, <a href="#XREFsinh">sinh</a>, <a href="#XREFtanh">tanh</a>.
+</p></dd></dl>
+
+<span id="XREFtanh"></span><dl class="def">
+<dt id="index-tanh"><span class="category">: </span><span><em></em> <strong>tanh</strong> <em>(<var>x</var>)</em><a href='#index-tanh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute hyperbolic tangent for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFatanh">atanh</a>, <a href="#XREFsinh">sinh</a>, <a href="#XREFcosh">cosh</a>.
+</p></dd></dl>
+
+<span id="XREFsech"></span><dl class="def">
+<dt id="index-sech"><span class="category">: </span><span><em></em> <strong>sech</strong> <em>(<var>x</var>)</em><a href='#index-sech' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the hyperbolic secant of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasech">asech</a>.
+</p></dd></dl>
+
+<span id="XREFcsch"></span><dl class="def">
+<dt id="index-csch"><span class="category">: </span><span><em></em> <strong>csch</strong> <em>(<var>x</var>)</em><a href='#index-csch' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the hyperbolic cosecant of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacsch">acsch</a>.
+</p></dd></dl>
+
+<span id="XREFcoth"></span><dl class="def">
+<dt id="index-coth"><span class="category">: </span><span><em></em> <strong>coth</strong> <em>(<var>x</var>)</em><a href='#index-coth' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the hyperbolic cotangent of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacoth">acoth</a>.
+</p></dd></dl>
+
+
+<span id="XREFasinh"></span><dl class="def">
+<dt id="index-asinh"><span class="category">: </span><span><em></em> <strong>asinh</strong> <em>(<var>x</var>)</em><a href='#index-asinh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic sine for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsinh">sinh</a>.
+</p></dd></dl>
+
+<span id="XREFacosh"></span><dl class="def">
+<dt id="index-acosh"><span class="category">: </span><span><em></em> <strong>acosh</strong> <em>(<var>x</var>)</em><a href='#index-acosh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic cosine for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcosh">cosh</a>.
+</p></dd></dl>
+
+<span id="XREFatanh"></span><dl class="def">
+<dt id="index-atanh"><span class="category">: </span><span><em></em> <strong>atanh</strong> <em>(<var>x</var>)</em><a href='#index-atanh' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic tangent for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtanh">tanh</a>.
+</p></dd></dl>
+
+<span id="XREFasech"></span><dl class="def">
+<dt id="index-asech"><span class="category">: </span><span><em></em> <strong>asech</strong> <em>(<var>x</var>)</em><a href='#index-asech' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic secant of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsech">sech</a>.
+</p></dd></dl>
+
+<span id="XREFacsch"></span><dl class="def">
+<dt id="index-acsch"><span class="category">: </span><span><em></em> <strong>acsch</strong> <em>(<var>x</var>)</em><a href='#index-acsch' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic cosecant of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcsch">csch</a>.
+</p></dd></dl>
+
+<span id="XREFacoth"></span><dl class="def">
+<dt id="index-acoth"><span class="category">: </span><span><em></em> <strong>acoth</strong> <em>(<var>x</var>)</em><a href='#index-acoth' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse hyperbolic cotangent of each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcoth">coth</a>.
+</p></dd></dl>
+
+
+<span id="XREFatan2"></span><dl class="def">
+<dt id="index-atan2"><span class="category">: </span><span><em></em> <strong>atan2</strong> <em>(<var>y</var>, <var>x</var>)</em><a href='#index-atan2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute atan (<var>y</var> / <var>x</var>) for corresponding elements of <var>y</var>
+and <var>x</var>.
+</p>
+<p><var>y</var> and <var>x</var> must match in size and orientation.  The signs of
+elements of <var>y</var> and <var>x</var> are used to determine the quadrants of each
+resulting value.
+</p>
+<p>This function is equivalent to <code>arg (complex (<var>x</var>, <var>y</var>))</code>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtan">tan</a>, <a href="#XREFtand">tand</a>, <a href="#XREFtanh">tanh</a>, <a href="#XREFatanh">atanh</a>.
+</p></dd></dl>
+
+
+<p>Octave provides the following trigonometric functions where angles are
+specified in degrees.  These functions produce true zeros at the appropriate
+intervals rather than the small round-off error that occurs when using
+radians.  For example:
+</p>
+<div class="example">
+<pre class="example">cosd (90)
+     &rArr; 0
+cos (pi/2)
+     &rArr; 6.1230e-17
+</pre></div>
+
+<span id="XREFsind"></span><dl class="def">
+<dt id="index-sind"><span class="category">: </span><span><em></em> <strong>sind</strong> <em>(<var>x</var>)</em><a href='#index-sind' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the sine for each element of <var>x</var> in degrees.
+</p>
+<p>The function is more accurate than <code>sin</code> for large values of <var>x</var>
+and for multiples of 180 degrees (<code><var>x</var>/180</code> is an integer) where
+<code>sind</code> returns 0 rather than a small value on the order of eps.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasind">asind</a>, <a href="#XREFsin">sin</a>.
+</p></dd></dl>
+
+<span id="XREFcosd"></span><dl class="def">
+<dt id="index-cosd"><span class="category">: </span><span><em></em> <strong>cosd</strong> <em>(<var>x</var>)</em><a href='#index-cosd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cosine for each element of <var>x</var> in degrees.
+</p>
+<p>The function is more accurate than <code>cos</code> for large values of <var>x</var>
+and for multiples of 90 degrees (<code><var>x</var> = 90 + 180*n</code> with n an
+integer) where <code>cosd</code> returns 0 rather than a small value on the order
+of eps.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacosd">acosd</a>, <a href="#XREFcos">cos</a>.
+</p></dd></dl>
+
+<span id="XREFtand"></span><dl class="def">
+<dt id="index-tand"><span class="category">: </span><span><em></em> <strong>tand</strong> <em>(<var>x</var>)</em><a href='#index-tand' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the tangent for each element of <var>x</var> in degrees.
+</p>
+<p>Returns zero for elements where <code><var>x</var>/180</code> is an integer and
+<code>Inf</code> for elements where <code>(<var>x</var>-90)/180</code> is an integer.
+</p>
+<p><strong>See also:</strong> <a href="#XREFatand">atand</a>, <a href="#XREFtan">tan</a>.
+</p></dd></dl>
+
+<span id="XREFsecd"></span><dl class="def">
+<dt id="index-secd"><span class="category">: </span><span><em></em> <strong>secd</strong> <em>(<var>x</var>)</em><a href='#index-secd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the secant for each element of <var>x</var> in degrees.
+</p>
+<p><strong>See also:</strong> <a href="#XREFasecd">asecd</a>, <a href="#XREFsec">sec</a>.
+</p></dd></dl>
+
+<span id="XREFcscd"></span><dl class="def">
+<dt id="index-cscd"><span class="category">: </span><span><em></em> <strong>cscd</strong> <em>(<var>x</var>)</em><a href='#index-cscd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cosecant for each element of <var>x</var> in degrees.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacscd">acscd</a>, <a href="#XREFcsc">csc</a>.
+</p></dd></dl>
+
+<span id="XREFcotd"></span><dl class="def">
+<dt id="index-cotd"><span class="category">: </span><span><em></em> <strong>cotd</strong> <em>(<var>x</var>)</em><a href='#index-cotd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the cotangent for each element of <var>x</var> in degrees.
+</p>
+<p><strong>See also:</strong> <a href="#XREFacotd">acotd</a>, <a href="#XREFcot">cot</a>.
+</p></dd></dl>
+
+
+<span id="XREFasind"></span><dl class="def">
+<dt id="index-asind"><span class="category">: </span><span><em></em> <strong>asind</strong> <em>(<var>x</var>)</em><a href='#index-asind' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse sine in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsind">sind</a>, <a href="#XREFasin">asin</a>.
+</p></dd></dl>
+
+<span id="XREFacosd"></span><dl class="def">
+<dt id="index-acosd"><span class="category">: </span><span><em></em> <strong>acosd</strong> <em>(<var>x</var>)</em><a href='#index-acosd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cosine in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcosd">cosd</a>, <a href="#XREFacos">acos</a>.
+</p></dd></dl>
+
+<span id="XREFatand"></span><dl class="def">
+<dt id="index-atand"><span class="category">: </span><span><em></em> <strong>atand</strong> <em>(<var>x</var>)</em><a href='#index-atand' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse tangent in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtand">tand</a>, <a href="#XREFatan">atan</a>.
+</p></dd></dl>
+
+<span id="XREFatan2d"></span><dl class="def">
+<dt id="index-atan2d"><span class="category">: </span><span><em></em> <strong>atan2d</strong> <em>(<var>y</var>, <var>x</var>)</em><a href='#index-atan2d' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute atan (<var>y</var> / <var>x</var>) in degrees for corresponding elements
+from <var>y</var> and <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFtand">tand</a>, <a href="#XREFatan2">atan2</a>.
+</p></dd></dl>
+
+<span id="XREFasecd"></span><dl class="def">
+<dt id="index-asecd"><span class="category">: </span><span><em></em> <strong>asecd</strong> <em>(<var>x</var>)</em><a href='#index-asecd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse secant in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFsecd">secd</a>, <a href="#XREFasec">asec</a>.
+</p></dd></dl>
+
+<span id="XREFacscd"></span><dl class="def">
+<dt id="index-acscd"><span class="category">: </span><span><em></em> <strong>acscd</strong> <em>(<var>x</var>)</em><a href='#index-acscd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cosecant in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcscd">cscd</a>, <a href="#XREFacsc">acsc</a>.
+</p></dd></dl>
+
+<span id="XREFacotd"></span><dl class="def">
+<dt id="index-acotd"><span class="category">: </span><span><em></em> <strong>acotd</strong> <em>(<var>x</var>)</em><a href='#index-acotd' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute the inverse cotangent in degrees for each element of <var>x</var>.
+</p>
+<p><strong>See also:</strong> <a href="#XREFcotd">cotd</a>, <a href="#XREFacot">acot</a>.
+</p></dd></dl>
+
+
+<p>Finally, there are two trigonometric functions that calculate special
+arguments with increased accuracy.
+</p>
+<span id="XREFsinpi"></span><dl class="def">
+<dt id="index-sinpi"><span class="category">: </span><span><em><var>y</var> =</em> <strong>sinpi</strong> <em>(<var>x</var>)</em><a href='#index-sinpi' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute sine (<var>x</var> * pi) for each element of <var>x</var> accurately.
+</p>
+<p>The ordinary <code>sin</code> function uses IEEE floating point numbers and may
+produce results that are very close (within a few eps) of the correct
+value, but which are not exact.  The <code>sinpi</code> function is more accurate
+and returns 0 exactly for integer values of <var>x</var> and +1/-1 for
+half-integer values (e.g., &hellip;, -3/2, -1/2, 1/2, 3/2, &hellip;).
+</p>
+<p>Example <br>
+comparison of <code>sin</code> and <code>sinpi</code> for integer values of <var>x</var>
+</p>
+<div class="example">
+<pre class="example">sin ([0, 1, 2, 3] * pi)
+&rArr;
+     0   1.2246e-16  -2.4493e-16   3.6739e-16
+
+sinpi ([0, 1, 2, 3])
+&rArr;
+       0   0   0   0
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFcospi">cospi</a>, <a href="#XREFsin">sin</a>.
+</p></dd></dl>
+
+<span id="XREFcospi"></span><dl class="def">
+<dt id="index-cospi"><span class="category">: </span><span><em><var>y</var> =</em> <strong>cospi</strong> <em>(<var>x</var>)</em><a href='#index-cospi' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compute cosine (<var>x</var> * pi) for each element of <var>x</var> accurately.
+</p>
+<p>The ordinary <code>cos</code> function uses IEEE floating point numbers and may
+produce results that are very close (within a few eps) of the correct
+value, but which are not exact.  The <code>cospi</code> function is more accurate
+and returns 0 exactly for half-integer values of <var>x</var> (e.g., &hellip;,
+-3/2, -1/2, 1/2, 3/2, &hellip;), and +1/-1 for integer values.
+</p>
+<p>Example <br>
+comparison of <code>cos</code> and <code>cospi</code> for half-integer values of <var>x</var>
+</p>
+<div class="example">
+<pre class="example">cos ([-3/2, -1/2, 1/2, 3/2] * pi)
+&rArr;
+     -1.8370e-16   6.1232e-17   6.1232e-17  -1.8370e-16
+
+cospi ([-3/2, -1/2, 1/2, 3/2])
+&rArr;
+       0   0   0   0
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFsinpi">sinpi</a>, <a href="#XREFcos">cos</a>.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Sums-and-Products.html">Sums and Products</a>, Previous: <a href="Complex-Arithmetic.html">Complex Arithmetic</a>, Up: <a href="Arithmetic.html">Arithmetic</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

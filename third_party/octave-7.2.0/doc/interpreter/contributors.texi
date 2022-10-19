@@ -1,0 +1,155 @@
+@multitable @columnfractions .33 .33 .33
+@item Ben Abbott @tab Drew Abbot @tab NVS Abhilash
+@item Andy Adler @tab Adam H. Aitkenhead @tab Joakim Andén
+@item Giles Anderson @tab Joel Andersson @tab Lachlan Andrew
+@item Pedro Angelo @tab Damjan Angelovski @tab Muthiah Annamalai
+@item Markus Appel @tab Branden Archer @tab Willem Atsma
+@item Marco Atzeri @tab Ander Aurrekoetxea @tab Shai Ayal
+@item Sahil Badyal @tab Jeff Bai @tab Roger Banks
+@item Ben Barrowes @tab Alexander Barth @tab David Bateman
+@item Heinz Bauschke @tab Miguel Bazdresch @tab Julien Bect
+@item Stefan Beller @tab Roman Belov @tab Markus Bergholz
+@item Karl Berry @tab Atri Bhattacharya @tab Ethan Biery
+@item David Billinghurst @tab Don Bindner @tab Jakub Bogusz
+@item Moritz Borgmann @tab Paul Boven @tab Richard Bovey
+@item John Bradshaw @tab Marcus Brinkmann @tab Max Brister
+@item Remy Bruno @tab Stefan Brüns @tab Clemens Buchacher
+@item Ansgar Burchard @tab Antonius Burgers @tab Marco Caliari
+@item Daniel Calvelo @tab John C. Campbell @tab Juan Pablo Carbajal
+@item Jean-Francois Cardoso @tab Joao Cardoso @tab Larrie Carr
+@item David Castelow @tab Vincent Cautaerts @tab Marco Cecchetti
+@item Corbin Champion @tab Clinton Chee @tab Albert Chin-A-Young
+@item Sunghyun Cho @tab Carsten Clark @tab Catalin Codreanu
+@item J. D. Cole @tab Jacopo Corno @tab Andre da Costa Barros
+@item Martin Costabel @tab Michael Creel @tab Richard Crozier
+@item Jeff Cunningham @tab Martin Dalecki @tab Jacob Dawid
+@item Jorge Barros de Abreu @tab Carlo de Falco @tab Thomas D. Dean
+@item Philippe Defert @tab Bill Denney @tab Fabian Deutsch
+@item Christos Dimitrakakis @tab Pantxo Diribarne @tab Vivek Dogra
+@item John Donoghue @tab David M. Doolin @tab Carnë Draug
+@item Sergey Dudoladov @tab Pascal A. Dupuis @tab John W. Eaton
+@item Dirk Eddelbuettel @tab Pieter Eendebak @tab Paul Eggert
+@item Stephen Eglen @tab Peter Ekberg @tab Abdallah K. Elshamy
+@item Garrett Euler @tab Edmund Grimley Evans @tab Rolf Fabian
+@item Francesco Faccio @tab Gunnar Farnebäck @tab Massimiliano Fasi
+@item Stephen Fegan @tab Ramon Garcia Fernandez @tab Torsten Finke
+@item David Finkel @tab Guillaume Flandin @tab Colin Foster
+@item Jose Daniel Munoz Frias @tab Brad Froehle @tab Castor Fu
+@item Eduardo Gallestey @tab Walter Gautschi @tab Klaus Gebhardt
+@item Driss Ghaddab @tab Eugenio Gianniti @tab Hartmut Gimpel
+@item Michele Ginesi @tab Nicolo Giorgetti @tab Arun Giridhar
+@item Michael D. Godfrey @tab Dave Goel @tab Michael Goffioul
+@item Glenn Golden @tab Tomislav Goles @tab Keith Goodman
+@item Brian Gough @tab Alexander Graf @tab Michael C. Grant
+@item Steffen Groot @tab Etienne Grossmann @tab David Grundberg
+@item Kyle Guinn @tab Vaibhav Gupta @tab Peter Gustafson
+@item Kai Habel @tab Patrick Häcker @tab William P. Y. Hadisoeseno
+@item Jaroslav Hajek @tab Benjamin Hall @tab Alexander Hansen
+@item Kim Hansen @tab Gene Harvey @tab Søren Hauberg
+@item Dave Hawthorne @tab Oliver Heimlich @tab Daniel Heiserer
+@item Piotr Held @tab Martin Helm @tab Stefan Hepp
+@item Martin Hepperle @tab Jordi Gutiérrez Hermoso @tab Israel Herraiz
+@item Yozo Hida @tab Christian Himpe @tab Ryan Hinton
+@item Roman Hodek @tab A. Scottedward Hodel @tab Júlio Hoffimann
+@item Richard Allan Holcombe @tab Tom Holroyd @tab David Hoover
+@item Kurt Hornik @tab Craig Hudson @tab Christopher Hulbert
+@item Cyril Humbert @tab John Hunt @tab Stefan Husmann
+@item Teemu Ikonen @tab Alan W. Irwin @tab Allan Jacobs
+@item Marcel Jacobse @tab Geoff Jacobsen @tab Vytautas Jančauskas
+@item Nicholas R. Jankowski @tab Mats Jansson @tab Robert Jenssen
+@item Cai Jianming @tab Steven G. Johnson @tab Heikki Junes
+@item Matthias Jüschke @tab Atsushi Kajita @tab Jarkko Kaleva
+@item Avinoam Kalma @tab Mohamed Kamoun @tab Lute Kamstra
+@item Fotios Kasolis @tab Thomas Kasper @tab Christof Kaufmann
+@item Joel Keay @tab Mumit Khan @tab Paul Kienzle
+@item Lars Kindermann @tab Aaron A. King @tab Erik Kjellson
+@item Arno J. Klaassen @tab Alexander Klein @tab Lasse Kliemann
+@item Geoffrey Knauth @tab Martin Köhler @tab Heine Kolltveit
+@item Ken Kouno @tab Kacper Kowalik @tab Endre Kozma
+@item Daniel Kraft @tab Nir Krakauer @tab Aravindh Krishnamoorthy
+@item Oyvind Kristiansen @tab Artem Krosheninnikov @tab Piotr Krzyzanowski
+@item Volker Kuhlmann @tab Ilya Kurdyukov @tab Tetsuro Kurita
+@item Ben Kurtz @tab Philipp Kutin @tab Miroslaw Kwasniak
+@item Rafael Laboissiere @tab Kai Labusch @tab Claude Lacoursiere
+@item Walter Landry @tab Bill Lash @tab Dirk Laurie
+@item Maurice LeBrun @tab Friedrich Leisch @tab Michael Leitner
+@item Johannes Leuschner @tab Thorsten Liebig @tab Torsten Lilge
+@item Jyh-miin Lin @tab Timo Lindfors @tab Benjamin Lindner
+@item Ross Lippert @tab Yu Liu @tab David Livings
+@item Barbara Locsi @tab Sebastien Loisel @tab Andrej Lojdl
+@item Erik de Castro Lopo @tab Massimo Lorenzin @tab Emil Lucretiu
+@item Yi-Hong Lyu @tab Hoxide Ma @tab Colin Macdonald
+@item James Macnicol @tab Jens-Uwe Mager @tab Stefan Mahr
+@item Rob Mahurin @tab Alexander Mamonov @tab Ricardo Marranita
+@item Orestes Mas @tab Axel Mathéi @tab Makoto Matsumoto
+@item Tatsuro Matsuoka @tab Christoph Mayer @tab Laurent Mazet
+@item G. D. McBain @tab Ronald van der Meer @tab Markus Meisinger
+@item Júlio Hoffimann Mendes @tab Ed Meyer @tab Thorsten Meyer
+@item Stefan Miereis @tab Petr Mikulik @tab Mike Miller
+@item Serviscope Minor @tab Stefan Monnier @tab Rafael Monteiro
+@item Stephen Montgomery-Smith @tab Anthony Morast @tab Antoine Moreau
+@item Kai P. Mueller @tab Amod Mulay @tab Armin Müller
+@item Hannes Müller @tab Victor Munoz @tab PrasannaKumar Muralidharan
+@item Iain Murray @tab Nicholas Musolino @tab Markus Mützel
+@item Carmen Navarrete @tab Todd Neal @tab Philip Nienhuis
+@item Al Niessner @tab Felipe G. Nievinski @tab Rick Niles
+@item Takuji Nishimura @tab Akira Noda @tab Kai Noda
+@item Patrick Noffke @tab Victor Norton @tab Eric Norum
+@item Krzesimir Nowak @tab Michael O'Brien @tab Cillian O'Driscoll
+@item Peter O'Gorman @tab Thorsten Ohl @tab Kai T. Ohlhus
+@item Serkan Önder @tab Arno Onken @tab Valentin Ortega-Clavero
+@item Luis F. Ortiz @tab Carl Osterwisch @tab Janne Olavi Paanajärvi
+@item Óvári @tab Scott Pakin @tab José Luis García Pallero
+@item Jason Alan Palmer @tab Gabriele Pannocchia @tab Sylvain Pelissier
+@item Rolando Pereira @tab Per Persson @tab Primozz Peterlin
+@item Jim Peterson @tab Danilo Piazzalunga @tab Nicholas Piper
+@item Elias Pipping @tab Robert Platt @tab Hans Ekkehard Plesser
+@item Sergey Plotnikov @tab Tom Poage @tab Nathan Podlich
+@item Orion Poplawski @tab Ondrej Popp @tab Jef Poskanzer
+@item Francesco Potortì @tab Konstantinos Poulios @tab Tejaswi D. Prakash
+@item Jarno Rajahalme @tab Eduardo Ramos @tab Pooja Rao
+@item James B. Rawlings @tab Eric S. Raymond @tab Balint Reczey
+@item Joshua Redstone @tab Andy Register @tab Lukas Reichlin
+@item Michael Reifenberger @tab Ernst Reissner @tab Reinhard Resch
+@item Jens Restemeier @tab Anthony Richardson @tab Jason Riedy
+@item E. Joshua Rigler @tab Sander van Rijn @tab Petter Risholm
+@item Matthew W. Roberts @tab Melvin Robinson @tab Dmitry Roshchin
+@item Peter Rosin @tab Andrew Ross @tab Fabio Rossi
+@item Mark van Rossum @tab Joe Rothweiler @tab David Rörich
+@item Kevin Ruland @tab Kristian Rumberg @tab Ryan Rusaw
+@item Olli Saarela @tab Toni Saarela @tab Juhani Saastamoinen
+@item Radek Salac @tab Mike Sander @tab Ben Sapp
+@item Aleksej Saushev @tab Alois Schlögl @tab Michel D. Schmid
+@item Julian Schnidder @tab Sebastian Schöps @tab Nicol N. Schraudolph
+@item Sebastian Schubert @tab Lasse Schuirmann @tab Ludwig Schwardt
+@item Thomas L. Scofield @tab Daniel J. Sebald @tab Dmitri A. Sergatskov
+@item Vanya Sergeev @tab Marko Seric @tab Ahsan Ali Shahid
+@item Baylis Shanks @tab Andriy Shinkarchuck @tab Robert T. Short
+@item Joseph P. Skudlarek @tab John Smith @tab Julius Smith
+@item Shan G. Smith @tab Peter L. Sondergaard @tab Rüdiger Sonderfeld
+@item Joerg Specht @tab Quentin H. Spencer @tab Christoph Spiel
+@item David Spies @tab Imad-Eddine Srairi @tab Andreas Stahel
+@item Richard Stallman @tab Russell Standish @tab Ryan Starret
+@item Brett Stewart @tab Doug Stewart @tab Jen Stewart
+@item Jonathan Stickel @tab Judd Storrs @tab Thomas Stuart
+@item Bernardo Sulzbach @tab Ivan Sutoris @tab John Swensen
+@item Daisuke Takago @tab Ariel Tankus @tab Falk Tannhäuser
+@item Duncan Temple Lang @tab Matthew Tenny @tab Kris Thielemans
+@item Georg Thimm @tab Paul Thomas @tab Corey Thomasson
+@item Andrew Thornton @tab Olaf Till @tab Christophe Tournery
+@item Thomas Treichl @tab Abhinav Tripathi @tab Karsten Trulsen
+@item David Turner @tab Frederick Umminger @tab Utkarsh Upadhyay
+@item José Vallet @tab Stefan van der Walt @tab Peter Van Wieren
+@item James R. Van Zandt @tab Risto Vanhanen @tab Gregory Vanuxem
+@item Mihas Varantsou @tab Ivana Varekova @tab Sébastien Villemot
+@item Marco Vitetta @tab Daniel Wagenaar @tab Steven Waldrip
+@item Thomas Walter @tab Jun Wang @tab Andreas Weber
+@item Olaf Weber @tab Thomas Weber @tab Rik Wehbring
+@item Bob Weigel @tab Andreas Weingessel @tab Martin Weiser
+@item Michael Weitzel @tab David Wells @tab Joachim Wiesemann
+@item Alexander Wilms @tab Joe Winegarden @tab Georg Wiora
+@item Eddy Xiao @tab Sahil Yadav @tab Fook Fah Yap
+@item Sean Young @tab Michele Zaffalon @tab Serhiy Zahoriya
+@item Johannes Zarl @tab Michael Zeising @tab Federico Zenith
+@item Claudius Zingerli @tab Alex Zvoleff @tab Richard Zweig
+@end multitable

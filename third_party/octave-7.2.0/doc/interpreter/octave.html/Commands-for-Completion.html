@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Commands for Completion (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Commands for Completion (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Commands for Completion (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Command-Line-Editing.html" rel="up" title="Command Line Editing">
+<link href="Commands-for-History.html" rel="next" title="Commands for History">
+<link href="Commands-for-Text.html" rel="prev" title="Commands for Text">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Commands-for-Completion">
+<div class="header">
+<p>
+Next: <a href="Commands-for-History.html" accesskey="n" rel="next">Commands for Manipulating the History</a>, Previous: <a href="Commands-for-Text.html" accesskey="p" rel="prev">Commands for Changing Text</a>, Up: <a href="Command-Line-Editing.html" accesskey="u" rel="up">Command Line Editing</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Letting-Readline-Type-for-You"></span><h4 class="subsection">2.4.4 Letting Readline Type for You</h4>
+<span id="index-command-completion"></span>
+
+<p>The following commands allow Octave to complete command and variable
+names for you.
+</p>
+<dl compact="compact">
+<dt><span><kbd><span class="key">TAB</span></kbd></span></dt>
+<dd><p>Attempt to do completion on the text before the cursor.  Octave can
+complete the names of commands and variables.
+</p>
+</dd>
+<dt><span><kbd>M-?</kbd></span></dt>
+<dd><p>List the possible completions of the text before the cursor.
+</p></dd>
+</dl>
+
+<span id="XREFcompletion_005fappend_005fchar"></span><dl class="def">
+<dt id="index-completion_005fappend_005fchar"><span class="category">: </span><span><em><var>val</var> =</em> <strong>completion_append_char</strong> <em>()</em><a href='#index-completion_005fappend_005fchar' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-completion_005fappend_005fchar-1"><span class="category">: </span><span><em><var>old_val</var> =</em> <strong>completion_append_char</strong> <em>(<var>new_val</var>)</em><a href='#index-completion_005fappend_005fchar-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-completion_005fappend_005fchar-2"><span class="category">: </span><span><em></em> <strong>completion_append_char</strong> <em>(<var>new_val</var>, &quot;local&quot;)</em><a href='#index-completion_005fappend_005fchar-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the internal character variable that is appended to
+successful command-line completion attempts.
+</p>
+<p>The default value is <code>&quot; &quot;</code> (a single space).
+</p>
+<p>When called from inside a function with the <code>&quot;local&quot;</code> option, the
+variable is changed locally for the function and any subroutines it calls.
+The original variable value is restored when exiting the function.
+</p></dd></dl>
+
+
+<span id="XREFcompletion_005fmatches"></span><dl class="def">
+<dt id="index-completion_005fmatches"><span class="category">: </span><span><em></em> <strong>completion_matches</strong> <em>(<var>hint</var>)</em><a href='#index-completion_005fmatches' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Generate possible completions given <var>hint</var>.
+</p>
+<p>This function is provided for the benefit of programs like Emacs which
+might be controlling Octave and handling user input.  The current
+command number is not incremented when this function is called.  This is
+a feature, not a bug.
+</p></dd></dl>
+
+
+</div>
+
+
+
+</body>
+</html>

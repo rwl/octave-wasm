@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Collocation Weights (Octave C++ Classes)</title>
+
+<meta name="description" content="Collocation Weights (Octave C++ Classes)">
+<meta name="keywords" content="Collocation Weights (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Quadrature.html" rel="up" title="Quadrature">
+<link href="Quadrature.html" rel="prev" title="Quadrature">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Collocation-Weights">
+<div class="header">
+<p>
+Previous: <a href="Quadrature.html" accesskey="p" rel="prev">Quadrature</a>, Up: <a href="Quadrature.html" accesskey="u" rel="up">Quadrature</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Collocation-Weights-1"></span><h3 class="section">10.1 Collocation Weights</h3>
+<span id="index-orthogonal-collocation"></span>
+<span id="index-collocation-weights"></span>
+
+<dl class="def">
+<dt id="index-CollocWt"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(void)</em><a href='#index-CollocWt' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CollocWt-1"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(int <var>n</var>, int <var>inc_l</var>, int <var>inc_r</var>)</em><a href='#index-CollocWt-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CollocWt-2"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(int <var>n</var>, int <var>inc_l</var>, int <var>inc_r</var>, double <var>l</var>, double <var>r</var>)</em><a href='#index-CollocWt-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CollocWt-3"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(int <var>n</var>, double <var>a</var>, double <var>b</var>, int <var>inc_l</var>, int <var>inc_r</var>)</em><a href='#index-CollocWt-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CollocWt-4"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(int <var>n</var>, int <var>inc_l</var>, int <var>inc_r</var>, double <var>l</var>, double <var>r</var>)</em><a href='#index-CollocWt-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-CollocWt-5"><span class="category">: </span><span><em></em> <strong>CollocWt</strong> <em>(const CollocWt&amp;)</em><a href='#index-CollocWt-5' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003d-35"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>operator =</strong> <em>(const CollocWt&amp;)</em><a href='#index-operator-_003d-35' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-resize-3"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>resize</strong> <em>(int <var>ncol</var>)</em><a href='#index-resize-3' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-add_005fleft"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>add_left</strong> <em>(void)</em><a href='#index-add_005fleft' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-add_005fright"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>add_right</strong> <em>(void)</em><a href='#index-add_005fright' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-delete_005fleft"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>delete_left</strong> <em>(void)</em><a href='#index-delete_005fleft' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-delete_005fright"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>delete_right</strong> <em>(void)</em><a href='#index-delete_005fright' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005fleft"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>set_left</strong> <em>(double <var>val</var>)</em><a href='#index-set_005fleft' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fright"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>set_right</strong> <em>(double <var>val</var>)</em><a href='#index-set_005fright' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-set_005falpha"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>set_alpha</strong> <em>(double <var>val</var>)</em><a href='#index-set_005falpha' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-set_005fbeta"><span class="category">: </span><span><em>CollocWt&amp;</em> <strong>set_beta</strong> <em>(double <var>val</var>)</em><a href='#index-set_005fbeta' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-ncol"><span class="category">: </span><span><em>int</em> <strong>ncol</strong> <em>(void) const</em><a href='#index-ncol' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-left_005fincluded"><span class="category">: </span><span><em>int</em> <strong>left_included</strong> <em>(void) const</em><a href='#index-left_005fincluded' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-right_005fincluded"><span class="category">: </span><span><em>int</em> <strong>right_included</strong> <em>(void) const</em><a href='#index-right_005fincluded' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-left"><span class="category">: </span><span><em>double</em> <strong>left</strong> <em>(void) const</em><a href='#index-left' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-right"><span class="category">: </span><span><em>double</em> <strong>right</strong> <em>(void) const</em><a href='#index-right' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-width"><span class="category">: </span><span><em>double</em> <strong>width</strong> <em>(void) const</em><a href='#index-width' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-alpha"><span class="category">: </span><span><em>double</em> <strong>alpha</strong> <em>(void) const</em><a href='#index-alpha' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-beta"><span class="category">: </span><span><em>double</em> <strong>beta</strong> <em>(void) const</em><a href='#index-beta' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-roots"><span class="category">: </span><span><em>ColumnVector</em> <strong>roots</strong> <em>(void)</em><a href='#index-roots' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quad"><span class="category">: </span><span><em>ColumnVector</em> <strong>quad</strong> <em>(void)</em><a href='#index-quad' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-quad_005fweights"><span class="category">: </span><span><em>ColumnVector</em> <strong>quad_weights</strong> <em>(void)</em><a href='#index-quad_005fweights' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-first"><span class="category">: </span><span><em>Matrix</em> <strong>first</strong> <em>(void)</em><a href='#index-first' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-second"><span class="category">: </span><span><em>Matrix</em> <strong>second</strong> <em>(void)</em><a href='#index-second' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+<dl class="def">
+<dt id="index-operator-_003c_003c-29"><span class="category">: </span><span><em>ostream&amp;</em> <strong>operator &lt;&lt;</strong> <em>(ostream &amp;<var>os</var>, const CollocWt &amp;<var>c</var>)</em><a href='#index-operator-_003c_003c-29' class='copiable-anchor'> &para;</a></span></dt>
+</dl>
+
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="Quadrature.html">Quadrature</a>, Up: <a href="Quadrature.html">Quadrature</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

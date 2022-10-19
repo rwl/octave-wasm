@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>String Operations (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="String Operations (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="String Operations (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Strings.html" rel="up" title="Strings">
+<link href="Converting-Strings.html" rel="next" title="Converting Strings">
+<link href="Character-Arrays.html" rel="prev" title="Character Arrays">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="String-Operations">
+<div class="header">
+<p>
+Next: <a href="Converting-Strings.html" accesskey="n" rel="next">Converting Strings</a>, Previous: <a href="Character-Arrays.html" accesskey="p" rel="prev">Character Arrays</a>, Up: <a href="Strings.html" accesskey="u" rel="up">Strings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="String-Operations-1"></span><h3 class="section">5.3 String Operations</h3>
+
+<p>Octave supports a wide range of functions for manipulating strings.
+Since a string is just a matrix, simple manipulations can be accomplished
+using standard operators.  The following example shows how to replace
+all blank characters with underscores.
+</p>
+<div class="example">
+<pre class="example">quote = ...
+  &quot;First things first, but not necessarily in that order&quot;;
+quote( quote == &quot; &quot; ) = &quot;_&quot;
+&rArr; quote =
+    First_things_first,_but_not_necessarily_in_that_order
+</pre></div>
+
+<p>For more complex manipulations, such as searching, replacing, and
+general regular expressions, the following functions come with Octave.
+</p>
+
+<ul class="section-toc">
+<li><a href="Common-String-Operations.html" accesskey="1">Common String Operations</a></li>
+<li><a href="Concatenating-Strings.html" accesskey="2">Concatenating Strings</a></li>
+<li><a href="Splitting-and-Joining-Strings.html" accesskey="3">Splitting and Joining Strings</a></li>
+<li><a href="Searching-in-Strings.html" accesskey="4">Searching in Strings</a></li>
+<li><a href="Searching-and-Replacing-in-Strings.html" accesskey="5">Searching and Replacing in Strings</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

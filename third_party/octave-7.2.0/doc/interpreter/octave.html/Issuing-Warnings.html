@@ -1,0 +1,674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Issuing Warnings (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Issuing Warnings (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Issuing Warnings (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Handling-Warnings.html" rel="up" title="Handling Warnings">
+<link href="Enabling-and-Disabling-Warnings.html" rel="next" title="Enabling and Disabling Warnings">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="subsection" id="Issuing-Warnings">
+<div class="header">
+<p>
+Next: <a href="Enabling-and-Disabling-Warnings.html" accesskey="n" rel="next">Enabling and Disabling Warnings</a>, Up: <a href="Handling-Warnings.html" accesskey="u" rel="up">Handling Warnings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Issuing-Warnings-1"></span><h4 class="subsection">12.2.1 Issuing Warnings</h4>
+
+<p>It is possible to issue warnings from any code using the <code>warning</code>
+function.  In its most simple form, the <code>warning</code> function takes a
+string describing the warning as its input argument.  As an example,
+the following code controls if the variable &lsquo;<samp>a</samp>&rsquo; is non-negative,
+and if not issues a warning and sets &lsquo;<samp>a</samp>&rsquo; to zero.
+</p>
+<div class="example">
+<pre class="example">a = -1;
+if (a &lt; 0)
+  warning (&quot;'a' must be non-negative.  Setting 'a' to zero.&quot;);
+  a = 0;
+endif
+     -| 'a' must be non-negative.  Setting 'a' to zero.
+</pre></div>
+
+<p>Since warnings aren&rsquo;t fatal to a running program, it is not possible
+to catch a warning using the <code>try</code> statement or something similar.
+It is however possible to access the last warning as a string using the
+<code>lastwarn</code> function.
+</p>
+<p>It is also possible to assign an identification string to a warning.
+If a warning has such an ID the user can enable and disable this warning
+as will be described in the next section.  To assign an ID to a warning,
+simply call <code>warning</code> with two string arguments, where the first
+is the identification string, and the second is the actual warning.  Note
+that warning IDs are in the format <code>&quot;NAMESPACE:WARNING-NAME&quot;</code>.  The
+namespace <code>&quot;Octave&quot;</code> is used for Octave&rsquo;s own warnings.  Any other string
+is available as a namespace for user&rsquo;s own warnings.
+</p>
+<span id="XREFwarning"></span><dl class="def">
+<dt id="index-warning"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(<var>template</var>, &hellip;)</em><a href='#index-warning' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-1"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(<var>id</var>, <var>template</var>, &hellip;)</em><a href='#index-warning-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-2"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(&quot;on&quot;, <var>id</var>)</em><a href='#index-warning-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-3"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(&quot;off&quot;, <var>id</var>)</em><a href='#index-warning-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-4"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(&quot;error&quot;, <var>id</var>)</em><a href='#index-warning-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-5"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(&quot;query&quot;, <var>id</var>)</em><a href='#index-warning-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-6"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(<var>state</var>, <var>id</var>, &quot;local&quot;)</em><a href='#index-warning-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-7"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(<var>warning_struct</var>)</em><a href='#index-warning-7' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-8"><span class="category">: </span><span><em><var>warning_struct</var> =</em> <strong>warning</strong> <em>(&hellip;)</em><a href='#index-warning-8' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-warning-9"><span class="category">: </span><span><em></em> <strong>warning</strong> <em>(<var>state</var>, <var>mode</var>)</em><a href='#index-warning-9' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Display a warning message or control the behavior of Octave&rsquo;s warning system.
+</p>
+<p>The first call form uses a template <var>template</var> and optional additional
+arguments to display a message on the <code>stderr</code> stream.  The message is
+formatted using the same rules as the <code>printf</code> family of functions
+(see <a href="Formatted-Output.html">Formatted Output</a>) and prefixed by the character string
+&lsquo;<samp>warning:&nbsp;</samp>&rsquo;<!-- /@w -->.  You should use this function when you want to notify the
+user of an unusual condition, but only when it makes sense for your program to
+go on.  For example:
+</p>
+<div class="example">
+<pre class="example">warning (&quot;foo: maybe something wrong here&quot;);
+</pre></div>
+
+<p>If the warning message does not end with a newline character, Octave will
+print a traceback of all the function calls leading to the warning.  If the
+warning message does end in a newline character, Octave will suppress the
+traceback messages as it returns control to the top level.  For more details
+and examples, see <a href="Raising-Errors.html#XREFerror"><code>error</code></a>.
+</p>
+<p>The optional warning identifier <var>id</var> allows users to enable or disable
+warnings tagged by this identifier.  A message identifier is a string of the
+form <code>&quot;NAMESPACE:WARNING-NAME&quot;</code>.  Octave&rsquo;s own warnings use the
+<code>&quot;Octave&quot;</code> namespace (see <a href="#XREFwarning_005fids"><code>warning_ids</code></a>).  For
+example:
+</p>
+<div class="example">
+<pre class="example">warning (&quot;MyNameSpace:check-something&quot;,
+         &quot;foo: maybe something wrong here&quot;);
+</pre></div>
+
+<p>The second call form is meant to change and/or query the state of warnings.
+The first input argument must be a string <var>state</var> (<code>&quot;on&quot;</code>,
+<code>&quot;off&quot;</code>, <code>&quot;error&quot;</code>, or <code>&quot;query&quot;</code>) followed by an optional
+warning identifier <var>id</var> or <code>&quot;all&quot;</code> (default).
+</p>
+<p>The optional output argument <var>warning_struct</var> is a structure or structure
+array with fields <code>&quot;state&quot;</code> and <code>&quot;identifier&quot;</code>.  The <var>state</var>
+argument may have the following values:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;on&quot;</code>|<code>&quot;off&quot;</code>:</span></dt>
+<dd><p>Enable or disable the display of warnings identified by <var>id</var> and optionally
+return their previous state <var>stout</var>.
+</p>
+</dd>
+<dt><span><code>&quot;error&quot;</code>:</span></dt>
+<dd><p>Turn warnings identified by <var>id</var> into errors and optionally return their
+previous state <var>stout</var>.
+</p>
+</dd>
+<dt><span><code>&quot;query&quot;</code>:</span></dt>
+<dd><p>Return the current state of warnings identified by <var>id</var>.
+</p></dd>
+</dl>
+
+<p>A structure or structure array <var>warning_struct</var>, with fields
+<code>&quot;state&quot;</code> and <code>&quot;identifier&quot;</code>, may be given as an input to achieve
+equivalent results.  The following example shows how to temporarily disable a
+warning and then restore its original state:
+</p>
+<div class="example">
+<pre class="example">loglog (-1:10);
+## Disable the previous warning and save its original state
+[~, id] = lastwarn ();
+warnstate = warning (&quot;off&quot;, id);
+loglog (-1:10);
+## Restore its original state
+warning (warnstate);
+</pre></div>
+
+<p>If a final argument <code>&quot;local&quot;</code> is provided then the warning state will be
+set temporarily until the end of the current function.  Changes to warning
+states that are set locally affect the current function and all functions
+called from the current scope.  The previous warning state is restored on
+return from the current function.  The <code>&quot;local&quot;</code> option is ignored if
+used in the top-level workspace.
+</p>
+<p>With no input argument <code>warning ()</code> is equivalent to
+<code>warning (&quot;query&quot;, &quot;all&quot;)</code> except that in the absence of an output
+argument, the state of warnings is displayed on <code>stderr</code>.
+</p>
+<p>The level of verbosity of the warning system may also be controlled by two
+modes <var>mode</var>:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;backtrace&quot;</code>:</span></dt>
+<dd><p>enable/disable the display of the stack trace after the warning message
+</p>
+</dd>
+<dt><span><code>&quot;verbose&quot;</code>:</span></dt>
+<dd><p>enable/disable the display of additional information after the warning message
+</p></dd>
+</dl>
+
+<p>In this case the <var>state</var> argument may only be <code>&quot;on&quot;</code> or
+<code>&quot;off&quot;</code>.
+</p>
+<p>Implementation Note: For compatibility with <small>MATLAB</small>, escape sequences in
+<var>template</var> (e.g., <code>&quot;\n&quot;</code> =&gt; newline) are processed
+regardless of whether <var>template</var> has been defined with single quotes, as
+long as there are two or more input arguments.  To disable escape sequence
+expansion use a second backslash before the sequence (e.g.,
+<code>&quot;\\n&quot;</code>) or use the
+<code>regexptranslate</code> function.
+</p>
+<p><strong>See also:</strong> <a href="#XREFwarning_005fids">warning_ids</a>, <a href="#XREFlastwarn">lastwarn</a>, <a href="Raising-Errors.html#XREFerror">error</a>.
+</p></dd></dl>
+
+
+<span id="XREFlastwarn"></span><dl class="def">
+<dt id="index-lastwarn"><span class="category">: </span><span><em>[<var>msg</var>, <var>msgid</var>] =</em> <strong>lastwarn</strong> <em>()</em><a href='#index-lastwarn' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-lastwarn-1"><span class="category">: </span><span><em></em> <strong>lastwarn</strong> <em>(<var>msg</var>)</em><a href='#index-lastwarn-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-lastwarn-2"><span class="category">: </span><span><em></em> <strong>lastwarn</strong> <em>(<var>msg</var>, <var>msgid</var>)</em><a href='#index-lastwarn-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Query or set the last warning message.
+</p>
+<p>When called without input arguments, return the last warning message and
+message identifier.
+</p>
+<p>With one argument, set the last warning message to <var>msg</var>.
+</p>
+<p>With two arguments, also set the last message identifier.
+</p>
+<p><strong>See also:</strong> <a href="#XREFwarning">warning</a>, <a href="Catching-Errors.html#XREFlasterror">lasterror</a>, <a href="Catching-Errors.html#XREFlasterr">lasterr</a>.
+</p></dd></dl>
+
+
+<p>The functions distributed with Octave can issue one of the following
+warnings.
+</p>
+<span id="XREFwarning_005fids"></span><span id="index-warning-ids"></span>
+
+<dl compact="compact">
+<dt><span><code>Octave:abbreviated-property-match</code></span></dt>
+<dd><p>If the <code>Octave:abbreviated-property-match</code> warning is enabled, a
+warning is printed if a non-exact or ambiguous match is being used for a
+operation specifying an object property.  For example, for a graphics
+object, <var>fig</var>, with the property <code>'displayname'</code>,
+<code>get (<var>fig</var>, 'dis')</code> elicits a warning if the
+<code>Octave:abbreviated-property-match</code> warning is enabled.
+By default, the <code>Octave:abbreviated-property-match</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:addpath-pkg</code></span></dt>
+<dd><p>If the <code>Octave:addpath-pkg</code> warning is enabled,
+Octave will warn when a package directory (i.e., +package_name) is added
+to the <code>path</code>.  Typically, only the parent directory which contains the
+package directory should be added to the load path.
+By default, the <code>Octave:addpath-pkg</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:array-as-logical</code></span></dt>
+<dd><p>If the <code>Octave:array-as-logical</code> warning is enabled,
+Octave will warn when an array of size greater than 1x1 is used
+as a truth value in an if, while, or until statement.
+By default, the <code>Octave:array-as-logical</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:array-to-scalar</code></span></dt>
+<dd><p>If the <code>Octave:array-to-scalar</code> warning is enabled, Octave will
+warn when an implicit conversion from an array to a scalar value is
+attempted.
+By default, the <code>Octave:array-to-scalar</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:array-to-vector</code></span></dt>
+<dd><p>If the <code>Octave:array-to-vector</code> warning is enabled, Octave will
+warn when an implicit conversion from an array to a vector value is
+attempted.
+By default, the <code>Octave:array-to-vector</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:assign-as-truth-value</code></span></dt>
+<dd><p>If the <code>Octave:assign-as-truth-value</code> warning is
+enabled, a warning is issued for statements like
+</p>
+<div class="example">
+<pre class="example">if (s = t)
+  &hellip;
+</pre></div>
+
+<p>since such statements are not common, and it is likely that the intent
+was to write
+</p>
+<div class="example">
+<pre class="example">if (s == t)
+  &hellip;
+</pre></div>
+
+<p>instead.
+</p>
+<p>There are times when it is useful to write code that contains
+assignments within the condition of a <code>while</code> or <code>if</code>
+statement.  For example, statements like
+</p>
+<div class="example">
+<pre class="example">while (c = getc ())
+  &hellip;
+</pre></div>
+
+<p>are common in C programming.
+</p>
+<p>It is possible to avoid all warnings about such statements by
+disabling the <code>Octave:assign-as-truth-value</code> warning,
+but that may also let real errors like
+</p>
+<div class="example">
+<pre class="example">if (x = 1)  # intended to test (x == 1)!
+  &hellip;
+</pre></div>
+
+<p>slip by.
+</p>
+<p>In such cases, it is possible suppress errors for specific statements by
+writing them with an extra set of parentheses.  For example, writing the
+previous example as
+</p>
+<div class="example">
+<pre class="example">while ((c = getc ()))
+  &hellip;
+</pre></div>
+
+<p>will prevent the warning from being printed for this statement, while
+allowing Octave to warn about other assignments used in conditional
+contexts.
+</p>
+<p>By default, the <code>Octave:assign-as-truth-value</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:autoload-relative-file-name</code></span></dt>
+<dd><p>If the <code>Octave:autoload-relative-file-name</code> is enabled,
+Octave will warn when parsing autoload() function calls with relative
+paths to function files.  This usually happens when using autoload()
+calls in PKG_ADD files, when the PKG_ADD file is not in the same
+directory as the .oct file referred to by the autoload() command.
+By default, the <code>Octave:autoload-relative-file-name</code> warning is
+enabled.
+</p>
+</dd>
+<dt><span><code>Octave:charmat-truncated</code></span></dt>
+<dd><p>If the <code>Octave:charmat-truncated</code> warning is enabled, a warning is
+printed when a character matrix with multiple rows is converted to a string.
+In this case, the Octave interpreter keeps only the first row and discards
+the others.
+By default, the <code>Octave:charmat-truncated</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:classdef-to-struct</code></span></dt>
+<dd><p>If the <code>Octave:classdef-to-struct</code> warning is enabled, a warning
+is issued when a classdef object is forcibly converted into a struct with
+<code>struct (<var>CLASSDEF_OBJ</var>)</code>.  Conversion removes the access
+restrictions from the object and makes private and protected properties
+visible.
+By default, the <code>Octave:classdef-to-struct</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:colon-complex-argument</code></span></dt>
+<dd><p>If the <code>Octave:colon-complex-argument</code> warning is enabled, a warning
+is issued when one of the three arguments to the colon operator (base,
+increment, limit) is a complex value.  For example, <code>1:3*i</code> will
+cause a warning to be emitted.
+By default, the <code>Octave:colon-complex-argument</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:colon-nonscalar-argument</code></span></dt>
+<dd><p>If the <code>Octave:colon-nonscalar-argument</code> warning is enabled, a warning
+is issued when one of the three arguments to the colon operator (base,
+increment, limit) is not a scalar.  For example, <code>1:[3, 5]</code> will
+cause a warning to be emitted.
+By default, the <code>Octave:colon-nonscalar-argument</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:data-file-in-path</code></span></dt>
+<dd><p>If the <code>Octave:data-file-in-path</code> warning is enabled, a warning is
+issued when Octave does not find the target of a file operation such as
+<code>load</code> or <code>fopen</code> directly, but is able to locate the file in
+Octave&rsquo;s search <code>path</code> for files.  The warning could indicate that a
+different file target than the programmer intended is being used.
+By default, the <code>Octave:data-file-in-path</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:deprecated-function</code></span></dt>
+<dd><p>If the <code>Octave:deprecated-function</code> warning is enabled, a
+warning is issued when Octave encounters a function that is obsolete and
+scheduled for removal from Octave.
+By default, the <code>Octave:deprecated-function</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:deprecated-keyword</code></span></dt>
+<dd><p>If the <code>Octave:deprecated-keyword</code> warning is enabled, a
+warning is issued when Octave encounters a keyword that is obsolete and
+scheduled for removal from Octave.
+By default, the <code>Octave:deprecated-keyword</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:deprecated-option</code></span></dt>
+<dd><p>If the <code>Octave:deprecated-option</code> warning is enabled, a
+warning is issued when an obsolete option or input to a function is used.
+By default, the <code>Octave:deprecated-option</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:deprecated-property</code></span></dt>
+<dd><p>If the <code>Octave:deprecated-property</code> warning is enabled, a
+warning is issued when Octave encounters a graphics property that
+is obsolete and scheduled for removal from Octave.
+By default, the <code>Octave:deprecated-property</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:eigs:UnconvergedEigenvalues</code></span></dt>
+<dd><p>If the <code>Octave:eigs:UnconvergedEigenvalues</code> warning is enabled then
+the eigs function will issue a warning if the number of calculated
+eigenvalues is less than the number of requested eigenvalues.
+By default, the <code>Octave:eigs:UnconvergedEigenvalues</code> warning is
+enabled.
+</p>
+</dd>
+<dt><span><code>Octave:empty-index</code></span></dt>
+<dd><p>If the <code>Octave:empty-index</code> warning is enabled then Octave will emit a
+warning whenever indexing operators are used without an index, for example
+<code><var>x</var>()</code>.
+By default, the <code>Octave:empty-index</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:erase:chararray</code></span></dt>
+<dd><p>If the <code>Octave:erase:chararray</code> warning is enabled then the erase
+function will issue a warning if the input pattern is a character array
+rather than a string or cell array of strings.
+By default, the <code>Octave:erase:chararray</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:function-name-clash</code></span></dt>
+<dd><p>If the <code>Octave:function-name-clash</code> warning is enabled, a
+warning is issued when Octave finds that the name of a function
+defined in a function file differs from the name of the file.  (If
+the names disagree, the name declared inside the file is ignored.)
+By default, the <code>Octave:function-name-clash</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:future-time-stamp</code></span></dt>
+<dd><p>If the <code>Octave:future-time-stamp</code> warning is enabled, Octave
+will print a warning if it finds a function file with a time stamp
+that is in the future.
+By default, the <code>Octave:future-time-stamp</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:glyph-render</code></span></dt>
+<dd><p>If the <code>Octave:glyph-render</code> warning is enabled, Octave will
+print a warning if the glyph for a character couldn&rsquo;t be rendered with
+the current font.
+By default, the <code>Octave:glyph-render</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:imag-to-real</code></span></dt>
+<dd><p>If the <code>Octave:imag-to-real</code> warning is enabled, a warning is
+printed for implicit conversions of complex numbers to real numbers.
+By default, the <code>Octave:imag-to-real</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:infinite-loop</code></span></dt>
+<dd><p>If the <code>Octave:infinite-loop</code> warning is enabled, a warning is
+printed when an infinite loop is detected such as <code>for i = 1:Inf</code> or
+<code>while (1)</code>.
+By default, the <code>Octave:infinite-loop</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:language-extension</code></span></dt>
+<dd><p>Print warnings when using features that are unique to the Octave
+language and that may still be missing in <small>MATLAB</small>.
+By default, the <code>Octave:language-extension</code> warning is disabled.
+The <samp>--traditional</samp> or <samp>--braindead</samp> startup options for
+Octave may also be of use, see <a href="Command-Line-Options.html">Command Line Options</a>.
+</p>
+</dd>
+<dt><span><code>Octave:legacy-function</code></span></dt>
+<dd><p>If the <code>Octave:legacy-function</code> warning is enabled, a
+warning is issued when Octave encounters a function that <small>MATLAB</small> has
+suggested should be avoided.  The function may become obsolete at some
+point in the future and removed, in which case the warning will change to
+<code>Octave:deprecated-function</code>, and the function will continue to exist
+for two further versions of Octave before being removed.
+By default, the <code>Octave:legacy-function</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:logical-conversion</code></span></dt>
+<dd><p>If the <code>Octave:logical-conversion</code> warning is enabled, a warning is
+printed if an implicit conversion of an array from numerical to boolean
+occurs and any of the elements in the array are not equal to zero or one.
+By default, the <code>Octave:logical-conversion</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:lu:sparse_input</code></span></dt>
+<dd><p>If the <code>Octave:lu:sparse_input</code> warning is enabled, Octave
+will warn when the lu function is called with a sparse input and less than
+four output arguments.  In this case, sparsity-preserving column
+permutations are not performed and the result may be inaccurate.
+By default, the <code>Octave:lu:sparse_input</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:missing-glyph</code></span></dt>
+<dd><p>If the <code>Octave:glyph-render</code> warning is enabled, Octave will
+print a warning if the current font doesn&rsquo;t provide a glyph for a
+used character.
+By default, the <code>Octave:missing-glyph</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:missing-semicolon</code></span></dt>
+<dd><p>If the <code>Octave:missing-semicolon</code> warning is enabled, Octave
+will warn when statements in function definitions don&rsquo;t end in
+semicolons.
+By default the <code>Octave:missing-semicolon</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:mixed-string-concat</code></span></dt>
+<dd><p>If the <code>Octave:mixed-string-concat</code> warning is enabled, print a
+warning when concatenating a mixture of double and single quoted strings.
+By default, the <code>Octave:mixed-string-concat</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:nearly-singular-matrix</code></span></dt>
+<dt><span><code>Octave:singular-matrix</code></span></dt>
+<dd><p>These warnings are emitted if a (nearly) singular matrix is inverted.
+By default, the <code>Octave:nearly-singular-matrix</code> and
+<code>Octave:singular-matrix</code> warnings are enabled.
+</p>
+</dd>
+<dt><span><code>Octave:neg-dim-as-zero</code></span></dt>
+<dd><p>If the <code>Octave:neg-dim-as-zero</code> warning is enabled, print a warning
+for expressions like
+</p>
+<div class="example">
+<pre class="example">eye (-1)
+</pre></div>
+
+<p>By default, the <code>Octave:neg-dim-as-zero</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:noninteger-range-as-index</code></span></dt>
+<dd><p>If the <code>Octave:noninteger-range-as-index</code> warning is enabled, a warning
+is printed if an array is indexed with a range that contains non-integer
+values.  For example,
+</p>
+<div class="example">
+<pre class="example">a = [1 2 3 4 5];
+b = 2.2:4.2
+&rArr; 1.2  2.2  3.2
+a(b)
+&rArr; 2 3 4
+</pre></div>
+
+<p>elicits a warning if the <code>Octave:noninteger-range-as-index</code> warning is
+enabled.
+By default, the <code>Octave:noninteger-range-as-index</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:num-to-str</code></span></dt>
+<dd><p>If the <code>Octave:num-to-str</code> warning is enabled, a warning is
+printed for implicit conversions of numbers to their UTF-8 encoded character
+equivalents when strings are constructed using a mixture of strings and
+numbers in matrix notation.  For example,
+</p>
+<div class="example">
+<pre class="example">[ &quot;f&quot;, 111, 111 ]
+&rArr; &quot;foo&quot;
+</pre></div>
+
+<p>elicits a warning if the <code>Octave:num-to-str</code> warning is
+enabled.  By default, the <code>Octave:num-to-str</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:possible-matlab-short-circuit-operator</code></span></dt>
+<dd><p>If the <code>Octave:possible-matlab-short-circuit-operator</code> warning
+is enabled, Octave will warn about using the not short circuiting
+operators <code>&amp;</code> and <code>|</code> inside <code>if</code> or <code>while</code>
+conditions.  They normally never short circuit, but they do short
+circuit when used in a condition.
+By default, the <code>Octave:possible-matlab-short-circuit-operator</code> warning
+is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:recursive-path-search</code></span></dt>
+<dd><p>If the <code>Octave:recursive-path-search</code> warning is enabled, Octave
+will issue a warning if <code>addpath</code> is used with double trailing
+slashes.
+By default, the <code>Octave:recursive-path-search</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:remove-init-dir</code></span></dt>
+<dd><p>The <code>path</code> function changes the search path that Octave uses
+to find functions.  It is possible to set the path to a value which
+excludes Octave&rsquo;s own built-in functions.  If the
+<code>Octave:remove-init-dir</code> warning is enabled then Octave will warn
+when the <code>path</code> function has been used in a way that may render
+Octave unworkable.
+By default, the <code>Octave:remove-init-dir</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:reload-forces-clear</code></span></dt>
+<dd><p>If several functions have been loaded from the same file, Octave must
+clear all the functions before any one of them can be reloaded.  If
+the <code>Octave:reload-forces-clear</code> warning is enabled, Octave will
+warn you when this happens, and print a list of the additional
+functions that it is forced to clear.
+By default, the <code>Octave:reload-forces-clear</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:separator-insert</code></span></dt>
+<dd><p>Print warning if commas or semicolons might be inserted
+automatically in literal matrices.
+By default, the <code>Octave:separator-insert</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:shadowed-function</code></span></dt>
+<dd><p>If the <code>Octave:shadowed-function</code> warning is enabled, Octave will
+warn if a path is added to the search path that contains functions
+that shadow core functions.
+By default, the <code>Octave:shadowed-function</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:single-quote-string</code></span></dt>
+<dd><p>Print warning if a single quote character is used to introduce a
+string constant.
+By default, the <code>Octave:single-quote-string</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:sqrtm:SingularMatrix</code></span></dt>
+<dd><p>If the <code>Octave:sqrtm:SingularMatrix</code> warning is enabled, a warning is
+printed if the matrix square root function <code>sqrtm</code> is called with an
+input matrix that is singular.
+By default, the <code>Octave:sqrtm:SingularMatrix</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:str-to-num</code></span></dt>
+<dd><p>If the <code>Octave:str-to-num</code> warning is enabled, a warning is printed
+for implicit conversions of strings to their numeric UTF-8 encoded byte
+sequences.  For example,
+</p>
+<div class="example">
+<pre class="example">&quot;abc&quot; + 0
+&rArr; 97 98 99
+</pre></div>
+
+<p>elicits a warning if the <code>Octave:str-to-num</code> warning is enabled.
+By default, the <code>Octave:str-to-num</code> warning is disabled.
+</p>
+</dd>
+<dt><span><code>Octave:LaTeX:internal-error</code></span></dt>
+<dd><p>If the <code>Octave:LaTeX:internal-error</code> warning is enabled, a warning is
+printed whenever the LaTeX renderer for text in plots encounters an issue.
+By default, the <code>Octave:LaTeX:internal-error</code> warning is enabled.
+</p>
+</dd>
+<dt><span><code>Octave:unimplemented-matlab-functionality</code></span></dt>
+<dd><p>If the <code>Octave:unimplemented-matlab-functionality</code> warning is enabled,
+a warning is printed when a <small>MATLAB</small> code construct is used which the
+Octave interpreter parses as valid, but for which Octave does not yet
+implement the functionality.
+By default, the <code>Octave:unimplemented-matlab-functionality</code> warning is
+enabled.
+</p>
+</dd>
+<dt><span><code>Octave:variable-switch-label</code></span></dt>
+<dd><p>If the <code>Octave:variable-switch-label</code> warning is enabled, Octave
+will print a warning if a switch label is not a constant or constant
+expression.
+By default, the <code>Octave:variable-switch-label</code> warning is disabled.
+</p></dd>
+</dl>
+
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Enabling-and-Disabling-Warnings.html">Enabling and Disabling Warnings</a>, Up: <a href="Handling-Warnings.html">Handling Warnings</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

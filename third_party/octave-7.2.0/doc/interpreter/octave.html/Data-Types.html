@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Data Types (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Data Types (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Data Types (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html" rel="up" title="Top">
+<link href="Numeric-Data-Types.html" rel="next" title="Numeric Data Types">
+<link href="Getting-Started.html" rel="prev" title="Getting Started">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="chapter" id="Data-Types">
+<div class="header">
+<p>
+Next: <a href="Numeric-Data-Types.html" accesskey="n" rel="next">Numeric Data Types</a>, Previous: <a href="Getting-Started.html" accesskey="p" rel="prev">Getting Started</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Data-Types-1"></span><h2 class="chapter">3 Data Types</h2>
+<span id="index-data-types"></span>
+
+<p>All versions of Octave include a number of built-in data types,
+including real and complex scalars and matrices, character strings,
+a data structure type, and an array that can contain all data types.
+</p>
+<p>It is also possible to define new specialized data types by writing a
+small amount of C++ code.  On some systems, new data types can be loaded
+dynamically while Octave is running, so it is not necessary to recompile
+all of Octave just to add a new type.  See <a href="External-Code-Interface.html">External Code Interface</a>, for
+more information about Octave&rsquo;s dynamic linking capabilities.
+<a href="User_002ddefined-Data-Types.html">User-defined Data Types</a> describes what you must do to define a
+new data type for Octave.
+</p>
+<span id="XREFtypeinfo"></span><dl class="def">
+<dt id="index-typeinfo"><span class="category">: </span><span><em></em> <strong>typeinfo</strong> <em>()</em><a href='#index-typeinfo' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-typeinfo-1"><span class="category">: </span><span><em></em> <strong>typeinfo</strong> <em>(<var>expr</var>)</em><a href='#index-typeinfo-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Return the type of the expression <var>expr</var>, as a string.
+</p>
+<p>If <var>expr</var> is omitted, return a cell array of strings containing all the
+currently installed data types.
+</p>
+<p><strong>See also:</strong> <a href="Built_002din-Data-Types.html#XREFclass">class</a>, <a href="Built_002din-Data-Types.html#XREFisa">isa</a>.
+</p></dd></dl>
+
+
+
+<ul class="section-toc">
+<li><a href="Built_002din-Data-Types.html" accesskey="1">Built-in Data Types</a></li>
+<li><a href="User_002ddefined-Data-Types.html" accesskey="2">User-defined Data Types</a></li>
+<li><a href="Object-Sizes.html" accesskey="3">Object Sizes</a></li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

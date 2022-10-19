@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Default Arguments (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="Default Arguments (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="Default Arguments (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Functions-and-Scripts.html" rel="up" title="Functions and Scripts">
+<link href="Validating-Arguments.html" rel="next" title="Validating Arguments">
+<link href="Ignoring-Arguments.html" rel="prev" title="Ignoring Arguments">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="Default-Arguments">
+<div class="header">
+<p>
+Next: <a href="Validating-Arguments.html" accesskey="n" rel="next">Validating Arguments</a>, Previous: <a href="Ignoring-Arguments.html" accesskey="p" rel="prev">Ignoring Arguments</a>, Up: <a href="Functions-and-Scripts.html" accesskey="u" rel="up">Functions and Scripts</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="Default-Arguments-1"></span><h3 class="section">11.8 Default Arguments</h3>
+<span id="index-default-arguments"></span>
+
+<p>Since Octave supports variable number of input arguments, it is very useful
+to assign default values to some input arguments.  When an input argument
+is declared in the argument list it is possible to assign a default
+value to the argument like this
+</p>
+<div class="example">
+<pre class="example">function <var>name</var> (<var>arg1</var> = <var>val1</var>, &hellip;)
+  <var>body</var>
+endfunction
+</pre></div>
+
+<p>If no value is assigned to <var>arg1</var> by the user, it will have the
+value <var>val1</var>.
+</p>
+<p>As an example, the following function implements a variant of the classic
+&ldquo;Hello, World&rdquo; program.
+</p>
+<div class="example">
+<pre class="example">function hello (who = &quot;World&quot;)
+  printf (&quot;Hello, %s!\n&quot;, who);
+endfunction
+</pre></div>
+
+<p>When called without an input argument the function prints the following
+</p>
+<div class="example">
+<pre class="example">hello ();
+     -| Hello, World!
+</pre></div>
+
+<p>and when it&rsquo;s called with an input argument it prints the following
+</p>
+<div class="example">
+<pre class="example">hello (&quot;Beautiful World of Free Software&quot;);
+     -| Hello, Beautiful World of Free Software!
+</pre></div>
+
+<p>Sometimes it is useful to explicitly tell Octave to use the default value
+of an input argument.  This can be done writing a &lsquo;<samp>:</samp>&rsquo; as the value
+of the input argument when calling the function.
+</p>
+<div class="example">
+<pre class="example">hello (:);
+     -| Hello, World!
+</pre></div>
+
+</div>
+
+
+
+</body>
+</html>

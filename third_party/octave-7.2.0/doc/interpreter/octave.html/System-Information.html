@@ -1,0 +1,753 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>System Information (GNU Octave (version 7.2.0))</title>
+
+<meta name="description" content="System Information (GNU Octave (version 7.2.0))">
+<meta name="keywords" content="System Information (GNU Octave (version 7.2.0))">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="System-Utilities.html" rel="up" title="System Utilities">
+<link href="Hashing-Functions.html" rel="next" title="Hashing Functions">
+<link href="Group-Database-Functions.html" rel="prev" title="Group Database Functions">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+<link rel="stylesheet" type="text/css" href="octave.css">
+
+
+</head>
+
+<body lang="en">
+<div class="section" id="System-Information">
+<div class="header">
+<p>
+Next: <a href="Hashing-Functions.html" accesskey="n" rel="next">Hashing Functions</a>, Previous: <a href="Group-Database-Functions.html" accesskey="p" rel="prev">Group Database Functions</a>, Up: <a href="System-Utilities.html" accesskey="u" rel="up">System Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="System-Information-1"></span><h3 class="section">36.11 System Information</h3>
+
+<span id="XREFcomputer"></span><dl class="def">
+<dt id="index-computer"><span class="category">: </span><span><em></em> <strong>computer</strong> <em>()</em><a href='#index-computer' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-computer-1"><span class="category">: </span><span><em><var>comp</var> =</em> <strong>computer</strong> <em>()</em><a href='#index-computer-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-computer-2"><span class="category">: </span><span><em>[<var>comp</var>, <var>maxsize</var>] =</em> <strong>computer</strong> <em>()</em><a href='#index-computer-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-computer-3"><span class="category">: </span><span><em>[<var>comp</var>, <var>maxsize</var>, <var>endian</var>] =</em> <strong>computer</strong> <em>()</em><a href='#index-computer-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-computer-4"><span class="category">: </span><span><em><var>arch</var> =</em> <strong>computer</strong> <em>(&quot;arch&quot;)</em><a href='#index-computer-4' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Print or return a string of the form <var>cpu</var>-<var>vendor</var>-<var>os</var> that
+identifies the type of computer that Octave is running on.
+</p>
+<p>If invoked with an output argument, the value is returned instead of
+printed.  For example:
+</p>
+<div class="example">
+<pre class="example">computer ()
+   -| x86_64-pc-linux-gnu
+
+mycomp = computer ()
+   &rArr; mycomp = x86_64-pc-linux-gnu
+</pre></div>
+
+<p>If two output arguments are requested, also return the maximum number of
+elements for an array.  This will depend on whether Octave has been
+compiled with 32-bit or 64-bit index vectors.
+</p>
+<p>If three output arguments are requested, also return the byte order of the
+current system as a character (<code>&quot;B&quot;</code> for big-endian or <code>&quot;L&quot;</code>
+for little-endian).
+</p>
+<p>If the argument <code>&quot;arch&quot;</code> is specified, return a string indicating the
+architecture of the computer on which Octave is running.
+</p>
+<p>Results may be different if Octave was invoked with the &ndash;traditional
+option.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisunix">isunix</a>, <a href="#XREFismac">ismac</a>, <a href="#XREFispc">ispc</a>.
+</p></dd></dl>
+
+
+<span id="XREFuname"></span><dl class="def">
+<dt id="index-uname"><span class="category">: </span><span><em>[<var>uts</var>, <var>err</var>, <var>msg</var>] =</em> <strong>uname</strong> <em>()</em><a href='#index-uname' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return system information in the structure.
+</p>
+<p>For example:
+</p>
+<div class="example">
+<pre class="example">uname ()
+   &rArr; {
+         sysname = x86_64
+         nodename = segfault
+         release = 2.6.15-1-amd64-k8-smp
+         version = Linux
+         machine = #2 SMP Thu Feb 23 04:57:49 UTC 2006
+      }
+</pre></div>
+
+<p>If successful, <var>err</var> is 0 and <var>msg</var> is an empty string.
+Otherwise, <var>err</var> is nonzero and <var>msg</var> contains a
+system-dependent error message.
+</p></dd></dl>
+
+
+<span id="XREFnproc"></span><dl class="def">
+<dt id="index-nproc"><span class="category">: </span><span><em></em> <strong>nproc</strong> <em>()</em><a href='#index-nproc' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-nproc-1"><span class="category">: </span><span><em></em> <strong>nproc</strong> <em>(<var>query</var>)</em><a href='#index-nproc-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the current number of available processors.
+</p>
+<p>If called with the optional argument <var>query</var>, modify how processors
+are counted as follows:
+</p>
+<dl compact="compact">
+<dt><span><code>all</code></span></dt>
+<dd><p>total number of processors.
+</p>
+</dd>
+<dt><span><code>current</code></span></dt>
+<dd><p>processors available to the current process.
+</p>
+</dd>
+<dt><span><code>overridable</code></span></dt>
+<dd><p>same as <code>current</code>, but overridable through the
+<code><span class="nolinebreak">OMP_NUM_THREADS</span></code><!-- /@w --> environment variable.
+</p></dd>
+</dl>
+</dd></dl>
+
+
+<span id="XREFispc"></span><dl class="def">
+<dt id="index-ispc"><span class="category">: </span><span><em></em> <strong>ispc</strong> <em>()</em><a href='#index-ispc' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if Octave is running on a Windows system and false otherwise.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisunix">isunix</a>, <a href="#XREFismac">ismac</a>.
+</p></dd></dl>
+
+
+<span id="XREFisunix"></span><dl class="def">
+<dt id="index-isunix"><span class="category">: </span><span><em></em> <strong>isunix</strong> <em>()</em><a href='#index-isunix' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if Octave is running on a Unix-like system and false otherwise.
+</p>
+<p><strong>See also:</strong> <a href="#XREFismac">ismac</a>, <a href="#XREFispc">ispc</a>.
+</p></dd></dl>
+
+
+<span id="XREFismac"></span><dl class="def">
+<dt id="index-ismac"><span class="category">: </span><span><em></em> <strong>ismac</strong> <em>()</em><a href='#index-ismac' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if Octave is running on a Mac OS X system and false otherwise.
+</p>
+<p><strong>See also:</strong> <a href="#XREFisunix">isunix</a>, <a href="#XREFispc">ispc</a>.
+</p></dd></dl>
+
+
+<span id="XREFisieee"></span><dl class="def">
+<dt id="index-isieee"><span class="category">: </span><span><em></em> <strong>isieee</strong> <em>()</em><a href='#index-isieee' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if your computer <em>claims</em> to conform to the IEEE standard
+for floating point calculations.
+</p>
+<p>No actual tests are performed.
+</p></dd></dl>
+
+
+<span id="XREFisdeployed"></span><dl class="def">
+<dt id="index-isdeployed"><span class="category">: </span><span><em></em> <strong>isdeployed</strong> <em>()</em><a href='#index-isdeployed' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if the current program has been compiled and is running
+separately from the Octave interpreter and false if it is running in
+the Octave interpreter.
+</p>
+<p>Currently, this function always returns false in Octave.
+</p></dd></dl>
+
+
+<span id="XREFisstudent"></span><dl class="def">
+<dt id="index-isstudent"><span class="category">: </span><span><em></em> <strong>isstudent</strong> <em>()</em><a href='#index-isstudent' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if running in the student edition of <small>MATLAB</small>.
+</p>
+<p><code>isstudent</code> always returns false in Octave.
+</p>
+<p><strong>See also:</strong> <a href="Logical-Values.html#XREFfalse">false</a>.
+</p></dd></dl>
+
+
+<span id="XREFOCTAVE_005fHOME"></span><dl class="def">
+<dt id="index-OCTAVE_005fHOME"><span class="category">: </span><span><em></em> <strong>OCTAVE_HOME</strong> <em>()</em><a href='#index-OCTAVE_005fHOME' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the name of the top-level Octave installation directory.
+OCTAVE_HOME corresponds to the configuration variable <var>prefix</var>.
+</p>
+<p><strong>See also:</strong> <a href="Controlling-Subprocesses.html#XREFEXEC_005fPATH">EXEC_PATH</a>, <a href="Loading-and-Saving-Images.html#XREFIMAGE_005fPATH">IMAGE_PATH</a>, <a href="#XREFOCTAVE_005fEXEC_005fHOME">OCTAVE_EXEC_HOME</a>.
+</p></dd></dl>
+
+
+<span id="XREFOCTAVE_005fEXEC_005fHOME"></span><dl class="def">
+<dt id="index-OCTAVE_005fEXEC_005fHOME"><span class="category">: </span><span><em></em> <strong>OCTAVE_EXEC_HOME</strong> <em>()</em><a href='#index-OCTAVE_005fEXEC_005fHOME' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the name of the top-level Octave installation directory for
+architecture-dependent files.  If not specified separately, the value
+is the same as OCTAVE_HOME.  OCTAVE_EXEC_HOME corresponds to the
+configuration variable <var>exec_prefix</var>.
+</p>
+<p><strong>See also:</strong> <a href="Controlling-Subprocesses.html#XREFEXEC_005fPATH">EXEC_PATH</a>, <a href="Loading-and-Saving-Images.html#XREFIMAGE_005fPATH">IMAGE_PATH</a>, <a href="#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>.
+</p></dd></dl>
+
+
+<span id="XREFmatlabroot"></span><dl class="def">
+<dt id="index-matlabroot"><span class="category">: </span><span><em></em> <strong>matlabroot</strong> <em>()</em><a href='#index-matlabroot' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the name of the top-level Octave installation directory.
+</p>
+<p>This is an alias for the function <code><span class="nolinebreak">OCTAVE_HOME</span></code><!-- /@w --> provided for
+compatibility.
+</p>
+<p><strong>See also:</strong> <a href="#XREFOCTAVE_005fHOME">OCTAVE_HOME</a>.
+</p></dd></dl>
+
+
+<span id="XREFuser_005fconfig_005fdir"></span><dl class="def">
+<dt id="index-user_005fconfig_005fdir"><span class="category">: </span><span><em>cfg_dir =</em> <strong>user_config_dir</strong> <em>()</em><a href='#index-user_005fconfig_005fdir' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the (platform-specific) directory for user configuration.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuser_005fdata_005fdir">user_data_dir</a>.
+</p></dd></dl>
+
+
+<span id="XREFuser_005fdata_005fdir"></span><dl class="def">
+<dt id="index-user_005fdata_005fdir"><span class="category">: </span><span><em>data_dir =</em> <strong>user_data_dir</strong> <em>()</em><a href='#index-user_005fdata_005fdir' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the (platform-specific) directory for user data.
+</p>
+<p><strong>See also:</strong> <a href="#XREFuser_005fconfig_005fdir">user_config_dir</a>.
+</p></dd></dl>
+
+
+<span id="XREFOCTAVE_005fVERSION"></span><dl class="def">
+<dt id="index-OCTAVE_005fVERSION"><span class="category">: </span><span><em></em> <strong>OCTAVE_VERSION</strong> <em>()</em><a href='#index-OCTAVE_005fVERSION' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return the version number of Octave as a string.
+</p>
+<p><strong>See also:</strong> <a href="#XREFver">ver</a>, <a href="#XREFversion">version</a>.
+</p></dd></dl>
+
+
+<span id="XREFversion"></span><dl class="def">
+<dt id="index-version"><span class="category">: </span><span><em><var>v</var> =</em> <strong>version</strong> <em>()</em><a href='#index-version' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-version-1"><span class="category">: </span><span><em>[<var>v</var>, <var>d</var>] =</em> <strong>version</strong> <em>()</em><a href='#index-version-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-version-2"><span class="category">: </span><span><em><var>v</var> =</em> <strong>version</strong> <em>(<var>feature</var>)</em><a href='#index-version-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Get version information for Octave.
+</p>
+<p>If called without input argument, the first return value <var>v</var> gives the
+version number of Octave as a string.  The second return value <var>d</var> holds
+the release date as a string.
+</p>
+<p>The following options can be passed for <var>feature</var>:
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;-date&quot;</code></span></dt>
+<dd><p>for the release date of the running build,
+</p>
+</dd>
+<dt><span><code>&quot;-description&quot;</code></span></dt>
+<dd><p>for a description of the release (always an empty string),
+</p>
+</dd>
+<dt><span><code>&quot;-release&quot;</code></span></dt>
+<dd><p>for the name of the running build (always an empty string),
+</p>
+</dd>
+<dt><span><code>&quot;-java&quot;</code></span></dt>
+<dd><p>for version information of the Java VM,
+</p>
+</dd>
+<dt><span><code>&quot;-fftw&quot;</code></span></dt>
+<dd><p>for version information for the linked <small>FFTW</small>,
+</p>
+</dd>
+<dt><span><code>&quot;-blas&quot;</code></span></dt>
+<dd><p>for version information for the linked <small>BLAS</small>,
+</p>
+</dd>
+<dt><span><code>&quot;-lapack&quot;</code></span></dt>
+<dd><p>for version information for the linked <small>LAPACK</small>.
+</p>
+</dd>
+<dt><span><code>&quot;-hgid&quot;</code></span></dt>
+<dd><p>the mercurial ID of the sources used to build Octave.
+</p></dd>
+</dl>
+
+<p>The information returned for the <code>&quot;-blas&quot;</code> and <code>&quot;-lapack&quot;</code>
+options might be unreliable.  It might report which library was linked in
+when Octave was built instead of which library is currently used.
+</p>
+<p>The variant with no input and output argument is an alias for the function
+<code><span class="nolinebreak">OCTAVE_VERSION</span></code><!-- /@w --> provided for compatibility.
+</p>
+<p><strong>See also:</strong> <a href="#XREFOCTAVE_005fVERSION">OCTAVE_VERSION</a>, <a href="#XREFver">ver</a>.
+</p></dd></dl>
+
+
+<span id="XREFver"></span><dl class="def">
+<dt id="index-ver"><span class="category">: </span><span><em></em> <strong>ver</strong><a href='#index-ver' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ver-1"><span class="category">: </span><span><em></em> <strong>ver</strong> <em>Octave</em><a href='#index-ver-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ver-2"><span class="category">: </span><span><em></em> <strong>ver</strong> <em><var>package</var></em><a href='#index-ver-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-ver-3"><span class="category">: </span><span><em>v =</em> <strong>ver</strong> <em>(&hellip;)</em><a href='#index-ver-3' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Display a header containing the current Octave version number, license
+string, and operating system.  The header is followed by a list of installed
+packages, versions, and installation directories.
+</p>
+<p>Use the package name <var>package</var> or Octave to query a specific component.
+</p>
+<p>When called with an output argument, return a vector of structures
+describing Octave and each installed package.  Each structure includes the
+following fields.
+</p>
+<dl compact="compact">
+<dt><span><code>Name</code></span></dt>
+<dd><p>Package name.
+</p>
+</dd>
+<dt><span><code>Version</code></span></dt>
+<dd><p>Version of the package.
+</p>
+</dd>
+<dt><span><code>Release</code></span></dt>
+<dd><p>Release of the package (currently unused, defaults to <code>[]</code>).
+</p>
+</dd>
+<dt><span><code>Date</code></span></dt>
+<dd><p>Date that the version was released.
+</p></dd>
+</dl>
+
+
+<p><strong>See also:</strong> <a href="#XREFversion">version</a>, <a href="Java-Interface-Functions.html#XREFusejava">usejava</a>, <a href="Installing-and-Removing-Packages.html#XREFpkg">pkg</a>.
+</p></dd></dl>
+
+
+<span id="XREFcompare_005fversions"></span><dl class="def">
+<dt id="index-compare_005fversions"><span class="category">: </span><span><em></em> <strong>compare_versions</strong> <em>(<var>v1</var>, <var>v2</var>, <var>operator</var>)</em><a href='#index-compare_005fversions' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Compare two version strings using the given <var>operator</var>.
+</p>
+<p>This function assumes that versions <var>v1</var> and <var>v2</var> are arbitrarily
+long strings made of numeric and period characters possibly followed by an
+arbitrary string (e.g., <code>&quot;1.2.3&quot;</code>, <code>&quot;0.3&quot;</code>, <code>&quot;0.1.2+&quot;</code>,
+or <code>&quot;1.2.3.4-test1&quot;</code>).
+</p>
+<p>The version is first split into numeric and character portions and then
+the parts are padded to be the same length (i.e., <code>&quot;1.1&quot;</code> would be
+padded to be <code>&quot;1.1.0&quot;</code> when being compared with <code>&quot;1.1.1&quot;</code>, and
+separately, the character parts of the strings are padded with nulls).
+</p>
+<p>The operator can be any logical operator from the set
+</p>
+<ul>
+<li> <code>&quot;==&quot;</code>
+equal
+
+</li><li> <code>&quot;&lt;&quot;</code>
+less than
+
+</li><li> <code>&quot;&lt;=&quot;</code>
+less than or equal to
+
+</li><li> <code>&quot;&gt;&quot;</code>
+greater than
+
+</li><li> <code>&quot;&gt;=&quot;</code>
+greater than or equal to
+
+</li><li> <code>&quot;!=&quot;</code>, <code>&quot;~=&quot;</code>
+not equal
+
+</li></ul>
+
+<p>Note that version <code>&quot;1.1-test2&quot;</code> will compare as greater than
+<code>&quot;1.1-test10&quot;</code>.  Also, since the numeric part is compared first,
+<code>&quot;a&quot;</code> compares less than <code>&quot;1a&quot;</code> because the second string
+starts with a numeric part even though <code>double (&quot;a&quot;)</code> is greater than
+<code>double (&quot;1&quot;).</code>
+</p></dd></dl>
+
+
+<span id="XREFverLessThan"></span><dl class="def">
+<dt id="index-verLessThan"><span class="category">: </span><span><em></em> <strong>verLessThan</strong> <em>(<var>package</var>, <var>version</var>)</em><a href='#index-verLessThan' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return true if the installed version of the package is less than
+<var>version</var>.
+</p>
+<p><var>package</var> is the name of the package to check.  Use <code>&quot;Octave&quot;</code> as
+the <var>package</var> to check the version of Octave itself.
+</p>
+<p><var>version</var> is the version to compare it to.  A version is a string in the
+format accepted by <code>compare_versions</code>: an arbitrarily long string
+composed of numeric and period characters, possibly followed by an arbitrary
+string (e.g., <code>&quot;1.2.3&quot;</code>, <code>&quot;0.3&quot;</code>, <code>&quot;0.1.2+&quot;</code>, or
+<code>&quot;1.2.3.4-test1&quot;</code>).
+</p>
+<p>Examples:
+</p>
+<div class="example">
+<pre class="example">tf = verLessThan (&quot;Octave&quot;, &quot;5&quot;)
+&rArr; tf = 0
+
+tf = verLessThan (&quot;io&quot;, &quot;2.4.12&quot;)
+&rArr; ...
+
+if (! verLessThan (&quot;Octave&quot;, &quot;5&quot;))
+  ## ... use new Octave 5 features ...
+endif
+</pre></div>
+
+
+<p><strong>See also:</strong> <a href="#XREFcompare_005fversions">compare_versions</a>, <a href="#XREFversion">version</a>, <a href="#XREFver">ver</a>, <a href="Installing-and-Removing-Packages.html#XREFpkg">pkg</a>.
+</p></dd></dl>
+
+
+<span id="XREFlicense"></span><dl class="def">
+<dt id="index-license"><span class="category">: </span><span><em></em> <strong>license</strong><a href='#index-license' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-1"><span class="category">: </span><span><em></em> <strong>license</strong> <em>inuse</em><a href='#index-license-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-2"><span class="category">: </span><span><em></em> <strong>license</strong> <em>inuse <var>feature</var></em><a href='#index-license-2' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-3"><span class="category">: </span><span><em></em> <strong>license</strong> <em>(&quot;inuse&quot;)</em><a href='#index-license-3' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-4"><span class="category">: </span><span><em><var>retval</var> =</em> <strong>license</strong> <em>(&quot;inuse&quot;)</em><a href='#index-license-4' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-5"><span class="category">: </span><span><em><var>retval</var> =</em> <strong>license</strong> <em>(&quot;test&quot;, <var>feature</var>)</em><a href='#index-license-5' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-6"><span class="category">: </span><span><em><var>retval</var> =</em> <strong>license</strong> <em>(&quot;checkout&quot;, <var>feature</var>)</em><a href='#index-license-6' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-license-7"><span class="category">: </span><span><em>[<var>retval</var>, <var>errmsg</var>] =</em> <strong>license</strong> <em>(&quot;checkout&quot;, <var>feature</var>)</em><a href='#index-license-7' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Get license information for Octave and Octave packages.
+</p>
+<p>GNU Octave is free software distributed under the GNU General Public
+License (GPL), and a license manager makes no sense.  This function is
+provided only for <small>MATLAB</small> compatibility.
+</p>
+<p>When called with no extra input arguments, it returns the Octave license,
+otherwise the first input defines the operation mode and must be one of
+the following strings: <code>inuse</code>, <code>test</code>, and <code>checkout</code>.
+The optional <var>feature</var> argument can either be <code>&quot;octave&quot;</code> (core),
+or an Octave package.
+</p>
+<dl compact="compact">
+<dt><span><code>&quot;inuse&quot;</code></span></dt>
+<dd><p>Returns a list of loaded features, i.e., octave and the list of loaded
+packages.  If an output is requested, it returns a struct array with
+the fields <code>&quot;feature&quot;</code>, and <code>&quot;user&quot;</code>.
+</p>
+</dd>
+<dt><span><code>&quot;test&quot;</code></span></dt>
+<dd><p>Return true if the specified <var>feature</var> is installed, false otherwise.
+</p>
+<p>An optional third argument <code>&quot;enable&quot;</code> or <code>&quot;disable&quot;</code> is
+accepted but ignored.
+</p>
+</dd>
+<dt><span><code>&quot;checkout&quot;</code></span></dt>
+<dd><p>Return true if the specified <var>feature</var> is installed, false otherwise.
+An optional second output will have an error message if a package is not
+installed.
+</p>
+</dd>
+</dl>
+
+
+<p><strong>See also:</strong> <a href="Installing-and-Removing-Packages.html#XREFpkg">pkg</a>, <a href="#XREFver">ver</a>, <a href="#XREFversion">version</a>.
+</p></dd></dl>
+
+
+<span id="XREFmemory"></span><dl class="def">
+<dt id="index-memory"><span class="category">: </span><span><em></em> <strong>memory</strong> <em>()</em><a href='#index-memory' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-memory-1"><span class="category">: </span><span><em>[<var>userdata</var>, <var>systemdata</var>] =</em> <strong>memory</strong> <em>()</em><a href='#index-memory-1' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Display or return information about the memory usage of Octave.
+</p>
+<p>If the function is called without output arguments, a table with an overview
+of the current memory consumption is displayed.
+</p>
+<p>The output argument <var>userdata</var> is a structure with the following fields
+containing data for the Octave process:
+</p>
+<dl compact="compact">
+<dt><span><code>MaxPossibleArrayBytes</code></span></dt>
+<dd><p>Maximum size for an array to be allocated.  Be aware that this includes
+<em>all</em> physical memory and swap space.  Allocating that amount of memory
+might result in system instability, data corruption, and/or file system
+corruption.  Note that depending on the platform (32-bit systems), the
+largest contiguous memory block might further limit the maximum possible
+allocatable array.  This check is not currently implemented.
+</p>
+</dd>
+<dt><span><code>MemAvailableAllArrays</code></span></dt>
+<dd><p>The total size of available memory in bytes.
+</p>
+</dd>
+<dt><span><code>ram_available_all_arrays</code></span></dt>
+<dd><p>The maximum size for an array that can be allocated in physical memory
+(excluding swap space).  Note that depending on the platform (32-bit
+systems), the largest contiguous memory block might further limit the
+maximum possible allocatable array.  This check is not currently
+implemented.
+</p>
+</dd>
+<dt><span><code>MemUsedMATLAB</code></span></dt>
+<dt><span><code>mem_used_octave</code></span></dt>
+<dd><p>The memory (including swap space) currently used by Octave in bytes.
+</p>
+</dd>
+<dt><span><code>ram_used_octave</code></span></dt>
+<dd><p>The physical memory (excluding swap space) currently used by Octave in
+bytes.
+</p>
+</dd>
+</dl>
+
+<p>The output argument <var>systemdata</var> is a nested structure with the
+following fields containing information about the system&rsquo;s memory:
+</p>
+<dl compact="compact">
+<dt><span><code>PhysicalMemory.Available</code></span></dt>
+<dd><p>The currently available physical memory in bytes.
+</p>
+</dd>
+<dt><span><code>PhysicalMemory.Total</code></span></dt>
+<dd><p>The total physical memory in bytes.
+</p>
+</dd>
+<dt><span><code>SystemMemory.Available</code></span></dt>
+<dd><p>The currently available memory (including swap space) in bytes.
+</p>
+</dd>
+<dt><span><code>SystemMemory.Total</code></span></dt>
+<dd><p>The total memory (including swap space) in bytes.
+</p>
+</dd>
+<dt><span><code>VirtualAddressSpace.Available</code></span></dt>
+<dd><p>The currently available virtual address space in bytes.
+</p>
+</dd>
+<dt><span><code>VirtualAddressSpace.Total</code></span></dt>
+<dd><p>The total virtual address space in bytes.
+</p>
+</dd>
+</dl>
+
+<p>Example #1 : print formatted table of memory usage
+</p>
+<div class="example">
+<pre class="example">memory ()
+&rArr;
+System    RAM: 3934008 KiB,  swap: 4087804 KiB
+Octave    RAM:  170596 KiB,  virt: 1347944 KiB
+Free      RAM: 1954940 KiB,  swap: 4087804 KiB
+Available RAM: 2451948 KiB, total: 6042744 KiB
+</pre></div>
+
+<p>Example #2 : return structs with memory usage information
+</p>
+<div class="example">
+<pre class="example">[userdata, systemdata] = memory ()
+&rArr;
+ userdata =
+
+   scalar structure containing the fields:
+
+     MaxPossibleArrayBytes = 6.1622e+09
+     MemAvailableAllArrays = 6.1622e+09
+     ram_available_all_arrays = 2.4883e+09
+     MemUsedMATLAB = 1.3825e+09
+     mem_used_octave = 1.3825e+09
+     ram_used_octave = 1.7824e+08
+
+ systemdata =
+
+   scalar structure containing the fields:
+
+     PhysicalMemory =
+
+       scalar structure containing the fields:
+
+         Available = 2.4954e+09
+         Total = 4.0284e+09
+
+     SystemMemory =
+
+       scalar structure containing the fields:
+
+         Available = 6.6813e+09
+         Total = 8.2143e+09
+
+     VirtualAddressSpace =
+
+       scalar structure containing the fields:
+
+         Available = 2.8147e+14
+         Total = 2.8147e+14
+</pre></div>
+
+<p>Programming Note: This function is implemented for Linux and Windows only.
+</p>
+
+<p><strong>See also:</strong> <a href="#XREFcomputer">computer</a>, <a href="Process-ID-Information.html#XREFgetpid">getpid</a>, <a href="#XREFgetrusage">getrusage</a>, <a href="#XREFnproc">nproc</a>, <a href="#XREFuname">uname</a>.
+</p></dd></dl>
+
+
+<span id="XREFgetrusage"></span><dl class="def">
+<dt id="index-getrusage"><span class="category">: </span><span><em></em> <strong>getrusage</strong> <em>()</em><a href='#index-getrusage' class='copiable-anchor'> &para;</a></span></dt>
+<dd><p>Return a structure containing a number of statistics about the current
+Octave process.
+</p>
+<p>Not all fields are available on all systems.  If it is not possible to get
+CPU time statistics, the CPU time slots are set to zero.  Other missing data
+are replaced by NaN.  The list of possible fields is:
+</p>
+<dl compact="compact">
+<dt><span><code>idrss</code></span></dt>
+<dd><p>Unshared data size.
+</p>
+</dd>
+<dt><span><code>inblock</code></span></dt>
+<dd><p>Number of block input operations.
+</p>
+</dd>
+<dt><span><code>isrss</code></span></dt>
+<dd><p>Unshared stack size.
+</p>
+</dd>
+<dt><span><code>ixrss</code></span></dt>
+<dd><p>Shared memory size.
+</p>
+</dd>
+<dt><span><code>majflt</code></span></dt>
+<dd><p>Number of major page faults.
+</p>
+</dd>
+<dt><span><code>maxrss</code></span></dt>
+<dd><p>Maximum data size.
+</p>
+</dd>
+<dt><span><code>minflt</code></span></dt>
+<dd><p>Number of minor page faults.
+</p>
+</dd>
+<dt><span><code>msgrcv</code></span></dt>
+<dd><p>Number of messages received.
+</p>
+</dd>
+<dt><span><code>msgsnd</code></span></dt>
+<dd><p>Number of messages sent.
+</p>
+</dd>
+<dt><span><code>nivcsw</code></span></dt>
+<dd><p>Number of involuntary context switches.
+</p>
+</dd>
+<dt><span><code>nsignals</code></span></dt>
+<dd><p>Number of signals received.
+</p>
+</dd>
+<dt><span><code>nswap</code></span></dt>
+<dd><p>Number of swaps.
+</p>
+</dd>
+<dt><span><code>nvcsw</code></span></dt>
+<dd><p>Number of voluntary context switches.
+</p>
+</dd>
+<dt><span><code>oublock</code></span></dt>
+<dd><p>Number of block output operations.
+</p>
+</dd>
+<dt><span><code>stime</code></span></dt>
+<dd><p>A structure containing the system CPU time used.  The structure has the
+elements <code>sec</code> (seconds) <code>usec</code> (microseconds).
+</p>
+</dd>
+<dt><span><code>utime</code></span></dt>
+<dd><p>A structure containing the user CPU time used.  The structure has the
+elements <code>sec</code> (seconds) <code>usec</code> (microseconds).
+</p></dd>
+</dl>
+</dd></dl>
+
+
+<span id="XREFwinqueryreg"></span><dl class="def">
+<dt id="index-winqueryreg"><span class="category">: </span><span><em><var>value</var> =</em> <strong>winqueryreg</strong> <em>(<var>rootkey</var>, <var>subkey</var>, <var>valuename</var>)</em><a href='#index-winqueryreg' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-winqueryreg-1"><span class="category">: </span><span><em><var>value</var> =</em> <strong>winqueryreg</strong> <em>(<var>rootkey</var>, <var>subkey</var>)</em><a href='#index-winqueryreg-1' class='copiable-anchor'> &para;</a></span></dt>
+<dt id="index-winqueryreg-2"><span class="category">: </span><span><em><var>names</var> =</em> <strong>winqueryreg</strong> <em>(<code>&quot;name&quot;</code>, <var>rootkey</var>, <var>subkey</var>)</em><a href='#index-winqueryreg-2' class='copiable-anchor'> &para;</a></span></dt>
+<dd>
+<p>Query names or value from the Windows registry.
+</p>
+<p>On Windows, return the value of the registry key <var>subkey</var> from the root key
+<var>rootkey</var>.  You can specify the name of the queried registry value with the
+optional argument <var>valuename</var>.  Otherwise, if called with only two
+arguments or <var>valuename</var> is empty, then the default value of <var>subkey</var>
+is returned.  If the registry value is of type <code>&quot;REG_DWORD&quot;</code>
+then <var>value</var> is of class int32.  If the value is of the type
+<code>&quot;REG_SZ&quot;</code> or <code>&quot;REG_EXPAND_SZ&quot;</code> a string is
+returned.
+</p>
+<p>If the first argument is <code>&quot;name&quot;</code>, a cell array of strings with the names
+of the values at that key is returned.
+</p>
+<p>The variable <var>rootkey</var> must be a string with a valid root key identifier:
+</p>
+<dl compact="compact">
+<dt><span>HKCR</span></dt>
+<dt><span>HKEY_CLASSES_ROOT</span></dt>
+<dt><span>HKEY_CURRENT_CONFIG</span></dt>
+<dt><span>HKCU</span></dt>
+<dt><span>HKEY_CURRENT_USER</span></dt>
+<dt><span>HKLM</span></dt>
+<dt><span>HKEY_LOCAL_MACHINE</span></dt>
+<dt><span>HKU</span></dt>
+<dt><span>HKEY_USERS</span></dt>
+<dt><span>HKEY_PERFORMANCE_DATA</span></dt>
+</dl>
+
+<p>Examples:
+</p>
+<p>Get a list of value names at the key
+<code>'HKCU\Environment'</code>:
+</p>
+<div class="example">
+<pre class="example"><var>valuenames</var> = winqueryreg (&quot;name&quot;, &quot;HKEY_CURRENT_USER&quot;, ...
+                          &quot;Environment&quot;);
+</pre></div>
+
+<p>For each <var>valuenames</var>, display the value:
+</p>
+<div class="example">
+<pre class="example">for <var>k</var> = 1:numel (<var>valuenames</var>)
+  <var>val</var> = winqueryreg (&quot;HKEY_CURRENT_USER&quot;, &quot;Environment&quot;, ...
+                     <var>valuenames</var>{<var>k</var>});
+  <var>str</var> = sprintf (&quot;%s = %s&quot;, <var>valuenames</var>{<var>k</var>}, num2str (<var>val</var>));
+  disp (<var>str</var>);
+endfor
+</pre></div>
+
+<p>On non-Windows platforms this function fails with an error.
+</p></dd></dl>
+
+
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Hashing-Functions.html">Hashing Functions</a>, Previous: <a href="Group-Database-Functions.html">Group Database Functions</a>, Up: <a href="System-Utilities.html">System Utilities</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

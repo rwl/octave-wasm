@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.8, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Top (Octave C++ Classes)</title>
+
+<meta name="description" content="Top (Octave C++ Classes)">
+<meta name="keywords" content="Top (Octave C++ Classes)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="#Top" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="../dir/index.html" rel="up" title="(dir)">
+<link href="Acknowledgements.html" rel="next" title="Acknowledgements">
+<link href="../dir/index.html" rel="prev" title="(dir)">
+<style type="text/css">
+<!--
+a.copiable-anchor {visibility: hidden; text-decoration: none; line-height: 0em}
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+span:hover a.copiable-anchor {visibility: visible}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<h1 class="settitle" align="center">Octave C++ Classes</h1>
+
+
+
+
+
+
+
+
+
+<p>Copyright (C) 1996-2022 The Octave Project Developers
+</p>
+<p>Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+</p>
+<p>Permission is granted to copy and distribute modified versions of
+this manual under the conditions for verbatim copying, provided that
+the entire resulting derived work is distributed under the terms of
+a permission notice identical to this one.
+</p>
+<p>Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for
+modified versions.
+</p>
+
+
+<div class="top" id="Top">
+<div class="header">
+<p>
+Next: <a href="Acknowledgements.html" accesskey="n" rel="next">Acknowledgements</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<span id="SEC_Top"></span>
+<p>This manual documents how to use, install and port Octave&rsquo;s C++ class
+library, and how to report bugs.  It corresponds to Octave version
+7.2.0.
+</p>
+
+
+
+
+<div class="Contents_element" id="SEC_Contents">
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a id="toc-Acknowledgements-1" href="Acknowledgements.html">1 Acknowledgements</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Contributors-to-Octave" href="Contributors.html">Contributors to Octave</a></li>
+  </ul></li>
+  <li><a id="toc-GNU-GENERAL-PUBLIC-LICENSE" href="Copying.html">GNU GENERAL PUBLIC LICENSE</a></li>
+  <li><a id="toc-A-Brief-Introduction-to-Octave" href="Introduction.html">2 A Brief Introduction to Octave</a></li>
+  <li><a id="toc-Arrays-1" href="Arrays.html">3 Arrays</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Constructors-and-Assignment-1" href="Constructors-and-Assignment.html">3.1 Constructors and Assignment</a></li>
+  </ul></li>
+  <li><a id="toc-Matrix-and-Vector-Operations-1" href="Matrix-and-Vector-Operations.html">4 Matrix and Vector Operations</a></li>
+  <li><a id="toc-Matrix-Factorizations-1" href="Matrix-Factorizations.html">5 Matrix Factorizations</a></li>
+  <li><a id="toc-Ranges-1" href="Ranges.html">6 Ranges</a></li>
+  <li><a id="toc-Nonlinear-Functions-1" href="Nonlinear-Functions.html">7 Nonlinear Functions</a></li>
+  <li><a id="toc-Nonlinear-Equations-1" href="Nonlinear-Equations.html">8 Nonlinear Equations</a></li>
+  <li><a id="toc-Optimization-1" href="Optimization.html">9 Optimization</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Objective-Functions-1" href="Objective-Functions.html">9.1 Objective Functions</a></li>
+    <li><a id="toc-Bounds-1" href="Bounds.html">9.2 Bounds</a></li>
+    <li><a id="toc-Linear-Constraints-1" href="Linear-Constraints.html">9.3 Linear Constraints</a></li>
+    <li><a id="toc-Nonlinear-Constraints-1" href="Nonlinear-Constraints.html">9.4 Nonlinear Constraints</a></li>
+    <li><a id="toc-Quadratic-Programming-1" href="Quadratic-Programming.html">9.5 Quadratic Programming</a></li>
+    <li><a id="toc-Nonlinear-Programming-1" href="Nonlinear-Programming.html">9.6 Nonlinear Programming</a></li>
+  </ul></li>
+  <li><a id="toc-Quadrature-1" href="Quadrature.html">10 Quadrature</a>
+  <ul class="no-bullet">
+    <li><a id="toc-Collocation-Weights-1" href="Collocation-Weights.html">10.1 Collocation Weights</a></li>
+  </ul></li>
+  <li><a id="toc-Ordinary-Differential-Equations-1" href="Ordinary-Differential-Equations.html">11 Ordinary Differential Equations</a></li>
+  <li><a id="toc-Differential-Algebraic-Equations-1" href="Differential-Algebraic-Equations.html">12 Differential Algebraic Equations</a></li>
+  <li><a id="toc-Error-Handling-1" href="Error-Handling.html">13 Error Handling</a></li>
+  <li><a id="toc-Installation-1" href="Installation.html">14 Installation</a></li>
+  <li><a id="toc-Bugs-1" href="Bugs.html">15 Bugs</a></li>
+  <li><a id="toc-Concept-Index-1" href="Concept-Index.html" rel="index">Concept Index</a></li>
+  <li><a id="toc-Function-Index-1" href="Function-Index.html" rel="index">Function Index</a></li>
+</ul>
+</div>
+</div>
+</div>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Acknowledgements.html" accesskey="n" rel="next">Acknowledgements</a>, Previous: <a href="../dir/index.html" accesskey="p" rel="prev">(dir)</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>
