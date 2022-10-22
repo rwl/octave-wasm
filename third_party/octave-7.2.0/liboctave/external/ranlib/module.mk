@@ -33,7 +33,8 @@ RANLIB_SRC = \
   %reldir%/sexpo.f \
   %reldir%/sgamma.f \
   %reldir%/snorm.f \
-  %reldir%/wrap.f
+  %reldir%/wrap.f \
+  %reldir%/globe.c
 
 noinst_LTLIBRARIES += %reldir%/libranlib.la
 

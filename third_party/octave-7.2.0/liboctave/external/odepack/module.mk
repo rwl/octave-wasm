@@ -14,4 +14,6 @@ EXTERNAL_SOURCES += \
   %reldir%/sprepj.f \
   %reldir%/ssolsy.f \
   %reldir%/sstode.f \
-  %reldir%/svnorm.f
+  %reldir%/svnorm.f \
+  %reldir%/dls001.c \
+  %reldir%/sls001.c
