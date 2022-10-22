@@ -112,9 +112,9 @@ include %reldir%/octave-value/module.mk
 include %reldir%/operators/module.mk
 include %reldir%/template-inst/module.mk
 include %reldir%/corefcn/module.mk
-include %reldir%/dldfcn/module.mk
+#include %reldir%/dldfcn/module.mk
 
-DLD_LIBOCTINTERP_LIBADD = $(OCT_LINK_DEPS)
+#DLD_LIBOCTINTERP_LIBADD = $(OCT_LINK_DEPS)
 LIBINTERP_DLDFCN_LIBADD =
 
 %canon_reldir%_liboctinterp_la_SOURCES = \
