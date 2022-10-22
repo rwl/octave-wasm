@@ -4,7 +4,7 @@ RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
 	build-essential autoconf automake libtool cmake file less \
 	texinfo flex librsvg2-bin icoutils gperf bison ghostscript gnuplot \
-	python ca-certificates git openjdk-11-jre curl nano unzip \
+	python3 ca-certificates git openjdk-11-jre curl nano unzip \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/emscripten-core/emsdk.git /usr/src/emsdk
@@ -17,44 +17,25 @@ WORKDIR /usr/src/emsdk
 
 RUN git fetch
 #RUN git tag -l
-#ENV EMSDK_VER 2.0.34
-ENV EMSDK_VER 1.38.30
-#RUN git checkout $EMSDK_VER
-RUN git checkout c10e3e86e8ead9243473c7148beaa9261956123b
-#RUN ./emsdk list
+ENV SDK_VERSION 3.1.24
+RUN git checkout $SDK_VERSION
 
-
-#RUN ./emsdk install ${EMSDK_VER}-upstream
-#RUN ./emsdk activate ${EMSDK_VER}-upstream
-RUN ./emsdk install sdk-${EMSDK_VER}-64bit
-RUN ./emsdk activate sdk-${EMSDK_VER}-64bit
+RUN ./emsdk install ${SDK_VERSION}
+RUN ./emsdk activate ${SDK_VERSION}
 
 #RUN sh ./emsdk_env.sh
 
-#ENV NODE_VER 14.15.5
-#ENV NODE_VER 12.18.1
-#ENV NODE_VER 12.9.1
-ENV NODE_VER 8.9.1
-#ENV PATH="/usr/src/emsdk:/usr/src/emsdk/upstream/emscripten:/usr/src/emsdk/node/${NODE_VER}_64bit/bin:${PATH}"
-#ENV EMSDK /usr/src/emsdk
-##ENV EM_CONFIG /usr/src/emsdk/.emscripten
-#ENV EM_CONFIG /root/.emscripten
-#ENV EM_CACHE /usr/src/emsdk/upstream/emscripten/cache
-#ENV EMSDK_NODE /usr/src/emsdk/node/${NODE_VER}_64bit/bin/node
+ENV NODE_VER 14.18.2
 
-#RUN bash -c "source ./emsdk_env.sh"
-
-ENV PATH="/usr/src/emsdk:/usr/src/emsdk/clang/e${EMSDK_VER}_64bit:/usr/src/emsdk/node/${NODE_VER}_64bit/bin:/usr/src/emsdk/emscripten/${EMSDK_VER}:${PATH}"
+ENV PATH="/usr/src/emsdk:/usr/src/emsdk/upstream/emscripten:/usr/src/emsdk/node/${NODE_VER}_64bit/bin:${PATH}"
 ENV EMSDK /usr/src/emsdk
-ENV EM_CONFIG /root/.emscripten
-ENV LLVM_ROOT /usr/src/emsdk/clang/e${EMSDK_VER}_64bit
-ENV EMSCRIPTEN_NATIVE_OPTIMIZER /usr/src/emsdk/clang/e${EMSDK_VER}_64bit/optimizer
-ENV BINARYEN_ROOT /usr/src/emsdk/clang/e${EMSDK_VER}_64bit/binaryen
+ENV EM_CONFIG /usr/src/emsdk/.emscripten
+ENV EM_CACHE /usr/src/emsdk/upstream/emscripten/cache
 ENV EMSDK_NODE /usr/src/emsdk/node/${NODE_VER}_64bit/bin/node
-ENV EMSCRIPTEN /usr/src/emsdk/emscripten/${EMSDK_VER}
 
 RUN emcc -v
 RUN node -v
+
 
 ENV PROJECTDIR /usr/src/octave-wasm
 ENV THIRDPARTYDIR $PROJECTDIR/third_party
@@ -67,7 +48,6 @@ WORKDIR $PROJECTDIR
 RUN mkdir -p $BINDIR $INCDIR $LIBDIR
 #COPY Makefile $PROJECTDIR/Makefile
 
-#FROM scratch as server
 
 COPY third_party/f2c-20160102 $THIRDPARTYDIR/f2c-20160102
 #RUN make $BINDIR/f2c
@@ -87,9 +67,11 @@ RUN cd $THIRDPARTYDIR/libf2c2-20130926 && \
 COPY third_party/fort77-1.15 $THIRDPARTYDIR/fort77-1.15
 #RUN make $BINDIR/fort77
 RUN cd $THIRDPARTYDIR/fort77-1.15 && \
+    autoreconf -fi && \
     emmake make F2C=$BINDIR/f2c fort77 && \
     cp fort77 $BINDIR
 
+#FROM scratch as server
 
 COPY third_party/lapack-3.4.2 $THIRDPARTYDIR/lapack-3.4.2
 #RUN make $LIBDIR/librefblas.so
@@ -104,17 +86,17 @@ RUN cd $THIRDPARTYDIR/lapack-3.4.2 && \
 
 COPY third_party/pcre-8.43 $THIRDPARTYDIR/pcre-8.43
 #RUN make $LIBDIR/libpcre.so
-RUN cd $THIRDPARTYDIR/pcre-8.43 && \
-    autoreconf -f -i && \
-    emconfigure ./configure CFLAGS="-O0" --prefix=$INSTALLDIR --disable-static --enable-utf && \
-    emmake make install
-#RUN mkdir -p $THIRDPARTYDIR/pcre-8.43/build && \
-#    cd $THIRDPARTYDIR/pcre-8.43/build && \
-#    CC=emcc CXX=em++ AR=emar RANLIB=emranlib cmake .. \
-#    -DCMAKE_INSTALL_PREFIX=$INSTALLDIR \
-#    -DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF -DPCRE_SUPPORT_UTF=ON && \
-#    make -j${JOBS:-4} && \
-#    make install
+#RUN cd $THIRDPARTYDIR/pcre-8.43 && \
+#    autoreconf -f -i && \
+#    emconfigure ./configure CFLAGS="-O0" --prefix=$INSTALLDIR --disable-static --enable-utf && \
+#    emmake make install
+RUN mkdir -p $THIRDPARTYDIR/pcre-8.43/build && \
+    cd $THIRDPARTYDIR/pcre-8.43/build && \
+    CC=emcc CXX=em++ AR=emar RANLIB=emranlib cmake .. \
+    -DCMAKE_INSTALL_PREFIX=$INSTALLDIR \
+    -DBUILD_SHARED_LIBS=ON -DPCRE_BUILD_PCREGREP=OFF -DPCRE_BUILD_TESTS=OFF -DPCRE_SUPPORT_UTF=ON && \
+    make -j${JOBS:-4} && \
+    make install
 
 
 COPY third_party/suitesparse-5.4.0 $THIRDPARTYDIR/suitesparse-5.4.0
@@ -126,9 +108,7 @@ RUN cd $THIRDPARTYDIR/suitesparse-5.4.0 && \
 
 ENV OCTAVE_VER 7.2.0
 COPY third_party/octave-${OCTAVE_VER} $THIRDPARTYDIR/octave-${OCTAVE_VER}
-#RUN make $LIBDIR/octave/${OCTAVE_VER}/liboctave.so
 WORKDIR $THIRDPARTYDIR/octave-${OCTAVE_VER}
-#RUN autoreconf -fi
 RUN rm -f configure && autoreconf
 # Manually set FORTRAN name-mangling to use lower-case and single underscore.
 RUN sed -i -e 's/(name,NAME) name"/(name,NAME) name ## _"/g' configure
@@ -139,31 +119,29 @@ RUN emconfigure ./configure \
     AR=emar \
     RANLIB=emranlib \
     CFLAGS="-I$INCDIR -O0" \
-    CXXFLAGS="-std=c++11 -I$INCDIR -O0" \
-    FFLAGS="-I$INCDIR -O0" \
+    CXXFLAGS="-std=c++11 -I$INCDIR -O0 -fwasm-exceptions" \
+    FFLAGS="-I$INCDIR -O0 -E" \
     FLIBS="" \
     LDFLAGS="-s ERROR_ON_UNDEFINED_SYMBOLS=0 -L$LIBDIR -O0" \
     EMCC_FORCE_STDLIBS=1 \
     EMCONFIGURE_JS=1 \
     BUILD_EXEEXT=.js \
+    --host=wasm32-local-emscripten \
     --prefix=$INSTALLDIR \
-    --enable-shared --enable-dl --disable-static \
+    --enable-shared --disable-static \
     --disable-threads --disable-openmp \
     --without-qt --disable-java --enable-fortran-calling-convention=f2c --disable-cross-tools \
     --disable-readline --disable-64 --disable-docs --without-curl --without-fftw3 \
     --without-fftw3f --without-hdf5 --without-opengl --without-qrupdate --without-framework-carbon --without-framework-opengl --without-x \
     --without-arpack --with-blas=-lrefblas --with-lapack=-lclapack \
-    --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cholmod --without-cxsparse
+    --without-sndfile --without-portaudio --without-freetype --without-fontconfig --without-fltk --without-qrupdate \
+    --without-sundials_ida --without-sundials_nvecserial --without-sundials_sunlinsolklu --without-qhull_r \
+    --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cholmod --without-cxsparse --without-ccolamd \
+    --without-z --without-bz2 --without-magick --without-spqr --without-glpk --disable-rapidjson
 
-#FROM scratch as server
 RUN emmake make -j${OCTJOBS:-4}
 RUN emmake make install
 
-#FROM scratch as server
-
-#COPY third_party/re2-2020-08-01 $THIRDPARTYDIR/re2-2020-08-01
-#RUN cd $THIRDPARTYDIR/re2-2020-08-01 \
-#	&& emmake make prefix=$PROJECTDIR/target CXXFLAGS="-g -s LINKABLE=1 -s EXPORT_ALL=1" shared shared-install
 
 COPY src $PROJECTDIR/src
 WORKDIR $PROJECTDIR/src
@@ -180,8 +158,8 @@ RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID dev
 
 
 COPY test/web/index.html $PROJECTDIR/src/web
-COPY test/server.py $PROJECTDIR/src/web
+COPY test/server3.py $PROJECTDIR/src/web
 WORKDIR $PROJECTDIR/src/web
 
 EXPOSE 8080
-CMD ["python", "/usr/src/octave-wasm/src/web/server.py"]
+CMD ["python3", "/usr/src/octave-wasm/src/web/server3.py"]

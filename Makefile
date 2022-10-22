@@ -182,7 +182,7 @@ build:
 
 .PHONY: run
 run:
-	docker run -it --rm -p 8080:8080 -v `pwd`/src/index.html:/usr/src/octave-wasm/src/index.html $(IMAGE_TAG) $(CMD)
+	docker run -it --rm -p 8080:8080 -v `pwd`/test/web/index.html:/usr/src/octave-wasm/src/web/index.html $(IMAGE_TAG) $(CMD)
 
 .PHONY: dev
 dev:
