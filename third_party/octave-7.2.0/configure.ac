@@ -570,7 +570,7 @@ AC_DEFINE_UNQUOTED(OCTAVE_IDX_TYPE, [$OCTAVE_IDX_TYPE],
 
 ### Check for pthread library
 
-AX_PTHREAD
+#AX_PTHREAD
 dnl Include pthread libs and flags early in case other config tests need them.
 dnl They seem to be required for the OpenGL tests on Debian systems.
 LIBS="$PTHREAD_LIBS $LIBS"
