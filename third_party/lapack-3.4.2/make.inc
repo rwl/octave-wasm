@@ -17,7 +17,7 @@ OPTS     = -O0 -fPIC -I$(INCDIR)
 DRVOPTS  = $(OPTS)
 NOOPT    = -O0 -fPIC -I$(INCDIR)
 LOADER   = $(LD)
-LOADOPTS = -O0
+LOADOPTS = -O0 -shared
 #LOADOPTS = -s LINKABLE=1 -s EXPORT_ALL=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0
 #
 # Timer for the SECOND and DSECND routines
