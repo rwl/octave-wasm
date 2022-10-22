@@ -19,7 +19,7 @@ PREFIX = ../target
 MFILE_PATH ?= $(PREFIX)/share/octave/$(OCTAVE_VER)/m
 
 #EM_CFLAGS = -O0 -g -Wall -std=c++11
-EM_CFLAGS = -O0 -Wall -std=c++11
+EM_CFLAGS = -O0 -Wall -std=c++11 -fwasm-exceptions
 #EM_CFLAGS = -O3 --closure 1 -Wall -std=c++11
 EM_CXXFLAGS = -I. -I$(PREFIX)/include -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave/.. -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave
 EM_LDFLAGS = -L$(PREFIX)/lib -L$(PREFIX)/lib/octave/$(OCTAVE_VER) -lf2c -lrefblas -lclapack -lpcre \
@@ -30,8 +30,6 @@ CPPFLAGS = $(EM_CFLAGS) $(EM_CXXFLAGS) $(EM_SFLAGS)
 LDFLAGS = $(EM_LDFLAGS)
 
 
-EXCEPTION_CATCHING_WHITELIST = '["__Z7fn_evalNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN10emscripten3valEi", "_main"]'
-
 all: web/octave.js worker/octave.js node/octave.js
 
 #*.o: *.cc
@@ -39,13 +37,12 @@ all: web/octave.js worker/octave.js node/octave.js
 
 
 octave.o:
-	em++ -s EXPORT_ALL=1 $(EM_SFLAGS) $(EM_CXXFLAGS) $(EM_CFLAGS) -c main.cc -o $@
+	em++ $(EM_CXXFLAGS) $(EM_CFLAGS) -enable-emscripten-cxx-exceptions -c main.cc -o $@
 
 web/octave.js: octave.o
 	mkdir -p web
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
-	-s DEMANGLE_SUPPORT=1 -s DISABLE_EXCEPTION_CATCHING=0 \
-	-s EXCEPTION_CATCHING_WHITELIST=$EXCEPTION_CATCHING_WHITELIST \
+	-s DEMANGLE_SUPPORT=0 \
 	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
 	--preload-file $(MFILE_PATH)/set@/usr/src/octave/m/set \
@@ -64,8 +61,7 @@ web/octave.js: octave.o
 worker/octave.js: octave.o
 	mkdir -p worker
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
-	-s DEMANGLE_SUPPORT=0 -s DISABLE_EXCEPTION_CATCHING=2 \
-	-s EXCEPTION_CATCHING_WHITELIST=$EXCEPTION_CATCHING_WHITELIST \
+	-s DEMANGLE_SUPPORT=0 \
 	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
 	--preload-file $(MFILE_PATH)/set@/usr/src/octave/m/set \
@@ -84,8 +80,7 @@ worker/octave.js: octave.o
 node/octave.js: octave.o
 	mkdir -p node
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
-	-s DEMANGLE_SUPPORT=0 -s DISABLE_EXCEPTION_CATCHING=2 \
-	-s EXCEPTION_CATCHING_WHITELIST=$EXCEPTION_CATCHING_WHITELIST \
+	-s DEMANGLE_SUPPORT=0 \
 	--embed-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--embed-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
 	--embed-file $(MFILE_PATH)/set@/usr/src/octave/m/set \
