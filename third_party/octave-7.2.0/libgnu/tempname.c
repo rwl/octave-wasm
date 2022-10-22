@@ -80,10 +80,6 @@ typedef uint_fast64_t random_value;
 static random_value
 random_bits (random_value var, bool use_getrandom)
 {
-  random_value r;
-  /* Without GRND_NONBLOCK it can be blocked for minutes on some systems.  */
-  if (use_getrandom && __getrandom (&r, sizeof r, GRND_NONBLOCK) == sizeof r)
-    return r;
 #if _LIBC || (defined CLOCK_MONOTONIC && HAVE_CLOCK_GETTIME)
   /* Add entropy if getrandom did not work.  */
   struct __timespec64 tv;
