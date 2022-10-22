@@ -1399,9 +1399,7 @@ AC_SUBST(QHULL_LIBS)
 
 OCTAVE_CHECK_LIB(pcre, PCRE,
   [], [pcre.h pcre/pcre.h], [pcre_compile], [], [],
-  [OCTAVE_CHECK_LIB_PCRE_OK([],
-    [AC_MSG_ERROR([PCRE library must be built with UTF support (--enable-utf)])])
-  ],
+  [],
   [libpcre], [REQUIRED])
 
 ### Check for RapidJSON header only library.
