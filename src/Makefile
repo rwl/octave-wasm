@@ -18,13 +18,16 @@ PREFIX = ../target
 
 MFILE_PATH ?= $(PREFIX)/share/octave/$(OCTAVE_VER)/m
 
-#EM_CFLAGS = -O0 -g -Wall -std=c++11
-EM_CFLAGS = -O0 -Wall -std=c++11 -fwasm-exceptions
-#EM_CFLAGS = -O3 --closure 1 -Wall -std=c++11
+#EM_CFLAGS = -O0 -g -Wall -std=c++11 -fwasm-exceptions
+#EM_CFLAGS = -O0 -Wall -std=c++11 -fwasm-exceptions
+EM_CFLAGS = -O2 -Wall -std=c++11 -fwasm-exceptions
+#EM_CFLAGS = -O2 --closure 1 -Wall -std=c++11 -fwasm-exceptions
+#EM_CFLAGS = -O3 --closure 1 -Wall -std=c++11 -fwasm-exceptions
 EM_CXXFLAGS = -I. -I$(PREFIX)/include -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave/.. -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave
 EM_LDFLAGS = -L$(PREFIX)/lib -L$(PREFIX)/lib/octave/$(OCTAVE_VER) -lf2c -lrefblas -lclapack -lpcre \
 -lsuitesparseconfig -lcxsparse -lamd -lcamd -lcolamd -lcholmod -lumfpack -loctave -loctinterp
-EM_SFLAGS = -s WASM=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s TOTAL_MEMORY=128MB
+EM_SFLAGS = -s WASM=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s INITIAL_MEMORY=128MB -s ALLOW_MEMORY_GROWTH=1 \
+-s FS_DEBUG=1
 
 CPPFLAGS = $(EM_CFLAGS) $(EM_CXXFLAGS) $(EM_SFLAGS)
 LDFLAGS = $(EM_LDFLAGS)
@@ -62,19 +65,20 @@ worker/octave.js: octave.o
 	mkdir -p worker
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
 	-s DEMANGLE_SUPPORT=0 \
-	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
-	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
-	--preload-file $(MFILE_PATH)/set@/usr/src/octave/m/set \
-	--preload-file $(MFILE_PATH)/miscellaneous@/usr/src/octave/m/miscellaneous \
-	--preload-file $(MFILE_PATH)/strings@/usr/src/octave/m/strings \
-	--preload-file $(MFILE_PATH)/sparse@/usr/src/octave/m/sparse \
-	--preload-file $(MFILE_PATH)/path@/usr/src/octave/m/path \
-	--preload-file $(MFILE_PATH)/io@/usr/src/octave/m/io \
-	--preload-file $(MFILE_PATH)/polynomial@/usr/src/octave/m/polynomial \
-	--preload-file $(MFILE_PATH)/pkg@/usr/src/octave/m/pkg \
-	--preload-file $(MFILE_PATH)/time@/usr/src/octave/m/time \
+	--embed-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
+	--embed-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
+	--embed-file $(MFILE_PATH)/set@/usr/src/octave/m/set \
+	--embed-file $(MFILE_PATH)/miscellaneous@/usr/src/octave/m/miscellaneous \
+	--embed-file $(MFILE_PATH)/strings@/usr/src/octave/m/strings \
+	--embed-file $(MFILE_PATH)/sparse@/usr/src/octave/m/sparse \
+	--embed-file $(MFILE_PATH)/path@/usr/src/octave/m/path \
+	--embed-file $(MFILE_PATH)/io@/usr/src/octave/m/io \
+	--embed-file $(MFILE_PATH)/polynomial@/usr/src/octave/m/polynomial \
+	--embed-file $(MFILE_PATH)/pkg@/usr/src/octave/m/pkg \
+	--embed-file $(MFILE_PATH)/time@/usr/src/octave/m/time \
 	-s MODULARIZE=1 -s EXPORT_NAME=OCTAVE -s ENVIRONMENT="worker" \
-	-s EXPORT_ES6=1 --post-js post.js \
+	-s EXPORT_ES6=1 -s SINGLE_FILE=1 \
+	--post-js post.js \
 	$(EM_CFLAGS) $(EM_LDFLAGS) -o $@ $^
 
 node/octave.js: octave.o

@@ -1,2 +1,16 @@
-Module["writeFile"] = FS.writeFile;
-Module["readFile"] = FS.readFile;
+// Closure Compiler will minify the File System API code.
+Module["FS_init"] = FS.init;
+Module["FS_cwd"] = FS.cwd;
+Module["FS_chdir"] = FS.chdir;
+Module["FS_mkdir"] = FS.mkdir;
+Module["FS_mount"] = FS.mount;
+Module["FS_readdir"] = FS.readdir;
+Module["FS_readFile"] = FS.readFile;
+Module["FS_rename"] = FS.rename;
+Module["FS_rmdir"] = FS.rmdir;
+Module["FS_stat"] = FS.stat;
+Module["FS_unlink"] = FS.unlink;
+Module["FS_syncfs"] = FS.syncfs;
+Module["FS_writeFile"] = FS.writeFile;
+Module["FS_isDir"] = FS.isDir;
+Module["FS_trackingDelegate"] = FS.trackingDelegate;

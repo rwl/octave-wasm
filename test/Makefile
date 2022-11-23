@@ -19,8 +19,6 @@ $(WORKERDIR)/octave.js:
 	docker run -it --rm -d $(IMAGE_TAG)
 	CONTAINER_ID=$$(docker ps -alq) && \
 	docker cp $$CONTAINER_ID:/usr/src/octave-wasm/src/worker/octave.js $(WORKERDIR) && \
-	docker cp $$CONTAINER_ID:/usr/src/octave-wasm/src/worker/octave.wasm $(WORKERDIR) && \
-	docker cp $$CONTAINER_ID:/usr/src/octave-wasm/src/worker/octave.data $(WORKERDIR) && \
 	docker stop $$CONTAINER_ID
 
 $(NODEDIR)/octave.js:

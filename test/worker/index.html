@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Octave Worker</title>
+</head>
+<body>
+<script src="https://unpkg.com/promise-worker/dist/promise-worker.js"></script>
+<script>
+  var worker = new Worker('worker.js');
+  var promiseWorker = new PromiseWorker(worker);
+
+  let p = promiseWorker.postMessage("init").then(function (response) {
+    if (response) {
+      console.log("init response: " + response);
+    }
+
+    let message0 = {
+      ident: "execute_interp",
+      args: []
+    };
+    promiseWorker.postMessage(message0).then(function (response) {
+      if (response) {
+        console.log("response: " + response);
+      }
+
+      let message = {
+        ident: "feval",
+        args: ["strcat", ["foo", "bar"], 1]
+      };
+      promiseWorker.postMessage(message).then(function (response) {
+        console.log("response: " + response);
+      }).catch(function (error) {
+        console.log("error: " + error);
+      });
+
+    }).catch(function (error) {
+      console.log("error: " + error);
+    });
+
+  }).catch(function (error) {
+    console.log("init error: " + error);
+  });
+  //Promise.all([p]);
+</script>
+</body>
+</html>
