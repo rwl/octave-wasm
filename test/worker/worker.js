@@ -1,4 +1,5 @@
-importScripts("https://unpkg.com/promise-worker/dist/promise-worker.register.js", "octave.js")
+importScripts("promise-worker.register.js", "octave.js")
+// importScripts("https://unpkg.com/promise-worker/dist/promise-worker.register.js", "octave.js")
 // import registerPromiseWorker from "https://unpkg.com/promise-worker/dist/promise-worker.register.js";
 // import OCTAVE from "octave.js";
 

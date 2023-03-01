@@ -19,8 +19,8 @@ PREFIX = ../target
 MFILE_PATH ?= $(PREFIX)/share/octave/$(OCTAVE_VER)/m
 
 #EM_CFLAGS = -O0 -g -Wall -std=c++11 -fwasm-exceptions
-#EM_CFLAGS = -O0 -Wall -std=c++11 -fwasm-exceptions
 EM_CFLAGS = -O2 -Wall -std=c++11 -fwasm-exceptions
+#EM_CFLAGS = -O0 -Wall -std=c++11
 #EM_CFLAGS = -O2 --closure 1 -Wall -std=c++11 -fwasm-exceptions
 #EM_CFLAGS = -O3 --closure 1 -Wall -std=c++11 -fwasm-exceptions
 EM_CXXFLAGS = -I. -I$(PREFIX)/include -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave/.. -I$(PREFIX)/include/octave-$(OCTAVE_VER)/octave
@@ -32,6 +32,8 @@ EM_SFLAGS = -s WASM=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s INITIAL_MEMORY=128MB -s
 CPPFLAGS = $(EM_CFLAGS) $(EM_CXXFLAGS) $(EM_SFLAGS)
 LDFLAGS = $(EM_LDFLAGS)
 
+#EXCEPTION_CATCHING_WHITELIST = '["__Z5fevalNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEEN10emscripten3valEi", "_main"]'
+#-s EXCEPTION_CATCHING_WHITELIST=$(EXCEPTION_CATCHING_WHITELIST) \
 
 all: web/octave.js worker/octave.js node/octave.js
 
@@ -40,12 +42,13 @@ all: web/octave.js worker/octave.js node/octave.js
 
 
 octave.o:
+#	em++ $(EM_CXXFLAGS) $(EM_CFLAGS) -c main.cc -o $@
 	em++ $(EM_CXXFLAGS) $(EM_CFLAGS) -enable-emscripten-cxx-exceptions -c main.cc -o $@
 
 web/octave.js: octave.o
 	mkdir -p web
 	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
-	-s DEMANGLE_SUPPORT=0 \
+	-s DEMANGLE_SUPPORT=0 -s DISABLE_EXCEPTION_CATCHING=1 \
 	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
 	--preload-file $(MFILE_PATH)/set@/usr/src/octave/m/set \

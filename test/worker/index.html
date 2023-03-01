@@ -5,7 +5,8 @@
   <title>Octave Worker</title>
 </head>
 <body>
-<script src="https://unpkg.com/promise-worker/dist/promise-worker.js"></script>
+<!--<script src="https://unpkg.com/promise-worker/dist/promise-worker.js"></script>-->
+<script src="promise-worker.js"></script>
 <script>
   var worker = new Worker('worker.js');
   var promiseWorker = new PromiseWorker(worker);
@@ -28,6 +29,10 @@
         ident: "feval",
         args: ["strcat", ["foo", "bar"], 1]
       };
+      // message = {
+      //   ident: "feval",
+      //   args: ["error", ["foo"], 0]
+      // };
       promiseWorker.postMessage(message).then(function (response) {
         console.log("response: " + response);
       }).catch(function (error) {

@@ -178,11 +178,14 @@ CMD =
 
 .PHONY: build
 build:
-	docker build --target $(TARGET) -t $(IMAGE_TAG) .
+	docker build --progress=plain --target $(TARGET) -t $(IMAGE_TAG) .
 
 .PHONY: run
 run:
-	docker run -it --rm -p 8080:8080 -v `pwd`/test/web/index.html:/usr/src/octave-wasm/src/web/index.html $(IMAGE_TAG) $(CMD)
+	docker run -it --rm -p 8080:8080 \
+  -v `pwd`/test/web/index.html:/usr/src/octave-wasm/src/web/index.html \
+  -v `pwd`/test/worker/index.html:/usr/src/octave-wasm/src/worker/index.html \
+  $(IMAGE_TAG) $(CMD)
 
 .PHONY: dev
 dev:

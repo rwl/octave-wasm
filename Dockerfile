@@ -165,6 +165,7 @@ RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID dev
 RUN mkdir -p $PROJECTDIR/src/worker
 COPY test/worker/index.html $PROJECTDIR/src/worker
 COPY test/worker/worker.js $PROJECTDIR/src/worker
+COPY test/worker/promise-worker.register.js $PROJECTDIR/src/worker
 COPY test/server3.py $PROJECTDIR/src/worker
 WORKDIR $PROJECTDIR/src/worker
 
