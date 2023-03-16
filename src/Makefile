@@ -47,7 +47,7 @@ octave.o:
 
 web/octave.js: octave.o
 	mkdir -p web
-	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
+	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' -s EXPORTED_RUNTIME_METHODS='["FS","MEMFS"]' \
 	-s DEMANGLE_SUPPORT=0 -s DISABLE_EXCEPTION_CATCHING=1 \
 	--preload-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--preload-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
@@ -66,7 +66,7 @@ web/octave.js: octave.o
 
 worker/octave.js: octave.o
 	mkdir -p worker
-	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' \
+	em++ --bind $(EM_SFLAGS) -s EXPORTED_FUNCTIONS='["_main"]' -s EXPORTED_RUNTIME_METHODS='["FS","MEMFS"]' \
 	-s DEMANGLE_SUPPORT=0 \
 	--embed-file $(MFILE_PATH)/help@/usr/src/octave/m/help \
 	--embed-file $(MFILE_PATH)/general@/usr/src/octave/m/general \
