@@ -136,7 +136,7 @@ RUN emconfigure ./configure \
     --without-arpack --with-blas=-lrefblas --with-lapack=-lclapack \
     --without-sndfile --without-portaudio --without-freetype --without-fontconfig --without-fltk --without-qrupdate \
     --without-sundials_ida --without-sundials_nvecserial --without-sundials_sunlinsolklu --without-qhull_r \
-    --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cholmod --without-cxsparse --without-ccolamd \
+    --with-pcre-includedir=$INCDIR --with-pcre-libdir=$LIBDIR --without-cxsparse --without-ccolamd \
     --without-z --without-bz2 --without-magick --without-spqr --without-glpk --disable-rapidjson
 
 RUN emmake make -j${OCTJOBS:-4}
