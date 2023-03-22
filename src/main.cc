@@ -54,7 +54,7 @@ octave_value em_val_to_octave_value(emscripten::val em_val) {
         emscripten::val arr = em_val[MATRIX_DATA_KEY];
         for (int c = 0; c < cols; c++) {
           for (int r = 0; r < rows; r++) {
-            emscripten::val elem = arr[c * cols + r];
+            emscripten::val elem = arr[c * rows + r];
             matrix(r, c) = elem.as<double>();
           }
         }
