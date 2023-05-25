@@ -19,6 +19,7 @@ const std::string MATRIX_COLS_KEY = "cols";
 const std::string MATRIX_DATA_KEY = "data";
 
 const std::string MATRIX_TYPE_VALUE = "matrix";
+const std::string COMPLEX_MATRIX_TYPE_VALUE = "complex_matrix";
 const std::string SPARSE_MATRIX_TYPE_VALUE = "sparse_matrix";
 const std::string SPARSE_COMPLEX_MATRIX_TYPE_VALUE = "sparse_complex_matrix";
 
@@ -136,6 +137,25 @@ emscripten::val octave_value_to_em_val(octave_value value) {
     double *fortran_vec = matrix.fortran_vec();
     for (int i = 0; i < rows * cols; i++) {
       arr.call<void>("push", fortran_vec[i]);
+    }
+    obj.set(MATRIX_DATA_KEY, arr);
+
+    return obj;
+  } else if (value.is_complex_matrix()) {
+    emscripten::val obj = emscripten::val::object();
+    obj.set(OBJ_TYPE_KEY, emscripten::val(COMPLEX_MATRIX_TYPE_VALUE));
+    Matrix matrix = value.matrix_value();
+
+    octave_idx_type rows = matrix.rows();
+    octave_idx_type cols = matrix.cols();
+    obj.set(MATRIX_ROWS_KEY, rows);
+    obj.set(MATRIX_COLS_KEY, cols);
+
+    emscripten::val arr = emscripten::val::array();
+    double *fortran_vec = matrix.fortran_vec();
+    for (int i = 0; i < rows * cols; i++) {
+      arr.call<void>("push", std::real(fortran_vec[i]));
+      arr.call<void>("push", std::imag(fortran_vec[i])); // interleave
     }
     obj.set(MATRIX_DATA_KEY, arr);
 
@@ -334,11 +354,16 @@ int EMSCRIPTEN_KEEPALIVE execute_interp() {
         "/usr/src/octave/m/miscellaneous:"
         "/usr/src/octave/m/strings:"
         "/usr/src/octave/m/sparse:"
+        "/usr/src/octave/m/statistics:"
+        "/usr/src/octave/m/elfun:"
         "/usr/src/octave/m/path:"
         "/usr/src/octave/m/io:"
         "/usr/src/octave/m/polynomial:"
         "/usr/src/octave/m/pkg:"
-        "/usr/src/octave/m/time", '\'');
+        "/usr/src/octave/m/time:"
+        "/usr/src/octave/m/specfun:"
+        "/usr/src/octave/m/legacy:"
+        "/usr/src/octave/m/linear-algebra", '\'');
     Faddpath(*interpreter, octave_paths);
   } catch (const octave::exit_exception& ex) {
     return ex.exit_status();

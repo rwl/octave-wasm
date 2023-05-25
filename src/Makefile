@@ -55,11 +55,16 @@ web/octave.js: octave.o
 	--preload-file $(MFILE_PATH)/miscellaneous@/usr/src/octave/m/miscellaneous \
 	--preload-file $(MFILE_PATH)/strings@/usr/src/octave/m/strings \
 	--preload-file $(MFILE_PATH)/sparse@/usr/src/octave/m/sparse \
+	--preload-file $(MFILE_PATH)/statistics@/usr/src/octave/m/statistics \
+	--preload-file $(MFILE_PATH)/elfun@/usr/src/octave/m/elfun \
 	--preload-file $(MFILE_PATH)/path@/usr/src/octave/m/path \
 	--preload-file $(MFILE_PATH)/io@/usr/src/octave/m/io \
 	--preload-file $(MFILE_PATH)/polynomial@/usr/src/octave/m/polynomial \
 	--preload-file $(MFILE_PATH)/pkg@/usr/src/octave/m/pkg \
 	--preload-file $(MFILE_PATH)/time@/usr/src/octave/m/time \
+	--preload-file $(MFILE_PATH)/specfun@/usr/src/octave/m/specfun \
+	--preload-file $(MFILE_PATH)/linear-algebra@/usr/src/octave/m/linear-algebra \
+	--preload-file $(MFILE_PATH)/legacy@/usr/src/octave/m/legacy \
 	-s MODULARIZE=1 -s EXPORT_NAME=OCTAVE -s ENVIRONMENT="web" \
 	-s EXPORT_ES6=0 --post-js post.js \
 	$(EM_CFLAGS) $(EM_LDFLAGS) -o $@ $^
@@ -74,11 +79,16 @@ worker/octave.js: octave.o
 	--embed-file $(MFILE_PATH)/miscellaneous@/usr/src/octave/m/miscellaneous \
 	--embed-file $(MFILE_PATH)/strings@/usr/src/octave/m/strings \
 	--embed-file $(MFILE_PATH)/sparse@/usr/src/octave/m/sparse \
+	--embed-file $(MFILE_PATH)/statistics@/usr/src/octave/m/statistics \
+	--embed-file $(MFILE_PATH)/elfun@/usr/src/octave/m/elfun \
 	--embed-file $(MFILE_PATH)/path@/usr/src/octave/m/path \
 	--embed-file $(MFILE_PATH)/io@/usr/src/octave/m/io \
 	--embed-file $(MFILE_PATH)/polynomial@/usr/src/octave/m/polynomial \
 	--embed-file $(MFILE_PATH)/pkg@/usr/src/octave/m/pkg \
 	--embed-file $(MFILE_PATH)/time@/usr/src/octave/m/time \
+	--embed-file $(MFILE_PATH)/specfun@/usr/src/octave/m/specfun \
+	--embed-file $(MFILE_PATH)/linear-algebra@/usr/src/octave/m/linear-algebra \
+	--embed-file $(MFILE_PATH)/legacy@/usr/src/octave/m/legacy \
 	-s MODULARIZE=1 -s EXPORT_NAME=OCTAVE -s ENVIRONMENT="worker" \
 	-s EXPORT_ES6=1 -s SINGLE_FILE=1 \
 	--post-js post.js \
@@ -94,11 +104,16 @@ node/octave.js: octave.o
 	--embed-file $(MFILE_PATH)/miscellaneous@/usr/src/octave/m/miscellaneous \
 	--embed-file $(MFILE_PATH)/strings@/usr/src/octave/m/strings \
 	--embed-file $(MFILE_PATH)/sparse@/usr/src/octave/m/sparse \
+	--embed-file $(MFILE_PATH)/statistics@/usr/src/octave/m/statistics \
+	--embed-file $(MFILE_PATH)/elfun@/usr/src/octave/m/elfun \
 	--embed-file $(MFILE_PATH)/path@/usr/src/octave/m/path \
 	--embed-file $(MFILE_PATH)/io@/usr/src/octave/m/io \
 	--embed-file $(MFILE_PATH)/polynomial@/usr/src/octave/m/polynomial \
 	--embed-file $(MFILE_PATH)/pkg@/usr/src/octave/m/pkg \
 	--embed-file $(MFILE_PATH)/time@/usr/src/octave/m/time \
+	--embed-file $(MFILE_PATH)/specfun@/usr/src/octave/m/specfun \
+	--embed-file $(MFILE_PATH)/linear-algebra@/usr/src/octave/m/linear-algebra \
+	--embed-file $(MFILE_PATH)/legacy@/usr/src/octave/m/legacy \
 	-s MODULARIZE=1 -s EXPORT_NAME=OCTAVE -s ENVIRONMENT="node" \
 	-s EXPORT_ES6=0 --post-js post.js \
 	$(EM_CFLAGS) $(EM_LDFLAGS) -o $@ $^
