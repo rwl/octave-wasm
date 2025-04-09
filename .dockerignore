@@ -1,0 +1,8 @@
+third_party/octave-4.4.1
+
+third_party/octave-7.2.0/doc/interpreter/octave.html
+third_party/octave-7.2.0/doc/interpreter/*.ps
+third_party/octave-7.2.0/doc/interpreter/*.pdf
+third_party/octave-7.2.0/doc/interpreter/*.eps
+#third_party/octave-7.2.0/doc/interpreter/*.texi
+third_party/octave-7.2.0/doc/interpreter/*.png
