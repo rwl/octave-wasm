@@ -146,8 +146,8 @@ RUN emmake make install
 COPY src $PROJECTDIR/src
 WORKDIR $PROJECTDIR/src
 #RUN make all
-#RUN make web/octave.js
-RUN make worker/octave.js
+RUN make web/octave.js
+#RUN make worker/octave.js
 #RUN make node/octave.js
 
 
@@ -157,18 +157,19 @@ ARG GROUP_ID=1000
 RUN addgroup --gid $GROUP_ID dev
 RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID dev
 
-#RUN mkdir -p $PROJECTDIR/src/web
-#COPY test/web/index.html $PROJECTDIR/src/web
-#COPY test/server3.py $PROJECTDIR/src/web
-#WORKDIR $PROJECTDIR/src/web
+RUN mkdir -p $PROJECTDIR/src/web
+COPY test/web/index.html $PROJECTDIR/src/web
+COPY test/server3.py $PROJECTDIR/src/web
+WORKDIR $PROJECTDIR/src/web
 
-RUN mkdir -p $PROJECTDIR/src/worker
-COPY test/worker/index.html $PROJECTDIR/src/worker
-COPY test/worker/worker.js $PROJECTDIR/src/worker
-COPY test/worker/promise-worker.register.js $PROJECTDIR/src/worker
-COPY test/server3.py $PROJECTDIR/src/worker
-WORKDIR $PROJECTDIR/src/worker
+#RUN mkdir -p $PROJECTDIR/src/worker
+#COPY test/worker/index.html $PROJECTDIR/src/worker
+#COPY test/worker/worker.js $PROJECTDIR/src/worker
+#COPY test/worker/promise-worker.js $PROJECTDIR/src/worker
+#COPY test/worker/promise-worker.register.js $PROJECTDIR/src/worker
+#COPY test/server3.py $PROJECTDIR/src/worker
+#WORKDIR $PROJECTDIR/src/worker
 
 EXPOSE 8080
-#CMD ["python3", "/usr/src/octave-wasm/src/web/server3.py"]
-CMD ["python3", "/usr/src/octave-wasm/src/worker/server3.py"]
+CMD ["python3", "/usr/src/octave-wasm/src/web/server3.py"]
+#CMD ["python3", "/usr/src/octave-wasm/src/worker/server3.py"]
